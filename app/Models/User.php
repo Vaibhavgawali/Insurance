@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
+
+    protected $primaryKey = 'user_id';
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +25,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'isLogginAllowed',
+        'isAdminVerified',
         'password',
     ];
 
@@ -42,4 +50,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function profile() 
+    {
+        return $this->hasOne(UserProfile::class,'user_id','user_id');
+    }
+    public function address() 
+    {
+        return $this->hasOne(UserAddress::class,'user_id','user_id');
+    }
+    public function experience() 
+    {
+        return $this->hasOne(UserExperience::class,'user_id','user_id');
+    }
 }

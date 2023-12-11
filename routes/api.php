@@ -2,6 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\InsurerController;
+use App\Http\Controllers\InstituteController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserAddressController;
+use App\Http\Controllers\UserExperienceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +23,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('candidate', CandidateController::class);
+Route::resource('insurer', InsurerController::class);
+Route::resource('institute', InstituteController::class);
+
+Route::resource('user-profile', UserProfileController::class);
+Route::resource('user-address', UserAddressController::class);
+Route::resource('user-experience', UserExperienceController::class);
+
+Route::get('/users/trash',[CandidateController::class,'trashed_users']);
+Route::put('/users/restore/{id}',[CandidateController::class,'restore_user']);
+Route::delete('/users/delete/{id}',[CandidateController::class,'hard_delete']);
