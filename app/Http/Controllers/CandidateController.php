@@ -35,11 +35,16 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        $users=User::all();
-        if($users){
-            return Response(['data' => $users],200);
+        if (Auth::check()) {
+            $users=User::all();
+
+            if($users){
+                return Response(['data' => $users],200);
+            }
+            return Response(['message'=>"Users not found "],404);
         }
-        return Response(['message'=>"Users not found "],404);
+
+        return Response(['data' => 'Unauthorized'],401);
     }
 
     /**
@@ -193,8 +198,6 @@ class CandidateController extends Controller
         }  
         return Response(['message'=>"User not found "],404);
     }
-
-    
 
      /**
      * List of Soft deleted user

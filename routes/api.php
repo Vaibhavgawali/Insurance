@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\LoginController;
+
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\InsurerController;
 use App\Http\Controllers\InstituteController;
@@ -24,14 +27,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('login',[LoginController::class,'loginUser']);
+
 Route::resource('candidate', CandidateController::class);
 Route::resource('insurer', InsurerController::class);
 Route::resource('institute', InstituteController::class);
 
-Route::resource('user-profile', UserProfileController::class);
-Route::resource('user-address', UserAddressController::class);
-Route::resource('user-experience', UserExperienceController::class);
+Route::group(['middleware' => 'auth:sanctum'],function(){
+    Route::resource('user-profile', UserProfileController::class);
+    Route::resource('user-address', UserAddressController::class);
+    Route::resource('user-experience', UserExperienceController::class);
+});
 
-Route::get('/users/trash',[CandidateController::class,'trashed_users']);
-Route::put('/users/restore/{id}',[CandidateController::class,'restore_user']);
-Route::delete('/users/delete/{id}',[CandidateController::class,'hard_delete']);
+// Route::get('/users/trash',[CandidateController::class,'trashed_users']);
+// Route::put('/users/restore/{id}',[CandidateController::class,'restore_user']);
+// Route::delete('/users/delete/{id}',[CandidateController::class,'hard_delete']);
