@@ -60,7 +60,7 @@ class InstituteController extends Controller
                                 ->symbols()
             ],
             'spoc'=>'required|string|max:60',
-            'address'=>'required|string|max:60'
+            'city'=>'required|string|max:60'
         ]);
 
         if($validator->fails()){
@@ -73,7 +73,6 @@ class InstituteController extends Controller
             'password'=>$request->password, //Hash::make($request->password),
             'phone'=>$request->phone
         ]);
-        // print_r($user->user_id);die;
 
         if($user){
             $user_id=$user->user_id;
@@ -85,7 +84,7 @@ class InstituteController extends Controller
 
             $user_address=UserAddress::create([
                 'user_id'=>$user_id,
-                'city'=>$request->address,
+                'city'=>$request->city,
             ]);
             
             event(new Registered($user));
@@ -103,19 +102,19 @@ class InstituteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $userId)
-    {
-        $user = User::find($userId);
+    // public function show(string $userId)
+    // {
+    //     $user = User::find($userId);
 
-        if($user){
-             $userData = User::with('address','profile')->find($userId);
+    //     if($user){
+    //          $userData = User::with('address','profile')->find($userId);
 
-            return Response(['user'=>$userData],200);
-        }
-        else{
-            return Response(['message'=>"User not found"],404);
-        }
-    }
+    //         return Response(['user'=>$userData],200);
+    //     }
+    //     else{
+    //         return Response(['message'=>"User not found"],404);
+    //     }
+    // }
 
     /**
      * Show the form for editing the specified resource.

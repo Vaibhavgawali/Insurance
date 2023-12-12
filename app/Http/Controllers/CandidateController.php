@@ -74,13 +74,13 @@ class CandidateController extends Controller
                                 ->symbols()
             ],
             'experience' => 'required|in:experienced,fresher', //start and end date
-            'current_ctc' => 'required_if:experience,experienced',
-            'current_org' => 'required_if:experience,experienced',
-            'current_role' => 'required_if:experience,experienced',
+            'ctc' => 'required_if:experience,experienced',
+            'organization' => 'required_if:experience,experienced',
+            'designation' => 'required_if:experience,experienced',
             "joining_date"=>'required_if:experience,experienced|date_format:Y-m-d',
             "relieving_date"=>'required_if:experience,experienced|date_format:Y-m-d',
             'preferred_line'=>'required|string|max:60',
-            'address'=>'required|string|max:60'
+            'city'=>'required|string|max:60'
         ]);
 
         if($validator->fails()){
@@ -104,7 +104,7 @@ class CandidateController extends Controller
 
             $user_address=UserAddress::create([
                 'user_id'=>$user_id,
-                'city'=>$request->address,
+                'city'=>$request->city,
             ]);
             
             if($request->experience == "experienced"){
@@ -132,18 +132,15 @@ class CandidateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $userId) : Response // self 
+    public function show(string $id) : Response // self 
     {
-        $user = User::find($userId);
+        $userId = Auth::user()->user_id; 
 
-        if($user){
-             $userData = User::with('address', 'profile', 'experience','documents')->find($userId);
-
+        if($userId == $id){
+            $userData = User::with('address', 'profile', 'experience','documents')->find($userId);
             return Response(['user'=>$userData],200);
-        }
-        else{
-            return Response(['message'=>"User not found"],404);
-        }
+        } 
+        return Response(['message'=>'Unauthorized'],401);
     }
 
     /**

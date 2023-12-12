@@ -41,12 +41,16 @@ class UserProfileController extends Controller
      */
     public function show(string $id) : Response
     {
-        $user = UserProfile::where('user_id', $id);
-        if($user){
-            $userData=$user->get();
-            return Response(['user profile'=>$userData],200);
+        $userId = Auth::user()->user_id; 
+        if($userId == $id){
+            $user = UserProfile::where('user_id', $id);
+            if($user){
+                $userData=$user->get();
+                return Response(['user profile'=>$userData],200);
+            }
+            return Response(['message'=>"User not found"],404);
         }
-        return Response(['message'=>"User not found"],404);
+        return Response(['message'=>'Unauthorized'],401);
     }
 
     /**
@@ -72,7 +76,6 @@ class UserProfileController extends Controller
                     "age"=>'numeric|integer|min:1',
                     "preffered_line"=> 'string|max:20',
                     "spoc"=> 'string|max:60',
-                    // "profile_image"=> 'string|max:30'
                 ]);
 
                 if($validator->fails()){
@@ -127,7 +130,7 @@ class UserProfileController extends Controller
                 $userId = Auth::user()->user_id; 
 
                 // Image is stored
-                $user = UserProfile::where('user_id', $id);
+                $user = UserProfile::where('user_id', $userId)->first();
 
                 // Delete the old image
                 if($user->profile_image){
@@ -135,7 +138,7 @@ class UserProfileController extends Controller
                     Storage::delete($oldimage);
                 }
 
-                $user->image = $imagepath;
+                $user->profile_image = $imagepath;
                 $user->save();
                 return Response(['message' => 'Image stored successfully', 'path' => $imagepath]);
             } else {

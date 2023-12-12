@@ -109,7 +109,7 @@ class UserExperienceController extends Controller
                     return Response(['message' => $validator->errors()],401);
                 }   
 
-                $user = UserExperience::where('user_id', $userId) ;
+                $user = UserExperience::where('user_id', $userId)->first(); ;
                 if($user){
                     $isUpdated=$user->update($request->all());
                     if($isUpdated){
