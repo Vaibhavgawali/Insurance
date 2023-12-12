@@ -62,32 +62,36 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $formMethod = $request->method();
-        if($formMethod == "PATCH"){
-            $validator=Validator::make($request->all(),[
-                "date_of_birth"=> 'date_format:Y-m-d',
-                "gender"=>'string|in:"M","F","O"',
-                "age"=>'numeric|integer|min:1',
-                "preffered_line"=> 'string|max:20',
-                "spoc"=> 'string|max:60',
-                // "profile_image"=> 'string|max:30'
-            ]);
+        $userId = Auth::user()->user_id; 
+        if($userId == $id){
+            $formMethod = $request->method();
+            if($formMethod == "PATCH"){
+                $validator=Validator::make($request->all(),[
+                    "date_of_birth"=> 'date_format:Y-m-d',
+                    "gender"=>'string|in:"M","F","O"',
+                    "age"=>'numeric|integer|min:1',
+                    "preffered_line"=> 'string|max:20',
+                    "spoc"=> 'string|max:60',
+                    // "profile_image"=> 'string|max:30'
+                ]);
 
-            if($validator->fails()){
-                return Response(['message' => $validator->errors()],401);
-            }   
+                if($validator->fails()){
+                    return Response(['message' => $validator->errors()],401);
+                }   
 
-            $user = UserProfile::where('user_id', $id) ;
-            if($user){
-                $isUpdated=$user->update($request->all());
-                if($isUpdated){
-                    return Response(['message' => "User profile updated successfully"],200);
-                }
-                return Response(['message' => "Something went wrong"],500);
-            }                    
-            return Response(['message'=>"User not found"],404);
+                $user = UserProfile::where('user_id', $id) ;
+                if($user){
+                    $isUpdated=$user->update($request->all());
+                    if($isUpdated){
+                        return Response(['message' => "User profile updated successfully"],200);
+                    }
+                    return Response(['message' => "Something went wrong"],500);
+                }                    
+                return Response(['message'=>"User not found"],404);
+            }
+            return Response(['message'=>"Invalid form method "],405);
         }
-        return Response(['message'=>"Invalid form method "],405);
+        return Response(['message'=>'Unauthorized'],401);
     }
 
     /**
@@ -104,9 +108,8 @@ class UserProfileController extends Controller
     public function profileImageUpload(Request $request):Response
     {
         if(Auth::check()){
-
             $validator=Validator::make($request->all(),[
-                'image'=>'required|image|mimes:jpeg,png,jpg|max:2048'
+                'profile_image'=>'required|image|mimes:jpeg,png,jpg|max:2048'
             ]);
 
             if($validator->fails()){
@@ -114,20 +117,21 @@ class UserProfileController extends Controller
             } 
 
             // Save the image to the storage
-            $image=$request->file("image");
+            $image=$request->file("profile_image");
             $imageName=$image->hashName();
 
             $imagepath= Storage::disk('local')->put('public/images', $image);
             // $imagepath = $image->storeAs('public/images', $imageName);
 
             if ($imagepath) {
+                $userId = Auth::user()->user_id; 
 
                 // Image is stored
-                $user = Auth::user();
+                $user = UserProfile::where('user_id', $id);
 
                 // Delete the old image
-                if($user->image){
-                    $oldimage=$user->image;
+                if($user->profile_image){
+                    $oldimage=$user->profile_image;
                     Storage::delete($oldimage);
                 }
 

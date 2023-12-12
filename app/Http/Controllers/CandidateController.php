@@ -26,7 +26,7 @@ class CandidateController extends Controller
     public function __construct()
     {
         $this->middleware('auth:sanctum')->except('store');
-        
+
         // Apply Spatie middleware here
         // $this->middleware('can:edit posts')->only(['edit', 'update']);
         // $this->middleware('can:delete posts')->only('destroy');
@@ -35,7 +35,7 @@ class CandidateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() // permission->view_all_users
     {
         if (Auth::check()) {
             $users=User::all();
@@ -60,7 +60,7 @@ class CandidateController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): Response
+    public function store(Request $request): Response 
     {
         $validator=Validator::make($request->all(),[
             'name'=>'required|string',
@@ -126,19 +126,18 @@ class CandidateController extends Controller
             // $user->assignRole('candidate'); /** assign role to user */
             return Response(['message' => "User created successfully"],200);
         }
-        return Response(['message' => "Something went wrong"],500);
-        
+        return Response(['message' => "Something went wrong"],500);   
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $userId) : Response
+    public function show(string $userId) : Response // self 
     {
         $user = User::find($userId);
 
         if($user){
-             $userData = User::with('address', 'profile', 'experience')->find($userId);
+             $userData = User::with('address', 'profile', 'experience','documents')->find($userId);
 
             return Response(['user'=>$userData],200);
         }
@@ -160,49 +159,52 @@ class CandidateController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $formMethod = $request->method();
-        if($formMethod == "PATCH"){
-            $validator=Validator::make($request->all(),[
-                'name'=>'required|string',
-                // 'email'=>'required|email|unique:users,email',
-                'phone'=>'required|numeric|digits:10'
-            ]);
+        $userId = Auth::user()->user_id; 
+        if($userId == $id){
+            $formMethod = $request->method();
+            if($formMethod == "PATCH"){
+                $validator=Validator::make($request->all(),[
+                    'name'=>'required|string',
+                    // 'email'=>'required|email|unique:users,email',
+                    'phone'=>'required|numeric|digits:10'
+                ]);
 
-            if($validator->fails()){
-                return Response(['message' => $validator->errors()],401);
-            }   
+                if($validator->fails()){
+                    return Response(['message' => $validator->errors()],401);
+                }   
 
-            $user = User::where('user_id', $id) ;
-            if($user){
-                $isUpdated=$user->update($request->all());
-                if($isUpdated){
-                    return Response(['message' => "User updated successfully"],200);
-                }
-                return Response(['message' => "Something went wrong"],500);
-            }                    
-            return Response(['message'=>"User not found"],404);
+                $user = User::where('user_id', $id) ;
+                if($user){
+                    $isUpdated=$user->update($request->all());
+                    if($isUpdated){
+                        return Response(['message' => "User updated successfully"],200);
+                    }
+                    return Response(['message' => "Something went wrong"],500);
+                }                    
+                return Response(['message'=>"User not found"],404);
+            }
+            return Response(['message'=>"Invalid form method "],405);
         }
-        return Response(['message'=>"Invalid form method "],405);
+        return Response(['message'=>'Unauthorized'],401);
     }
 
     /**
      * Soft delete user
      */
-    public function destroy(string $id)
-    {
-        $user = User::where('user_id', $id) ;
-        if($user){
-            $isTrashed=$user->delete();
-            if($isTrashed){
-                return Response(['message' => "User trashed successfully"],200);
-            }
-            return Response(['message' => "Something went wrong"],500);
-        }  
-        return Response(['message'=>"User not found "],404);
-    }
+    // public function destroy(string $id) 
+    // {
+    //     $user = User::where('user_id', $id) ;
+    //     if($user){
+    //         $isTrashed=$user->delete();
+    //         if($isTrashed){
+    //             return Response(['message' => "User trashed successfully"],200);
+    //         }
+    //         return Response(['message' => "Something went wrong"],500);
+    //     }  
+    //     return Response(['message'=>"User not found "],404);
+    // }
 
-   
-
+    
      /**
      * List of Soft deleted user
      */

@@ -63,4 +63,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserExperience::class,'user_id','user_id');
     }
+    public function documents() 
+    {
+        return $this->hasOne(UserDocuments::class,'user_id','user_id');
+    }
 }

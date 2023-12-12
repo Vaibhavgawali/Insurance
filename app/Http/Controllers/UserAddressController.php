@@ -40,12 +40,17 @@ class UserAddressController extends Controller
      */
     public function show(string $id)
     {
-        $user = UserAddress::where('user_id', $id);
-        if($user){
-            $userData=$user->get();
-            return Response(['user address'=>$userData],200);
-        }
-        return Response(['message'=>"User not found"],404);
+        $userId = Auth::user()->user_id; 
+        if($userId == $id){
+            $user = UserAddress::where('user_id', $id);
+            if($user){
+                $userData=$user->get();
+                return Response(['user address'=>$userData],200);
+            }
+            return Response(['message'=>"User not found"],404);
+
+            }
+            return Response(['message'=>'Unauthorized'],401);
     }
 
     /**
@@ -61,34 +66,37 @@ class UserAddressController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $formMethod = $request->method();
-        if($formMethod == "PATCH"){
-            $validator=Validator::make($request->all(),[
-                "line1"=> 'string|max:40',
-                "line2"=> 'string|max:40',
-                "line3"=> 'string|max:40',
-                "city"=> 'required|string|max:30',
-                "state"=> 'string|max:20',
-                "pincode"=> 'numeric|digits:6',
-                "country"=> 'string|max:20',
-            ]);
+        $userId = Auth::user()->user_id; 
+        if($userId == $id){
+            $formMethod = $request->method();
+            if($formMethod == "PATCH"){
+                $validator=Validator::make($request->all(),[
+                    "line1"=> 'string|max:40',
+                    "line2"=> 'string|max:40',
+                    "line3"=> 'string|max:40',
+                    "city"=> 'required|string|max:30',
+                    "state"=> 'string|max:20',
+                    "pincode"=> 'numeric|digits:6',
+                    "country"=> 'string|max:20',
+                ]);
 
-            if($validator->fails()){
-                return Response(['message' => $validator->errors()],401);
-            }   
+                if($validator->fails()){
+                    return Response(['message' => $validator->errors()],401);
+                }   
 
-            $user = UserAddress::where('user_id', $id) ;
-            if($user){
-                $isUpdated=$user->update($request->all());
-                if($isUpdated){
-                    return Response(['message' => "User address updated successfully"],200);
-                }
-                return Response(['message' => "Something went wrong"],500);
-            }                    
-            return Response(['message'=>"User not found"],404);
+                $user = UserAddress::where('user_id', $id) ;
+                if($user){
+                    $isUpdated=$user->update($request->all());
+                    if($isUpdated){
+                        return Response(['message' => "User address updated successfully"],200);
+                    }
+                    return Response(['message' => "Something went wrong"],500);
+                }                    
+                return Response(['message'=>"User not found"],404);
+            }
+            return Response(['message'=>"Invalid form method "],405);
         }
-        return Response(['message'=>"Invalid form method "],405);
-        
+        return Response(['message'=>'Unauthorized'],401);
     }
 
     /**
