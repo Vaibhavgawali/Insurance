@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Auth;
 use Validator;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\UserProfile;
 
@@ -38,7 +39,7 @@ class UserProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id) : Response
     {
         $user = UserProfile::where('user_id', $id);
         if($user){
@@ -95,5 +96,49 @@ class UserProfileController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+     /**
+     * Upload profile image
+     */
+    public function profileImageUpload(Request $request):Response
+    {
+        if(Auth::check()){
+
+            $validator=Validator::make($request->all(),[
+                'image'=>'required|image|mimes:jpeg,png,jpg|max:2048'
+            ]);
+
+            if($validator->fails()){
+                return Response(['message' => $validator->errors()],401);
+            } 
+
+            // Save the image to the storage
+            $image=$request->file("image");
+            $imageName=$image->hashName();
+
+            $imagepath= Storage::disk('local')->put('public/images', $image);
+            // $imagepath = $image->storeAs('public/images', $imageName);
+
+            if ($imagepath) {
+
+                // Image is stored
+                $user = Auth::user();
+
+                // Delete the old image
+                if($user->image){
+                    $oldimage=$user->image;
+                    Storage::delete($oldimage);
+                }
+
+                $user->image = $imagepath;
+                $user->save();
+                return Response(['message' => 'Image stored successfully', 'path' => $imagepath]);
+            } else {
+                // Image storage failed
+                return Response(['message' => 'Failed to store image'], 500);
+            }            
+        }
+        return Response(['message'=>'Unauthorized'],401);
     }
 }

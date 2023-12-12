@@ -23,12 +23,14 @@ use App\Models\UserExperience;
 
 class CandidateController extends Controller
 {
-    // public function __construct()
-    // {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except('store');
+        
         // Apply Spatie middleware here
         // $this->middleware('can:edit posts')->only(['edit', 'update']);
         // $this->middleware('can:delete posts')->only('destroy');
-    // }
+    }
 
     /**
      * Display a listing of the resource.
@@ -198,6 +200,8 @@ class CandidateController extends Controller
         }  
         return Response(['message'=>"User not found "],404);
     }
+
+   
 
      /**
      * List of Soft deleted user

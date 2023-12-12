@@ -34,9 +34,15 @@ Route::resource('insurer', InsurerController::class);
 Route::resource('institute', InstituteController::class);
 
 Route::group(['middleware' => 'auth:sanctum'],function(){
+    
     Route::resource('user-profile', UserProfileController::class);
     Route::resource('user-address', UserAddressController::class);
     Route::resource('user-experience', UserExperienceController::class);
+
+    Route::post('image-upload',[UserProfileController::class,'profileImageUpload']); 
+    
+    Route::get('logout',[LoginController::class,'logout']);
+    Route::get('refresh-token',[LoginController::class,'refreshAuthToken']);
 });
 
 // Route::get('/users/trash',[CandidateController::class,'trashed_users']);

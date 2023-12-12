@@ -22,6 +22,11 @@ use App\Models\UserAddress;
 
 class InsurerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except('store');
+    }
+    
     /**
      * Display a listing of the resource.
      */
