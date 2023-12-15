@@ -35,19 +35,19 @@ class CandidateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() // permission->view_all_users
-    {
-        if (Auth::check()) {
-            $users=User::all();
+    // public function index() // permission->view_all_users
+    // {
+    //     if (Auth::check()) {
+    //         $users=User::all();
 
-            if($users){
-                return Response(['data' => $users],200);
-            }
-            return Response(['message'=>"Users not found "],404);
-        }
+    //         if($users){
+    //             return Response(['data' => $users],200);
+    //         }
+    //         return Response(['message'=>"Users not found "],404);
+    //     }
 
-        return Response(['data' => 'Unauthorized'],401);
-    }
+    //     return Response(['data' => 'Unauthorized'],401);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -170,7 +170,7 @@ class CandidateController extends Controller
                     return Response(['message' => $validator->errors()],401);
                 }   
 
-                $user = User::where('user_id', $id) ;
+                $user = User::where('user_id', $id);
                 if($user){
                     $isUpdated=$user->update($request->all());
                     if($isUpdated){
