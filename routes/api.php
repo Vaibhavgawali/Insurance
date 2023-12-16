@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 use App\Http\Controllers\LoginController;
 
@@ -33,25 +34,32 @@ Route::resource('admin/user', UserController::class)->middleware('auth:sanctum')
 
 Route::post('login',[LoginController::class,'loginUser']);
 
-// Route::resource('candidate', CandidateController::class);
-// Route::resource('insurer', InsurerController::class);
-// Route::resource('institute', InstituteController::class);
+Route::resource('candidate', CandidateController::class);
+Route::resource('insurer', InsurerController::class);
+Route::resource('institute', InstituteController::class);
 
-// Route::group(['middleware' => 'auth:sanctum'],function(){
+Route::group(['middleware' => 'auth:sanctum'],function(){
     
-//     Route::resource('user-profile', UserProfileController::class);
-//     Route::resource('user-address', UserAddressController::class);
-//     Route::resource('user-experience', UserExperienceController::class);
-//     Route::resource('user-documents', UserDocumentsController::class);
+    Route::resource('user-profile', UserProfileController::class);
+    Route::resource('user-address', UserAddressController::class);
+    Route::resource('user-experience', UserExperienceController::class);
+    Route::resource('user-documents', UserDocumentsController::class);
 
-//     Route::post('image-upload',[UserProfileController::class,'profileImageUpload']); 
+    Route::post('image-upload',[UserProfileController::class,'profileImageUpload']); 
     
-//     Route::get('logout',[LoginController::class,'logout']);
-//     Route::get('refresh-token',[LoginController::class,'refreshAuthToken']);
-// });
+    Route::get('logout',[LoginController::class,'logout']);
+    Route::get('refresh-token',[LoginController::class,'refreshAuthToken']);
+});
 
 Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get('admin/users/trash',[UserController::class,'trashed_users']);
     Route::patch('admin/user/restore/{id}',[UserController::class,'restore_user']);
     // Route::delete('admin/user/delete/{id}',[UserController::class,'hard_delete']);
 });
+
+Route::get('/roles',[UserController::class,'get_all_roles']);
+Route::get('/get_permissions_of_user',[UserController::class,'get_permissions_of_user']);
+
+Route::group(['middleware' => ['role:Superadmin']], function () {
+    Route::post('assign-role/{id}',[UserController::class,'assignRole']);     
+});    

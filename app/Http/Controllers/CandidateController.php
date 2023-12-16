@@ -27,27 +27,25 @@ class CandidateController extends Controller
     {
         $this->middleware('auth:sanctum')->except('store');
 
-        // Apply Spatie middleware here
-        // $this->middleware('can:edit posts')->only(['edit', 'update']);
-        // $this->middleware('can:delete posts')->only('destroy');
+        //  Spatie middleware here
+        $this->middleware(['role_or_permission:Superadmin|view_candidate_list|view_users_list'])->only('index');
     }
 
     /**
      * Display a listing of the resource.
      */
-    // public function index() // permission->view_all_users
-    // {
-    //     if (Auth::check()) {
-    //         $users=User::all();
+    public function index()
+    {
+        if (Auth::check()) {
+            $users = User::role('Candidate')->get();
+            if ($users) {
+                return Response(['data' => $users], 200);
+            }
+            return Response(['message' => "Users with role Candidate not found "], 404);
+        }
 
-    //         if($users){
-    //             return Response(['data' => $users],200);
-    //         }
-    //         return Response(['message'=>"Users not found "],404);
-    //     }
-
-    //     return Response(['data' => 'Unauthorized'],401);
-    // }
+        return Response(['data' => 'Unauthorized'], 401);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -118,12 +116,12 @@ class CandidateController extends Controller
                 ]);
             }   
 
-            event(new Registered($user));
+            // event(new Registered($user));
             // if($user->sendEmailVerificationNotification()){
             //     return Response(['message' => "Email is sent to email"],200);
             // }
 
-            // $user->assignRole('candidate'); /** assign role to user */
+            // $user->assignRole('candidate'); /** assign role to user **/
             return Response(['message' => "User created successfully"],200);
         }
         return Response(['message' => "Something went wrong"],500);   
@@ -134,9 +132,10 @@ class CandidateController extends Controller
      */
     public function show(string $id) : Response // self 
     {
-        $userId = Auth::user()->user_id; 
+        $user=Auth::user();
+        $userId = $user->user_id; 
 
-        if($userId == $id){
+        if($userId == $id ){
             $userData = User::with('address', 'profile', 'experience','documents')->find($userId);
             return Response(['user'=>$userData],200);
         } 

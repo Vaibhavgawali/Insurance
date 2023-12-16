@@ -18,6 +18,16 @@ use App\Models\UserExperience;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except('store');
+
+        // Spatie middleware here
+        $this->middleware(['role:Superadmin'])->only('index','update','destroy','trashed_users','restore_user','force_delete','assignRole');
+        $this->middleware(['role_or_permission:Superadmin|view_user_details|view_candidate_details'])->only('show');
+        
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -57,8 +67,14 @@ class UserController extends Controller
     public function show(string $id)
     {
         if (Auth::check()) {
+
             $userId = User::find($id);
             if ($userId) {
+                $user=Auth::user();
+                if($user->hasPermissionTo('view_candidate_details')){
+                    $users = User::with('address', 'profile', 'experience', 'documents')->find($userId);
+                    return Response(['user' => $users], 200);
+                }
                 $userData = User::with('address', 'profile', 'experience', 'documents')->find($userId);
                 return Response(['user' => $userData], 200);
             }
@@ -173,4 +189,40 @@ class UserController extends Controller
     //     }
     //     return Response(['message'=>"User not found in trashed"],404);
     // }
+
+    /**
+     * Assign Role to user
+     */
+    public function assignRole(Request $request,$user_id) : Response
+    {
+        $validator=Validator::make($request->all(),['role'=>'required|in:Superadmin,Candidate,Insurer,Institute,Other']);
+
+        if($validator->fails()){
+            return Response(['message' => $validator->errors()],401);
+        }
+
+        $new_role=$request->role;
+
+        $user=User::find($user_id);
+        if($user){
+            $role = $user->hasRole($new_role); /** check user has this role */ 
+
+            if(!$role){
+                $roles = $user->getRoleNames(); /** get all roles of user */
+
+                $user->syncRoles([]); /** remove all previous roles */
+
+                $user->assignRole($new_role); /** assign new role to user */
+
+                return Response(['user'=>$user,'message'=>"Role assigned"],200);//'role'=>$user->getRoleNames(),
+            }
+           
+            $permissions = $user->permissions;
+            
+            return Response(['user'=>$user,'role'=>$role,'permissions'=>$permissions,'message'=>"Role assigned"],200);
+        }
+        else{
+            return Response(['message'=>"User not found"],404);
+        }
+    }
 }
