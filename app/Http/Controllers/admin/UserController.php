@@ -70,13 +70,23 @@ class UserController extends Controller
 
             $userId = User::find($id);
             if ($userId) {
+
+                // Logged user with role insurer with permission "view_candidate_details" can only access
                 $user=Auth::user();
                 if($user->hasPermissionTo('view_candidate_details')){
-                    $users = User::with('address', 'profile', 'experience', 'documents')->find($userId);
+                    $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->find($userId);
                     return Response(['user' => $users], 200);
                 }
-                $userData = User::with('address', 'profile', 'experience', 'documents')->find($userId);
-                return Response(['user' => $userData], 200);
+
+                // Superadmin
+                $userData = User::with('address', 'profile', 'experience', 'documents')-> where('user_id',$id)->first();
+
+                if ($userData) {               
+                    $roles = $userData->roles; 
+                    $permissions = $userData->getPermissionsViaRoles(); 
+                    
+                    return Response(['user' => $userData], 200);
+                 }
             }
             return Response(['message' => 'User not found'], 401);
         }
@@ -190,6 +200,21 @@ class UserController extends Controller
     //     return Response(['message'=>"User not found in trashed"],404);
     // }
 
+     /**
+     * Get All the Role wise Permissions
+     */
+    public function get_roles_wise_permissions(){
+
+        $roles = Role::with('permissions')->get();
+
+        $rolePermissions = [];
+    
+        foreach ($roles as $role) {
+            $rolePermissions[$role->name] = $role->permissions->pluck('name');
+        }
+        return Response(['role_wise_permissions'=>$rolePermissions],200);
+    }
+
     /**
      * Assign Role to user
      */
@@ -212,9 +237,10 @@ class UserController extends Controller
 
                 $user->syncRoles([]); /** remove all previous roles */
 
-                $user->assignRole($new_role); /** assign new role to user */
+                /** assign new role to user */
+                $user->assignRole($new_role); 
 
-                return Response(['user'=>$user,'message'=>"Role assigned"],200);//'role'=>$user->getRoleNames(),
+                return Response(['user'=>$user,'message'=>"Role assigned"],200);
             }
            
             $permissions = $user->permissions;

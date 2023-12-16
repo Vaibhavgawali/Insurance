@@ -53,10 +53,15 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::get('logout', [LoginController::class, 'logout']);
     Route::get('refresh-token', [LoginController::class, 'refreshAuthToken']);
-
-    Route::group(['middleware' => 'auth:sanctum'],function(){
-        Route::get('admin/users/trash',[UserController::class,'trashed_users']);
-        Route::patch('admin/user/restore/{id}',[UserController::class,'restore_user']);
-        // Route::delete('admin/user/delete/{id}',[UserController::class,'hard_delete']);
-    });
+   
 });
+
+Route::group(['middleware' => ['auth:sanctum','role:Superadmin']],function(){
+    Route::get('admin/users/trash',[UserController::class,'trashed_users']);
+    Route::patch('admin/user/restore/{id}',[UserController::class,'restore_user']);
+    // Route::delete('admin/user/delete/{id}',[UserController::class,'hard_delete']);
+
+    Route::get('/roles_wise_permission',[UserController::class,'get_roles_wise_permissions']);
+    Route::post('assign-role/{id}',[UserController::class,'assignRole']);
+});
+

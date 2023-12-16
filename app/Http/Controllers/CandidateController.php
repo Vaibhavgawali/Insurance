@@ -121,7 +121,8 @@ class CandidateController extends Controller
             //     return Response(['message' => "Email is sent to email"],200);
             // }
 
-            // $user->assignRole('candidate'); /** assign role to user **/
+             /** assign role to user **/
+             $user->assignRole('candidate');
             return Response(['message' => "User created successfully"],200);
         }
         return Response(['message' => "Something went wrong"],500);   
@@ -161,7 +162,7 @@ class CandidateController extends Controller
             if($formMethod == "PATCH"){
                 $validator=Validator::make($request->all(),[
                     'name'=>'required|string',
-                    // 'email'=>'required|email|unique:users,email',
+                    'email'=>'required|email|unique:users,email,' . $userId. ',user_id',
                     'phone'=>'required|numeric|digits:10'
                 ]);
 
@@ -187,63 +188,8 @@ class CandidateController extends Controller
     /**
      * Soft delete user
      */
-    // public function destroy(string $id) 
-    // {
-    //     $user = User::where('user_id', $id) ;
-    //     if($user){
-    //         $isTrashed=$user->delete();
-    //         if($isTrashed){
-    //             return Response(['message' => "User trashed successfully"],200);
-    //         }
-    //         return Response(['message' => "Something went wrong"],500);
-    //     }  
-    //     return Response(['message'=>"User not found "],404);
-    // }
-
-    
-     /**
-     * List of Soft deleted user
-     */
-    // public function trashed_users():Response
-    // {
-    //     $users = User::onlyTrashed();
-    //     if($user){
-    //         return Response(['message' => "Users trashed","users"=>$users],200);
-    //     }  
-    //     return Response(['message'=>"Users not found in trashed "],404);
-    // }
-
-    /**
-     * Restore Soft deleted user
-     */
-    // public function restore_user(string $id)
-    // {
-    //     $user = User::onlyTrashed()->where('user_id', $id) ;
-    //     dd($user);
-    //     if($user){
-    //         $isRestored = $user->restore();
-    //         if($isRestored){
-    //             return Response(['message' => "User restored successfully"],200);
-    //         }
-    //         return Response(['message' => "Something went wrong"],500);
-    //     }
-    //     return Response(['message'=>"User not found in trashed"],404);
-    // }
-
-    /**
-     * Hard delete user this require to join tables experience ,user_profile ,documents,address
-     */
-    // public function force_delete(string $id)
-    // {
-    //     $user = User::onlyTrashed()->where('user_id', $id) ;
-    //     if($user){
-    //         $isDeleted = $user->forceDelete();
-    //         if($isDeleted){
-    //             return Response(['message' => "User deleted permantally"],200);
-    //         }
-    //         return Response(['message' => "Something went wrong"],500);
-    //     }
-    //     return Response(['message'=>"User not found in trashed"],404);
-    // }
-
+    public function destroy(string $id) 
+    {
+        //
+    }
 }

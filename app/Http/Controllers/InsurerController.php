@@ -103,7 +103,7 @@ class InsurerController extends Controller
             //     return Response(['message' => "Email is sent to email"],200);
             // }
 
-            // $user->assignRole('insurer'); /** assign role to user */
+            $user->assignRole('insurer'); /** assign role to user */
             return Response(['message' => "User created successfully"],200);
         }
         return Response(['message' => "Something went wrong"],500);
