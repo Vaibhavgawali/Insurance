@@ -60,7 +60,8 @@ class CandidateController extends Controller
      */
     public function store(Request $request): Response 
     {
-        $validator=Validator::make($request->all(),[
+        // dd($request->all());
+             $request->validate([
             'name'=>'required|string',
             'email'=>'required|email|unique:users,email',
             'phone'=>'required|numeric|digits:10',
@@ -75,14 +76,18 @@ class CandidateController extends Controller
             'ctc' => 'required_if:experience,experienced',
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
-            "joining_date"=>'required_if:experience,experienced|date_format:Y-m-d',
-            "relieving_date"=>'required_if:experience,experienced|date_format:Y-m-d',
+            "joining_date"=>'required_if:experience,experienced|date_format:d-m-Y',
+            "relieving_date"=>'required_if:experience,experienced|date_format:d-m-Y',
             'preferred_line'=>'required|string|max:60',
             'city'=>'required|string|max:60'
         ]);
 
         if($validator->fails()){
-            return Response(['message' => $validator->errors()],401);
+            // return Response(['message' => $validator->errors()],401);
+            return redirect()->back()->withErrors($validator)->withInput();
+            // return redirect('/register')
+            //     ->withErrors($validator)
+            //     ->withInput();
         }   
 
         $user=User::create([
