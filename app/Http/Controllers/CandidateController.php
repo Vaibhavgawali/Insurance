@@ -61,7 +61,7 @@ class CandidateController extends Controller
     public function store(Request $request): Response 
     {
         // dd($request->all());
-             $request->validate([
+        $validator=Validator::make($request->all(),[
             'name'=>'required|string',
             'email'=>'required|email|unique:users,email',
             'phone'=>'required|numeric|digits:10',
@@ -76,15 +76,15 @@ class CandidateController extends Controller
             'ctc' => 'required_if:experience,experienced',
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
-            "joining_date"=>'required_if:experience,experienced|date_format:d-m-Y',
-            "relieving_date"=>'required_if:experience,experienced|date_format:d-m-Y',
+            "joining_date"=>'required_if:experience,experienced',
+            "relieving_date"=>'required_if:experience,experienced',
             'preferred_line'=>'required|string|max:60',
             'city'=>'required|string|max:60'
         ]);
 
         if($validator->fails()){
-            // return Response(['message' => $validator->errors()],401);
-            return redirect()->back()->withErrors($validator)->withInput();
+            return Response(['status'=>false,'errors' => $validator->errors()],401);
+            // return redirect()->back()->withErrors($validator)->withInput();
             // return redirect('/register')
             //     ->withErrors($validator)
             //     ->withInput();
@@ -105,10 +105,12 @@ class CandidateController extends Controller
                 'preffered_line'=>$request->preferred_line,
             ]);
 
-            $user_address=UserAddress::create([
-                'user_id'=>$user_id,
-                'city'=>$request->city,
-            ]);
+            if($request->experience == "experienced"){
+                $user_address=UserAddress::create([
+                    'user_id'=>$user_id,
+                    'city'=>$request->city,
+                ]);
+            }
             
             if($request->experience == "experienced"){
                 $user_experience=UserExperience::create([
@@ -128,9 +130,9 @@ class CandidateController extends Controller
 
              /** assign role to user **/
              $user->assignRole('candidate');
-            return Response(['message' => "User created successfully"],200);
+            return Response(['status'=>true,'message' => "User created successfully"],200);
         }
-        return Response(['message' => "Something went wrong"],500);   
+        return Response(['status'=>false,'message' => "Something went wrong"],500);   
     }
 
     /**

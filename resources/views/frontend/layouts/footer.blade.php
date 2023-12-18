@@ -144,27 +144,28 @@
 		  return direction;
 		}
 	  </script>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery-ui.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/popper.min.js"></script>
-	<script src="assets/js/appear.js"></script>
-	<script src="assets/js/slick.js"></script>
-	<script src="assets/js/wow.min.js"></script>
-	<script src="assets/js/knob.js"></script>
-	<script src="assets/js/jquery.filterizr.js"></script>
-	<script src="assets/js/imagesloaded.pkgd.min.js"></script>
-	<script src="assets/js/rbtools.min.js"></script>
-	<script src="assets/js/rs6.min.js"></script>
-	<script src="assets/js/jarallax.js"></script>
-	<script src="assets/js/isotope.pkgd.min.js"></script>
-	<script src="assets/js/jquery.counterup.min.js"></script>
-	<script src="assets/js/waypoints.min.js"></script>
-	<script src="assets/js/jquery.marquee.min.js"></script>
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<script src="assets/js/jquery.nice-select.min.js"></script>
-	<script src="assets/js/roundslider.js"></script>
-	<script src="assets/js/script.js"></script>
+	<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+	<script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
+	<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('assets/js/popper.min.js') }}"></script>
+	<script src="{{ asset('assets/js/appear.js') }}"></script>
+	<script src="{{ asset('assets/js/slick.js') }}"></script>
+	<script src="{{ asset('assets/js/wow.min.js') }}"></script>
+	<script src="{{ asset('assets/js/knob.js') }}"></script>
+	<script src="{{ asset('assets/js/jquery.filterizr.js') }}"></script>
+	<script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
+	<script src="{{ asset('assets/js/rbtools.min.js') }}"></script>
+	<script src="{{ asset('assets/js/rs6.min.js') }}"></script>
+	<script src="{{ asset('assets/js/jarallax.js') }}"></script>
+	<script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
+	<script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+	<script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+	<script src="{{ asset('assets/js/jquery.marquee.min.js') }}"></script>
+	<script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+	<script src="{{ asset('assets/js/jquery.nice-select.min.js') }}"></script>
+	<script src="{{ asset('assets/js/roundslider.js') }}"></script>
+	<script src="{{ asset('assets/js/script.js') }}"></script>
+	<script src="{{ asset('assets/js/register.js') }}"></script>
 	<script>
 		$(document).on('click', '.accordion-item', function(){
 			$(this).addClass('faq_bg').siblings().removeClass('faq_bg')

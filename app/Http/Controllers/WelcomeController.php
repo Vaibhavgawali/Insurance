@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-    //
+    
     function index()
     {
         return view('frontend.index');
     }
     function register()
     {
-        return view('frontend.register');
+        return view('frontend.candidate-register');
     }
     function login()
     {

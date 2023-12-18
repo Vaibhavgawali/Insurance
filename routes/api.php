@@ -34,7 +34,7 @@ Route::resource('admin/user', UserController::class)->middleware('auth:sanctum')
 
 Route::post('login',[LoginController::class,'loginUser']);
 
-Route::resource('candidate', CandidateController::class);
+// Route::resource('candidate', CandidateController::class);
 Route::resource('insurer', InsurerController::class);
 Route::resource('institute', InstituteController::class);
 

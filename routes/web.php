@@ -30,7 +30,7 @@ use App\Http\Controllers\UserDocumentsController;
 
 Route::get('/', [WelcomeController::class,'index']);
 Route::get('/register', [WelcomeController::class,'register'])->name('register');
-Route::get('/login', [WelcomeController::class,'login'])->name('login');
+Route::post('/login', [WelcomeController::class,'login'])->name('login');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

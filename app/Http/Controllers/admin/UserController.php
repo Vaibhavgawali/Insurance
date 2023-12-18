@@ -68,13 +68,13 @@ class UserController extends Controller
     {
         if (Auth::check()) {
 
-            $userId = User::find($id);
-            if ($userId) {
+            $user = User::find($id);
+            if ($user) {
 
                 // Logged user with role insurer with permission "view_candidate_details" can only access
-                $user=Auth::user();
-                if($user->hasPermissionTo('view_candidate_details')){
-                    $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->find($userId);
+                $LoggedUser=Auth::user();
+                if($LoggedUser->hasPermissionTo('view_candidate_details')){
+                    $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->find($id);
                     return Response(['user' => $users], 200);
                 }
 

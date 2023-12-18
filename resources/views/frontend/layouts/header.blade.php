@@ -6,22 +6,23 @@
 	<meta name="description" content="Insurin - Insurance Company HTML Template">
 	<meta name="keywords" content="	accounting, advising, advisory, business, company, consulting, corporate, finance, financial, investments, law, multi-purpose, services, tax help, visual composer">
 	<meta name="author" content="Themexriver">
-	<link rel="shortcut icon" href="assets/img/logo/logo-1.png" type="image/x-icon">
+	<link rel="shortcut icon" href="{{ asset('assets/img/logo/logo-1.png')}}" type="image/x-icon">
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/fontawesome-all.css">
-	<link rel="stylesheet" href="assets/css/flaticon.css">
-	<link rel="stylesheet" href="assets/css/animate.css">
-	<link rel="stylesheet" href="assets/css/video.min.css">
-	<link rel="stylesheet" href="assets/css/slick-theme.css">
-	<link rel="stylesheet" href="assets/css/slick.css">
-	<link rel="stylesheet" href="assets/css/nice-select.css">
-	<link rel="stylesheet" href="assets/css/rs6.css">
-	<link rel="stylesheet" href="assets/css/roundslider.css">
-	<link rel="stylesheet" href="assets/css/global.css">
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/video.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/rs6.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/roundslider.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body class="insurin-main">
