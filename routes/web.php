@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\WelcomeController;
+
 use App\Http\Controllers\LoginController;
 
 use App\Http\Controllers\CandidateController;
@@ -24,9 +26,10 @@ use App\Http\Controllers\UserDocumentsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class,'index']);
+Route::get('/register', [WelcomeController::class,'register'])->name('register');
+Route::get('/login', [WelcomeController::class,'login'])->name('login');
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
