@@ -60,14 +60,14 @@
 				<nav class="in-main-navigation-area clearfix ul-li">
 					<ul id="main-nav" class="nav navbar-nav clearfix">
 						<li class="dropdown in-megamenu">
-							<a href="!#">Home</a>
+							<a href="">Home</a>
 						</li>
 						<li><a target="_blank" href="about.html">About Us</a></li>
 						<li class="dropdown">
 							<a href="!#">Insights</a>
 							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank" href="#">Media Coverage</a></li>
-								<li><a target="_blank" href="#">Legal Operation</a></li>
+								<li><a  href="#">Media Coverage</a></li>
+								<li><a  href="#">Legal Operation</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -78,57 +78,57 @@
 								<li class="dropdown">
 									<a href="service-single.html">Services Details</a>
 									<ul class="dropdown-menu clearfix">
-										<li><a target="_blank" href="service-single.html">Life Insurence</a></li>
-										<li><a target="_blank" href="service-single.html">Health Insurence</a></li>
-										<li><a target="_blank" href="service-single.html">Car Insurence</a></li>
-										<li><a target="_blank" href="service-single.html">Home Insurence</a></li>
-										<li><a target="_blank" href="service-single.html">Credit Insurence</a></li>
-										<li><a target="_blank" href="service-single.html">Transport Insurence</a></li>
-										<li><a target="_blank" href="service-single.html">Energy Insurence</a></li>
+										<li><a  href="service-single.html">Life Insurence</a></li>
+										<li><a  href="service-single.html">Health Insurence</a></li>
+										<li><a  href="service-single.html">Car Insurence</a></li>
+										<li><a  href="service-single.html">Home Insurence</a></li>
+										<li><a  href="service-single.html">Credit Insurence</a></li>
+										<li><a  href="service-single.html">Transport Insurence</a></li>
+										<li><a  href="service-single.html">Energy Insurence</a></li>
 									</ul>
 								</li>
 								<li class="dropdown">
 									<a href="!#">Testimonial</a>
 									<ul class="dropdown-menu clearfix">
-										<li><a target="_blank" href="testimonial.html">Testimonial</a></li>
-										<li><a target="_blank" href="testimonial-carousel.html">Testimonial Carousel</a></li>
+										<li><a  href="testimonial.html">Testimonial</a></li>
+										<li><a  href="testimonial-carousel.html">Testimonial Carousel</a></li>
 
 									</ul>
 								</li>
-								<li><a target="_blank" href="team.html">Team Page</a></li>
-								<li><a target="_blank" href="team-single.html">Team Details</a></li>
-								<li><a target="_blank" href="faq.html">FAQ Page</a></li>
-								<li><a target="_blank"  href="pricing.html">Pricing Page</a></li>
-								<li><a target="_blank" href="contact.html">Contact Page</a></li>
-								<li><a target="_blank" href="insurance-calculator.html">Insurence Calculator</a></li>
-								<li><a target="_blank" href="404.html">404</a></li>
+								<li><a  href="team.html">Team Page</a></li>
+								<li><a  href="team-single.html">Team Details</a></li>
+								<li><a  href="faq.html">FAQ Page</a></li>
+								<li><a  href="pricing.html">Pricing Page</a></li>
+								<li><a  href="contact.html">Contact Page</a></li>
+								<li><a  href="insurance-calculator.html">Insurence Calculator</a></li>
+								<li><a  href="404.html">404</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
 							<a class="" href="!#">Blog</a>
 							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank" href="blog-list.html">News </a></li>
-								<li><a target="_blank" href="blog-grid.html">News Grid</a></li>
-								<li><a target="_blank" href="blog-list-2.html">News List</a></li>
-								<li><a target="_blank" href="blog-slider.html">News Slider</a></li>
-								<li><a target="_blank" href="blog-single.html">News Details</a></li>
+								<li><a  href="blog-list.html">News </a></li>
+								<li><a  href="blog-grid.html">News Grid</a></li>
+								<li><a  href="blog-list-2.html">News List</a></li>
+								<li><a  href="blog-slider.html">News Slider</a></li>
+								<li><a  href="blog-single.html">News Details</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
 							<a class="" href="!#">Portfolio</a>
 							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank" href="portfolio-slide.html">Portfolio Slide </a></li>
-								<li><a target="_blank" href="portfolio-grid.html">Portfolio Grid</a></li>
-								<li><a target="_blank" href="portfolio-masonry.html">Porfolio Masonry</a></li>
-								<li><a target="_blank" href="portfolio-single.html">Portfolio Details</a></li>
+								<li><a  href="portfolio-slide.html">Portfolio Slide </a></li>
+								<li><a  href="portfolio-grid.html">Portfolio Grid</a></li>
+								<li><a  href="portfolio-masonry.html">Porfolio Masonry</a></li>
+								<li><a  href="portfolio-single.html">Portfolio Details</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
 							<a class="btn btn-outline-success p-2" href="!#">Register/Login</a>
 							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank"  href="{{ route('register')}}">Candidate</a></li>
-								<li><a target="_blank" href="portfolio-grid.html">Insurer</a></li>
-								<li><a target="_blank" href="portfolio-masonry.html">Institute</a></li>
+								<li><a   href="{{ route('register')}}">Candidate</a></li>
+								<li><a  href="portfolio-grid.html">Insurer</a></li>
+								<li><a  href="portfolio-masonry.html">Institute</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -212,15 +212,15 @@
 									<li><a target="_blank" href="portfolio-slide.html">Portfolio Slide </a></li>
 									<li><a target="_blank" href="portfolio-grid.html">Portfolio Grid</a></li>
 									<li><a target="_blank" href="portfolio-masonry.html">Porfolio Masonry</a></li>
-									<li><a target="_blank" href="portfolio-single.html">Portfolio Details</a></li>
+									<li><a  href="portfolio-single.html">Portfolio Details</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a class="btn btn-outline-success " id="mobile-register-btn" href="!#">Register/Login</a>
 								<ul class="dropdown-menu clearfix">
-									<li><a  target="_blank" href="/register">Candidate</a></li>
-									<li><a target="_blank" href="portfolio-grid.html">Insurer</a></li>
-									<li><a target="_blank" href="portfolio-masonry.html">Institute</a></li>
+									<li><a   href="/register">Candidate</a></li>
+									<li><a  href="portfolio-grid.html">Insurer</a></li>
+									<li><a  href="portfolio-masonry.html">Institute</a></li>
 								</ul>
 							</li>
 						</ul>
