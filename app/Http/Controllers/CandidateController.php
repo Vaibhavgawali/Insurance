@@ -77,17 +77,12 @@ class CandidateController extends Controller
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
             "joining_date"=>'required_if:experience,experienced',
-            "relieving_date"=>'required_if:experience,experienced',
             'preferred_line'=>'required|string|max:60',
             'city'=>'required|string|max:60'
         ]);
 
         if($validator->fails()){
-            return Response(['status'=>false,'errors' => $validator->errors()],401);
-            // return redirect()->back()->withErrors($validator)->withInput();
-            // return redirect('/register')
-            //     ->withErrors($validator)
-            //     ->withInput();
+            return Response(['status'=>false,'errors' => $validator->errors()],422);
         }   
 
         $user=User::create([
@@ -115,9 +110,9 @@ class CandidateController extends Controller
             if($request->experience == "experienced"){
                 $user_experience=UserExperience::create([
                     'user_id'=>$user_id,
-                    'organization'=>$request->current_org,
-                    'designation'=>$request->current_role,
-                    'ctc'=>$request->current_ctc,
+                    'organization'=>$request->organization,
+                    'designation'=>$request->designation,
+                    'ctc'=>$request->ctc,
                     "joining_date"=>$request->joining_date,
                     "relieving_date"=>$request->relieving_date
                 ]);

@@ -1,12 +1,34 @@
 $(document).ready(function () {
-    $("#register-button").click(function (event) {
+    $("#candidate_register_button").click(function (event) {
         var name = $("#name").val();
         var email = $("#email").val();
         var phone = $("#phone").val();
         var password = $("#password").val();
+
         var experience = $("#experience").val();
+        var organization = $("#organization").val();
+        var designation = $("#designation").val();
+        var joining_date = $("#joining_date").val();
+        var relieving_date = $("#relieving_date").val();
+        var ctc = $("#ctc").val();
+
         var preferred_line = $("#preferred_line").val();
         var city = $("#city").val();
+
+        $("#name_error").html("");
+        $("#phone_error").html("");
+        $("#email_error").html("");
+        $("#password_error").html("");
+        $("#city_error").html("");
+
+        $("#experience_error").html("");
+        $("#organization_error").html("");
+        $("#designation_error").html("");
+        $("#ctc_error").html("");
+        $("#joining_date_error").html("");
+
+        $("#preffered_line_error").html("");
+        $("#flexCheckDefault_error").html("");
 
         $("#register_status").html("");
 
@@ -16,8 +38,8 @@ $(document).ready(function () {
             name == "undefined" ||
             name == undefined
         ) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>EMPTY!</b> Full Name is required.</div>"
+            $("#name_error").html(
+                '<div class=" invalid-feedback d-block">Full Name is required.</div>'
             );
             $("#name").focus();
             return false;
@@ -29,8 +51,8 @@ $(document).ready(function () {
             phone == "undefined" ||
             phone == undefined
         ) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>EMPTY!</b> Mobile number is required.</div>"
+            $("#phone_error").html(
+                '<div class=" invalid-feedback d-block"><b>EMPTY!</b> Mobile number is required.</div>'
             );
             $("#phone").focus();
             return false;
@@ -42,8 +64,8 @@ $(document).ready(function () {
         }
 
         if (!validatePhoneNumber(phone)) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>Invalid!</b> Phone is invalid.</div>"
+            $("#phone_error").html(
+                '<div class=" invalid-feedback d-block">Mobile number is invalid.</div>'
             );
             $("#phone").focus();
             return false;
@@ -55,8 +77,8 @@ $(document).ready(function () {
             email == "undefined" ||
             email == undefined
         ) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>EMPTY!</b> Email is required.</div>"
+            $("#email_error").html(
+                '<div class=" invalid-feedback d-block">Email Id is required.</div>'
             );
             $("#email").focus();
             return false;
@@ -69,8 +91,8 @@ $(document).ready(function () {
         }
 
         if (!validateEmail(email)) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>Invalid!</b> Email is invalid.</div>"
+            $("#email_error").html(
+                '<div class=" invalid-feedback d-block">Email Id is invalid.</div>'
             );
             $("#email").focus();
             return false;
@@ -82,8 +104,8 @@ $(document).ready(function () {
             password == "undefined" ||
             password == undefined
         ) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>EMPTY!</b> Password is required.</div>"
+            $("#password_error").html(
+                '<div class=" invalid-feedback d-block">Password is required.</div>'
             );
             $("#password").focus();
             return false;
@@ -99,8 +121,8 @@ $(document).ready(function () {
         }
 
         if (!validatePassword(password)) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>Invalid!</b> Password must contain Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number, and one special character is invalid.</div>"
+            $("#password_error").html(
+                '<div class=" invalid-feedback d-block">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</div>'
             );
             $("#password").focus();
             return false;
@@ -112,8 +134,8 @@ $(document).ready(function () {
             city == "undefined" ||
             city == undefined
         ) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>EMPTY!</b> City is required.</div>"
+            $("#city_error").html(
+                '<div class=" invalid-feedback d-block">City is required.</div>'
             );
             $("#city").focus();
             return false;
@@ -125,8 +147,8 @@ $(document).ready(function () {
             experience == "undefined" ||
             experience == undefined
         ) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>EMPTY!</b>Please select experience option is required.</div>"
+            $("#experience_error").html(
+                '<div class=" invalid-feedback d-block">Work status is required.</div>'
             );
             $("#experience").focus();
             return false;
@@ -139,8 +161,8 @@ $(document).ready(function () {
                 organization == "undefined" ||
                 organization == undefined
             ) {
-                $("#register_status").html(
-                    "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>EMPTY!</b>Current Organization is required.</div>"
+                $("#organization_error").html(
+                    '<div class=" invalid-feedback d-block">Current organization is required.</div>'
                 );
                 $("#organization").focus();
                 return false;
@@ -152,10 +174,36 @@ $(document).ready(function () {
                 designation == "undefined" ||
                 designation == undefined
             ) {
-                $("#register_status").html(
-                    "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>EMPTY!</b>Current Role is required.</div>"
+                $("#designation_error").html(
+                    '<div class=" invalid-feedback d-block">Current role is required.</div>'
                 );
                 $("#designation").focus();
+                return false;
+            }
+
+            if (
+                joining_date == "" ||
+                joining_date == null ||
+                joining_date == "undefined" ||
+                joining_date == undefined
+            ) {
+                $("#joining_date_error").html(
+                    '<div class=" invalid-feedback d-block">Joining date is required.</div>'
+                );
+                $("#joining_date").focus();
+                return false;
+            }
+
+            if (
+                ctc == "" ||
+                ctc == null ||
+                ctc == "undefined" ||
+                ctc == undefined
+            ) {
+                $("#ctc_error").html(
+                    '<div class=" invalid-feedback d-block">Ctc is required.</div>'
+                );
+                $("#ctc").focus();
                 return false;
             }
         }
@@ -166,16 +214,16 @@ $(document).ready(function () {
             preferred_line == "undefined" ||
             preferred_line == undefined
         ) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>EMPTY!</b>Please select preferred line is required.</div>"
+            $("#preferred_line_error").html(
+                '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
             );
             $("#preferred_line").focus();
             return false;
         }
 
         if ($("#flexCheckDefault").prop("checked") == false) {
-            $("#register_status").html(
-                "<div class='alert alert-secondary text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> <b>EMPTY!</b> Agree terms & condition is required.</div>"
+            $("#flexCheckDefault_error").html(
+                '<div class=" invalid-feedback d-block">Agree terms & condition is required.</div>'
             );
             return false;
         } else {
@@ -192,7 +240,15 @@ $(document).ready(function () {
             preferred_line: preferred_line,
         };
 
-        // console.log(data);
+        if (experience == "experienced") {
+            data["organization"] = organization;
+            data["designation"] = designation;
+            data["joining_date"] = joining_date;
+            data["relieving_date"] = relieving_date;
+            data["ctc"] = ctc;
+        }
+
+        console.log(data);
 
         event.preventDefault();
         // var formData = $("#candidate_register_form").serialize();
@@ -206,8 +262,10 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                // console.log(response);
+                console.log(response);
                 if (response.status == true) {
+                    $(".error-message").remove();
+
                     $("#register-button").attr("disabled", true);
                     $("#register_status").html(
                         "<div class='alert alert-success text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-check'></i> " +
@@ -216,9 +274,26 @@ $(document).ready(function () {
                     );
                     $("#candidate_register_form")[0].reset();
                     return false;
-                } else {
-                    if (response.errors) {
-                    }
+                }
+            },
+
+            error: function (response) {
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+
+                    $(".error-message").remove();
+
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+                if (response.status === 500) {
                     $("#register-button").attr("disabled", false);
                     $("#register_status").html(
                         "<div class='alert alert-secondary text-center' style='padding: 10px; margin-bottom: 10px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times-circle'></i> " +
@@ -227,9 +302,6 @@ $(document).ready(function () {
                     );
                     return false;
                 }
-            },
-            error: function (error) {
-                console.error("Error:", error);
             },
         });
     });

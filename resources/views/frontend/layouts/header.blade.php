@@ -127,7 +127,7 @@
 						<li class="dropdown">
 							<a class="btn btn-outline-success p-2" href="!#">Register/Login</a>
 							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank"  href="{{ route('register')}}">Candidate</a></li>
+								<li><a href="{{ route('register')}}">Candidate</a></li>
 								<li><a target="_blank" href="portfolio-grid.html">Insurer</a></li>
 								<li><a target="_blank" href="portfolio-masonry.html">Institute</a></li>
 							</ul>
