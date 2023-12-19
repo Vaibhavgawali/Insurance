@@ -28,12 +28,13 @@ class LoginController extends Controller
         if(Auth::attempt($request->all())){
 
             $user = Auth::user(); 
-    
-            $success =  $user->createToken('MyApp')->plainTextToken; 
-        
-            return Response(['token' => $success],200);
-        }
 
+            if($user->isLoginAllowed){
+                $success =  $user->createToken('MyApp')->plainTextToken; 
+                 return Response(['token' => $success],200);
+            }
+            return Response(['message'=>'Unauthorized'],401);
+        }
         return Response(['message' => 'email or password wrong'],401);
     }
 

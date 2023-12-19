@@ -27,26 +27,24 @@ class CandidateController extends Controller
     {
         $this->middleware('auth:sanctum')->except('store');
 
-        // Apply Spatie middleware here
-        // $this->middleware('can:edit posts')->only(['edit', 'update']);
-        // $this->middleware('can:delete posts')->only('destroy');
+        //  Spatie middleware here
+        $this->middleware(['role_or_permission:Superadmin|view_candidate_list|view_users_list'])->only('index');
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index() // permission->view_all_users
+    public function index()
     {
         if (Auth::check()) {
-            $users=User::all();
-
-            if($users){
-                return Response(['data' => $users],200);
+            $users = User::role('Candidate')->get();
+            if ($users) {
+                return Response(['data' => $users], 200);
             }
-            return Response(['message'=>"Users not found "],404);
+            return Response(['message' => "Users with role Candidate not found "], 404);
         }
 
-        return Response(['data' => 'Unauthorized'],401);
+        return Response(['data' => 'Unauthorized'], 401);
     }
 
     /**
@@ -63,7 +61,7 @@ class CandidateController extends Controller
     public function store(Request $request): Response 
     {
         // dd($request->all());
-             $request->validate([
+        $validator=Validator::make($request->all(),[
             'name'=>'required|string',
             'email'=>'required|email|unique:users,email',
             'phone'=>'required|numeric|digits:10',
@@ -78,18 +76,13 @@ class CandidateController extends Controller
             'ctc' => 'required_if:experience,experienced',
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
-            "joining_date"=>'required_if:experience,experienced|date_format:d-m-Y',
-            "relieving_date"=>'required_if:experience,experienced|date_format:d-m-Y',
+            "joining_date"=>'required_if:experience,experienced',
             'preferred_line'=>'required|string|max:60',
             'city'=>'required|string|max:60'
         ]);
 
         if($validator->fails()){
-            // return Response(['message' => $validator->errors()],401);
-            return redirect()->back()->withErrors($validator)->withInput();
-            // return redirect('/register')
-            //     ->withErrors($validator)
-            //     ->withInput();
+            return Response(['status'=>false,'errors' => $validator->errors()],422);
         }   
 
         $user=User::create([
@@ -107,31 +100,34 @@ class CandidateController extends Controller
                 'preffered_line'=>$request->preferred_line,
             ]);
 
-            $user_address=UserAddress::create([
-                'user_id'=>$user_id,
-                'city'=>$request->city,
-            ]);
+            if($request->experience == "experienced"){
+                $user_address=UserAddress::create([
+                    'user_id'=>$user_id,
+                    'city'=>$request->city,
+                ]);
+            }
             
             if($request->experience == "experienced"){
                 $user_experience=UserExperience::create([
                     'user_id'=>$user_id,
-                    'organization'=>$request->current_org,
-                    'designation'=>$request->current_role,
-                    'ctc'=>$request->current_ctc,
+                    'organization'=>$request->organization,
+                    'designation'=>$request->designation,
+                    'ctc'=>$request->ctc,
                     "joining_date"=>$request->joining_date,
                     "relieving_date"=>$request->relieving_date
                 ]);
             }   
 
-            event(new Registered($user));
+            // event(new Registered($user));
             // if($user->sendEmailVerificationNotification()){
             //     return Response(['message' => "Email is sent to email"],200);
             // }
 
-            // $user->assignRole('candidate'); /** assign role to user */
-            return Response(['message' => "User created successfully"],200);
+             /** assign role to user **/
+             $user->assignRole('candidate');
+            return Response(['status'=>true,'message' => "User created successfully"],200);
         }
-        return Response(['message' => "Something went wrong"],500);   
+        return Response(['status'=>false,'message' => "Something went wrong"],500);   
     }
 
     /**
@@ -139,9 +135,10 @@ class CandidateController extends Controller
      */
     public function show(string $id) : Response // self 
     {
-        $userId = Auth::user()->user_id; 
+        $user=Auth::user();
+        $userId = $user->user_id; 
 
-        if($userId == $id){
+        if($userId == $id ){
             $userData = User::with('address', 'profile', 'experience','documents')->find($userId);
             return Response(['user'=>$userData],200);
         } 
@@ -167,7 +164,7 @@ class CandidateController extends Controller
             if($formMethod == "PATCH"){
                 $validator=Validator::make($request->all(),[
                     'name'=>'required|string',
-                    // 'email'=>'required|email|unique:users,email',
+                    'email'=>'required|email|unique:users,email,' . $userId. ',user_id',
                     'phone'=>'required|numeric|digits:10'
                 ]);
 
@@ -175,7 +172,7 @@ class CandidateController extends Controller
                     return Response(['message' => $validator->errors()],401);
                 }   
 
-                $user = User::where('user_id', $id) ;
+                $user = User::where('user_id', $id);
                 if($user){
                     $isUpdated=$user->update($request->all());
                     if($isUpdated){
@@ -193,63 +190,8 @@ class CandidateController extends Controller
     /**
      * Soft delete user
      */
-    // public function destroy(string $id) 
-    // {
-    //     $user = User::where('user_id', $id) ;
-    //     if($user){
-    //         $isTrashed=$user->delete();
-    //         if($isTrashed){
-    //             return Response(['message' => "User trashed successfully"],200);
-    //         }
-    //         return Response(['message' => "Something went wrong"],500);
-    //     }  
-    //     return Response(['message'=>"User not found "],404);
-    // }
-
-    
-     /**
-     * List of Soft deleted user
-     */
-    // public function trashed_users():Response
-    // {
-    //     $users = User::onlyTrashed();
-    //     if($user){
-    //         return Response(['message' => "Users trashed","users"=>$users],200);
-    //     }  
-    //     return Response(['message'=>"Users not found in trashed "],404);
-    // }
-
-    /**
-     * Restore Soft deleted user
-     */
-    // public function restore_user(string $id)
-    // {
-    //     $user = User::onlyTrashed()->where('user_id', $id) ;
-    //     dd($user);
-    //     if($user){
-    //         $isRestored = $user->restore();
-    //         if($isRestored){
-    //             return Response(['message' => "User restored successfully"],200);
-    //         }
-    //         return Response(['message' => "Something went wrong"],500);
-    //     }
-    //     return Response(['message'=>"User not found in trashed"],404);
-    // }
-
-    /**
-     * Hard delete user this require to join tables experience ,user_profile ,documents,address
-     */
-    // public function force_delete(string $id)
-    // {
-    //     $user = User::onlyTrashed()->where('user_id', $id) ;
-    //     if($user){
-    //         $isDeleted = $user->forceDelete();
-    //         if($isDeleted){
-    //             return Response(['message' => "User deleted permantally"],200);
-    //         }
-    //         return Response(['message' => "Something went wrong"],500);
-    //     }
-    //     return Response(['message'=>"User not found in trashed"],404);
-    // }
-
+    public function destroy(string $id) 
+    {
+        //
+    }
 }

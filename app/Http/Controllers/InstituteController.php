@@ -25,6 +25,7 @@ class InstituteController extends Controller
     public function __construct()
     {
         $this->middleware('auth:sanctum')->except('store');
+        $this->middleware(['role:Superadmin'])->only('index');
     }
     
     /**
@@ -32,7 +33,15 @@ class InstituteController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::check()) {
+            $users = User::role('Institute')->get();
+            if ($users) {
+                return Response(['data' => $users], 200);
+            }
+            return Response(['message' => "Users with role Institute not found "], 404);
+        }
+
+        return Response(['data' => 'Unauthorized'], 401);
     }
 
     /**
@@ -92,7 +101,7 @@ class InstituteController extends Controller
             //     return Response(['message' => "Email is sent to email"],200);
             // }
 
-            // $user->assignRole('insurer'); /** assign role to user */
+            $user->assignRole('institute'); /** assign role to user */
             return Response(['message' => "User created successfully"],200);
         }
         return Response(['message' => "Something went wrong"],500);
