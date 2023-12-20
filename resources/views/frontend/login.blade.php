@@ -8,7 +8,7 @@
                 
                     <div class="col-12 col-md-12 col-lg-4 shadow rounded  p-2   d-none   d-xl-block bg-white">
                         <div>
-                           <img src="assets/img/3D-images/register.png" alt="">
+                           <img src="{{asset('assets/img/3D-images/register.png')}}" alt="">
                         </div>
                         <div>
                             <div class="ins-main-about-list-area ul-li-block">
@@ -58,7 +58,7 @@
 								<div>
 									<button type="submit" class="btn btn-primary  my-2">Login</button>
 								</div>
-								Dont have an account ? <a href="{{route('register')}}" class="btn btn-secondary text-white mx-2">Register</a> 
+								Dont have an account ? <a href="/candidate-register" class="btn btn-secondary text-white mx-2">Register</a> 
 							  </div>
                           </form>
                        </div>

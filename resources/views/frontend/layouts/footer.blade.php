@@ -4,37 +4,37 @@
 		<div class="ins-social-content d-flex align-items-center">
 			<div class="ins-social-item">
 				<a href="#">
-					<img src="assets/img/logo/fb.png" alt="">
+					<img src="{{asset('assets/img/logo/fb.png')}}" alt="">
 					<span>Facebook</span>
 				</a>
 			</div>
 			<div class="ins-social-item">
 				<a href="#">
-					<img src="assets/img/logo/ln.png" alt="">
+					<img src="{{asset('assets/img/logo/ln.png')}}" alt="">
 					<span>Linkdin</span>
 				</a>
 			</div>
 			<div class="ins-social-item">
 				<a href="#">
-					<img src="assets/img/logo/tw.png" alt="">
+					<img src="{{asset('assets/img/logo/tw.png')}}" alt="">
 					<span>Twitter</span>
 				</a>
 			</div>
 			<div class="ins-social-item">
 				<a href="#">
-					<img src="assets/img/logo/insta.png" alt="">
+					<img src="{{asset('assets/img/logo/insta.png')}}" alt="">
 					<span>Instagram</span>
 				</a>
 			</div>
 			<div class="ins-social-item">
 				<a href="#">
-					<img src="assets/img/logo/yt.png" alt="">
+					<img src="{{asset('assets/img/logo/yt.png')}}" alt="">
 					<span>Youtube</span>
 				</a>
 			</div>
 			<div class="ins-social-item">
 				<a href="#">
-					<img src="assets/img/logo/wa.png" alt="">
+					<img src="{{asset('assets/img/logo/wa.png')}}" alt="">
 					<span>Whats App</span>
 				</a>
 			</div>
@@ -54,7 +54,7 @@
 					Contact us at @insurancecareer.in
 				</div>
 				<div class="ins-footer-logo position-relative">
-					<a href="#"><img src="assets/img/logo/logo1.png" alt=""><span class="logo-vector position-absolute"><img src="assets/img/logo/logo-v.png" alt=""></span></a>
+					<a href="#"><img src="{{asset('assets/img/logo/logo1.png')}}" alt=""><span class="logo-vector position-absolute"><img src="assets/img/logo/logo-v.png" alt=""></span></a>
 				</div>
 				
 				<!-- <div class="ins-footer-newslatter position-relative">

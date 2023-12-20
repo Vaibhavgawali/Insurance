@@ -37,7 +37,7 @@
 		
 		<div class="in-header-top-content d-flex justify-content-between align-items-center">
 			<div class="brand-logo d-flex p-2 align-items-center">
-				<a href="#"><img src="assets/img/logo/logo1.png" alt=""></a>
+				<a href="#"><img src="{{asset('assets/img/logo/logo1.png')}}" alt=""></a>
 				<marquee class="top-text-scroll" style="margin-left:40px;" direction="right" scrollamount="3">Empower Your Future: Navigate the Insurance Career Landscape with us  </marquee>
                  
 			</div>
@@ -54,14 +54,14 @@
 					<span></span>
 				</div>
 				<div class="ins-nav-cta d-flex align-items-center">
-					<span><img src="assets/img/logo/fire.svg" alt=""></span> Hot Line: +1 800 123 456
+					<span><img src="{{asset('assets/img/logo/fire.svg')}}" alt=""></span> Hot Line: +1 800 123 456
 				</div>
 			</div>
 			<div class="main-navigation-menu">
 				<nav class="in-main-navigation-area clearfix ul-li">
 					<ul id="main-nav" class="nav navbar-nav clearfix">
 						<li class="dropdown in-megamenu">
-							<a href="">Home</a>
+							<a href="/">Home</a>
 						</li>
 						<li><a target="_blank" href="about.html">About Us</a></li>
 						<li class="dropdown">
@@ -152,7 +152,7 @@
 					<nav class="mobile-main-navigation  clearfix ul-li">
 						<ul id="m-main-nav" class="nav navbar-nav clearfix">
 							<li class=" in-megamenu">
-								<a href="!#">Home</a>
+								<a href="/">Home</a>
 							</li>
 							
 							<li><a target="_blank" href="about.html">About Us</a></li>
@@ -261,7 +261,7 @@
 					<div class="sidebar-info-contents headline pera-content">
 						<div class="content-inner">
 							<div class="logo">
-								<a href="index.html"><img src="assets/img/logo/logo-1.png" alt=""></a>
+								<a href="index.html"><img src="{{asset('assets/img/logo/logo-1.png')}}" alt=""></a>
 							</div>
 							<div class="content-box">
 								<h5>About Us</h5>
@@ -270,12 +270,12 @@
 							<div class="gallery-box ul-li">
 								<h5>Gallery</h5>
 								<ul class="zoom-gallery">
-									<li><a href="assets/img/gallery/gl1.png" data-source="assets/img/gallery/gl1.png"><img src="assets/img/gallery/gl1.png" alt=""></a></li>
-									<li><a href="assets/img/gallery/gl2.png" data-source="assets/img/gallery/gl2.png"><img src="assets/img/gallery/gl2.png" alt=""></a></li>
-									<li><a href="assets/img/gallery/gl3.png" data-source="assets/img/gallery/gl3.png"><img src="assets/img/gallery/gl3.png" alt=""></a></li>
-									<li><a href="assets/img/gallery/gl4.png" data-source="assets/img/gallery/gl4.png"><img src="assets/img/gallery/gl4.png" alt=""></a></li>
-									<li><a href="assets/img/gallery/gl5.png" data-source="assets/img/gallery/gl4.png"><img src="assets/img/gallery/gl5.png" alt=""></a></li>
-									<li><a href="assets/img/gallery/gl6.png" data-source="assets/img/gallery/gl4.png"><img src="assets/img/gallery/gl6.png" alt=""></a></li>
+									<li><a href="{{asset('assets/img/gallery/gl1.png')}}" data-source="assets/img/gallery/gl1.png"><img src="{{asset('assets/img/gallery/gl1.png')}}" alt=""></a></li>
+									<li><a href="{{asset('assets/img/gallery/gl2.png')}}" data-source="assets/img/gallery/gl2.png"><img src="{{asset('assets/img/gallery/gl2.png')}}" alt=""></a></li>
+									<li><a href="{{asset('assets/img/gallery/gl3.png')}}" data-source="assets/img/gallery/gl3.png"><img src="{{asset('assets/img/gallery/gl3.png')}}" alt=""></a></li>
+									<li><a href="{{asset('assets/img/gallery/gl4.png')}}" data-source="assets/img/gallery/gl4.png"><img src="{{asset('assets/img/gallery/gl4.png')}}" alt=""></a></li>
+									<li><a href="{{asset('assets/img/gallery/gl5.png')}}" data-source="assets/img/gallery/gl4.png"><img src="{{asset('assets/img/gallery/gl5.png')}}" alt=""></a></li>
+									<li><a href="{{asset('assets/img/gallery/gl6.png')}}" data-source="assets/img/gallery/gl4.png"><img src="{{asset('assets/img/gallery/gl6.png')}}" alt=""></a></li>
 								</ul>
 							</div>
 							<div class="content-box">
@@ -283,7 +283,7 @@
 								<ul class="social-box">
 									<li><a href="https://www.facebook.com/" class="fab fa-facebook-f"></a></li>
 									<li><a href="https://www.twitter.com/" class="fab fa-twitter"></a></li>
-									<li><a href="https://dribbble.com/" class="fab fa-dribbble"></a></li>
+									<li><a href="https://dribbble.com/" class="fab fa-instargram"></a></li>
 									<li><a href="https://www.linkedin.com/" class="fab fa-linkedin"></a></li>
 								</ul>
 							</div>

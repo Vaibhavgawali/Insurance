@@ -8,7 +8,7 @@
                 
                     <div class="col-12 col-md-12 col-lg-4 shadow rounded  p-2   d-none   d-xl-block bg-white">
                         <div>
-                           <img src="assets/img/3D-images/register.png" alt="">
+                           <img src="{{asset('assets/img/3D-images/register.png')}}" alt="">
                         </div>
                         <div>
                             <div class="ins-main-about-list-area ul-li-block">

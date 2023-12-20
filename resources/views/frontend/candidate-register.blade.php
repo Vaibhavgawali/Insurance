@@ -8,7 +8,7 @@
                 
                     <div class="col-12 col-md-12 col-lg-4 shadow rounded  p-2   d-none   d-xl-block bg-white">
                         <div>
-                           <img src="assets/img/3D-images/register.png" alt="">
+                           <img src="{{asset('assets/img/3D-images/register.png')}}" alt="">
                         </div>
                         <div>
                             <div class="ins-main-about-list-area ul-li-block">
@@ -115,13 +115,14 @@
                                 });
                             </script>
                            
-                            <div class="mb-3">
+                           <div class="mb-3">
+                            <label for="phone" class="form-label">Prefered Line</label>
                                 <select  class="form-control" name="preferred_line" id="preferred_line" aria-label="work status">
-                                    <option selected disabled>Preferred Line</option>
-                                    <option value="1">Life</option>
-                                    <option value="2">General</option>
-                                    <option value="3">Health</option>
-                                    <option value="4">Other</option>
+                                    <option selected disabled>--Select--</option>
+                                    <option value="life">Life</option>
+                                    <option value="general">General</option>
+                                    <option value="health">Health</option>
+                                    <option value="other">Other</option>
                                 </select>
                                 <div id="preferred_line_error"></div>
                             </div>

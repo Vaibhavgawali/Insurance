@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\WelcomeController;
-
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 
 use App\Http\Controllers\admin\UserController;
@@ -29,10 +29,13 @@ use App\Http\Controllers\UserDocumentsController;
 */
 
 Route::get('/', [WelcomeController::class,'index']);
+
+Route::get('/admin-profile', [AdminController::class,'admin_profile']);
+Route::get('/candidate-list', [AdminController::class,'candidate_list_table']);
 Route::get('/candidate-register', [WelcomeController::class,'candidate_register']);
 Route::get('/insurer-register', [WelcomeController::class,'insurer_register']);
 Route::get('/institute-register', [WelcomeController::class,'institute_register']);
-Route::post('/login', [WelcomeController::class,'login'])->name('login');
+Route::get('/login', [WelcomeController::class,'login'])->name('login');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

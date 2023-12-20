@@ -9,7 +9,7 @@
 			<a href="#">Instagram</a>
 		</div>
 		<div class="ins-slider-wrapper-six position-relative">
-			<span class="ins-slider-print position-absolute"><img src="assets/img/slider/print.png" alt=""></span>
+			<span class="ins-slider-print position-absolute"><img src="{{asset('assets/img/slider/print.png')}}" alt=""></span>
 			<div class="ins-slider-area-six">
 				<div class="ins-slider-item-six position-relative">
 					<h1 style="margin-bottom: 50px;;" class="text-center text-dark pb-30 top-heading">insurancecareer.in - Empower Your Future</h1>
@@ -18,7 +18,7 @@
 							<div class="col-12 col-md-4 col-lg-4">
 								 <div class="d-flex flex-column align-items-center justify-content-center mb-3 ">
 									<div >
-									<img style="width:100%;padding-bottom: 10px;" src="assets/img/top/1.png" alt="">
+									<img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/1.png')}}" alt="">
 									</div>
 									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true">Click Here</a>
 							   </div>
@@ -26,7 +26,7 @@
 							<div class="col-12 col-md-4 col-lg-4">
 								<div class="d-flex flex-column align-items-center justify-content-center mb-3 ">
 									<div >
-									<img style="width:100%;padding-bottom: 10px;" src="assets/img/top/2.png" alt="">
+									<img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/2.png')}}" alt="">
 									</div>
 									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true">Click Here</a>
 							   </div>
@@ -34,7 +34,7 @@
 							<div class="col-12 col-md-4 col-lg-4">
 								<div class="d-flex flex-column align-items-center justify-content-center mb-3 ">
 									<div >
-									<img style="width:100%;padding-bottom: 10px;" src="assets/img/top/3.png" alt="">
+									<img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/3.png')}}" alt="">
 									</div>
 									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true">Click Here</a>
 							   </div>
@@ -89,7 +89,7 @@
 	   <div class="container shadow-sm p-10 mb-5  rounded .bg-secondary">
 		  <div class="row align-items-center ">
 				 <div class="col-md-12">
-					<a href="#"><img  src="assets/img/3D-images/Post Your CV Here.png" alt=""></a>
+					<a href="#"><img  src="{{asset('assets/img/3D-images/Post Your CV Here.png')}}" alt=""></a>
 				</div>
 		  </div>
 		  <section>
@@ -159,7 +159,7 @@
 				<!-- <i class="fas fa-heart"></i> -->
 			</div>
 			<h2>Insurancecareer.in serves as
-				<span class="ins-title-shape1"><img src="assets/img/shape/title-sh1.svg" alt=""></span>
+				<span class="ins-title-shape1"><img src="{{asset('assets/img/shape/title-sh1.svg')}}" alt=""></span>
 				<!-- <span class="ins-title-shape2"><img src="assets/img/shape/title-sh2.svg" alt=""></span> -->
 			</h2>
 		</div>
@@ -326,7 +326,7 @@
 				</div>
 				<div class="ins-testimonial-author d-flex align-items-center">
 					<div class="author-img">
-						<img src="assets/img/about/tst-1.1.png" alt="">
+						<img src="{{asset('assets/img/about/tst-1.1.png')}}" alt="">
 					</div>
 					<div class="author-text">
 						<h3>Cameron Williamson</h3>
@@ -356,7 +356,7 @@
 				</div>
 				<div class="ins-testimonial-author d-flex align-items-center">
 					<div class="author-img">
-						<img src="assets/img/about/tst-1.1.png" alt="">
+						<img src="{{asset('assets/img/about/tst-1.1.png')}}" alt="">
 					</div>
 					<div class="author-text">
 						<h3>Cameron Williamson</h3>
@@ -386,7 +386,7 @@
 				</div>
 				<div class="ins-testimonial-author d-flex align-items-center">
 					<div class="author-img">
-						<img src="assets/img/about/tst-1.1.png" alt="">
+						<img src="{{asset('assets/img/about/tst-1.1.png')}}" alt="">
 					</div>
 					<div class="author-text">
 						<h3>Cameron Williamson</h3>
@@ -403,11 +403,11 @@
 	<section id="ins-text-scroll-2" class="ins-text-scroll-section-2">
 		<div class="ins-text-scroll-2 clearfix">
 			<h3>Learning</h3>
-			<span class="scroll-icon"><img src="assets/img/shape/txt-4.png" alt=""></span>
+			<span class="scroll-icon"><img src="{{asset('assets/img/shape/txt-4.png')}}" alt=""></span>
 			<h3>Assessment <span>+</span> Certifications</h3>
-			<span class="scroll-icon"><img src="assets/img/shape/txt-5.png" alt=""></span>
+			<span class="scroll-icon"><img src="{{asset('assets/img/shape/txt-5.png')}}" alt=""></span>
 			<h3>Career moves for existing insurance professionals</h3>
-			<span class="scroll-icon"><img src="assets/img/shape/txt-3.png" alt=""></span>
+			<span class="scroll-icon"><img src="{{asset('assets/img/shape/txt-3.png')}}" alt=""></span>
 		</div>
 	</section>
     @endsection
