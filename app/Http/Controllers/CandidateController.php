@@ -97,7 +97,7 @@ class CandidateController extends Controller
 
             $user_profile=UserProfile::create([
                 'user_id'=>$user_id,
-                'preffered_line'=>$request->preferred_line,
+                'preferred_line'=>$request->preferred_line,
             ]);
 
             if($request->experience == "experienced"){
@@ -125,7 +125,7 @@ class CandidateController extends Controller
 
              /** assign role to user **/
              $user->assignRole('candidate');
-            return Response(['status'=>true,'message' => "User created successfully"],200);
+            return Response(['status'=>true,'message' => "Candidate created successfully"],200);
         }
         return Response(['status'=>false,'message' => "Something went wrong"],500);   
     }

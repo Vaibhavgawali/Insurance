@@ -22,7 +22,7 @@ class LoginController extends Controller
    
         if($validator->fails()){
 
-            return Response(['message' => $validator->errors()],401);
+            return Response(['status'=>false,'errors' => $validator->errors()],422);
         }
    
         if(Auth::attempt($request->all())){
@@ -30,12 +30,12 @@ class LoginController extends Controller
             $user = Auth::user(); 
 
             if($user->isLoginAllowed){
-                $success =  $user->createToken('MyApp')->plainTextToken; 
-                 return Response(['token' => $success],200);
+                $success =  $user->createToken('My_Insurance_Token')->plainTextToken; 
+                 return Response(['status'=>true,'message'=>'User logged successfully','token' => $success],200);
             }
-            return Response(['message'=>'Unauthorized'],401);
+            return Response(['status'=>false,'message'=>'Unauthorized'],401);
         }
-        return Response(['message' => 'email or password wrong'],401);
+        return Response(['status'=>false,'message' => 'email or password wrong'],401);
     }
 
     /**

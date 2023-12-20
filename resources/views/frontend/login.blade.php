@@ -26,39 +26,34 @@
                            <h4 class="text-start">Find a job & grow your career</h4>
                        </div>
                        <div>
-                        <form>
-                            <div class="mb-3">
+                        <div id="register_status"></div>
+                        <form id="login_form">
+                            <!-- <div class="mb-3">
                                     <label for="number" class="form-label">Log In as</label>
                                     <select  class="form-control" aria-label="">
-                                      <option selected disabled>Choose....</option>
-                                        <option value="1">Candidate</option>
-                                        <option value="2">Insurer</option>
-                                        <option value="3">Institute</option>
+                                      <option selected disabled>-- Select --</option>
+                                        <option value="Candidate">Candidate</option>
+                                        <option value="Insurer">Insurer</option>
+                                        <option value="Institute">Institute</option>
                                     </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Full Name</label>
-                                <input type="text" required name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="What is your Name?">
-                                <div id="nameHelp" class="form-text text-danger">Full name is required</div>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Email ID</label>
-                              <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tell us your Email ID">
-                              <div id="emailHelp" class="form-text text-danger">Email addressis required</div>
+                              <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Tell us your Email ID">
+                              <div id="email_error"></div>
                             </div>
                             
                             <div class="mb-3">
                               <label for="password" class="form-label" >Password</label>
                               <input type="password" class="form-control" id="password" placeholder="Enter Your Password">
-                              <div id="password" class="form-text text-danger">Password is reuired</div>
+                              <div id="password_error"></div>
                             </div>
                               <div>
 								<div>
-									<button type="submit" class="btn btn-primary  my-2">Login</button>
+									<button type="submit" id="login_btn" class="btn btn-primary  my-2">Login</button>
 								</div>
-								Dont have an account ? <a href="{{route('register')}}" class="btn btn-secondary text-white mx-2">Register</a> 
+								Dont have an account ? <a href="/register" class="btn btn-secondary text-white mx-2">Register</a> 
 							  </div>
                           </form>
                        </div>

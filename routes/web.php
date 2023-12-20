@@ -32,7 +32,7 @@ Route::get('/', [WelcomeController::class,'index']);
 Route::get('/candidate-register', [WelcomeController::class,'candidate_register']);
 Route::get('/insurer-register', [WelcomeController::class,'insurer_register']);
 Route::get('/institute-register', [WelcomeController::class,'institute_register']);
-Route::post('/login', [WelcomeController::class,'login'])->name('login');
+Route::get('/login', [WelcomeController::class,'login'])->name('login');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

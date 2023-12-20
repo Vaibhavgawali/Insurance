@@ -62,8 +62,9 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="phone" class="form-label">Prefered Line</label>
                                 <select class="form-control"  name="experience" id="experience" aria-label="work status">
-                                    <option selected disabled>Work Status</option>
+                                    <option selected disabled>-- Select --</option>
                                     <option value="experienced">Experienced</option>
                                     <option value="fresher">Fresher</option>
                                 </select>
@@ -115,13 +116,14 @@
                                 });
                             </script>
                            
-                            <div class="mb-3">
+                           <div class="mb-3">
+                            <label for="phone" class="form-label">Prefered Line</label>
                                 <select  class="form-control" name="preferred_line" id="preferred_line" aria-label="work status">
-                                    <option selected disabled>Preferred Line</option>
-                                    <option value="1">Life</option>
-                                    <option value="2">General</option>
-                                    <option value="3">Health</option>
-                                    <option value="4">Other</option>
+                                    <option selected disabled>-- Select --</option>
+                                    <option value="life">Life</option>
+                                    <option value="general">General</option>
+                                    <option value="health">Health</option>
+                                    <option value="other">Other</option>
                                 </select>
                                 <div id="preferred_line_error"></div>
                             </div>
@@ -129,8 +131,9 @@
                              <div class="d-flex align-items-center ">
                                 <input class="form-check-input m-2" type="checkbox" value="" id="flexCheckDefault">
                                 I agree to the  <a href=""class="text-primary m-1"> terms & conditions</a>
-                                <div id="flexCheckDefault_error"></div>
                              </div>
+                             <div id="flexCheckDefault_error"></div>
+
                               <div>
 								<div>
 									<button type="submit" id="candidate_register_button" class="btn btn-primary  my-2">Register Now</button>
