@@ -74,7 +74,7 @@ class InsurerController extends Controller
         ]);
 
         if($validator->fails()){
-            return Response(['message' => $validator->errors()],401);
+            return Response(['status'=>false,'errors' => $validator->errors()],422);
         }   
 
         $user=User::create([
@@ -90,7 +90,7 @@ class InsurerController extends Controller
             $user_profile=UserProfile::create([
                 'user_id'=>$user_id,
                 'spoc'=>$request->spoc,
-                'preffered_line'=>$request->preferred_line,
+                'preferred_line'=>$request->preferred_line,
             ]);
 
             $user_address=UserAddress::create([
@@ -104,9 +104,9 @@ class InsurerController extends Controller
             // }
 
             $user->assignRole('insurer'); /** assign role to user */
-            return Response(['message' => "User created successfully"],200);
+            return Response(['status'=>true,'message' => "Insurer created successfully"],200);
         }
-        return Response(['message' => "Something went wrong"],500);
+        return Response(['status'=>false,'message' => "Something went wrong"],500);
         
     }
 

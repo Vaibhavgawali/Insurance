@@ -73,7 +73,7 @@ class InstituteController extends Controller
         ]);
 
         if($validator->fails()){
-            return Response(['message' => $validator->errors()],401);
+            return Response(['status'=>false,'errors' => $validator->errors()],422);
         }   
 
         $user=User::create([
@@ -102,9 +102,9 @@ class InstituteController extends Controller
             // }
 
             $user->assignRole('institute'); /** assign role to user */
-            return Response(['message' => "User created successfully"],200);
+            return Response(['status'=>true,'message' => "Institute created successfully"],200);
         }
-        return Response(['message' => "Something went wrong"],500);
+        return Response(['status'=>false,'message' => "Something went wrong"],500);
         
     }
 

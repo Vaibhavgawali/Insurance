@@ -28,7 +28,7 @@
                        <div>
                    
                        <form id="insurer_register_form">
-                        <div id="register_status"></div>
+                            <div id="register_status"></div>
                             @csrf
 
                             <div class="mb-3">
@@ -82,8 +82,9 @@
                              <div class="d-flex align-items-center ">
                                 <input class="form-check-input m-2" type="checkbox" value="" id="flexCheckDefault">
                                 I agree to the  <a href=""class="text-primary m-1"> terms & conditions</a>
-                                <div id="flexCheckDefault_error"></div>
                              </div>
+                             <div id="flexCheckDefault_error"></div>
+
                               <div>
 								<div>
 									<button type="submit" id="insurer_register_button" class="btn btn-primary  my-2">Register Now</button>
