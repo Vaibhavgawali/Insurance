@@ -18,6 +18,10 @@ use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserDocumentsController;
 
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\AnswerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,4 +74,8 @@ Route::group(['middleware' => ['auth:sanctum','role:Superadmin']],function(){
     Route::get('/roles_wise_permission',[UserController::class,'get_roles_wise_permissions']);
     Route::post('assign-role/{id}',[UserController::class,'assignRole']);
 });
+
+Route::resource('quizes', QuizController::class);
+Route::resource('questions', QuestionController::class);
+Route::resource('answers', AnswerController::class);
 
