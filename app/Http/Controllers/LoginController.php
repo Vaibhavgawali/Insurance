@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Session;
 
 use Auth;
 use Validator;
@@ -30,21 +31,9 @@ class LoginController extends Controller
             $user = Auth::user(); 
 
             if($user->isLoginAllowed){
-                $success =  $user->createToken('My_Insurance_Token')->plainTextToken; 
+                // $success =  $user->createToken('My_Insurance_Token')->plainTextToken;
+                 $success="ok";
                  return Response(['status'=>true,'message'=>'User logged successfully','token' => $success,'redirect_url'=>'/dashboard'],200);
-               
-                // return redirect('/dashboard')
-                // ->with([
-                //     'status'  => true,
-                //     'message' => 'User logged successfully',
-                //     'token'   => $success,
-                // ]);
-
-                // return view('dashboard.dashboard', [
-                //     'status'  => true,
-                //     'message' => 'User logged successfully',
-                //     'token'   => $success,
-                // ]);
             }
             return Response(['status'=>false,'message'=>'Unauthorized'],401);
         }
@@ -57,11 +46,11 @@ class LoginController extends Controller
     public function logout()
     {
         if (Auth::check()) {
-        Auth::logout();
-
-        // $user = Auth::user();
-        // $user->currentAccessToken()->delete();
-        // return Response(['data' => 'User Logout successfully.'],200);
+            Auth::logout();
+            Session::flush();
+            // $user = Auth::user();
+            // $user->currentAccessToken()->delete();
+            // return Response(['data' => 'User Logout successfully.'],200);
 
         return redirect('/login');
         }
