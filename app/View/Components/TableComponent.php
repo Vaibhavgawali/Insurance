@@ -10,10 +10,14 @@ class TableComponent extends Component
 {
     /**
      * Create a new component instance.
+     *
+     * @param  mixed  $data
      */
-    public function __construct()
+    public $data;
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -21,6 +25,6 @@ class TableComponent extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.table-component');
+        return view('components.table-component', ['data' => $this->data]);
     }
 }

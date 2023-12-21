@@ -1,7 +1,8 @@
 @extends('dashboard/layouts/dashboard-layout')
 @section('main-section')
-
-<div class="content-wrapper">
+           <!-- partial -->
+           <div class="main-panel">
+          <div class="content-wrapper">
             <div class="page-header">
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white me-2">
@@ -17,95 +18,7 @@
                       <h4 class="card-title">Candidates Table</h4>
                       
                       </p>
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>Sr.No</th>
-                            <th> Name </th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th class="text-center">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>1
-                              
-                            </td>
-                            <td> Saurabh Wakde </td>
-                            <td>xyz@gmail.com</td>
-                            <td>8308645444</td>
-
-                            <td class="text-center">
-                              <a href="profile.html" class="btn btn-sm btn-gradient-success btn-rounded ">View</a>
-                              <a href="#" class="btn btn-sm btn-gradient-warning btn-rounded " data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>
-                              <a href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded ">Delete</a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>2
-                              
-                            </td>
-                            <td>  Saurabh Wakde </td>
-                            <td>xyz@gmail.com</td>
-                            <td>8308645444</td>
-
-                            <td class="text-center">
-                              <a href="profile.html" class="btn btn-sm btn-gradient-success btn-rounded ">View</a>
-                              <a href="profile.html" class="btn btn-sm btn-gradient-warning btn-rounded ">Edit</a>
-                              <a href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded ">Delete</a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>3
-                              
-                            </td>
-                            <td>  Saurabh Wakde </td>
-                            <td>xyz@gmail.com</td>
-                            <td>8308645444</td>
-
-                            <td class="text-center">
-                              <a href="profile.html" class="btn btn-sm btn-gradient-success btn-rounded ">View</a>
-                              <a href="profile.html" class="btn btn-sm btn-gradient-warning btn-rounded ">Edit</a>
-                              <a href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded ">Delete</a>
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td>4
-                              
-                            </td>
-                            <td>  Saurabh Wakde </td>
-                            <td>xyz@gmail.com</td>
-                            <td>8308645444</td>
-
-                            <td class="text-center">
-                              <a href="profile.html" class="btn btn-sm btn-gradient-success btn-rounded ">View</a>
-                              <a href="profile.html" class="btn btn-sm btn-gradient-warning btn-rounded ">Edit</a>
-                              <a href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded ">Delete</a>
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td>5
-                              
-                            </td>
-                            <td>  Saurabh Wakde </td>
-                            <td>xyz@gmail.com</td>
-                            <td>8308645444</td>
-
-                            <td class="text-center">
-                              <a href="profile.html" class="btn btn-sm btn-gradient-success btn-rounded ">View</a>
-                              <a href="profile.html" class="btn btn-sm btn-gradient-warning btn-rounded ">Edit</a>
-                              <a href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded ">Delete</a>
-                            </td>
-                          </tr>
-               
-                  
-
-
-                        </tbody>
-                      </table>
+                      <x-table-component :data="$candidates" />
                       <div class="d-flex my-3 align-items-center">
                         <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
                             <i class="mdi mdi-chevron-left"></i>
@@ -247,4 +160,14 @@
                                             </div>
               </div>
           </div>
-          @endsection
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="container-fluid d-flex justify-content-between">
+              <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright © insurencenext.com 2021</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+@endsection

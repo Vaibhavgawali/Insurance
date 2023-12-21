@@ -16,7 +16,10 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="{{asset('admin-assets/assets/js/dashboard.js')}}"></script>
+    <script src="{{asset('admin-assets/assets/js/admin-candidate-list.js')}}"></script>
+    <script src="{{asset('admin-assets/assets/js/admin-profile.js')}}"></script>
     <script src="{{asset('admin-assets/assets/js/todolist.js')}}"></script>
+
     <!-- End custom js for this page -->
   </body>
 </html>

@@ -268,7 +268,7 @@ $(document).ready(function () {
 
                     $("#candidate_register_button").attr("disabled", true);
                     $("#register_status").html(
-                        "<div class='alert alert-success text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-check'></i> " +
+                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
                             response.message +
                             "</div>"
                     );
@@ -276,6 +276,7 @@ $(document).ready(function () {
                     return false;
                 }
             },
+            
 
             error: function (response) {
                 if (response.status === 422) {
@@ -296,6 +297,7 @@ $(document).ready(function () {
             },
         });
     });
+
     $("#insurer_register_button").click(function (event) {
         var name = $("#name").val();
         var phone = $("#phone").val();
@@ -487,9 +489,9 @@ $(document).ready(function () {
 
                     $("#insurer_register_button").attr("disabled", true);
                     $("#register_status").html(
-                        "<div class='alert alert-success text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
+                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
+                        response.message +
+                        "</div>"
                     );
                     $("#insurer_register_form")[0].reset();
                     return false;
@@ -515,6 +517,7 @@ $(document).ready(function () {
             },
         });
     });
+
     $("#institute_register_button").click(function (event) {
         var name = $("#name").val();
         var phone = $("#phone").val();
@@ -690,7 +693,7 @@ $(document).ready(function () {
 
                     $("#institute_register_button").attr("disabled", true);
                     $("#register_status").html(
-                        "<div class='alert alert-success text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-check'></i> " +
+                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
                             response.message +
                             "</div>"
                     );

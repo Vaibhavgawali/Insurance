@@ -30,8 +30,8 @@ use App\Http\Controllers\UserDocumentsController;
 
 Route::get('/', [WelcomeController::class,'index']);
 
+Route::get('/admin-dashboard', [AdminController::class,'admin_dashboard']);
 Route::get('/admin-profile', [AdminController::class,'admin_profile']);
-Route::get('/candidate-list', [AdminController::class,'candidate_list_table']);
 Route::get('/candidate-register', [WelcomeController::class,'candidate_register']);
 Route::get('/insurer-register', [WelcomeController::class,'insurer_register']);
 Route::get('/institute-register', [WelcomeController::class,'institute_register']);

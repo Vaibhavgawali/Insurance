@@ -7,13 +7,17 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     
-    function admin_profile()
+    function admin_dashboard()
     {
-        return view('dashboard.admin-profile');
+        return view('dashboard.admin.admin-dashboard');
     }
-    function candidate_list_table()
+    function candidate_list()
     {
-        return view('dashboard.candidate-list');
+        return view('dashboard.admin.candidate-list');
+    }
+    function profile()
+    {
+        return view('dashboard.admin.admin-profile');
     }
 }
 
