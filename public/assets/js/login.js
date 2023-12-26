@@ -55,17 +55,17 @@ $(document).ready(function () {
 
         event.preventDefault();
 
-        var url = window.location.origin + "/login";
         $.ajax({
             type: "POST",
-            url: url,
+            url: $('meta[name="base-url"]').attr('content') + '/login',
+            //url,
             data: data,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "Accept": "application/json"
             },
             success: function (response) {
-                // console.log(response);
-                if (response.status == true) {
+                if (response.redirect) {
                     $(".error-message").remove();
 
                     // $("#login_btn").attr("disabled", true);
@@ -77,8 +77,7 @@ $(document).ready(function () {
                     // $("#login_form")[0].reset();
                     // return false;
 
-                    var redirect = response.redirect_url;
-                    window.location.href = redirect;
+                    window.location.href = response.redirect;
                 }
             },
 
@@ -92,16 +91,16 @@ $(document).ready(function () {
                         var input = $('[name="' + field + '"]');
                         input.after(
                             '<div class="error-message invalid-feedback d-block">' +
-                                messages.join(", ") +
-                                "</div>"
+                            messages.join(", ") +
+                            "</div>"
                         );
                     });
                 }
                 if (response.status === 401) {
                     $("#register_status").html(
                         "<div class='alert alert-danger text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-times'></i> " +
-                            response.responseJSON.message +
-                            "</div>"
+                        response.responseJSON.message +
+                        "</div>"
                     );
                 }
             },
