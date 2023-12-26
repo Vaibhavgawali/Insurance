@@ -68,14 +68,17 @@ $(document).ready(function () {
                 if (response.status == true) {
                     $(".error-message").remove();
 
-                    $("#login_btn").attr("disabled", true);
-                    $("#register_status").html(
-                        "<div class='alert alert-success text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
-                    $("#login_form")[0].reset();
-                    return false;
+                    // $("#login_btn").attr("disabled", true);
+                    // $("#register_status").html(
+                    //     "<div class='alert alert-success text-center' style='padding: 3px; margin-bottom: 3px;margin-left: 5px;margin-right: 5px;'><i class='fa fa-check'></i> " +
+                    //         response.message +
+                    //         "</div>"
+                    // );
+                    // $("#login_form")[0].reset();
+                    // return false;
+
+                    var redirect = response.redirect_url;
+                    window.location.href = redirect;
                 }
             },
 

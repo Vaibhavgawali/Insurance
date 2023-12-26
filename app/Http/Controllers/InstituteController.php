@@ -101,7 +101,7 @@ class InstituteController extends Controller
             //     return Response(['message' => "Email is sent to email"],200);
             // }
 
-            $user->assignRole('institute'); /** assign role to user */
+            $user->assignRole('Institute'); /** assign role to user */
             return Response(['status'=>true,'message' => "Institute created successfully"],200);
         }
         return Response(['status'=>false,'message' => "Something went wrong"],500);

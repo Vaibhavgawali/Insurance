@@ -28,6 +28,7 @@
                        <div>
                         <div id="register_status"></div>
                         <form id="login_form">
+                           @csrf
                             <!-- <div class="mb-3">
                                     <label for="number" class="form-label">Log In as</label>
                                     <select  class="form-control" aria-label="">

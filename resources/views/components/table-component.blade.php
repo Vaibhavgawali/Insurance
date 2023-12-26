@@ -32,7 +32,7 @@
                             <td>{{$row->phone}}</td>
                                 
                             <td class="text-center">
-                              <a href="profile.html" class="btn btn-sm btn-gradient-success btn-rounded ">View</a>
+                            <a href="/admin/user/{{$row->user_id}}" class="btn btn-sm btn-gradient-success btn-rounded">View</a>
                               <a href="#" class="btn btn-sm btn-gradient-warning btn-rounded " data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>
                               <a href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded ">Delete</a>
                             </td>

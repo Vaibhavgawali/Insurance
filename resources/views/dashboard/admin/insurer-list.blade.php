@@ -15,10 +15,10 @@
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Candidates Table</h4>
+            <h4 class="card-title">Insurer Table</h4>
 
             </p>
-            <x-table-component :data="$candidates" />
+            <x-table-component :data="$insurers" />
             <div class="d-flex my-3 align-items-center">
               <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
                 <i class="mdi mdi-chevron-left"></i>

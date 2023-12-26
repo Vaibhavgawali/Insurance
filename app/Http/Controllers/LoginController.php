@@ -13,7 +13,7 @@ class LoginController extends Controller
     /**
      * Login user.
      */
-    public function loginUser(Request $request): Response
+    public function loginUser(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -31,7 +31,20 @@ class LoginController extends Controller
 
             if($user->isLoginAllowed){
                 $success =  $user->createToken('My_Insurance_Token')->plainTextToken; 
-                 return Response(['status'=>true,'message'=>'User logged successfully','token' => $success],200);
+                 return Response(['status'=>true,'message'=>'User logged successfully','token' => $success,'redirect_url'=>'/dashboard'],200);
+               
+                // return redirect('/dashboard')
+                // ->with([
+                //     'status'  => true,
+                //     'message' => 'User logged successfully',
+                //     'token'   => $success,
+                // ]);
+
+                // return view('dashboard.dashboard', [
+                //     'status'  => true,
+                //     'message' => 'User logged successfully',
+                //     'token'   => $success,
+                // ]);
             }
             return Response(['status'=>false,'message'=>'Unauthorized'],401);
         }
@@ -41,13 +54,17 @@ class LoginController extends Controller
     /**
     * Logout user.
     */
-    public function logout(): Response
+    public function logout()
     {
-        $user = Auth::user();
+        if (Auth::check()) {
+        Auth::logout();
 
-        $user->currentAccessToken()->delete();
-        
-        return Response(['data' => 'User Logout successfully.'],200);
+        // $user = Auth::user();
+        // $user->currentAccessToken()->delete();
+        // return Response(['data' => 'User Logout successfully.'],200);
+
+        return redirect('/login');
+        }
     }
 
     /**

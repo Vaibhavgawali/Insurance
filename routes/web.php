@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\LoginController;
 
 use App\Http\Controllers\admin\UserController;
@@ -30,17 +31,12 @@ use App\Http\Controllers\UserDocumentsController;
 
 Route::get('/', [WelcomeController::class,'index']);
 
-Route::get('/admin-dashboard', [AdminController::class,'admin_dashboard']);
-Route::get('/admin-profile', [AdminController::class,'admin_profile']);
 Route::get('/candidate-register', [WelcomeController::class,'candidate_register']);
 Route::get('/insurer-register', [WelcomeController::class,'insurer_register']);
 Route::get('/institute-register', [WelcomeController::class,'institute_register']);
 Route::get('/login', [WelcomeController::class,'login'])->name('login');
 
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::get('/candidate-list', [AdminController::class,'candidate_list_table']);
 
 Route::resource('admin/user', UserController::class)->middleware('auth:sanctum');
 
@@ -50,8 +46,9 @@ Route::resource('candidate', CandidateController::class);
 Route::resource('insurer', InsurerController::class);
 Route::resource('institute', InstituteController::class);
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
 
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/dashboard', [AdminController::class,'dashboard']);
     Route::resource('user-profile', UserProfileController::class);
     Route::resource('user-address', UserAddressController::class);
     Route::resource('user-experience', UserExperienceController::class);

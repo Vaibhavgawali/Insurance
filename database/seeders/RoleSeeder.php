@@ -19,6 +19,7 @@ class RoleSeeder extends Seeder
         $insurer=Role::create(['name'=>'Insurer']);
         $institute=Role::create(['name'=>'Institute']);
         $other=Role::create(['name'=>'Other']);
+        
 
         $view_users_list = Permission::create(['name' => 'view_users_list']);
         $view_user_details = Permission::create(['name' => 'view_user_details']);
