@@ -9,11 +9,7 @@ class AdminController extends Controller
     
     function dashboard()
     {
-        return view('dashboard.dashboard');
-    }
-    function candidate_list_table()
-    {
-        return view('dashboard.candidate-list');
+        return view('dashboard.admin.dashboard');
     }
 }
 

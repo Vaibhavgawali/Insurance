@@ -15,19 +15,20 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        // $superadmin=Role::create(['name'=>'Superadmin']);
-        // $candidate=Role::create(['name'=>'Candidate']);
-        // $insurer=Role::create(['name'=>'Insurer']);
-        // $institute=Role::create(['name'=>'Institute']);
-        // $other=Role::create(['name'=>'Other']);
+        $superadmin=Role::create(['name'=>'Superadmin']);
+        $candidate=Role::create(['name'=>'Candidate']);
+        $insurer=Role::create(['name'=>'Insurer']);
+        $institute=Role::create(['name'=>'Institute']);
+        $other=Role::create(['name'=>'Other']);
+        
 
-        // $view_users_list = Permission::create(['name' => 'view_users_list']);
-        // $view_user_details = Permission::create(['name' => 'view_user_details']);
-        // $update_user_details = Permission::create(['name' => 'update_user_details']);
-        // $delete_user = Permission::create(['name' => 'delete_user']);
-        // $view_requirement_list = Permission::create(['name' => 'view_requirement_list']);
-        // $view_requirement = Permission::create(['name' => 'view_requirement']);
-        // $delete_requirement = Permission::create(['name' => 'delete_requirement']);
+        $view_users_list = Permission::create(['name' => 'view_users_list']);
+        $view_user_details = Permission::create(['name' => 'view_user_details']);
+        $update_user_details = Permission::create(['name' => 'update_user_details']);
+        $delete_user = Permission::create(['name' => 'delete_user']);
+        $view_requirement_list = Permission::create(['name' => 'view_requirement_list']);
+        $view_requirement = Permission::create(['name' => 'view_requirement']);
+        $delete_requirement = Permission::create(['name' => 'delete_requirement']);
         
         // $upload_resume=Permission::create(['name'=>'upload_resume']);
         // $view_modules=Permission::create(['name'=>'view_modules']);

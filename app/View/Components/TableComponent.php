@@ -9,6 +9,8 @@ class TableComponent extends Component
     /**
      * Create a new component instance.
      *
+     * @param  mixed  $data
+     *
      * @return void
      */
 
@@ -16,9 +18,11 @@ class TableComponent extends Component
     public $items;
     public $tableClass;
     public $actions;
-    public function __construct($headers, $items, $tableClass = "", $actions = [])
+    public $data;
+
+    public function __construct($headers, $items, $tableClass = "", $actions = []$data)
     {
-        //
+        $this->data = $data;
         $this->headers = $headers;
         $this->items = $items;
         $this->tableClass = $tableClass;
@@ -32,6 +36,6 @@ class TableComponent extends Component
      */
     public function render()
     {
-        return view('components.table-component');
+        return view('components.table-component', ['data' => $this->data]);
     }
 }

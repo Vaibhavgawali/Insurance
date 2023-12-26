@@ -79,22 +79,25 @@ class UserProfileController extends Controller
                 ]);
 
                 if($validator->fails()){
-                    return Response(['message' => $validator->errors()],401);
+                    return Response(['message' => $validator->errors()],422);
                 }   
 
-                $user = UserProfile::where('user_id', $id) ;
+                $user= UserProfile::where('user_id', $id)->first();
+
+                // $user = UserProfile::where('user_id', $id) ;
                 if($user){
+                    // dd($request->all());
                     $isUpdated=$user->update($request->all());
                     if($isUpdated){
-                        return Response(['message' => "User profile updated successfully"],200);
+                        return Response(['status'=>true,'message' => "User profile updated successfully"],200);
                     }
-                    return Response(['message' => "Something went wrong"],500);
+                    return Response(['status'=>false,'message' => "Something went wrong"],500);
                 }                    
-                return Response(['message'=>"User not found"],404);
+                return Response(['status'=>false,'message'=>"User not found"],404);
             }
-            return Response(['message'=>"Invalid form method "],405);
+            return Response(['status'=>false,'message'=>"Invalid form method "],405);
         }
-        return Response(['message'=>'Unauthorized'],401);
+        return Response(['status'=>false,'message'=>'Unauthorized'],401);
     }
 
     /**
@@ -108,16 +111,18 @@ class UserProfileController extends Controller
      /**
      * Upload profile image
      */
-    public function profileImageUpload(Request $request):Response
+    public function profileImageUpload(Request $request)
     {
         if(Auth::check()){
             $validator=Validator::make($request->all(),[
-                'profile_image'=>'required|image|mimes:jpeg,png,jpg|max:2048'
+                // 'profile_image'=>'required|image|mimes:jpeg,png,jpg|max:2048'
+                'profile_image'=>'required|image|mimes:jpeg,png,jpg'
             ]);
 
             if($validator->fails()){
                 return Response(['message' => $validator->errors()],401);
             } 
+            
 
             // Save the image to the storage
             $image=$request->file("profile_image");

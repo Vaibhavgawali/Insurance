@@ -36,7 +36,8 @@ class InsurerController extends Controller
         if (Auth::check()) {
             $users = User::role('Insurer')->get();
             if ($users) {
-                return Response(['data' => $users], 200);
+                // return Response(['data' => $users], 200);
+                return view('dashboard.admin.insurer-list', ['insurers' => $users]);
             }
             return Response(['message' => "Users with role Insurer not found "], 404);
         }
@@ -103,7 +104,7 @@ class InsurerController extends Controller
             //     return Response(['message' => "Email is sent to email"],200);
             // }
 
-            $user->assignRole('insurer'); /** assign role to user */
+            $user->assignRole('Insurer'); /** assign role to user */
             return Response(['status'=>true,'message' => "Insurer created successfully"],200);
         }
         return Response(['status'=>false,'message' => "Something went wrong"],500);
