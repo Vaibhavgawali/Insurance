@@ -54,6 +54,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
+        $quiz_id = request('quiz_id');
+
         $quizzes = Quiz::all();
         $quizzes = $quizzes->map(function($item){
             return [
@@ -83,7 +85,7 @@ class QuestionController extends Controller
             //     ],
             // ]
         ];
-        return view('dashboard.questions.create', ['fields'=>$fields]);
+        return view('dashboard.questions.create', ['fields'=>$fields,'quiz_id'=>$quiz_id]);
     }
 
     /**
@@ -103,10 +105,11 @@ class QuestionController extends Controller
         ]);
 
         $question = Question::create([
-            'text' => $request->input('question_text'),
+            'question_text' => $request->input('question_text'),
+            'quiz_id'=>$request->input('quiz_id')
         ]);
 
-        print_r($question);
+        // print_r($question);
 
         // Create answers for the question
         foreach ($request->input('answers') as $index => $answerText) {
@@ -127,6 +130,9 @@ class QuestionController extends Controller
     public function show(string $id)
     {
         $question = Question::find($id);
+        $answers=$question->answers;
+        dd($answers);
+
         return view('dashboard.questions.show', compact('question'));
     }
 

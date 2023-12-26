@@ -157,7 +157,7 @@ class QuizController extends Controller
             ],
         ];
 
-        return view('dashboard.quizes.show', ['questions'=>$questions,'headers'=>$headers,'actions'=>$actions]);
+        return view('dashboard.quizes.show', ['questions'=>$questions,'headers'=>$headers,'actions'=>$actions,'quiz_id'=>$id]);
     }
 
     /**

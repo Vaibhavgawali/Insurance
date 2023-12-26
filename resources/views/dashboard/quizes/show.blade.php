@@ -5,7 +5,7 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-account-multiple"></i>
-            </span>Paper List
+            </span>Paper List {{$quiz_id}}
         </h3>
         <x-breadcrumb :breadcrumbs="$breadcrumbs??[]"></x-breadcrumb>
     </div>
@@ -14,8 +14,8 @@
             <div class="card">
                 <div class="card-body table-responsive">
                     <h4 class="card-title">Paper List</h4>
-                    <p class="card-description"> Paper List </p> <a href="/questions/create" class="btn btn-primary btn-sm">Add</a>
-                    <x-table-component :items="$questions" :headers="$headers" :tableClass="'table-striped'" :actions="$actions" />
+                    <p class="card-description"> Paper List </p> <a href="/questions/create?quiz_id={{ $quiz_id }}" class="btn btn-primary btn-sm">Add</a>
+                    <x-table-component :items="$questions" :headers="$headers" :tableClass="'table-striped'" :actions="$actions" :quiz_id="$quiz_id"/>
                 </div>
             </div>
         </div>

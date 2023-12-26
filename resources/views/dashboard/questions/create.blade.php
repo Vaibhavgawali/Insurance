@@ -16,6 +16,7 @@
                     
                     <form method="post" action="{{ route('questions.store') }}">
                         @csrf
+                        <input type="hidden" name="quiz_id" value={{$quiz_id}}>
                         <label for="question">Question:</label>
                         <input type="text" name="question_text" value="{{ old('question_text')}}">
                         @if($errors->has('question_text'))
