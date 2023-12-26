@@ -20,7 +20,7 @@ class TableComponent extends Component
     public $actions;
     public $data;
 
-    public function __construct($headers, $items, $tableClass = "", $actions = []$data)
+    public function __construct($headers, $items, $tableClass = "", $actions = [],$data)
     {
         $this->data = $data;
         $this->headers = $headers;
