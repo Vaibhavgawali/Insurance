@@ -65,8 +65,23 @@ class QuestionController extends Controller
         
         $fields = [
             ['name' => 'question_text', 'label' => 'Question text', 'type' => 'text', 'placeholder' => 'Question text'],
-            ['name' => 'quiz_id', 'label' => 'Quiz', 'type' => 'select', 'placeholder' => 'Quiz','options'=>json_decode($quizzes),'multiple'=>false],
-            ['name' => 'level', 'label' => 'Level', 'type' => 'text', 'placeholder' => 'Level'],
+            // ['name' => 'quiz_id', 'label' => 'Quiz', 'type' => 'select', 'placeholder' => 'Quiz','options'=>json_decode($quizzes),'multiple'=>false],
+            // ['name' => 'level', 'label' => 'Level', 'type' => 'text', 'placeholder' => 'Level'],
+            // ['name' => 'answer_text', 'label' => 'Option 1', 'type' => 'text', 'placeholder' => 'Answer text'],
+            // ['name' => 'answer_text', 'label' => 'Option 2', 'type' => 'text', 'placeholder' => 'Answer text'],
+            // ['name' => 'answer_text', 'label' => 'Option 3', 'type' => 'text', 'placeholder' => 'Answer text'],
+            // ['name' => 'answer_text', 'label' => 'Option 4', 'type' => 'text', 'placeholder' => 'Answer text'],
+            // [
+            //     'name' => 'radio_option',
+            //     'label' => 'Select correct option',
+            //     'type' => 'radio',
+            //     'options' => [
+            //         ['id' => 1, 'name' => 'Option 1'],
+            //         ['id' => 2, 'name' => 'Option 2'],
+            //         ['id' => 3, 'name' => 'Option 3'],
+            //         ['id' => 4, 'name' => 'Option 4'],
+            //     ],
+            // ]
         ];
         return view('dashboard.questions.create', ['fields'=>$fields]);
     }
@@ -76,16 +91,34 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
+        // print_r($request->all());die;
+
         $request->validate([
-            'question_text' => 'required',
-            'quiz_id' => 'required',
-            'level' => 'required',
+            'question_text' => 'required|string',
+            'answers' => 'required|array|min:4',
+            'correct_answer' => 'required|integer',
+            'answers.*' => 'required|string',
+        ], [
+            'answers.*.required' => 'Answer :attribute is required.',
         ]);
 
-        $question = Question::create($request->all());
+        $question = Question::create([
+            'text' => $request->input('question_text'),
+        ]);
 
-        return redirect()->route('questions.show', $question->id)
-            ->with('success', 'Question created successfully');
+        print_r($question);
+
+        // Create answers for the question
+        foreach ($request->input('answers') as $index => $answerText) {
+            $correct = $index + 1 == $request->input('correct_answer');
+    
+            $question->answers()->create([
+                'answer_text' => $answerText,
+                'is_correct' => $correct,
+            ]);
+        }
+    
+        return redirect()->route('questions.create')->with('success', 'Question created successfully');
     }
 
     /**

@@ -45,6 +45,8 @@ class QuizController extends Controller
                 'class' => 'danger',
             ],
         ];
+
+        // dd($headers);
         return view('dashboard.quizes.index', ['data'=>$quizzes,'headers'=>$headers,'actions'=>$actions]);
     }
 
@@ -72,20 +74,90 @@ class QuizController extends Controller
             'description' => 'required',
             'level' => 'required',
         ]);
-        $request['user_id'] = Auth::user()->id;
+        $request['created_by'] = Auth::user()->user_id;
+        // dd($request->all());
         $quiz = Quiz::create($request->all()); //if all data sent
 
-        return redirect()->route('quizes.show', $quiz->id)
+        // return redirect()->route('quizes.show', $quiz->id)
+        //     ->with('success', 'Quiz created successfully');
+            return redirect()->route('quizes.index')
             ->with('success', 'Quiz created successfully');
     }
-
 
     /**
      * Display the specified resource.
      */
-    public function show(Quiz $quiz)
+    public function show($id)
     {
-        return view('dashboard.quizes.show', compact('quiz'));
+        $quiz = Quiz::find($id);
+        $questions=$quiz->questions;
+        $questions=$questions->map(function ($item){
+            $options = $item->answers->take(4);
+            
+            $correctOption = null;
+            switch (true) {
+                case $options->get(0)->is_correct ?? NULL:
+                    $correctOption = "1".") ".$options->get(0)->answer_text ?? null;
+                    break;
+                case $options->get(1)->is_correct ?? NULL:
+                    $correctOption = "2".") ".$options->get(1)->answer_text ?? null;
+                    break;
+                case $options->get(2)->is_correct ?? NULL:
+                    $correctOption = "3".") ".$options->get(2)->answer_text ?? null;
+                    break;
+                case $options->get(3)->is_correct ?? NULL:
+                    $correctOption = "4".") ".$options->get(3)->answer_text ?? null;
+                    break;
+            };
+
+            return [
+                'id'=> $item->id,
+                'question_text'=>$item->question_text,
+                // 'quiz_id'=>$item->quiz_id,
+                // 'level'=>$item->level,
+                'option_1'=>$options->get(0)->answer_text ?? null,
+                'option_2'=>$options->get(1)->answer_text ?? null,
+                'option_3'=>$options->get(2)->answer_text ?? null,
+                'option_4'=>$options->get(3)->answer_text ?? null,
+                'is_correct'=>$correctOption
+            ];
+        });
+      
+        // dd($questions);
+
+        $headers = ['id', 'question_text','option_1','option_2','option_3','option_4','is_correct'];//, 'quiz_id', 'level'
+
+        $actions = [
+            [
+                // 'icon' => 'mdi mdi-square-edit-outline',
+                'label' => 'Edit',
+                'action' => 'edit',
+                'url' => function ($item) {
+                    return route('questions.edit', $item['id']);
+                },
+                'class' => 'primary',
+            ],
+            [
+                // 'icon' => 'mdi mdi-bullseye',
+                'label' => 'View',
+                'action' => 'view',
+                'url' => function ($item) {
+                    return route('questions.show', $item['id']);
+                },
+                'class' => 'info',
+            ],
+            [
+                // 'icon' => 'mdi mdi-delete',
+                'label' => 'Delete',
+                'action' => 'delete',
+                'url' => function ($item) {
+                    return route('questions.destroy', $item['id']);
+                },
+                'class' => 'danger',
+            ],
+        ];
+
+        return view('dashboard.quizes.show', ['questions'=>$questions,'headers'=>$headers,'actions'=>$actions]);
     }
 
     /**
@@ -117,16 +189,20 @@ class QuizController extends Controller
         $quiz = Quiz::find($id);
         // dd($quiz);
         $quiz->update($request->all());
-        return redirect()->route('quizes.show', $id)
+        // return redirect()->route('quizes.show', $id)
+        //     ->with('success', 'Quiz updated successfully');
+        return redirect()->route('quizes.index')
             ->with('success', 'Quiz updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Quiz $quiz)
+    public function destroy($id)
     {
+        // dd($id);
         //
+        $quiz = Quiz::find($id);
         $quiz->delete();
         return redirect()->route('quizes.index')
             ->with('success', 'Quiz deleted successfully');
