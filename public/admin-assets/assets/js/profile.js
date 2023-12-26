@@ -201,7 +201,7 @@ $(document).ready(function () {   ///    Profile Details Update Function
         var date_of_birth = $("#date_of_birth").val();
         var gender = $("#gender").val();
         var age = $("#age").val();
-        var preffred_line =$("#preffred_line").val();
+        var preffered_line =$("#preffred_line").val();
         var spoc =$("#spoc").val();
         var user_id = $("#user_id").val();
 
@@ -254,10 +254,10 @@ $(document).ready(function () {   ///    Profile Details Update Function
         }
 
         if (
-            preffred_line == "" ||
-            preffred_line == null ||
-            preffred_line == "undefined" ||
-            preffred_line == undefined
+            preffered_line == "" ||
+            preffered_line == null ||
+            preffered_line == "undefined" ||
+            preffered_line == undefined
         ) {
             $("#preffred_line_error").html(
                 '<div class=" invalid-feedback d-block">Prefferd Line is required.</div>'
@@ -284,7 +284,7 @@ $(document).ready(function () {   ///    Profile Details Update Function
             date_of_birth :date_of_birth,
             gender:gender,
             age:age,
-            preffred_line:preffred_line,
+            preffered_line:preffered_line,
             spoc:spoc,
             user_id:user_id,
         };

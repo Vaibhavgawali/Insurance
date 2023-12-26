@@ -5,45 +5,47 @@
       <button class="btn btn-gradient-primary btn-sm " id="profile_details_edit_button"><i class="mdi mdi-table-edit"></i></button>
     </div>
     <div class="profile-birth-div p-3">
-      <form class="forms-sample">
-      <div id="profile_details_status"></div>
+      <form class="forms-sample" id="profile_details_update_form">
+        <div id="profile_details_status"></div>
         @csrf
         <div class="form-group">
           <label for="date_of_birth">Date of birth</label>
-          <input type="date" class="form-control p-4" id="date_of_birth" placeholder="Date Of Birth" disabled value='{{ $data->user_profile->date_of_birth ?? "N/A" }}'>
+          <input type="date" class="form-control p-4" id="date_of_birth" placeholder="Date Of Birth" disabled value='{{ $data->profile->date_of_birth ?? "N/A" }}'>
           <div id="date_of_birth_error"></div>
         </div>
         <div class="form-group">
           <label for="gender">Gender</label>
-          <select class="form-control p-4" id="gender" placeholder="Gender" disabled value='{{ $data->user_profile->gender ?? "N/A" }}'>
+          <select class="form-control p-4" id="gender" placeholder="Gender" disabled>
             <option value="" selected disabled>--Select--</option>
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-            <option value="O">Other</option>
+            <option value="M" {{ $data->profile->gender === 'M' ? 'selected' : '' }}>Male</option>
+            <option value="F" {{ $data->profile->gender === 'F' ? 'selected' : '' }}>Female</option>
+            <option value="O" {{ $data->profile->gender === 'O' ? 'selected' : '' }}>Other</option>
           </select>
+
           <div id="gender_error"></div>
         </div>
         <div class="form-group">
           <label for="age">Age</label>
-          <input type="number" class="form-control p-4" id="age"  rows="8" placeholder="Age" disabled value='{{ $data->user_profile->age ?? "N/A" }}'>
+          <input type="number" class="form-control p-4" id="age" rows="8" placeholder="Age" disabled value='{{ $data->profile->age ?? "N/A" }}'>
           <div id="age_error"></div>
         </div>
         <div class="form-group">
-        <label for="preffred_line" class="form-label ">Prefered Line</label>
-                                <select  class="form-control p-5" name="preffred_line" id="preffred_line" aria-label="work status" value='{{ $data->user_profile->preffred_line ?? "N/A" }}' disabled>
-                                    <option selected disabled>-- Select --</option>
-                                    <option value="life">Life</option>
-                                    <option value="general">General</option>
-                                    <option value="health">Health</option>
-                                    <option value="other">Other</option>
-                                </select>
+          <label for="preffered_line" class="form-label ">Preffered Line</label>
+          <select class="form-control p-5" name="preffered_line" id="preffred_line" aria-label="work status" disabled>
+            <option value="" selected disabled>-- Select --</option>
+            <option value="life" {{ $data->profile->preffered_line === 'life' ? 'selected' : '' }}>Life</option>
+            <option value="general" {{ $data->profile->preffered_line === 'general' ? 'selected' : '' }}>General</option>
+            <option value="health" {{ $data->profile->preffered_line === 'health' ? 'selected' : '' }}>Health</option>
+            <option value="other" {{ $data->profile->preffered_line === 'other' ? 'selected' : '' }}>Other</option>
+          </select>
+
           <div id="preffred_line_error"></div>
         </div>
-        
+
 
         <div class="form-group">
           <label for="spoc">SPOC</label>
-          <textarea class="form-control p-3" id="spoc" rows="6" disabled>{{ $data->user_profile->spoc ?? "N/A" }}</textarea>
+          <textarea class="form-control p-3" id="spoc" rows="6" disabled>{{ $data->profile->spoc ?? "N/A" }}</textarea>
           <div id="spoc_error"></div>
         </div>
 

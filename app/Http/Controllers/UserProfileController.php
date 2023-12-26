@@ -71,7 +71,7 @@ class UserProfileController extends Controller
             $formMethod = $request->method();
             if($formMethod == "PATCH"){
                 $validator=Validator::make($request->all(),[
-                    "date_of_birth"=> 'date_format:d-m-Y',
+                    "date_of_birth"=> 'date_format:Y-m-d',
                     "gender"=>'string|in:"M","F","O"',
                     "age"=>'numeric|integer|min:1',
                     "preffered_line"=> 'string|max:20',
@@ -82,8 +82,11 @@ class UserProfileController extends Controller
                     return Response(['message' => $validator->errors()],422);
                 }   
 
-                $user = UserProfile::where('user_id', $id) ;
+                $user= UserProfile::where('user_id', $id)->first();
+
+                // $user = UserProfile::where('user_id', $id) ;
                 if($user){
+                    // dd($request->all());
                     $isUpdated=$user->update($request->all());
                     if($isUpdated){
                         return Response(['status'=>true,'message' => "User profile updated successfully"],200);
