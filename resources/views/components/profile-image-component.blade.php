@@ -24,6 +24,42 @@
       </form>
     </div>
 
+    <div class="profie-cv-upload-section">
+      <div class="profile-personal-cv-div p-3">
+        <div class="text-end">
+          <button class="btn btn-gradient-primary btn-sm " id="profile_cv_edit_button"><i class="mdi mdi-cloud-upload"> Upload CV</i></button>
+        </div>
+
+        <form class="forms-sample" id="" action="user-documents" method="post">
+          <div id="profile_cv_status"></div>
+          @csrf
+          <div class="form-group">
+            <label for="name">Documents Title</label>
+            <input type="text" class="form-control" id="document_title" name="document_title" placeholder="Provide documents title" disabled value=" {{ $data->name }}">
+            <div id="document_title_error"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Upload your Documents</label>
+            <input type="file" class="form-control" id="document_url" name="document_url" placeholder="Upload your cv" disabled value=" {{ $data->name }}">
+            <div id="document_url_error"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="user_id"></label>
+            <input type="text" class="form-control" id="user_id" placeholder="user_id" value=" {{$data->user_id}}" hidden>
+          </div>
+
+          <div id="profile_cv_update_button_div">
+            <button type="submit" class="btn btn-gradient-primary me-2" id="profile_cv_update_button">Upload</button>
+            <button class="btn btn-light" id="profile_cv_cancel_button">Cancel</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
     <div class="profile-personal-info-section">
       <div class="profile-personal-info-div p-3">
         <div class="text-end">
@@ -52,7 +88,7 @@
           </div>
           <div class="form-group">
             <label for="user_id"></label>
-            <input type="text" class="form-control" id="user_id" placeholder="user_id"  value=" {{$data->user_id}}" hidden>
+            <input type="text" class="form-control" id="user_id" placeholder="user_id" value=" {{$data->user_id}}" hidden>
           </div>
 
           <div id="profile_info_update_button_div">

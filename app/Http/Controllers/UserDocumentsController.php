@@ -39,9 +39,10 @@ class UserDocumentsController extends Controller
             "document_title"=> 'string|max:40',
             "document_url"=> 'required|mimes:pdf,doc,docx|max:2048',
         ]);
+        // dd($request->all());
 
         if($validator->fails()){
-            return Response(['message' => $validator->errors()],401);
+            return Response(['status'=>false,'errors' => $validator->errors()],422);
         }   
 
         // Save the image to the storage
@@ -55,7 +56,7 @@ class UserDocumentsController extends Controller
             $user_documents=UserDocuments::create([
                 'user_id'=>$user_id,
                 'document_title'=>$request->document_title,
-                'document_url'=>$documentpath,
+                '+'=>$documentpath,
             ]);
 
             if($user_documents){

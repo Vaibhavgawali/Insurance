@@ -46,6 +46,164 @@ dropArea.addEventListener("drop", function (e) {
 
 
 $(document).ready(function () {  // Profile info Update function
+    $("#profile_cv_update_button").click(function (event) {
+        var document_title = $("#document_title").val();
+        var document_title = $("#document_url").val();
+        var user_id = $("#user_id").val();
+
+        $("#document_title_error").html("");
+        $("#document_url_error").html("");
+
+        $("#profile_cv_status").html("");
+
+    
+        var data = {
+            document_title:document_title,
+            document_url:document_url,
+            user_id:user_id,
+        };
+        
+        
+        // Update the user_id value in the data object
+        // data.user_id = extractAndConvertToInteger(data.user_id);
+        // console.log(data);
+
+        event.preventDefault();
+
+        var url = window.location.origin + `/candidate/${user_id.trim()}`;
+        console.log(url);
+        
+        $.ajax({
+            type: "PATCH",
+            url: url,
+            data: data,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.status == true) {
+                    $(".error-message").remove();
+                    $("#profile_cv_update_button").attr("disabled", true);
+                    $("#profile_cv_status").html(
+                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
+                        response.message +
+                        "</div>"
+                    );
+            
+                    // Optional: You can add a delay before reloading the page
+                    setTimeout(function () {
+                        window.location.reload();
+                    },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+            
+                    return false;
+                }
+            }
+            ,
+
+            error: function (response) {
+                // console.log(response);
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+                     console.log(errors);
+                    $(".error-message").remove();
+
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+            },
+        });
+    });
+});
+
+// $(document).ready(function () {  // Profile cv Update function
+//     $("#profile_cv_update_button").click(function (event) {
+//         var document_title = $("#document_title").val();
+//         var document_title = $("#document_url").val();
+//         var user_id = $("#user_id").val();
+
+//         $("#document_title_error").html("");
+//         $("#document_url_error").html("");
+
+//         $("#profile_cv_status").html("");
+
+    
+//         var data = {
+//             document_title:document_title,
+//             document_url:document_url,
+//             user_id:user_id,
+//         };
+        
+        
+//         // Update the user_id value in the data object
+//         // data.user_id = extractAndConvertToInteger(data.user_id);
+//         // console.log(data);
+
+
+//         event.preventDefault();
+
+//         var url = window.location.origin + `/user-documents/${user_id.trim()}`;
+//         console.log(url);
+//         console.log(data);
+        
+//         $.ajax({
+//             type: "POST",
+//             url: url,
+//             data: data,
+//             headers: {
+//                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+//             },
+//             success: function (response) {
+//                 console.log(response);
+//                 if (response.status == true) {
+//                     $(".error-message").remove();
+//                     $("#profile_cv_update_button").attr("disabled", true);
+//                     $("#profile_cv_status").html(
+//                         "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
+//                         response.message +
+//                         "</div>"
+//                     );
+            
+//                     // Optional: You can add a delay before reloading the page
+//                     // setTimeout(function () {
+//                     //     window.location.reload();
+//                     // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+            
+//                     return false;
+//                 }
+//             }
+//             ,
+
+//             error: function (response) {
+//                 // console.log(response);
+//                 if (response.status === 422) {
+//                     var errors = response.responseJSON.errors;
+//                      console.log(errors);
+//                     $(".error-message").remove();
+
+//                     // Display new errors
+//                     $.each(errors, function (field, messages) {
+//                         var input = $('[name="' + field + '"]');
+//                         input.after(
+//                             '<div class="error-message invalid-feedback d-block">' +
+//                                 messages.join(", ") +
+//                                 "</div>"
+//                         );
+//                     });
+//                 }
+//             },
+//         });
+//     });
+// });
+
+$(document).ready(function () {  // Profile info Update function
     $("#profile_info_update_button").click(function (event) {
         var name = $("#name").val();
         var email = $("#email").val();
@@ -194,6 +352,7 @@ $(document).ready(function () {  // Profile info Update function
         });
     });
 });
+
 
 
 
@@ -800,6 +959,46 @@ let Profile_Info_Toggle = () => {
 };
 
 Profile_Info_Toggle();
+
+let Profile_Cv_Toggle = () => {
+    let editProfileButton = document.getElementById("profile_cv_edit_button");
+    let profileUpdateButtonDiv = document.getElementById(
+        "profile_cv_update_button_div"
+    );
+    let profileCancelButton = document.getElementById(
+        "profile_cv_cancel_button"
+    );
+    
+
+    let documentTitleInput = document.getElementById("document_title");
+    let documentUrlInput = document.getElementById("document_url");
+
+    let toggle = false;
+    profileUpdateButtonDiv.style.display = "none";
+    editProfileButton.addEventListener("click", () => {
+        toggle = !toggle;
+        if (toggle) {
+            profileUpdateButtonDiv.style.display = "block";
+            documentTitleInput.removeAttribute("disabled");
+            documentUrlInput.removeAttribute("disabled");
+           
+        } else {
+            profileUpdateButtonDiv.style.display = "none";
+            documentTitleInput.setAttribute("disabled", true);
+            documentUrlInput.setAttribute("disabled", true);
+        }
+    });
+    profileCancelButton.addEventListener("click", () => {
+        toggle = false;
+
+        profileUpdateButtonDiv.style.display = "none";
+        documentTitleInput.setAttribute("disabled", true);
+        documentUrlInput.setAttribute("disabled", true);
+    });
+};
+
+Profile_Cv_Toggle();
+
 
 let Profile_Details_toggle = () => {
     let editProfileButton = document.getElementById(
