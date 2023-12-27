@@ -35,19 +35,19 @@
           @csrf
           <div class="form-group">
             <label for="name">Full Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Username" disabled value=" {{ $data->name }}">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Username" disabled value=" {{ $data->name }}">
             <div id="name_error"></div>
           </div>
 
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" placeholder="Email" disabled value=" {{ $data->email }}">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" disabled value=" {{ $data->email }}">
             <div id="name_error"></div>
           </div>
 
           <div class="form-group">
             <label for="phone">Contact Number</label>
-            <input type="text" class="form-control" id="phone" placeholder="Phone" disabled value="{{$data->phone}}">
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" disabled value="{{$data->phone}}">
             <div id="phone_error"></div>
           </div>
           <div class="form-group">

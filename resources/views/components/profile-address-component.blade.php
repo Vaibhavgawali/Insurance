@@ -6,35 +6,48 @@
     </div>
     <div class="profile-address-div p-3">
 
-      <form class="forms-sample">
+      <form class="forms-sample" id="profile_address_update_form">
+        <div id="profile_address_status"></div>
+        @csrf
         <div class="form-group">
           <label for="city">City</label>
-          <input type="text" class="form-control" id="city" placeholder="City" disabled value='{{ $data->address->city ?? "N/A" }}'>
+          <input type="text" class="form-control" name="city" id="city" placeholder="City" disabled value='{{ $data->address->city ?? "NA" }}'>
+          <div id="city_error"></div>
         </div>
         <div class="form-group">
           <label for="pincode">Pincode</label>
-          <input type="text" class="form-control" id="pincode" placeholder="Pincode" disabled value='{{ $data->address->pincode ?? "N/A" }}'>
+          <input type="text" class="form-control" name="pincode" id="pincode" placeholder="Pincode" disabled value='{{ $data->address->pincode ?? "NA" }}'>
+          <div id="pincode_error"></div>
         </div>
         <div class="form-group">
           <label for="state">State</label>
-          <input type="text" class="form-control" id="state" placeholder="State" disabled value='{{ $data->address->state ?? "N/A" }}'>
+          <input type="text" class="form-control" name="state" id="state" placeholder="State" disabled value='{{ $data->address->state ?? "NA" }}'>
+          <div id="state_error"></div>
         </div>
         <div class="form-group">
           <label for="country">Country</label>
-          <input type="text" class="form-control" id="country" placeholder="Country" disabled value='{{ $data->address->preffred_line ?? "India" }}'>
+          <input type="text" class="form-control" name="country" id="country" placeholder="Country" disabled value='{{ $data->address->preffred_line ?? "India" }}'>
+          <div id="country_error"></div>
         </div>
         <div class="form-group">
           <label for="line1">Address Line 1</label>
-          <textarea class="form-control" id="line1" rows="1" disabled>{{ $data->address->line1 ?? "N/A" }}</textarea>
+          <textarea class="form-control" id="line1" name="line1" rows="1" disabled>{{ $data->address->line1 ?? "NA" }}</textarea>
+          <div id="line1_error"></div>
         </div>
         <div class="form-group">
           <label for="line2">Address Line 2</label>
-          <textarea class="form-control" id="line2" rows="1" disabled>{{ $data->address->line2 ?? "N/A" }}</textarea>
+          <textarea class="form-control" id="line2" name="line2" rows="1" disabled>{{ $data->address->line2 ?? "NA" }}</textarea>
+          <div id="line2_error"></div>
         </div>
         <div class="form-group">
           <label for="line3">Address Line 3</label>
-          <textarea class="form-control" id="line3" rows="1" disabled>{{ $data->address->line3 ?? "N/A" }}</textarea>
+          <textarea class="form-control" id="line3" name="line3" rows="1" disabled>{{ $data->address->line3 ?? "NA" }}</textarea>
+          <div id="line3_error"></div>
         </div>
+        <div class="form-group">
+            <label for="user_id"></label>
+            <input type="text" class="form-control" id="user_id" placeholder="user_id"  value=" {{$data->user_id}}" hidden>
+          </div>
 
         <div id="profile_address_update_button_div">
           <button type="submit" class="btn btn-gradient-primary me-2" id="profile_address_update_button">Submit</button>
