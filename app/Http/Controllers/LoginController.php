@@ -2,84 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-
-use Auth;
-use Validator;
-
+use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
-    /**
-     * Login user.
-     */
-    public function loginUser(Request $request)
+    use AuthenticatesUsers;
+    protected $redirectTo = '/dashboard';
+
+    public function __construct()
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-   
-        if($validator->fails()){
-
-            return Response(['status'=>false,'errors' => $validator->errors()],422);
-        }
-   
-        if(Auth::attempt($request->all())){
-
-            $user = Auth::user(); 
-
-            if($user->isLoginAllowed){
-                $success =  $user->createToken('My_Insurance_Token')->plainTextToken; 
-                 return Response(['status'=>true,'message'=>'User logged successfully','token' => $success,'redirect_url'=>'/dashboard'],200);
-               
-                // return redirect('/dashboard')
-                // ->with([
-                //     'status'  => true,
-                //     'message' => 'User logged successfully',
-                //     'token'   => $success,
-                // ]);
-
-                // return view('dashboard.dashboard', [
-                //     'status'  => true,
-                //     'message' => 'User logged successfully',
-                //     'token'   => $success,
-                // ]);
-            }
-            return Response(['status'=>false,'message'=>'Unauthorized'],401);
-        }
-        return Response(['status'=>false,'message' => 'email or password wrong'],401);
+        $this->middleware('guest')->except('logout');
     }
 
-    /**
-    * Logout user.
-    */
-    public function logout()
+    public function showLoginForm()
     {
-        if (Auth::check()) {
-        Auth::logout();
+        return view('frontend.login');
+    }
 
-        // $user = Auth::user();
-        // $user->currentAccessToken()->delete();
-        // return Response(['data' => 'User Logout successfully.'],200);
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
 
-        return redirect('/login');
+        // Customize the response here
+        if ($request->wantsJson()) {
+            // If the request wants JSON response
+            return response()->json(['redirect' => url('/dashboard')]);
+        } else {
+            // Default behavior for non-JSON response
+            return $this->authenticated($request, Auth::user())
+                ?: redirect()->intended($this->redirectPath());
         }
     }
 
-    /**
-    * Refresh Token
-    */
-    public function refreshAuthToken()
-    {
-        $user = Auth::user();
-
-        // Revoke the current token
-        $user->currentAccessToken()->delete();
-
-        // Issue a new token
-        $newToken = $user->createToken('new-token-name')->plainTextToken;
-
-        return Response(['access_token' => $newToken],200);
-    }
 }
