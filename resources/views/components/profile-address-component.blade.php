@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
           <label for="country">Country</label>
-          <input type="text" class="form-control" name="country" id="country" placeholder="Country" disabled value='{{ $data->address->preffred_line ?? "India" }}'>
+          <input type="text" class="form-control" name="country" id="country" placeholder="Country" disabled value='{{ $data->address->country ?? "India" }}'>
           <div id="country_error"></div>
         </div>
         <div class="form-group">

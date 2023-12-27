@@ -82,7 +82,7 @@ class UserAddressController extends Controller
                 // dd($request->all());
 
                 if($validator->fails()){
-                    return Response(['message' => $validator->errors()],422);
+                    return Response(['status'=>false,'errors' => $validator->errors()],422);
                 }   
 
                 $user = UserAddress::where('user_id', $id) ->first();

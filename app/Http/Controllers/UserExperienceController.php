@@ -99,14 +99,14 @@ class UserExperienceController extends Controller
                     "organization"=>'required|string|max:60',
                     "designation"=>'required|string|max:30',
                     "ctc"=>'required|numeric',
-                    "state"=>'string|max:20',
+                    "state"=>'string|max:50',
                     "job_profile_description"=>'string|max:60',
                     "joining_date"=>'required|date_format:Y-m-d',
-                    "relieving_date"=>'required|date_format:Y-m-d',
+                    "relieving_date"=>'date_format:Y-m-d',
                 ]);
 
                 if($validator->fails()){
-                    return Response(['message' => $validator->errors()],422);
+                    return Response(['status'=>false,'errors' => $validator->errors()],422);
                 }   
 
                 $user = UserExperience::where('user_id', $userId)->first(); ;

@@ -56,7 +56,7 @@ $(document).ready(function () {  // Profile info Update function
         $("#phone_error").html("");
         $("#email_error").html("");
 
-        $("#profile_status").html("");
+        $("#profile_info_status").html("");
 
         if (
             name == "" ||
@@ -174,9 +174,10 @@ $(document).ready(function () {  // Profile info Update function
             ,
 
             error: function (response) {
+                // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-
+                     console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -426,43 +427,43 @@ $(document).ready(function () {   ///    Profile Address Update Function
             $("#country").focus();
             return false;
         }
-        if (
-            line1 == "" ||
-            line1 == null ||
-            line1 == "undefined" ||
-            line1 == undefined
-        ) {
-            $("#line1_error").html(
-                '<div class=" invalid-feedback d-block">Address Line 1 is required.</div>'
-            );
-            $("#line1").focus();
-            return false;
-        }
-        if (
-            line2 == "" ||
-            line2 == null ||
-            line2 == "undefined" ||
-            line2 == undefined
-        ) {
-            $("#line2_error").html(
-                '<div class=" invalid-feedback d-block">Address Line 2 is required.</div>'
-            );
-            $("#line2").focus();
-            return false;
-        }
+        // if (
+        //     line1 == "" ||
+        //     line1 == null ||
+        //     line1 == "undefined" ||
+        //     line1 == undefined
+        // ) {
+        //     $("#line1_error").html(
+        //         '<div class=" invalid-feedback d-block">Address Line 1 is required.</div>'
+        //     );
+        //     $("#line1").focus();
+        //     return false;
+        // }
+        // if (
+        //     line2 == "" ||
+        //     line2 == null ||
+        //     line2 == "undefined" ||
+        //     line2 == undefined
+        // ) {
+        //     $("#line2_error").html(
+        //         '<div class=" invalid-feedback d-block">Address Line 2 is required.</div>'
+        //     );
+        //     $("#line2").focus();
+        //     return false;
+        // }
 
-        if (
-            line3 == "" ||
-            line3 == null ||
-            line3 == "undefined" ||
-            line3 == undefined
-        ) {
-            $("#line3_error").html(
-                '<div class=" invalid-feedback d-block">Address Line 3 is required.</div>'
-            );
-            $("#line3").focus();
-            return false;
-        }
+        // if (
+        //     line3 == "" ||
+        //     line3 == null ||
+        //     line3 == "undefined" ||
+        //     line3 == undefined
+        // ) {
+        //     $("#line3_error").html(
+        //         '<div class=" invalid-feedback d-block">Address Line 3 is required.</div>'
+        //     );
+        //     $("#line3").focus();
+        //     return false;
+        // }
 
        
 
@@ -520,7 +521,7 @@ $(document).ready(function () {   ///    Profile Address Update Function
             error: function (response) {
                 console.log(response);
                 if (response.status === 422) {
-                    var errors = response.responseJSON;
+                    var errors = response.responseJSON.errors;
                     console.log(errors);
             
                     $(".error-message").remove();
@@ -661,18 +662,18 @@ $(document).ready(function () {  // Profile Experience Update function
             return false;
         }
 
-        if (
-            relieving_date == "" ||
-            relieving_date == null ||
-            relieving_date == "undefined" ||
-            relieving_date == undefined
-        ) {
-            $("#relieving_date_error").html(
-                '<div class=" invalid-feedback d-block">Relieving date  is required.</div>'
-            );
-            $("#relieving_date").focus();
-            return false;
-        }
+        // if (
+        //     relieving_date == "" ||
+        //     relieving_date == null ||
+        //     relieving_date == "undefined" ||
+        //     relieving_date == undefined
+        // ) {
+        //     $("#relieving_date_error").html(
+        //         '<div class=" invalid-feedback d-block">Relieving date  is required.</div>'
+        //     );
+        //     $("#relieving_date").focus();
+        //     return false;
+        // }
         
         
 
@@ -925,7 +926,7 @@ let Profile_Experience_toggle = () => {
     );
 
     let currentCompanyInput = document.getElementById("is_current_company");
-    let organizationInput = document.getElementById("oraganization");
+    let organizationInput = document.getElementById("organization");
     let designationInput = document.getElementById("designation");
     let ctcInput = document.getElementById("ctc");
     let profileDescriptionInput = document.getElementById(

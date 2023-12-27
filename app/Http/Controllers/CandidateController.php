@@ -173,7 +173,7 @@ class CandidateController extends Controller
                 ]);
 
                 if ($validator->fails()) {
-                    return Response(['message' => $validator->errors()], 401);
+                    return Response(['status'=>false,'errors' => $validator->errors()], 422);
                 }
 
                 $user = User::where('user_id', $id);
