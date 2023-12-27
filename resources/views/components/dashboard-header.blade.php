@@ -32,8 +32,10 @@
                     <a class="dropdown-item" href="/candidate/{{$user->user_id}}">
                         <i class="mdi mdi-cached me-2 text-success"></i>Profile </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                        <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="dropdown-item" type="submit"><i class="mdi mdi-logout me-2 text-primary"></i>Logout</button>
+                    </form>
                 </div>
             </li>
             <li class="nav-item d-none d-lg-block full-screen-link">
