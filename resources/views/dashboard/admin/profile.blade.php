@@ -21,7 +21,9 @@
         <x-profile-image-component :data="$userData" /> <!--User Profile section comp  -->
         <x-profile-personal-details-component :data="$userData" /> <!--User Personal Details comp  -->
         <x-profile-address-component :data="$userData" /> <!--User Address Comp comp  -->
+      
         <x-profile-experience-component :data="$userData" /> <!--User Experience Comp comp  -->
+      
       </div>
     </div>
 

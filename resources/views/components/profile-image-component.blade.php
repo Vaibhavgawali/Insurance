@@ -2,7 +2,26 @@
   <div class="card">
     <div class="d-flex justify-content-between p-3">
       <h4>Your Profile</h4>
-      <h6>Joined {{ $data->created_at->format('Y-m-d') }}</h6>
+      <h6>Registered on {{ $data->created_at->format('Y-m-d') }}</h6>
+
+    </div>
+    <div class="profile-img-div text-center">
+      <form action="">
+        <label for="input-file" id="drop-area">
+          <input type="file" accept="image/*" id="input-file" hidden>
+          <div id="image-view">
+            <!-- <img src="icon.png" alt=""> -->
+            <i class="mdi mdi-cloud-upload "></i>
+
+            <p>Drag and drop or click here <br>to upload image</p>
+            <!-- <span>Upload any images From dekstop</span> -->
+          </div>
+        </label>
+        <br>
+        <div class="d-flex w-100 justify-content-center align-items-center ">
+          <button style="display:none" ; type="submit" class="btn btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
+        </div>
+      </form>
     </div>
 
     <div class="profile-personal-info-section">
@@ -16,19 +35,19 @@
           @csrf
           <div class="form-group">
             <label for="name">Full Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Username" disabled value=" {{ $data->name }}">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Username" disabled value=" {{ $data->name }}">
             <div id="name_error"></div>
           </div>
 
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" placeholder="Email" disabled value=" {{ $data->email }}">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" disabled value=" {{ $data->email }}">
             <div id="name_error"></div>
           </div>
 
           <div class="form-group">
             <label for="phone">Contact Number</label>
-            <input type="text" class="form-control" id="phone" placeholder="Phone" disabled value="{{$data->phone}}">
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" disabled value="{{$data->phone}}">
             <div id="phone_error"></div>
           </div>
           <div class="form-group">

@@ -10,12 +10,12 @@
         @csrf
         <div class="form-group">
           <label for="date_of_birth">Date of birth</label>
-          <input type="date" class="form-control p-4" id="date_of_birth" placeholder="Date Of Birth" disabled value='{{ $data->profile->date_of_birth ?? "N/A" }}'>
+          <input type="date" class="form-control p-4" name="date_of_birth" id="date_of_birth" placeholder="Date Of Birth" disabled value='{{ $data->profile->date_of_birth ?? "N/A" }}'>
           <div id="date_of_birth_error"></div>
         </div>
         <div class="form-group">
           <label for="gender">Gender</label>
-          <select class="form-control p-4" id="gender" placeholder="Gender" disabled>
+          <select class="form-control p-4" id="gender" name="gender" placeholder="Gender" disabled>
             <option value="" selected disabled>--Select--</option>
             <option value="M" {{ $data->profile->gender === 'M' ? 'selected' : '' }}>Male</option>
             <option value="F" {{ $data->profile->gender === 'F' ? 'selected' : '' }}>Female</option>
@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
           <label for="age">Age</label>
-          <input type="number" class="form-control p-4" id="age" rows="8" placeholder="Age" disabled value='{{ $data->profile->age ?? "N/A" }}'>
+          <input type="number" class="form-control p-4" id="age" name="age" rows="8" placeholder="Age" disabled value='{{ $data->profile->age ?? "N/A" }}'>
           <div id="age_error"></div>
         </div>
         <div class="form-group">
@@ -45,7 +45,7 @@
 
         <div class="form-group">
           <label for="spoc">SPOC</label>
-          <textarea class="form-control p-3" id="spoc" rows="6" disabled>{{ $data->profile->spoc ?? "N/A" }}</textarea>
+          <textarea class="form-control p-4" id="spoc" name="spoc" rows="8" disabled>{{ $data->profile->spoc ?? "N/A" }}</textarea>
           <div id="spoc_error"></div>
         </div>
 
