@@ -2,7 +2,9 @@
   <div class="profile-address-section card">
     <div class="d-flex justify-content-between p-3">
       <h4>Address</h4>
+      @if(auth()->user()->user_id == $data->user_id)
       <button class="btn btn-gradient-primary btn-sm " id="profile_address_edit_button"><i class="mdi mdi-table-edit"></i></button>
+      @endif
     </div>
     <div class="profile-address-div p-3">
 
@@ -49,11 +51,12 @@
             <input type="text" class="form-control" id="user_id" placeholder="user_id"  value=" {{$data->user_id}}" hidden>
           </div>
 
-        <div id="profile_address_update_button_div">
-          <button type="submit" class="btn btn-gradient-primary me-2" id="profile_address_update_button">Submit</button>
-          <button class="btn btn-light" id="profile_address_cancel_button">Cancel</button>
-        </div>
-
+        @if(auth()->user()->user_id == $data->user_id)
+          <div id="profile_address_update_button_div">
+            <button type="submit" class="btn btn-gradient-primary me-2" id="profile_address_update_button">Submit</button>
+            <button class="btn btn-light" id="profile_address_cancel_button">Cancel</button>
+          </div>
+        @endif
       </form>
 
     </div>

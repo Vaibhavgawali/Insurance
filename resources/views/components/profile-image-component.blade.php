@@ -1,34 +1,40 @@
 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-3 profile-info-section">
   <div class="card">
     <div class="d-flex justify-content-between p-3">
-      <h4>Your Profile</h4>
       <h6>Registered on {{ $data->created_at->format('Y-m-d') }}</h6>
-
     </div>
+
     <div class="profile-img-div text-center">
-      <form action="">
-        <label for="input-file" id="drop-area">
-          <input type="file" accept="image/*" id="input-file" hidden>
-          <div id="image-view">
-            <!-- <img src="icon.png" alt=""> -->
-            <i class="mdi mdi-cloud-upload "></i>
+      @if(auth()->user()->user_id == $data->user_id)
+        <form action="">
+          <label for="input-file" id="drop-area">
+            <input type="file" accept="image/*" id="input-file" hidden>
+            <div id="image-view">
+              <!-- <img src="icon.png" alt=""> -->
+              <i class="mdi mdi-cloud-upload "></i>
 
-            <p>Drag and drop or click here <br>to upload image</p>
-            <!-- <span>Upload any images From dekstop</span> -->
-          </div>
-        </label>
-        <br>
-        <div class="d-flex w-100 justify-content-center align-items-center ">
-          <button style="display:none" ; type="submit" class="btn btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
-        </div>
-      </form>
+              <p>Drag and drop or click here <br>to upload image</p>
+              <!-- <span>Upload any images From dekstop</span> -->
+            </div>
+          </label>
+          <br>
+            <div class="d-flex w-100 justify-content-center align-items-center ">
+              <button style="display:none" ; type="submit" class="btn btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
+            </div>
+        </form>
+        @else
+            <h3>Show Image</h3>
+      @endif
     </div>
-
+  
     <div class="profile-personal-info-section">
       <div class="profile-personal-info-div p-3">
-        <div class="text-end">
-          <button class="btn btn-gradient-primary btn-sm " id="profile_info_edit_button"><i class="mdi mdi-table-edit"></i></button>
-        </div>
+
+        @if(auth()->user()->user_id == $data->user_id)
+          <div class="text-end">
+            <button class="btn btn-gradient-primary btn-sm " id="profile_info_edit_button"><i class="mdi mdi-table-edit"></i></button>
+          </div>
+        @endif
 
         <form class="forms-sample" id="profile_info_update_form">
           <div id="profile_info_status"></div>
@@ -55,11 +61,12 @@
             <input type="text" class="form-control" id="user_id" placeholder="user_id"  value=" {{$data->user_id}}" hidden>
           </div>
 
-          <div id="profile_info_update_button_div">
-            <button type="submit" class="btn btn-gradient-primary me-2" id="profile_info_update_button">Update</button>
-            <button class="btn btn-light" id="profile_info_cancel_button">Cancel</button>
-          </div>
-
+          @if(auth()->user()->user_id == $data->user_id)
+            <div id="profile_info_update_button_div">
+              <button type="submit" class="btn btn-gradient-primary me-2" id="profile_info_update_button">Update</button>
+              <button class="btn btn-light" id="profile_info_cancel_button">Cancel</button>
+            </div>
+          @endif
         </form>
 
       </div>

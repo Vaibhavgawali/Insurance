@@ -2,7 +2,9 @@
   <div class="profile-birth-section card">
     <div class="d-flex justify-content-between p-3">
       <h4>User Profile Details</h4>
-      <button class="btn btn-gradient-primary btn-sm " id="profile_details_edit_button"><i class="mdi mdi-table-edit"></i></button>
+      @if(auth()->user()->user_id == $data->user_id)
+        <button class="btn btn-gradient-primary btn-sm " id="profile_details_edit_button"><i class="mdi mdi-table-edit"></i></button>
+      @endif
     </div>
     <div class="profile-birth-div p-3">
       <form class="forms-sample" id="profile_details_update_form">
@@ -49,10 +51,13 @@
           <div id="spoc_error"></div>
         </div>
 
+        @if(auth()->user()->user_id == $data->user_id)
+
         <div id="profile_details_update_button_div">
           <button type="submit" class="btn btn-gradient-primary me-2" id="profile_details_update_button">Submit</button>
           <button class="btn btn-light" id="profile_details_cancel_button">Cancel</button>
         </div>
+        @endif
       </form>
     </div>
   </div>

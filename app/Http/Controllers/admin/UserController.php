@@ -75,7 +75,7 @@ class UserController extends Controller
                 $LoggedUser=Auth::user();
                 if($LoggedUser->hasPermissionTo('view_candidate_details')){
                     $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->find($id);
-                    return view('dashboard.admin.profile', ['userData' => $userData]);
+                    return view('dashboard.admin.user-profile', ['userData' => $users]);
                     // return Response(['user' => $users], 200);
                 }
 
@@ -87,7 +87,7 @@ class UserController extends Controller
                     $permissions = $userData->getPermissionsViaRoles(); 
                     
                     // return Response(['user' => $userData], 200);
-                    return view('dashboard.admin.profile', ['userData' => $userData]);
+                    return view('dashboard.admin.user-profile', ['userData' => $userData]);
                  }
             }
             return Response(['message' => 'User not found'], 401);
