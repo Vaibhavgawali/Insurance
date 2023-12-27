@@ -508,9 +508,9 @@ $(document).ready(function () {   ///    Profile Address Update Function
                     );
                    
                     // Optional: You can add a delay before reloading the page
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+                    setTimeout(function () {
+                        window.location.reload();
+                    },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
             
                     return false;
                 }
@@ -548,21 +548,21 @@ $(document).ready(function () {   ///    Profile Address Update Function
 $(document).ready(function () {  // Profile Experience Update function
     $("#profile_experience_update_button").click(function (event) {
         var is_current_company = $("#is_current_company").val();
-        var oraganization = $("#oraganization").val();
+        var organization = $("#organization").val();
         var designation = $("#designation").val();
         var ctc = $("#ctc").val();
         var job_profile_description = $("#job_profile_description").val();
-        var state = $("#state").val();
-        var joining_date =$("#joining_date");
-        var relieving_date =$("#relieving_date");
+        var state = $("#job_state").val();
+        var joining_date =$("#joining_date").val();
+        var relieving_date =$("#relieving_date").val();
         var user_id = $("#user_id").val();
 
         $("#is_current_company_error").html("");
-        $("#oraganization_error").html("");
+        $("#organization_error").html("");
         $("#designation_error").html("");
         $("#ctc_error").html("");
         $("#job_profile_description_error").html("");
-        $("#state_error").html("");
+        $("#job_state_error").html("");
         $("#joining_date_error").html("");
         $("#relieving_date_error").html("");
 
@@ -576,23 +576,23 @@ $(document).ready(function () {  // Profile Experience Update function
             is_current_company == "undefined" ||
             is_current_company == undefined
         ) {
-            $("#is_current_company _error").html(
+            $("#is_current_company_error").html(
                 '<div class=" invalid-feedback d-block">Current Company  is required.</div>'
             );
-            $("#is_current_company ").focus();
+            $("#is_current_company").focus();
             return false;
         }
 
         if (
-            oraganization == "" ||
-            oraganization == null ||
-            oraganization == "undefined" ||
-            oraganization == undefined
+            organization == "" ||
+            organization == null ||
+            organization == "undefined" ||
+            organization == undefined
         ) {
-            $("#oraganization_error").html(
+            $("#organization_error").html(
                 '<div class=" invalid-feedback d-block">Organization is required.</div>'
             );
-            $("#oraganization").focus();
+            $("#organization").focus();
             return false;
         }
 
@@ -602,7 +602,7 @@ $(document).ready(function () {  // Profile Experience Update function
             designation == "undefined" ||
             designation == undefined
         ) {
-            $("#designation").html(
+            $("#designation_error").html(
                 '<div class=" invalid-feedback d-block">Designation  is required.</div>'
             );
             $("#designation").focus();
@@ -615,7 +615,7 @@ $(document).ready(function () {  // Profile Experience Update function
             ctc == "undefined" ||
             ctc == undefined
         ) {
-            $("#ctc").html(
+            $("#ctc_error").html(
                 '<div class=" invalid-feedback d-block">CTC  is required.</div>'
             );
             $("#ctc").focus();
@@ -628,8 +628,8 @@ $(document).ready(function () {  // Profile Experience Update function
             job_profile_description == "undefined" ||
             job_profile_description == undefined
         ) {
-            $("#job_profile_description").html(
-                '<div class=" invalid-feedback d-block">CTC  is required.</div>'
+            $("#job_profile_description_error").html(
+                '<div class=" invalid-feedback d-block">Job description  is required.</div>'
             );
             $("#job_profile_description").focus();
             return false;
@@ -641,10 +641,10 @@ $(document).ready(function () {  // Profile Experience Update function
             state == "undefined" ||
             state == undefined
         ) {
-            $("#state").html(
-                '<div class=" invalid-feedback d-block">CTC  is required.</div>'
+            $("#job_state_error").html(
+                '<div class=" invalid-feedback d-block">Job state  is required.</div>'
             );
-            $("#state").focus();
+            $("#job_state").focus();
             return false;
         }
 
@@ -654,8 +654,8 @@ $(document).ready(function () {  // Profile Experience Update function
             joining_date == "undefined" ||
             joining_date == undefined
         ) {
-            $("#joining_date").html(
-                '<div class=" invalid-feedback d-block">CTC  is required.</div>'
+            $("#joining_date_error").html(
+                '<div class=" invalid-feedback d-block">Joining date   is required.</div>'
             );
             $("#joining_date").focus();
             return false;
@@ -664,11 +664,11 @@ $(document).ready(function () {  // Profile Experience Update function
         if (
             relieving_date == "" ||
             relieving_date == null ||
-            relieving_datetc == "undefined" ||
+            relieving_date == "undefined" ||
             relieving_date == undefined
         ) {
-            $("#relieving_date").html(
-                '<div class=" invalid-feedback d-block">CTC  is required.</div>'
+            $("#relieving_date_error").html(
+                '<div class=" invalid-feedback d-block">Relieving date  is required.</div>'
             );
             $("#relieving_date").focus();
             return false;
@@ -681,7 +681,7 @@ $(document).ready(function () {  // Profile Experience Update function
 
         var data = {
            is_current_company:is_current_company,
-           oraganization:oraganization,
+           organization:organization,
            designation:designation,
            ctc:ctc,
            state:state,
@@ -689,19 +689,19 @@ $(document).ready(function () {  // Profile Experience Update function
            joining_date:joining_date,
            relieving_date:relieving_date
         };
-        function extractAndConvertToInteger(str) {
-            const trimmedStr = str.trim(); // Trim leading and trailing spaces
-            const numericPart = trimmedStr.replace(/\D/g, ''); // Remove non-numeric characters
-            return parseInt(numericPart, 10); // Convert to integer
-        }
+        // function extractAndConvertToInteger(str) {
+        //     const trimmedStr = str.trim(); // Trim leading and trailing spaces
+        //     const numericPart = trimmedStr.replace(/\D/g, ''); // Remove non-numeric characters
+        //     return parseInt(numericPart, 10); // Convert to integer
+        // }
         
         // Update the user_id value in the data object
-        data.user_id = extractAndConvertToInteger(data.user_id);
-        console.log(data);
+        // data.user_id = extractAndConvertToInteger(data.user_id);
+        // console.log(data);
 
         event.preventDefault();
 
-        var url = window.location.origin + `/candidate/${user_id.trim()}`;
+        var url = window.location.origin + `/user-experience/${user_id.trim()}`;
         console.log(url);
         
         $.ajax({

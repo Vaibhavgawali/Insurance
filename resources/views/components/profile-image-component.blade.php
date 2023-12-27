@@ -2,7 +2,7 @@
   <div class="card">
     <div class="d-flex justify-content-between p-3">
       <h4>Your Profile</h4>
-      <h6>Joined {{ $data->created_at->format('Y-m-d') }}</h6>
+      <h6>Registered on {{ $data->created_at->format('Y-m-d') }}</h6>
 
     </div>
     <div class="profile-img-div text-center">
