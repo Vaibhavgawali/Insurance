@@ -21,26 +21,30 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="/candidate">
-                <span class="menu-title">Candidates</span>
-                <i class="mdi mdi-home menu-icon"></i>
-            </a>
-        </li>
+        @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('view_candidate_list') || Auth::user()->can('view_users_list') )
+            <li class="nav-item">
+                <a class="nav-link" href="/candidate">
+                    <span class="menu-title">Candidates</span>
+                    <i class="mdi mdi-home menu-icon"></i>
+                </a>
+            </li>
+        @endif
 
-        <li class="nav-item">
-            <a class="nav-link" href="/insurer">
-                <span class="menu-title">Insurer</span>
-                <i class="mdi mdi-home menu-icon"></i>
-            </a>
-        </li>
+        @hasrole('Superadmin')
+            <li class="nav-item">
+                <a class="nav-link" href="/insurer">
+                    <span class="menu-title">Insurer</span>
+                    <i class="mdi mdi-home menu-icon"></i>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="/home">
-                <span class="menu-title">Institute</span>
-                <i class="mdi mdi-home menu-icon"></i>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/home">
+                    <span class="menu-title">Institute</span>
+                    <i class="mdi mdi-home menu-icon"></i>
+                </a>
+            </li>
+        @endhasrole
         
     </ul>
 </nav>

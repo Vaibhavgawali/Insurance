@@ -1,9 +1,13 @@
 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-3">
   <div class="profile-birth-section card">
+
+    @if(auth()->user()->user_id == $data->user_id)
     <div class="d-flex justify-content-between p-3">
       <h4>Experience</h4>
       <button class="btn btn-gradient-primary btn-sm " id="profile_experience_edit_button"><i class="mdi mdi-table-edit"></i></button>
     </div>
+    @endif
+
     <div class="profile-birth-div p-3">
       
       <form class="forms-sample" id="profile_experience_update_form">
@@ -61,12 +65,12 @@
             <label for="user_id"></label>
             <input type="text" class="form-control" id="user_id" placeholder="user_id"  value=" {{$data->user_id}}" hidden>
           </div>
-
+          @if(auth()->user()->user_id == $data->user_id)
         <div id="profile_experience_update_button_div">
           <button type="submit" class="btn btn-gradient-primary me-2"  id="profile_experience_update_button">Submit</button>
           <button class="btn btn-light" id="profile_experience_cancel_button">Cancel</button>
         </div>
-
+@endif
       </form>
     </div>
   </div>
