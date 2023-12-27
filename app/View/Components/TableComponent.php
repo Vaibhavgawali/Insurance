@@ -20,9 +20,8 @@ class TableComponent extends Component
     public $actions;
     public $data;
 
-    public function __construct($headers, $items, $tableClass = "", $actions = [],$data)
+    public function __construct($headers, $items, $tableClass = "", $actions = [])
     {
-        $this->data = $data;
         $this->headers = $headers;
         $this->items = $items;
         $this->tableClass = $tableClass;
@@ -36,6 +35,6 @@ class TableComponent extends Component
      */
     public function render()
     {
-        return view('components.table-component', ['data' => $this->data]);
+        return view('components.table-component');
     }
 }
