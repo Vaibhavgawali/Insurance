@@ -3,25 +3,6 @@
     <div class="d-flex justify-content-between p-3">
       <h4>Your Profile</h4>
       <h6>Joined {{ $data->created_at->format('Y-m-d') }}</h6>
-
-    </div>
-    <div class="profile-img-div text-center">
-      <form action="">
-        <label for="input-file" id="drop-area">
-          <input type="file" accept="image/*" id="input-file" hidden>
-          <div id="image-view">
-            <!-- <img src="icon.png" alt=""> -->
-            <i class="mdi mdi-cloud-upload "></i>
-
-            <p>Drag and drop or click here <br>to upload image</p>
-            <!-- <span>Upload any images From dekstop</span> -->
-          </div>
-        </label>
-        <br>
-        <div class="d-flex w-100 justify-content-center align-items-center ">
-          <button style="display:none" ; type="submit" class="btn btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
-        </div>
-      </form>
     </div>
 
     <div class="profile-personal-info-section">

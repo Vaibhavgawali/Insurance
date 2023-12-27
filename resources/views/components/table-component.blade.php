@@ -32,9 +32,14 @@
                             <td>{{$row->phone}}</td>
                                 
                             <td class="text-center">
-                            <a href="/admin/user/{{$row->user_id}}" class="btn btn-sm btn-gradient-success btn-rounded">View</a>
+                           @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('view_candidate_details') || Auth::user()->can('view_users_details') )
+                              <a href="/admin/user/{{$row->user_id}}" class="btn btn-sm btn-gradient-success btn-rounded">View</a>
+                            @endif
+
+                            @hasrole('Superadmin')
                               <a href="#" class="btn btn-sm btn-gradient-warning btn-rounded " data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>
                               <a href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded ">Delete</a>
+                            @endhasrole
                             </td>
                           </tr>
                          
