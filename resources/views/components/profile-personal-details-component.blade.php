@@ -31,6 +31,10 @@
           <input type="number" class="form-control p-4" id="age" name="age" rows="8" placeholder="Age" disabled value='{{ $data->profile->age ?? "N/A" }}'>
           <div id="age_error"></div>
         </div>
+
+        
+       @if(auth()->user()->user_id == $data->user_id)
+          @if($data->hasAnyRole(['Candidate','Insurer','Superadmin']))
         <div class="form-group">
           <label for="preffered_line" class="form-label ">Preffered Line</label>
           <select class="form-control p-5" name="preffered_line" id="preffered_line" aria-label="work status" disabled>
@@ -43,13 +47,16 @@
 
           <div id="preffered_line_error"></div>
         </div>
+        @endif
 
-
-        <div class="form-group">
-          <label for="spoc">SPOC</label>
-          <textarea class="form-control p-4" id="spoc" name="spoc" rows="8" disabled>{{ $data->profile->spoc ?? "N/A" }}</textarea>
-          <div id="spoc_error"></div>
-        </div>
+        @if($data->hasAnyRole(['Institute','Insurer','Superadmin']))
+            <div class="form-group">
+              <label for="spoc">SPOC</label>
+              <textarea class="form-control p-4" id="spoc" name="spoc" rows="8" disabled>{{ $data->profile->spoc ?? "N/A" }}</textarea>
+              <div id="spoc_error"></div>
+            </div>
+          @endif
+        @endif
 
         @if(auth()->user()->user_id == $data->user_id)
 

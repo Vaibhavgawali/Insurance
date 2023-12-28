@@ -42,19 +42,19 @@ dropArea.addEventListener("drop", function (e) {
     uploadImage();
 });
 
-$(document).ready(function () {  // Profile Image Upload function
+$(document).ready(function () {
+    // Profile Image Upload function
     $("#image-upload-button").click(function (event) {
         var profile_image = $("#profile_image").val();
         var user_id = $("#user_id").val();
 
         $("#profile_image_error").html("");
-    
+
         var data = {
-            profile_image:profile_image,
-            user_id:user_id,
+            profile_image: profile_image,
+            user_id: user_id,
         };
-        
-        
+
         // Update the user_id value in the data object
         // data.user_id = extractAndConvertToInteger(data.user_id);
         // console.log(data);
@@ -63,7 +63,7 @@ $(document).ready(function () {  // Profile Image Upload function
 
         var url = window.location.origin + `/image-upload/${user_id.trim()}`;
         console.log(url);
-        
+
         $.ajax({
             type: "POST",
             url: url,
@@ -78,25 +78,23 @@ $(document).ready(function () {  // Profile Image Upload function
                     $("#image-upload-button").attr("disabled", true);
                     $("#profile_image_status").html(
                         "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                        response.message +
-                        "</div>"
+                            response.message +
+                            "</div>"
                     );
-            
+
                     // Optional: You can add a delay before reloading the page
                     // setTimeout(function () {
                     //     window.location.reload();
                     // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-            
+
                     return false;
                 }
-            }
-            ,
-
+            },
             error: function (response) {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-                     console.log(errors);
+                    console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -114,8 +112,8 @@ $(document).ready(function () {  // Profile Image Upload function
     });
 });
 
-
-$(document).ready(function () {  // Profile info Update function
+$(document).ready(function () {
+    // Profile info Update function
     $("#profile_cv_update_button").click(function (event) {
         var document_title = $("#document_title").val();
         var document_title = $("#document_url").val();
@@ -126,14 +124,12 @@ $(document).ready(function () {  // Profile info Update function
 
         $("#profile_cv_status").html("");
 
-    
         var data = {
-            document_title:document_title,
-            document_url:document_url,
-            user_id:user_id,
+            document_title: document_title,
+            document_url: document_url,
+            user_id: user_id,
         };
-        
-        
+
         // Update the user_id value in the data object
         // data.user_id = extractAndConvertToInteger(data.user_id);
         // console.log(data);
@@ -142,7 +138,7 @@ $(document).ready(function () {  // Profile info Update function
 
         var url = window.location.origin + `/candidate/${user_id.trim()}`;
         console.log(url);
-        
+
         $.ajax({
             type: "PATCH",
             url: url,
@@ -157,25 +153,23 @@ $(document).ready(function () {  // Profile info Update function
                     $("#profile_cv_update_button").attr("disabled", true);
                     $("#profile_cv_status").html(
                         "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                        response.message +
-                        "</div>"
+                            response.message +
+                            "</div>"
                     );
-            
+
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
                         window.location.reload();
-                    },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-            
+                    }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+
                     return false;
                 }
-            }
-            ,
-
+            },
             error: function (response) {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-                     console.log(errors);
+                    console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -193,7 +187,8 @@ $(document).ready(function () {  // Profile info Update function
     });
 });
 
-$(document).ready(function () {  // Profile cv Update function
+$(document).ready(function () {
+    // Profile cv Update function
     $("#profile_cv_update_button").click(function (event) {
         var document_title = $("#document_title").val();
         var document_title = $("#document_url").val();
@@ -204,25 +199,22 @@ $(document).ready(function () {  // Profile cv Update function
 
         $("#profile_cv_status").html("");
 
-    
         var data = {
-            document_title:document_title,
-            document_url:document_url,
-            user_id:user_id,
+            document_title: document_title,
+            document_url: document_url,
+            user_id: user_id,
         };
-        
-        
+
         // Update the user_id value in the data object
         // data.user_id = extractAndConvertToInteger(data.user_id);
         // console.log(data);
-
 
         event.preventDefault();
 
         var url = window.location.origin + `/user-documents/${user_id.trim()}`;
         console.log(url);
         console.log(data);
-        
+
         $.ajax({
             type: "POST",
             url: url,
@@ -237,25 +229,23 @@ $(document).ready(function () {  // Profile cv Update function
                     $("#profile_cv_update_button").attr("disabled", true);
                     $("#profile_cv_status").html(
                         "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                        response.message +
-                        "</div>"
+                            response.message +
+                            "</div>"
                     );
-            
+
                     // Optional: You can add a delay before reloading the page
                     // setTimeout(function () {
                     //     window.location.reload();
                     // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-            
+
                     return false;
                 }
-            }
-            ,
-
+            },
             error: function (response) {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-                     console.log(errors);
+                    console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -273,7 +263,8 @@ $(document).ready(function () {  // Profile cv Update function
     });
 });
 
-$(document).ready(function () {  // Profile info Update function
+$(document).ready(function () {
+    // Profile info Update function
     $("#profile_info_update_button").click(function (event) {
         var name = $("#name").val();
         var email = $("#email").val();
@@ -353,17 +344,17 @@ $(document).ready(function () {  // Profile info Update function
         }
 
         var data = {
-            name:name,
-            phone:phone,
-            email:email,
-            user_id:user_id,
+            name: name,
+            phone: phone,
+            email: email,
+            user_id: user_id,
         };
         function extractAndConvertToInteger(str) {
             const trimmedStr = str.trim(); // Trim leading and trailing spaces
-            const numericPart = trimmedStr.replace(/\D/g, ''); // Remove non-numeric characters
+            const numericPart = trimmedStr.replace(/\D/g, ""); // Remove non-numeric characters
             return parseInt(numericPart, 10); // Convert to integer
         }
-        
+
         // Update the user_id value in the data object
         data.user_id = extractAndConvertToInteger(data.user_id);
         console.log(data);
@@ -372,7 +363,7 @@ $(document).ready(function () {  // Profile info Update function
 
         var url = window.location.origin + `/candidate/${user_id.trim()}`;
         console.log(url);
-        
+
         $.ajax({
             type: "PATCH",
             url: url,
@@ -387,25 +378,23 @@ $(document).ready(function () {  // Profile info Update function
                     $("#profile_info_update_button").attr("disabled", true);
                     $("#profile_info_status").html(
                         "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                        response.message +
-                        "</div>"
+                            response.message +
+                            "</div>"
                     );
-            
+
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
                         window.location.reload();
-                    },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-            
+                    }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+
                     return false;
                 }
-            }
-            ,
-
+            },
             error: function (response) {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-                     console.log(errors);
+                    console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -423,16 +412,14 @@ $(document).ready(function () {  // Profile info Update function
     });
 });
 
-
-
-
-$(document).ready(function () {   ///    Profile Details Update Function
+$(document).ready(function () {
+    ///    Profile Details Update Function
     $("#profile_details_update_button").click(function (event) {
         var date_of_birth = $("#date_of_birth").val();
         var gender = $("#gender").val();
         var age = $("#age").val();
-        var preffered_line =$("#preffered_line").val();
-        var spoc =$("#spoc").val();
+        var preffered_line = $("#preffered_line").val();
+        var spoc = $("#spoc").val();
         var user_id = $("#user_id").val();
 
         $("#date_of_birth_error").html("");
@@ -440,7 +427,6 @@ $(document).ready(function () {   ///    Profile Details Update Function
         $("#age_error").html("");
         $("#preffered_line_error").html("");
         $("#spoc_error").html("");
-
 
         $("#profile_details_status").html("");
 
@@ -483,47 +469,45 @@ $(document).ready(function () {   ///    Profile Details Update Function
             return false;
         }
 
-        if (
-            preffered_line == "" ||
-            preffered_line == null ||
-            preffered_line == "undefined" ||
-            preffered_line == undefined
-        ) {
-            $("#preffered_line_error").html(
-                '<div class=" invalid-feedback d-block">Prefferd Line is required.</div>'
-            );
-            $("#preffered_line").focus();
-            return false;
-        }
-        if (
-            spoc == "" ||
-            spoc == null ||
-            spoc == "undefined" ||
-            spoc == undefined
-        ) {
-            $("#spoc_error").html(
-                '<div class=" invalid-feedback d-block">SPOC is required.</div>'
-            );
-            $("#spoc").focus();
-            return false;
-        }
-
-       
+        // if (
+        //     preffered_line == "" ||
+        //     preffered_line == null ||
+        //     preffered_line == "undefined" ||
+        //     preffered_line == undefined
+        // ) {
+        //     $("#preffered_line_error").html(
+        //         '<div class=" invalid-feedback d-block">Prefferd Line is required.</div>'
+        //     );
+        //     $("#preffered_line").focus();
+        //     return false;
+        // }
+        // if (
+        //     spoc == "" ||
+        //     spoc == null ||
+        //     spoc == "undefined" ||
+        //     spoc == undefined
+        // ) {
+        //     $("#spoc_error").html(
+        //         '<div class=" invalid-feedback d-block">SPOC is required.</div>'
+        //     );
+        //     $("#spoc").focus();
+        //     return false;
+        // }
 
         var data = {
-            date_of_birth :date_of_birth,
-            gender:gender,
-            age:age,
-            preffered_line:preffered_line,
-            spoc:spoc,
-            user_id:user_id,
+            date_of_birth: date_of_birth,
+            gender: gender,
+            age: age,
+            preffered_line: preffered_line,
+            spoc: spoc,
+            user_id: user_id,
         };
         function extractAndConvertToInteger(str) {
             const trimmedStr = str.trim(); // Trim leading and trailing spaces
-            const numericPart = trimmedStr.replace(/\D/g, ''); // Remove non-numeric characters
+            const numericPart = trimmedStr.replace(/\D/g, ""); // Remove non-numeric characters
             return parseInt(numericPart, 10); // Convert to integer
         }
-        
+
         // Update the user_id value in the data object
         data.user_id = extractAndConvertToInteger(data.user_id);
         console.log(data);
@@ -532,7 +516,7 @@ $(document).ready(function () {   ///    Profile Details Update Function
 
         var url = window.location.origin + `/user-profile/${user_id.trim()}`;
         console.log(url);
-        
+
         $.ajax({
             type: "PATCH",
             url: url,
@@ -547,20 +531,18 @@ $(document).ready(function () {   ///    Profile Details Update Function
                     $("#profile_details_update_button").attr("disabled", true);
                     $("#profile_details_status").html(
                         "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                        response.message +
-                        "</div>"
+                            response.message +
+                            "</div>"
                     );
-            
+
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
                         window.location.reload();
-                    },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-            
+                    }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+
                     return false;
                 }
-            }
-            ,
-
+            },
             error: function (response) {
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
@@ -582,16 +564,16 @@ $(document).ready(function () {   ///    Profile Details Update Function
     });
 });
 
-
-$(document).ready(function () {   ///    Profile Address Update Function
+$(document).ready(function () {
+    ///    Profile Address Update Function
     $("#profile_address_update_button").click(function (event) {
         var city = $("#city").val();
         var pincode = $("#pincode").val();
         var state = $("#state").val();
-        var country =$("#country").val();
-        var line1 =$("#line1").val();
-        var line2 =$("#line2").val();
-        var line3 =$("#line3").val();
+        var country = $("#country").val();
+        var line1 = $("#line1").val();
+        var line2 = $("#line2").val();
+        var line3 = $("#line3").val();
         var user_id = $("#user_id").val();
 
         $("#city_error").html("");
@@ -601,7 +583,6 @@ $(document).ready(function () {   ///    Profile Address Update Function
         $("#line1_error").html("");
         $("#line2_error").html("");
         $("#line3_error").html("");
-
 
         $("#profile_status").html("");
 
@@ -694,23 +675,21 @@ $(document).ready(function () {   ///    Profile Address Update Function
         //     return false;
         // }
 
-       
-
         var data = {
-            city :city,
-            pincode:pincode,
-            state:state,
-            country:country,
-            line1:line1,
-            line2:line2,
-            line3:line3,
+            city: city,
+            pincode: pincode,
+            state: state,
+            country: country,
+            line1: line1,
+            line2: line2,
+            line3: line3,
         };
         function extractAndConvertToInteger(str) {
             const trimmedStr = str.trim(); // Trim leading and trailing spaces
-            const numericPart = trimmedStr.replace(/\D/g, ''); // Remove non-numeric characters
+            const numericPart = trimmedStr.replace(/\D/g, ""); // Remove non-numeric characters
             return parseInt(numericPart, 10); // Convert to integer
         }
-        
+
         // Update the user_id value in the data object
         console.log(data);
 
@@ -718,7 +697,7 @@ $(document).ready(function () {   ///    Profile Address Update Function
 
         var url = window.location.origin + `/user-address/${user_id.trim()}`;
         console.log(url);
-        
+
         $.ajax({
             type: "PATCH",
             url: url,
@@ -733,49 +712,45 @@ $(document).ready(function () {   ///    Profile Address Update Function
                     $("#profile_address_update_button").attr("disabled", true);
                     $("#profile_address_status").html(
                         "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                        response.message +
-                        "</div>"
+                            response.message +
+                            "</div>"
                     );
-                   
+
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
                         window.location.reload();
-                    },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-            
+                    }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+
                     return false;
                 }
-            }
-            ,
-
+            },
             error: function (response) {
                 console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
                     console.log(errors);
-            
+
                     $(".error-message").remove();
-            
+
                     // Display new errors
                     $.each(errors, function (field, messages) {
-                        console.log(messages);  // messages is an array
-            
+                        console.log(messages); // messages is an array
+
                         var input = $('[name="' + field + '"]');
                         input.after(
                             '<div class="error-message invalid-feedback d-block">' +
                                 messages[0] +
-                            "</div>"
+                                "</div>"
                         );
                     });
                 }
             },
-            
-            
-            
         });
     });
 });
 
-$(document).ready(function () {  // Profile Experience Update function
+$(document).ready(function () {
+    // Profile Experience Update function
     $("#profile_experience_update_button").click(function (event) {
         var is_current_company = $("#is_current_company").val();
         var organization = $("#organization").val();
@@ -783,8 +758,8 @@ $(document).ready(function () {  // Profile Experience Update function
         var ctc = $("#ctc").val();
         var job_profile_description = $("#job_profile_description").val();
         var state = $("#job_state").val();
-        var joining_date =$("#joining_date").val();
-        var relieving_date =$("#relieving_date").val();
+        var joining_date = $("#joining_date").val();
+        var relieving_date = $("#relieving_date").val();
         var user_id = $("#user_id").val();
 
         $("#is_current_company_error").html("");
@@ -795,8 +770,6 @@ $(document).ready(function () {  // Profile Experience Update function
         $("#job_state_error").html("");
         $("#joining_date_error").html("");
         $("#relieving_date_error").html("");
-
-
 
         $("#profile_experience_status").html("");
 
@@ -903,28 +876,23 @@ $(document).ready(function () {  // Profile Experience Update function
         //     $("#relieving_date").focus();
         //     return false;
         // }
-        
-        
-
-        
-
 
         var data = {
-           is_current_company:is_current_company,
-           organization:organization,
-           designation:designation,
-           ctc:ctc,
-           state:state,
-           job_profile_description:job_profile_description,
-           joining_date:joining_date,
-           relieving_date:relieving_date
+            is_current_company: is_current_company,
+            organization: organization,
+            designation: designation,
+            ctc: ctc,
+            state: state,
+            job_profile_description: job_profile_description,
+            joining_date: joining_date,
+            relieving_date: relieving_date,
         };
         // function extractAndConvertToInteger(str) {
         //     const trimmedStr = str.trim(); // Trim leading and trailing spaces
         //     const numericPart = trimmedStr.replace(/\D/g, ''); // Remove non-numeric characters
         //     return parseInt(numericPart, 10); // Convert to integer
         // }
-        
+
         // Update the user_id value in the data object
         // data.user_id = extractAndConvertToInteger(data.user_id);
         // console.log(data);
@@ -933,7 +901,7 @@ $(document).ready(function () {  // Profile Experience Update function
 
         var url = window.location.origin + `/user-experience/${user_id.trim()}`;
         console.log(url);
-        
+
         $.ajax({
             type: "PATCH",
             url: url,
@@ -945,23 +913,24 @@ $(document).ready(function () {  // Profile Experience Update function
                 console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
-                    $("#profile_experience_update_button").attr("disabled", true);
+                    $("#profile_experience_update_button").attr(
+                        "disabled",
+                        true
+                    );
                     $("#profile_experience_status").html(
                         "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                        response.message +
-                        "</div>"
+                            response.message +
+                            "</div>"
                     );
-            
+
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
                         window.location.reload();
-                    },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-            
+                    }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+
                     return false;
                 }
-            }
-            ,
-
+            },
             error: function (response) {
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
@@ -982,12 +951,3 @@ $(document).ready(function () {  // Profile Experience Update function
         });
     });
 });
-
-
-
-
-
-
-
-
-
