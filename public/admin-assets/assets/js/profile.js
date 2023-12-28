@@ -193,86 +193,6 @@ $(document).ready(function () {  // Profile info Update function
     });
 });
 
-$(document).ready(function () {  // Profile cv Update function
-    $("#profile_cv_update_button").click(function (event) {
-        var document_title = $("#document_title").val();
-        var document_title = $("#document_url").val();
-        var user_id = $("#user_id").val();
-
-        $("#document_title_error").html("");
-        $("#document_url_error").html("");
-
-        $("#profile_cv_status").html("");
-
-    
-        var data = {
-            document_title:document_title,
-            document_url:document_url,
-            user_id:user_id,
-        };
-        
-        
-        // Update the user_id value in the data object
-        // data.user_id = extractAndConvertToInteger(data.user_id);
-        // console.log(data);
-
-
-        event.preventDefault();
-
-        var url = window.location.origin + `/user-documents/${user_id.trim()}`;
-        console.log(url);
-        console.log(data);
-        
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: data,
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            success: function (response) {
-                console.log(response);
-                if (response.status == true) {
-                    $(".error-message").remove();
-                    $("#profile_cv_update_button").attr("disabled", true);
-                    $("#profile_cv_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                        response.message +
-                        "</div>"
-                    );
-            
-                    // Optional: You can add a delay before reloading the page
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-            
-                    return false;
-                }
-            }
-            ,
-
-            error: function (response) {
-                // console.log(response);
-                if (response.status === 422) {
-                    var errors = response.responseJSON.errors;
-                     console.log(errors);
-                    $(".error-message").remove();
-
-                    // Display new errors
-                    $.each(errors, function (field, messages) {
-                        var input = $('[name="' + field + '"]');
-                        input.after(
-                            '<div class="error-message invalid-feedback d-block">' +
-                                messages.join(", ") +
-                                "</div>"
-                        );
-                    });
-                }
-            },
-        });
-    });
-});
-
 $(document).ready(function () {  // Profile info Update function
     $("#profile_info_update_button").click(function (event) {
         var name = $("#name").val();
@@ -422,9 +342,6 @@ $(document).ready(function () {  // Profile info Update function
         });
     });
 });
-
-
-
 
 $(document).ready(function () {   ///    Profile Details Update Function
     $("#profile_details_update_button").click(function (event) {
@@ -581,7 +498,6 @@ $(document).ready(function () {   ///    Profile Details Update Function
         });
     });
 });
-
 
 $(document).ready(function () {   ///    Profile Address Update Function
     $("#profile_address_update_button").click(function (event) {
@@ -966,6 +882,88 @@ $(document).ready(function () {  // Profile Experience Update function
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
 
+                    $(".error-message").remove();
+
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+            },
+        });
+    });
+});
+
+$(document).ready(function () {  // Profile cv Update function
+    $("#profile_cv_update_button").click(function (event) {
+        var document_title = $("#document_title").val();
+        var document_title = $("#document_url").val();
+        var user_id = $("#user_id").val();
+
+        $("#document_title_error").html("");
+        $("#document_url_error").html("");
+
+        $("#profile_cv_status").html("");
+        event.preventDefault();
+        let formData = new FormData(this);
+    
+        var data = {
+            document_title:document_title,
+            document_url:document_url,
+            user_id:user_id,
+        };
+        
+        
+    
+       
+        
+
+        var url = window.location.origin + `/user-documents/${user_id.trim()}`;
+        console.log(url);
+        console.log(formData);
+        
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: formData,
+            contentType:false,
+            processData:false,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.status == true) {
+                    this.reset();
+                    // alert("File Uploaded Sucess fully");
+                    $(".error-message").remove();
+                    $("#profile_cv_update_button").attr("disabled", true);
+                    $("#profile_cv_status").html(
+                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
+                        response.message +
+                        "</div>"
+                    );
+            
+                    // Optional: You can add a delay before reloading the page
+                    // setTimeout(function () {
+                    //     window.location.reload();
+                    // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+            
+                    return false;
+                }
+            }
+            ,
+
+            error: function (response) {
+                // console.log(response);
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+                     console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors

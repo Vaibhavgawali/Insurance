@@ -5,7 +5,7 @@
           <button class="btn btn-gradient-primary btn-sm " id="profile_cv_edit_button"><i class="mdi mdi-cloud-upload"> Upload CV</i></button>
         </div>
 
-        <form class="forms-sample" id="" action="user-documents" method="post">
+        <form class="forms-sample" id="" action="user-documents" method="post" enctype="multipart-form-data">
           <div id="profile_cv_status"></div>
           @csrf
           <div class="form-group">
@@ -22,7 +22,7 @@
 
           <div class="form-group">
             <label for="user_id"></label>
-            <input type="text" class="form-control" id="user_id" placeholder="user_id" value=" " hidden>
+            <input type="text" class="form-control" id="user_id" placeholder="user_id" value="" hidden>
           </div>
 
           <div id="profile_cv_update_button_div">
