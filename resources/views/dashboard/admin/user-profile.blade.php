@@ -19,7 +19,7 @@
 
       <div class="row">
 
-        <x-profile-image-component :data="$userData" /> <!--User Profile section comp  -->
+      <x-profile-image-component :data="$userData" /> <!--User Profile section comp  -->
 
         <x-profile-personal-details-component :data="$userData" /> <!--User Personal Details comp  -->
         <x-profile-address-component :data="$userData" /> <!--User Address Comp comp  -->
@@ -30,8 +30,11 @@
           @endif
           @if($userData->documents)
             <!--User Documents Comp comp  -->
+        
+            <h1>View Reusme Section</h1>
           @endif
         @endif
+        
 
       </div>
     </div>

@@ -120,7 +120,7 @@ class UserProfileController extends Controller
             ]);
 
             if($validator->fails()){
-                return Response(['message' => $validator->errors()],401);
+                return Response(['message' => $validator->errors()],422);
             } 
             
 

@@ -58,6 +58,70 @@
           </div>
         @endif
       </form>
+      <script>
+        
+let Profile_Address_toggle = () => {
+    let editProfileButton = document.getElementById(
+        "profile_address_edit_button"
+    );
+    let profileUpdateButtonDiv = document.getElementById(
+        "profile_address_update_button_div"
+    );
+    let profileCancelButton = document.getElementById(
+        "profile_address_cancel_button"
+    );
+
+    let cityInput = document.getElementById("city");
+    let pincodeyInput = document.getElementById("pincode");
+    let stateInput = document.getElementById("state");
+    let countryInput = document.getElementById("country");
+    let line1Input = document.getElementById("line1");
+    let line2Input = document.getElementById("line2");
+    let line3Input = document.getElementById("line3");
+
+    let toggle = false;
+
+    profileUpdateButtonDiv.style.display = "none";
+    editProfileButton.addEventListener("click", () => {
+        toggle = !toggle;
+        if (toggle) {
+            profileUpdateButtonDiv.style.display = "block";
+            cityInput.removeAttribute("disabled");
+            pincodeyInput.removeAttribute("disabled");
+            stateInput.removeAttribute("disabled");
+            countryInput.removeAttribute("disabled");
+            line1Input.removeAttribute("disabled");
+            line2Input.removeAttribute("disabled");
+            line3Input.removeAttribute("disabled");
+        } else {
+            profileUpdateButtonDiv.style.display = "none";
+            cityInput.setAttribute("disabled", true);
+            pincodeyInput.setAttribute("disabled", true);
+            stateInput.setAttribute("disabled", true);
+            countryInput.setAttribute("disabled", true);
+            line1Input.setAttribute("disabled", true);
+            line2Input.setAttribute("disabled", true);
+            line3Input.setAttribute("disabled", true);
+        }
+    });
+    profileCancelButton.addEventListener("click", () => {
+        toggle = false;
+
+        profileUpdateButtonDiv.style.display = "none";
+        cityInput.setAttribute("disabled", true);
+        pincodeyInput.setAttribute("disabled", true);
+        stateInput.setAttribute("disabled", true);
+        countryInput.setAttribute("disabled", true);
+        line1Input.setAttribute("disabled", true);
+        line2Input.setAttribute("disabled", true);
+        line3Input.setAttribute("disabled", true);
+    });
+};
+
+
+Profile_Address_toggle();
+
+      </script>
 
     </div>
   </div>

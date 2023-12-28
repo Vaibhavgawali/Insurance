@@ -72,6 +72,76 @@
         </div>
 @endif
       </form>
+      <script>
+        
+let Profile_Experience_toggle = () => {
+    let editProfileButton = document.getElementById(
+        "profile_experience_edit_button"
+    );
+    let profileUpdateButtonDiv = document.getElementById(
+        "profile_experience_update_button_div"
+    );
+    let profileCancelButton = document.getElementById(
+        "profile_experience_cancel_button"
+    );
+
+    let currentCompanyInput = document.getElementById("is_current_company");
+    let organizationInput = document.getElementById("organization");
+    let designationInput = document.getElementById("designation");
+    let ctcInput = document.getElementById("ctc");
+    let profileDescriptionInput = document.getElementById(
+        "job_profile_description"
+    );
+    let jobStateInput = document.getElementById("job_state");
+    let joiningDateInput = document.getElementById("joining_date");
+    let relievingDateInput = document.getElementById("relieving_date");
+
+    let toggle = false;
+
+    profileUpdateButtonDiv.style.display = "none";
+    editProfileButton.addEventListener("click", () => {
+        console.log(toggle);
+        toggle = !toggle;
+        if (toggle) {
+            profileUpdateButtonDiv.style.display = "block";
+            currentCompanyInput.removeAttribute("disabled");
+            organizationInput.removeAttribute("disabled");
+            designationInput.removeAttribute("disabled");
+            ctcInput.removeAttribute("disabled");
+            profileDescriptionInput.removeAttribute("disabled");
+            jobStateInput.removeAttribute("disabled");
+            joiningDateInput.removeAttribute("disabled");
+            relievingDateInput.removeAttribute("disabled");
+        } else {
+            profileUpdateButtonDiv.style.display = "none";
+            currentCompanyInput.setAttribute("disabled", true);
+            organizationInput.setAttribute("disabled", true);
+            designationInput.setAttribute("disabled", true);
+            ctcInput.setAttribute("disabled", true);
+            profileDescriptionInput.setAttribute("disabled", true);
+            jobStateInput.setAttribute("disabled", true);
+            joiningDateInput.setAttribute("disabled", true);
+            relievingDateInput.setAttribute("disabled", true);
+        }
+    });
+    profileCancelButton.addEventListener("click", () => {
+        toggle = false;
+
+        profileUpdateButtonDiv.style.display = "none";
+        currentCompanyInput.setAttribute("disabled", true);
+        organizationInput.setAttribute("disabled", true);
+        designationInput.setAttribute("disabled", true);
+        ctcInput.setAttribute("disabled", true);
+        profileDescriptionInput.setAttribute("disabled", true);
+        jobStateInput.setAttribute("disabled", true);
+        joiningDateInput.setAttribute("disabled", true);
+        relievingDateInput.setAttribute("disabled", true);
+    });
+};
+
+Profile_Experience_toggle();
+
+      </script>
     </div>
   </div>
 </div>

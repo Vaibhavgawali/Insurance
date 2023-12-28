@@ -7,8 +7,10 @@
     <div class="profile-img-div text-center">
       @if(auth()->user()->user_id == $data->user_id)
         <form action="">
-          <label for="input-file" id="drop-area">
-            <input type="file" accept="image/*" id="input-file" hidden>
+        <div id="profile_image_status"></div>
+          @csrf
+          <label for="profile_image" id="drop-area">
+            <input type="file" accept="image/*" id="profile_image" name="profile_image" hidden>
             <div id="image-view">
               <!-- <img src="icon.png" alt=""> -->
               <i class="mdi mdi-cloud-upload "></i>
@@ -16,7 +18,12 @@
               <p>Drag and drop or click here <br>to upload image</p>
               <!-- <span>Upload any images From dekstop</span> -->
             </div>
+            <div id="profile_image_error"></div>
           </label>
+          <div class="form-group">
+            <label for="user_id"></label>
+            <input type="text" class="form-control" id="user_id" placeholder="user_id" value=" {{$data->user_id}}" hidden>
+          </div>
           <br>
             <div class="d-flex w-100 justify-content-center align-items-center ">
               <button style="display:none" ; type="submit" class="btn btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
@@ -27,41 +34,7 @@
       @endif
     </div>
 
-    <div class="profie-cv-upload-section">
-      <div class="profile-personal-cv-div p-3">
-        <div class="text-end">
-          <button class="btn btn-gradient-primary btn-sm " id="profile_cv_edit_button"><i class="mdi mdi-cloud-upload"> Upload CV</i></button>
-        </div>
 
-        <form class="forms-sample" id="" action="user-documents" method="post">
-          <div id="profile_cv_status"></div>
-          @csrf
-          <div class="form-group">
-            <label for="name">Documents Title</label>
-            <input type="text" class="form-control" id="document_title" name="document_title" placeholder="Provide documents title" disabled value=" {{ $data->name }}">
-            <div id="document_title_error"></div>
-          </div>
-
-          <div class="form-group">
-            <label for="name">Upload your Documents</label>
-            <input type="file" class="form-control" id="document_url" name="document_url" placeholder="Upload your cv" disabled value=" {{ $data->name }}">
-            <div id="document_url_error"></div>
-          </div>
-
-          <div class="form-group">
-            <label for="user_id"></label>
-            <input type="text" class="form-control" id="user_id" placeholder="user_id" value=" {{$data->user_id}}" hidden>
-          </div>
-
-          <div id="profile_cv_update_button_div">
-            <button type="submit" class="btn btn-gradient-primary me-2" id="profile_cv_update_button">Upload</button>
-            <button class="btn btn-light" id="profile_cv_cancel_button">Cancel</button>
-          </div>
-
-        </form>
-
-      </div>
-    </div>
   
     <div class="profile-personal-info-section">
       <div class="profile-personal-info-div p-3">
@@ -108,4 +81,47 @@
       </div>
     </div>
   </div>
+  <script>
+    let Profile_Info_Toggle = () => {
+    let editProfileButton = document.getElementById("profile_info_edit_button");
+    let profileUpdateButtonDiv = document.getElementById(
+        "profile_info_update_button_div"
+    );
+    let profileCancelButton = document.getElementById(
+        "profile_info_cancel_button"
+    );
+    let profileUpdateButton =document.getElementById("profile_info_update_button");
+
+    let nameInput = document.getElementById("name");
+    let emailInput = document.getElementById("email");
+    let phoneInput = document.getElementById("phone");
+
+    let toggle = false;
+    profileUpdateButtonDiv.style.display = "none";
+    editProfileButton.addEventListener("click", () => {
+        toggle = !toggle;
+        if (toggle) {
+            profileUpdateButtonDiv.style.display = "block";
+            nameInput.removeAttribute("disabled");
+            emailInput.removeAttribute("disabled");
+            phoneInput.removeAttribute("disabled");
+        } else {
+            profileUpdateButtonDiv.style.display = "none";
+            nameInput.setAttribute("disabled", true);
+            emailInput.setAttribute("disabled", true);
+            phoneInput.setAttribute("disabled", true);
+        }
+    });
+    profileCancelButton.addEventListener("click", () => {
+        toggle = false;
+
+        profileUpdateButtonDiv.style.display = "none";
+        nameInput.setAttribute("disabled", true);
+        emailInput.setAttribute("disabled", true);
+        phoneInput.setAttribute("disabled", true);
+    });
+};
+
+Profile_Info_Toggle();
+  </script>
 </div>

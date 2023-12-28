@@ -72,7 +72,7 @@
 								<li><a  href="#">Legal Operation</a></li>
 							</ul>
 						</li>
-						<li class="dropdown">
+						<!-- <li class="dropdown">
 							<a href="!#">Pages</a>
 							<ul class="dropdown-menu clearfix">
 								<li><a target="_blank" href="service.html">Services</a></li>
@@ -105,8 +105,8 @@
 								<li><a  href="insurance-calculator.html">Insurence Calculator</a></li>
 								<li><a  href="404.html">404</a></li>
 							</ul>
-						</li>
-						<li class="dropdown">
+						</li> -->
+						<!-- <li class="dropdown">
 							<a class="" href="!#">Blog</a>
 							<ul class="dropdown-menu clearfix">
 								<li><a  href="blog-list.html">News </a></li>
@@ -115,22 +115,22 @@
 								<li><a  href="blog-slider.html">News Slider</a></li>
 								<li><a  href="blog-single.html">News Details</a></li>
 							</ul>
-						</li>
+						</li> -->
+						
 						<li class="dropdown">
-							<a class="" href="!#">Portfolio</a>
-							<ul class="dropdown-menu clearfix">
-								<li><a  href="portfolio-slide.html">Portfolio Slide </a></li>
-								<li><a  href="portfolio-grid.html">Portfolio Grid</a></li>
-								<li><a  href="portfolio-masonry.html">Porfolio Masonry</a></li>
-								<li><a  href="portfolio-single.html">Portfolio Details</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a class="btn btn-outline-success p-2" href="!#">Register/Login</a>
+							<a class="btn btn-outline-success p-2" href="!#">Register</a>
 							<ul class="dropdown-menu clearfix">
 								<li><a   href="/candidate-register">Candidate</a></li>
 								<li><a  href="/insurer-register">Insurer</a></li>
 								<li><a  href="/institute-register">Institute</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a class="btn btn-outline-secondary p-2" href="!#">Login</a>
+							<ul class="dropdown-menu clearfix">
+								<li><a   href="/login">Candidate</a></li>
+								<li><a  href="/login">Insurer</a></li>
+								<li><a  href="/login">Institute</a></li>
 							</ul>
 						</li>
 					</ul>

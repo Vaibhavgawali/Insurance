@@ -143,7 +143,18 @@ class UserController extends Controller
             if ($userId) {
                 $isTrashed = $userId->delete();
                 if ($isTrashed) {
-                    return Response(['message' => "User trashed successfully"], 200);
+                    // return Response(['message' => "User trashed successfully"], 200);
+                    if($userId->hasRole('Candidate')){
+                    return redirect()->route('candidate.index')->with('success','User Deleted Successfully');
+                    }
+                    if($userId->hasRole('Insurer')){
+                        return redirect()->route('insurer.index')->with('success','User Deleted Successfully');
+                        }
+
+                        if($userId->hasRole('Institute')){
+                            return redirect()->route('institute.index')->with('success','User Deleted Successfully');
+                            }
+                    
                 }
                 return Response(['message' => "Something went wrong"], 500);
             }
@@ -161,6 +172,7 @@ class UserController extends Controller
             $users = User::onlyTrashed()->get();
             if($users){
                 return Response(['message' => "Users trashed","users"=>$users],200);
+               
             }  
             return Response(['message'=>"Users not found in trashed "],404);
         }

@@ -1,5 +1,5 @@
 const dropArea = document.getElementById("drop-area");
-const inputFile = document.getElementById("input-file");
+const inputFile = document.getElementById("profile_image");
 const imageView = document.getElementById("image-view");
 const imageUploadButton = document.getElementById("image-upload-button");
 
@@ -42,7 +42,77 @@ dropArea.addEventListener("drop", function (e) {
     uploadImage();
 });
 
+$(document).ready(function () {  // Profile Image Upload function
+    $("#image-upload-button").click(function (event) {
+        var profile_image = $("#profile_image").val();
+        var user_id = $("#user_id").val();
 
+        $("#profile_image_error").html("");
+    
+        var data = {
+            profile_image:profile_image,
+            user_id:user_id,
+        };
+        
+        
+        // Update the user_id value in the data object
+        // data.user_id = extractAndConvertToInteger(data.user_id);
+        // console.log(data);
+
+        event.preventDefault();
+
+        var url = window.location.origin + `/image-upload/${user_id.trim()}`;
+        console.log(url);
+        
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.status == true) {
+                    $(".error-message").remove();
+                    $("#image-upload-button").attr("disabled", true);
+                    $("#profile_image_status").html(
+                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
+                        response.message +
+                        "</div>"
+                    );
+            
+                    // Optional: You can add a delay before reloading the page
+                    // setTimeout(function () {
+                    //     window.location.reload();
+                    // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+            
+                    return false;
+                }
+            }
+            ,
+
+            error: function (response) {
+                // console.log(response);
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+                     console.log(errors);
+                    $(".error-message").remove();
+
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+            },
+        });
+    });
+});
 
 
 $(document).ready(function () {  // Profile info Update function
@@ -123,85 +193,85 @@ $(document).ready(function () {  // Profile info Update function
     });
 });
 
-// $(document).ready(function () {  // Profile cv Update function
-//     $("#profile_cv_update_button").click(function (event) {
-//         var document_title = $("#document_title").val();
-//         var document_title = $("#document_url").val();
-//         var user_id = $("#user_id").val();
+$(document).ready(function () {  // Profile cv Update function
+    $("#profile_cv_update_button").click(function (event) {
+        var document_title = $("#document_title").val();
+        var document_title = $("#document_url").val();
+        var user_id = $("#user_id").val();
 
-//         $("#document_title_error").html("");
-//         $("#document_url_error").html("");
+        $("#document_title_error").html("");
+        $("#document_url_error").html("");
 
-//         $("#profile_cv_status").html("");
+        $("#profile_cv_status").html("");
 
     
-//         var data = {
-//             document_title:document_title,
-//             document_url:document_url,
-//             user_id:user_id,
-//         };
+        var data = {
+            document_title:document_title,
+            document_url:document_url,
+            user_id:user_id,
+        };
         
         
-//         // Update the user_id value in the data object
-//         // data.user_id = extractAndConvertToInteger(data.user_id);
-//         // console.log(data);
+        // Update the user_id value in the data object
+        // data.user_id = extractAndConvertToInteger(data.user_id);
+        // console.log(data);
 
 
-//         event.preventDefault();
+        event.preventDefault();
 
-//         var url = window.location.origin + `/user-documents/${user_id.trim()}`;
-//         console.log(url);
-//         console.log(data);
+        var url = window.location.origin + `/user-documents/${user_id.trim()}`;
+        console.log(url);
+        console.log(data);
         
-//         $.ajax({
-//             type: "POST",
-//             url: url,
-//             data: data,
-//             headers: {
-//                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-//             },
-//             success: function (response) {
-//                 console.log(response);
-//                 if (response.status == true) {
-//                     $(".error-message").remove();
-//                     $("#profile_cv_update_button").attr("disabled", true);
-//                     $("#profile_cv_status").html(
-//                         "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-//                         response.message +
-//                         "</div>"
-//                     );
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.status == true) {
+                    $(".error-message").remove();
+                    $("#profile_cv_update_button").attr("disabled", true);
+                    $("#profile_cv_status").html(
+                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
+                        response.message +
+                        "</div>"
+                    );
             
-//                     // Optional: You can add a delay before reloading the page
-//                     // setTimeout(function () {
-//                     //     window.location.reload();
-//                     // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+                    // Optional: You can add a delay before reloading the page
+                    // setTimeout(function () {
+                    //     window.location.reload();
+                    // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
             
-//                     return false;
-//                 }
-//             }
-//             ,
+                    return false;
+                }
+            }
+            ,
 
-//             error: function (response) {
-//                 // console.log(response);
-//                 if (response.status === 422) {
-//                     var errors = response.responseJSON.errors;
-//                      console.log(errors);
-//                     $(".error-message").remove();
+            error: function (response) {
+                // console.log(response);
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+                     console.log(errors);
+                    $(".error-message").remove();
 
-//                     // Display new errors
-//                     $.each(errors, function (field, messages) {
-//                         var input = $('[name="' + field + '"]');
-//                         input.after(
-//                             '<div class="error-message invalid-feedback d-block">' +
-//                                 messages.join(", ") +
-//                                 "</div>"
-//                         );
-//                     });
-//                 }
-//             },
-//         });
-//     });
-// });
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+            },
+        });
+    });
+});
 
 $(document).ready(function () {  // Profile info Update function
     $("#profile_info_update_button").click(function (event) {
@@ -361,18 +431,18 @@ $(document).ready(function () {   ///    Profile Details Update Function
         var date_of_birth = $("#date_of_birth").val();
         var gender = $("#gender").val();
         var age = $("#age").val();
-        var preffered_line =$("#preffred_line").val();
+        var preffered_line =$("#preffered_line").val();
         var spoc =$("#spoc").val();
         var user_id = $("#user_id").val();
 
         $("#date_of_birth_error").html("");
         $("#gender_error").html("");
         $("#age_error").html("");
-        $("#preffred_line_error").html("");
-        $("#aspoc_error").html("");
+        $("#preffered_line_error").html("");
+        $("#spoc_error").html("");
 
 
-        $("#profile_status").html("");
+        $("#profile_details_status").html("");
 
         if (
             date_of_birth == "" ||
@@ -419,10 +489,10 @@ $(document).ready(function () {   ///    Profile Details Update Function
             preffered_line == "undefined" ||
             preffered_line == undefined
         ) {
-            $("#preffred_line_error").html(
+            $("#preffered_line_error").html(
                 '<div class=" invalid-feedback d-block">Prefferd Line is required.</div>'
             );
-            $("#preffred_line").focus();
+            $("#preffered_line").focus();
             return false;
         }
         if (
@@ -918,264 +988,6 @@ $(document).ready(function () {  // Profile Experience Update function
 
 
 
-let Profile_Info_Toggle = () => {
-    let editProfileButton = document.getElementById("profile_info_edit_button");
-    let profileUpdateButtonDiv = document.getElementById(
-        "profile_info_update_button_div"
-    );
-    let profileCancelButton = document.getElementById(
-        "profile_info_cancel_button"
-    );
-    let profileUpdateButton =document.getElementById("profile_info_update_button");
-
-    let nameInput = document.getElementById("name");
-    let emailInput = document.getElementById("email");
-    let phoneInput = document.getElementById("phone");
-
-    let toggle = false;
-    profileUpdateButtonDiv.style.display = "none";
-    editProfileButton.addEventListener("click", () => {
-        toggle = !toggle;
-        if (toggle) {
-            profileUpdateButtonDiv.style.display = "block";
-            nameInput.removeAttribute("disabled");
-            emailInput.removeAttribute("disabled");
-            phoneInput.removeAttribute("disabled");
-        } else {
-            profileUpdateButtonDiv.style.display = "none";
-            nameInput.setAttribute("disabled", true);
-            emailInput.setAttribute("disabled", true);
-            phoneInput.setAttribute("disabled", true);
-        }
-    });
-    profileCancelButton.addEventListener("click", () => {
-        toggle = false;
-
-        profileUpdateButtonDiv.style.display = "none";
-        nameInput.setAttribute("disabled", true);
-        emailInput.setAttribute("disabled", true);
-        phoneInput.setAttribute("disabled", true);
-    });
-};
-
-Profile_Info_Toggle();
-
-let Profile_Cv_Toggle = () => {
-    let editProfileButton = document.getElementById("profile_cv_edit_button");
-    let profileUpdateButtonDiv = document.getElementById(
-        "profile_cv_update_button_div"
-    );
-    let profileCancelButton = document.getElementById(
-        "profile_cv_cancel_button"
-    );
-    
-
-    let documentTitleInput = document.getElementById("document_title");
-    let documentUrlInput = document.getElementById("document_url");
-
-    let toggle = false;
-    profileUpdateButtonDiv.style.display = "none";
-    editProfileButton.addEventListener("click", () => {
-        toggle = !toggle;
-        if (toggle) {
-            profileUpdateButtonDiv.style.display = "block";
-            documentTitleInput.removeAttribute("disabled");
-            documentUrlInput.removeAttribute("disabled");
-           
-        } else {
-            profileUpdateButtonDiv.style.display = "none";
-            documentTitleInput.setAttribute("disabled", true);
-            documentUrlInput.setAttribute("disabled", true);
-        }
-    });
-    profileCancelButton.addEventListener("click", () => {
-        toggle = false;
-
-        profileUpdateButtonDiv.style.display = "none";
-        documentTitleInput.setAttribute("disabled", true);
-        documentUrlInput.setAttribute("disabled", true);
-    });
-};
-
-Profile_Cv_Toggle();
 
 
-let Profile_Details_toggle = () => {
-    let editProfileButton = document.getElementById(
-        "profile_details_edit_button"
-    );
-    let profileUpdateButtonDiv = document.getElementById(
-        "profile_details_update_button_div"
-    );
-    let profileCancelButton = document.getElementById(
-        "profile_details_cancel_button"
-    );
 
-    let dateBirthInput = document.getElementById("date_of_birth");
-    let genderInput = document.getElementById("gender");
-    let ageInput = document.getElementById("age");
-    let prefferedLineInput = document.getElementById("preffred_line");
-    let spocInput = document.getElementById("spoc");
-
-    let toggle = false;
-
-    profileUpdateButtonDiv.style.display = "none";
-    editProfileButton.addEventListener("click", () => {
-        toggle = !toggle;
-        if (toggle) {
-            profileUpdateButtonDiv.style.display = "block";
-            dateBirthInput.removeAttribute("disabled");
-            genderInput.removeAttribute("disabled");
-            ageInput.removeAttribute("disabled");
-            prefferedLineInput.removeAttribute("disabled");
-            spocInput.removeAttribute("disabled");
-        } else {
-            profileUpdateButtonDiv.style.display = "none";
-            dateBirthInput.setAttribute("disabled", true);
-            genderInput.setAttribute("disabled", true);
-            ageInput.setAttribute("disabled", true);
-            prefferedLineInput.setAttribute("disabled", true);
-            spocInput.setAttribute("disabled", true);
-        }
-    });
-    profileCancelButton.addEventListener("click", () => {
-        toggle = false;
-
-        profileUpdateButtonDiv.style.display = "none";
-        dateBirthInput.setAttribute("disabled", true);
-        genderInput.setAttribute("disabled", true);
-        ageInput.setAttribute("disabled", true);
-        prefferedLineInput.setAttribute("disabled", true);
-        spocInput.setAttribute("disabled", true);
-    });
-};
-
-Profile_Details_toggle();
-
-let Profile_Address_toggle = () => {
-    let editProfileButton = document.getElementById(
-        "profile_address_edit_button"
-    );
-    let profileUpdateButtonDiv = document.getElementById(
-        "profile_address_update_button_div"
-    );
-    let profileCancelButton = document.getElementById(
-        "profile_address_cancel_button"
-    );
-
-    let cityInput = document.getElementById("city");
-    let pincodeyInput = document.getElementById("pincode");
-    let stateInput = document.getElementById("state");
-    let countryInput = document.getElementById("country");
-    let line1Input = document.getElementById("line1");
-    let line2Input = document.getElementById("line2");
-    let line3Input = document.getElementById("line3");
-
-    let toggle = false;
-
-    profileUpdateButtonDiv.style.display = "none";
-    editProfileButton.addEventListener("click", () => {
-        toggle = !toggle;
-        if (toggle) {
-            profileUpdateButtonDiv.style.display = "block";
-            cityInput.removeAttribute("disabled");
-            pincodeyInput.removeAttribute("disabled");
-            stateInput.removeAttribute("disabled");
-            countryInput.removeAttribute("disabled");
-            line1Input.removeAttribute("disabled");
-            line2Input.removeAttribute("disabled");
-            line3Input.removeAttribute("disabled");
-        } else {
-            profileUpdateButtonDiv.style.display = "none";
-            cityInput.setAttribute("disabled", true);
-            pincodeyInput.setAttribute("disabled", true);
-            stateInput.setAttribute("disabled", true);
-            countryInput.setAttribute("disabled", true);
-            line1Input.setAttribute("disabled", true);
-            line2Input.setAttribute("disabled", true);
-            line3Input.setAttribute("disabled", true);
-        }
-    });
-    profileCancelButton.addEventListener("click", () => {
-        toggle = false;
-
-        profileUpdateButtonDiv.style.display = "none";
-        cityInput.setAttribute("disabled", true);
-        pincodeyInput.setAttribute("disabled", true);
-        stateInput.setAttribute("disabled", true);
-        countryInput.setAttribute("disabled", true);
-        line1Input.setAttribute("disabled", true);
-        line2Input.setAttribute("disabled", true);
-        line3Input.setAttribute("disabled", true);
-    });
-};
-
-
-Profile_Address_toggle();
-
-let Profile_Experience_toggle = () => {
-    let editProfileButton = document.getElementById(
-        "profile_experience_edit_button"
-    );
-    let profileUpdateButtonDiv = document.getElementById(
-        "profile_experience_update_button_div"
-    );
-    let profileCancelButton = document.getElementById(
-        "profile_experience_cancel_button"
-    );
-
-    let currentCompanyInput = document.getElementById("is_current_company");
-    let organizationInput = document.getElementById("organization");
-    let designationInput = document.getElementById("designation");
-    let ctcInput = document.getElementById("ctc");
-    let profileDescriptionInput = document.getElementById(
-        "job_profile_description"
-    );
-    let jobStateInput = document.getElementById("job_state");
-    let joiningDateInput = document.getElementById("joining_date");
-    let relievingDateInput = document.getElementById("relieving_date");
-
-    let toggle = false;
-
-    profileUpdateButtonDiv.style.display = "none";
-    editProfileButton.addEventListener("click", () => {
-        console.log(toggle);
-        toggle = !toggle;
-        if (toggle) {
-            profileUpdateButtonDiv.style.display = "block";
-            currentCompanyInput.removeAttribute("disabled");
-            organizationInput.removeAttribute("disabled");
-            designationInput.removeAttribute("disabled");
-            ctcInput.removeAttribute("disabled");
-            profileDescriptionInput.removeAttribute("disabled");
-            jobStateInput.removeAttribute("disabled");
-            joiningDateInput.removeAttribute("disabled");
-            relievingDateInput.removeAttribute("disabled");
-        } else {
-            profileUpdateButtonDiv.style.display = "none";
-            currentCompanyInput.setAttribute("disabled", true);
-            organizationInput.setAttribute("disabled", true);
-            designationInput.setAttribute("disabled", true);
-            ctcInput.setAttribute("disabled", true);
-            profileDescriptionInput.setAttribute("disabled", true);
-            jobStateInput.setAttribute("disabled", true);
-            joiningDateInput.setAttribute("disabled", true);
-            relievingDateInput.setAttribute("disabled", true);
-        }
-    });
-    profileCancelButton.addEventListener("click", () => {
-        toggle = false;
-
-        profileUpdateButtonDiv.style.display = "none";
-        currentCompanyInput.setAttribute("disabled", true);
-        organizationInput.setAttribute("disabled", true);
-        designationInput.setAttribute("disabled", true);
-        ctcInput.setAttribute("disabled", true);
-        profileDescriptionInput.setAttribute("disabled", true);
-        jobStateInput.setAttribute("disabled", true);
-        joiningDateInput.setAttribute("disabled", true);
-        relievingDateInput.setAttribute("disabled", true);
-    });
-};
-
-Profile_Experience_toggle();

@@ -32,10 +32,12 @@
 
           @if($userData->documents)
             <!--User Documents Comp comp  -->
+            <h1>Update</h1>
             @else
-            <h3>Add Resume</h3>
+            <x-profile-cv-upload-component :data="$userData" /> <!--User Experience Comp comp  -->
           @endif
         @endif
+      
 
       </div>
     </div>
