@@ -32,6 +32,7 @@ class UserExperienceController extends Controller
      */
     public function store(Request $request)
     {
+        $id = $request->input('user_id');
         $userId = Auth::user()->user_id; 
         if($userId == $id){
             $validator=Validator::make($request->all(),[
@@ -41,11 +42,10 @@ class UserExperienceController extends Controller
                 "state"=>'string|max:20',
                 "job_profile_description"=>'string|max:60',
                 "joining_date"=>'required|date_format:Y-m-d',
-                "relieving_date"=>'required|date_format:Y-m-d',
             ]);
 
             if($validator->fails()){
-                return Response(['message' => $validator->errors()],401);
+                return Response(['message' => $validator->errors()],422);
             }   
 
             $data=$request->all();

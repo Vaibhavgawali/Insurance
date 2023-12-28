@@ -25,7 +25,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/candidate">
                     <span class="menu-title">Candidates</span>
-                    <i class="mdi mdi-home menu-icon"></i>
+                    <i class="mdi mdi-account-card-details menu-icon"></i>
                 </a>
             </li>
         @endif
@@ -34,14 +34,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="/insurer">
                     <span class="menu-title">Insurer</span>
-                    <i class="mdi mdi-home menu-icon"></i>
+                    <i class="mdi mdi-account-check menu-icon"></i>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/home">
+                <a class="nav-link" href="/institute">
                     <span class="menu-title">Institute</span>
-                    <i class="mdi mdi-home menu-icon"></i>
+                    <i class="mdi mdi-airplay menu-icon"></i>
                 </a>
             </li>
         @endhasrole

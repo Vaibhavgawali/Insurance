@@ -112,117 +112,32 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    // Profile info Update function
-    $("#profile_cv_update_button").click(function (event) {
-        var document_title = $("#document_title").val();
-        var document_title = $("#document_url").val();
-        var user_id = $("#user_id").val();
+$(document).ready(function(e) {
+    $('#profile_cv_update_button').click(function() {
+        var formData = new FormData($('#profile_cv_form')[0]);
+        var url = window.location.origin + `/user-documents`;
+        // Get base URL from meta tag
+var baseUrl = $('meta[name="base-url"]').attr('content');
 
-        $("#document_title_error").html("");
-        $("#document_url_error").html("");
-
-        $("#profile_cv_status").html("");
-
-        var data = {
-            document_title: document_title,
-            document_url: document_url,
-            user_id: user_id,
-        };
-
-        // Update the user_id value in the data object
-        // data.user_id = extractAndConvertToInteger(data.user_id);
-        // console.log(data);
-
-        event.preventDefault();
-
-        var url = window.location.origin + `/candidate/${user_id.trim()}`;
-        console.log(url);
-
+// $.ajax({
+//     url: 
+//     type: 'GET',
+//     // other AJAX options...
+//     success: function(response) {
+//         // handle success
+//     },
+//     error: function(error) {
+//         // handle error
+//     }
+// });
+        e.preventDefault();
         $.ajax({
-            type: "PATCH",
-            url: url,
-            data: data,
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            success: function (response) {
-                console.log(response);
-                if (response.status == true) {
-                    $(".error-message").remove();
-                    $("#profile_cv_update_button").attr("disabled", true);
-                    $("#profile_cv_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
-
-                    // Optional: You can add a delay before reloading the page
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-
-                    return false;
-                }
-            },
-            error: function (response) {
-                // console.log(response);
-                if (response.status === 422) {
-                    var errors = response.responseJSON.errors;
-                    console.log(errors);
-                    $(".error-message").remove();
-
-                    // Display new errors
-                    $.each(errors, function (field, messages) {
-                        var input = $('[name="' + field + '"]');
-                        input.after(
-                            '<div class="error-message invalid-feedback d-block">' +
-                                messages.join(", ") +
-                                "</div>"
-                        );
-                    });
-                }
-            },
-        });
-    });
-});
-
-$(document).ready(function () {
-    // Profile cv Update function
-    $("#profile_cv_update_button").click(function (event) {
-        var document_title = $("#document_title").val();
-        var document_title = $("#document_url").val();
-        var user_id = $("#user_id").val();
-
-        $("#document_title_error").html("");
-        $("#document_url_error").html("");
-
-        $("#profile_cv_status").html("");
-
-        var data = {
-            document_title: document_title,
-            document_url: document_url,
-            user_id: user_id,
-        };
-
-        // Update the user_id value in the data object
-        // data.user_id = extractAndConvertToInteger(data.user_id);
-        // console.log(data);
-
-        event.preventDefault();
-
-        var url = window.location.origin + `/user-documents/${user_id.trim()}`;
-        console.log(url);
-        console.log(data);
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: data,
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            success: function (response) {
+            url:baseUrl + '/user-documents',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success:  function (response) {
                 console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
@@ -262,6 +177,7 @@ $(document).ready(function () {
         });
     });
 });
+
 
 $(document).ready(function () {
     // Profile info Update function
@@ -914,6 +830,190 @@ $(document).ready(function () {
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_experience_update_button").attr(
+                        "disabled",
+                        true
+                    );
+                    $("#profile_experience_status").html(
+                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
+                            response.message +
+                            "</div>"
+                    );
+
+                    // Optional: You can add a delay before reloading the page
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+
+                    return false;
+                }
+            },
+            error: function (response) {
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+
+                    $(".error-message").remove();
+
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+            },
+        });
+    });
+});
+
+$(document).ready(function () {
+    // Profile Experience Add function
+    $("#profile_experience_add_button").click(function (event) {
+        var is_current_company = $("#is_current_company").val();
+        var organization = $("#organization").val();
+        var designation = $("#designation").val();
+        var ctc = $("#ctc").val();
+        var job_profile_description = $("#job_profile_description").val();
+        var state = $("#job_state").val();
+        var joining_date = $("#joining_date").val();
+        var relieving_date = $("#relieving_date").val();
+        var user_id = $("#user_id").val();
+
+        $("#is_current_company_error").html("");
+        $("#organization_error").html("");
+        $("#designation_error").html("");
+        $("#ctc_error").html("");
+        $("#job_profile_description_error").html("");
+        $("#job_state_error").html("");
+        $("#joining_date_error").html("");
+        $("#relieving_date_error").html("");
+
+        $("#profile_experience_status").html("");
+
+        if (
+            is_current_company == "" ||
+            is_current_company == null ||
+            is_current_company == "undefined" ||
+            is_current_company == undefined
+        ) {
+            $("#is_current_company_error").html(
+                '<div class=" invalid-feedback d-block">Current Company  is required.</div>'
+            );
+            $("#is_current_company").focus();
+            return false;
+        }
+
+        if (
+            organization == "" ||
+            organization == null ||
+            organization == "undefined" ||
+            organization == undefined
+        ) {
+            $("#organization_error").html(
+                '<div class=" invalid-feedback d-block">Organization is required.</div>'
+            );
+            $("#organization").focus();
+            return false;
+        }
+
+        if (
+            designation == "" ||
+            designation == null ||
+            designation == "undefined" ||
+            designation == undefined
+        ) {
+            $("#designation_error").html(
+                '<div class=" invalid-feedback d-block">Designation  is required.</div>'
+            );
+            $("#designation").focus();
+            return false;
+        }
+
+        if (
+            ctc == "" ||
+            ctc == null ||
+            ctc == "undefined" ||
+            ctc == undefined
+        ) {
+            $("#ctc_error").html(
+                '<div class=" invalid-feedback d-block">CTC  is required.</div>'
+            );
+            $("#ctc").focus();
+            return false;
+        }
+
+        if (
+            job_profile_description == "" ||
+            job_profile_description == null ||
+            job_profile_description == "undefined" ||
+            job_profile_description == undefined
+        ) {
+            $("#job_profile_description_error").html(
+                '<div class=" invalid-feedback d-block">Job description  is required.</div>'
+            );
+            $("#job_profile_description").focus();
+            return false;
+        }
+
+        if (
+            state == "" ||
+            state == null ||
+            state == "undefined" ||
+            state == undefined
+        ) {
+            $("#job_state_error").html(
+                '<div class=" invalid-feedback d-block">Job state  is required.</div>'
+            );
+            $("#job_state").focus();
+            return false;
+        }
+
+        if (
+            joining_date == "" ||
+            joining_date == null ||
+            joining_date == "undefined" ||
+            joining_date == undefined
+        ) {
+            $("#joining_date_error").html(
+                '<div class=" invalid-feedback d-block">Joining date   is required.</div>'
+            );
+            $("#joining_date").focus();
+            return false;
+        }
+
+      
+        var data = {
+            is_current_company: is_current_company,
+            organization: organization,
+            designation: designation,
+            ctc: ctc,
+            state: state,
+            job_profile_description: job_profile_description,
+            joining_date: joining_date,
+            relieving_date: relieving_date,
+            user_id:user_id
+        };
+      
+
+        event.preventDefault();
+
+        var url = window.location.origin + `/user-experience`;
+        console.log(url);
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.status == true) {
+                    $(".error-message").remove();
+                    $("#profile_experience_add_button").attr(
                         "disabled",
                         true
                     );

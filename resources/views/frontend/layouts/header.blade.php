@@ -118,7 +118,7 @@
 						</li> -->
 						
 						<li class="dropdown">
-							<a class="btn btn-outline-success p-2" href="!#">Register</a>
+							<a class="btn btn-outline-success p-2" href="javascript:void(0)">Register</a>
 							<ul class="dropdown-menu clearfix">
 								<li><a   href="/candidate-register">Candidate</a></li>
 								<li><a  href="/insurer-register">Insurer</a></li>
@@ -126,7 +126,7 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a class="btn btn-outline-secondary p-2" href="!#">Login</a>
+							<a class="btn btn-outline-secondary p-2" href="javascript:void(0)">Login</a>
 							<ul class="dropdown-menu clearfix">
 								<li><a   href="/login">Candidate</a></li>
 								<li><a  href="/login">Insurer</a></li>
@@ -209,22 +209,21 @@
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a class="" href="!#">Portfolio</a>
-								<ul class="dropdown-menu clearfix">
-									<li><a target="_blank" href="portfolio-slide.html">Portfolio Slide </a></li>
-									<li><a target="_blank" href="portfolio-grid.html">Portfolio Grid</a></li>
-									<li><a target="_blank" href="portfolio-masonry.html">Porfolio Masonry</a></li>
-									<li><a  href="portfolio-single.html">Portfolio Details</a></li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a class="btn btn-outline-success " id="mobile-register-btn" href="!#">Register/Login</a>
-								<ul class="dropdown-menu clearfix">
-									<li><a   href="/candidate-register">Candidate</a></li>
-									<li><a  href="/insurer-register">Insurer</a></li>
-									<li><a  href="/institute-register">Institute</a></li>
-								</ul>
-							</li>
+							<a class="btn btn-outline-success p-2" href="javascript:void(0)">Register</a>
+							<ul class="dropdown-menu clearfix">
+								<li><a   href="/candidate-register">Candidate</a></li>
+								<li><a  href="/insurer-register">Insurer</a></li>
+								<li><a  href="/institute-register">Institute</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a class="btn btn-outline-secondary p-2" href="javascript:void(0)">Login</a>
+							<ul class="dropdown-menu clearfix">
+								<li><a   href="/login">Candidate</a></li>
+								<li><a  href="/login">Insurer</a></li>
+								<li><a  href="/login">Institute</a></li>
+							</ul>
+						</li>
 						</ul>
 					</nav>
 				</div>

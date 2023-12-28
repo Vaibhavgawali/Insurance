@@ -18,6 +18,7 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.jpg" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+ 
 </head>
 <body>
     <div class="container-scroller">
