@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,8 +19,9 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.jpg" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
- 
+    <meta name="base-url" content="{{ url('') }}">
 </head>
+
 <body>
     <div class="container-scroller">
 
@@ -31,9 +33,9 @@
             <x-dashboard-sidebar></x-dashboard-sidebar>
             <!-- partial -->
             <div class="main-panel">
-               
-                    @yield('main-section')
-                
+
+                @yield('main-section')
+
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
                 <x-dashboard-footer></x-dashboard-footer>
@@ -62,4 +64,5 @@
     <script src="/admin-assets/assets/js/todolist.js"></script>
     <!-- End custom js for this page -->
 </body>
+
 </html>

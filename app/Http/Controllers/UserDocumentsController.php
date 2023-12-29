@@ -56,7 +56,7 @@ class UserDocumentsController extends Controller
             $user_documents=UserDocuments::create([
                 'user_id'=>$user_id,
                 'document_title'=>$request->document_title,
-                '+'=>$documentpath,
+                'document_url'=>$documentpath,
             ]);
 
             if($user_documents){

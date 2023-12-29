@@ -130,7 +130,7 @@ var baseUrl = $('meta[name="base-url"]').attr('content');
 //         // handle error
 //     }
 // });
-        e.preventDefault();
+        // e.preventDefault();
         $.ajax({
             url:baseUrl + '/user-documents',
             type: 'POST',
