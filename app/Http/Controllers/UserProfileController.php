@@ -126,7 +126,6 @@ class UserProfileController extends Controller
                 return Response(['message' => $validator->errors()],422);
             } 
             
-
             // Save the image to the storage
             $image=$request->file("profile_image");
             $imageName=$image->hashName();
