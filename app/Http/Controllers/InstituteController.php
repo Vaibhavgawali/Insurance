@@ -36,7 +36,9 @@ class InstituteController extends Controller
         if (Auth::check()) {
             $users = User::role('Institute')->get();
             if ($users) {
-                return Response(['data' => $users], 200);
+                // return Response(['data' => $users], 200);
+                return view('dashboard.admin.institute-list', ['institutes' => $users]);
+                // institute
             }
             return Response(['message' => "Users with role Institute not found "], 404);
         }

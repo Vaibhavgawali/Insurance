@@ -66,7 +66,8 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $userId = Auth::user()->user_id; 
+        $user=Auth::user();
+        $userId = $user->user_id; 
         if($userId == $id){
             $formMethod = $request->method();
             if($formMethod == "PATCH"){
@@ -74,12 +75,14 @@ class UserProfileController extends Controller
                     "date_of_birth"=> 'date_format:Y-m-d',
                     "gender"=>'string|in:"M","F","O"',
                     "age"=>'numeric|integer|min:1',
-                    "preffered_line"=> 'string|max:20',
-                    "spoc"=> 'string|max:60',
+                    // "preffered_line"=> 'string|max:20',
+                    // "spoc"=> 'string|max:60',
+                    "preffered_line" =>$user->hasAnyRole(['Candidate', 'Insurer']) ? 'required|string|max:20' : 'nullable|string|max:20',
+                    "spoc" =>$user->hasAnyRole(['Institute', 'Insurer']) ? 'required|string|max:60' : 'nullable|string|max:60',
                 ]);
 
                 if($validator->fails()){
-                    return Response(['message' => $validator->errors()],422);
+                    return Response(['status'=>false,'errors' => $validator->errors()],422);
                 }   
 
                 $user= UserProfile::where('user_id', $id)->first();
@@ -120,7 +123,7 @@ class UserProfileController extends Controller
             ]);
 
             if($validator->fails()){
-                return Response(['message' => $validator->errors()],401);
+                return Response(['message' => $validator->errors()],422);
             } 
             
 
