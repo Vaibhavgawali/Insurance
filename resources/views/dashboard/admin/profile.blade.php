@@ -32,6 +32,7 @@
 
         @if($userData->documents)
         <!--User Documents Comp comp  -->
+        Edit Resumer
 
         @else
         <x-profile-cv-upload-component :data="$userData" /> <!--User Experience Comp comp  -->

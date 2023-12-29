@@ -33,8 +33,7 @@ class UserDocumentsController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = Auth::user()->user_id;
-
+        
         $validator=Validator::make($request->all(),[
             "document_title"=> 'string|max:40',
             "document_url"=> 'required|mimes:pdf,doc,docx|max:2048',

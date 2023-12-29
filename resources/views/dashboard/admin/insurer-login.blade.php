@@ -99,11 +99,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
-
-        </div>
-        <div class="col-6">
-        <div class="">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <div class="">
                         <div>
                             <h3>About insurancecareer.in</h3>
                         </div>
@@ -112,54 +111,58 @@
                         </div>
 
                     </div>
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-12 grid-margin">
             <div class="card">
                 <div class="card-body">
-        
                     <h4 class="card-title">View & Download Cv</h4>
                     <div class=" border border-2 p-3 rounded">
-                        <form action="" id="filterForm">
-                            <div class="d-flex gap-5 ">
-                                <div class="form-group">
-                                    <select name="" id="" class="btn btn-sm btn-outline-primary dropdown-toggle">
-                                        <option value="" selected disabled>Buisness Line</option>
-                                        <option value="life" class="dropdown-item">Life</option>
-                                        <option value="general" class="dropdown-item">General</option>
-                                        <option value="health" class="dropdown-item">Health</option>
-                                    </select>
+                    <form action="" id="filterForm">
+    <div class="d-flex gap-5">
+        <div class="form-group">
+            <select name="businessLine" class="btn btn-sm btn-outline-primary dropdown-toggle" >
+                <option value="" selected disabled>Business Line</option>
+                <option value="life" class="dropdown-item">Life</option>
+                <option value="general" class="dropdown-item">General</option>
+                <option value="health" class="dropdown-item">Health</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="workStatus" class="btn btn-sm btn-outline-primary dropdown-toggle" >
+                <option value="" selected disabled>Work Status</option>
+                <option value="fresher" class="dropdown-item">Fresher</option>
+                <option value="working" class="dropdown-item">Working</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="currentEmployer" class="btn btn-sm btn-outline-primary dropdown-toggle">
+                <option value="" selected disabled>Current Employer</option>
+                <option value="insurer" class="dropdown-item">Insurer</option>
+                <option value="others" class="dropdown-item">Others</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="channel" class="btn btn-sm btn-outline-primary dropdown-toggle" >
+                <option value="" selected disabled>Channel</option>
+                <option value="agency" class="dropdown-item">Agency</option>
+                <option value="banca" class="dropdown-item">Banca</option>
+                <option value="directMarketing" class="dropdown-item">Direct Marketing</option>
+                <option value="group" class="dropdown-item">Group</option>
+                <option value="broking" class="dropdown-item">Broking</option>
+                <option value="others" class="dropdown-item">Others</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-sm btn-gradient-primary me-2" id="submit">Submit</button>
+    <button type="submit">Cancel</button>
+</form>
 
-                                </div>
-                                <div class="form-group">
-                                    <select name="" id="" class="btn btn-sm btn-outline-primary dropdown-toggle">
-                                        <option value="" selected disabled>Work Status</option>
-                                        <option value="fresher" class="dropdown-item">Fresher</option>
-                                        <option value="working" class="dropdown-item">Working</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select name="" id="" class="btn btn-sm btn-outline-primary dropdown-toggle">
-                                        <option value="" selected disabled>Current Employer</option>
-                                        <option value="insurer" class="dropdown-item">Insurer</option>
-                                        <option value="others" class="dropdown-item">Others</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select name="" id="" class="btn btn-sm btn-outline-primary dropdown-toggle">
-                                        <option value="" selected disabled>Channel</option>
-                                        <option value="agency" class="dropdown-item">Agency</option>
-                                        <option value="banca" class="dropdown-item">Bamca</option>
-                                        <option value="direct marketing" class="dropdown-item">Direct Marketing</option>
-                                        <option value="group" class="dropdown-item">Group</option>
-                                        <option value="broking" class="dropdown-item">Broking</option>
-                                        <option value="others" class="dropdown-item">Others</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-sm btn-gradient-primary me-2">Submit</button>
-                        </form>
+
                     </div>
                     <div class="table-responsive">
                         <table id="table" class="table">

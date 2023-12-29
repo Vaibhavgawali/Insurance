@@ -38,10 +38,10 @@
         @hasrole('Superadmin')
         <a href="#" class="btn btn-sm btn-gradient-warning btn-rounded " data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>
 
-        <form  id="" action="admin/user/{{$row->user_id}}" method="POST">
+        <form  id="candidate-delete-form" action="admin/user/{{$row->user_id}}" method="POST" >
           @csrf
           @method('DELETE')
-          <button style="" type="submit" href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded " onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+          <button style="" type="submit" href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded " onclick="deleteAlert()">Delete</button>
         </form>
         @endhasrole
 

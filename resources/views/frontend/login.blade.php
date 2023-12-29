@@ -55,6 +55,7 @@
 									<button type="submit" id="login_btn" class="btn btn-primary  my-2">Login</button>
 								</div>
 								Dont have an account ? <a href="/register" class="btn btn-secondary text-white mx-2">Register</a> 
+                
 							  </div>
                           </form>
                        </div>

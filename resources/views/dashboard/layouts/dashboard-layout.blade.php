@@ -20,9 +20,12 @@
     <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.jpg" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ url('') }}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script
+
 </head>
 
 <body>
+    
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -35,7 +38,7 @@
             <div class="main-panel">
 
                 @yield('main-section')
-
+      
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
                 <x-dashboard-footer></x-dashboard-footer>

@@ -1,3 +1,7 @@
+let RegisteredAlert =()=>
+{
+    swal("Good job!", "Registered sucessfully!", "success");
+}
 $(document).ready(function () {
     $("#candidate_register_button").click(function (event) {
         var name = $("#name").val();
@@ -267,11 +271,7 @@ $(document).ready(function () {
                     $(".error-message").remove();
 
                     $("#candidate_register_button").attr("disabled", true);
-                    $("#register_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    RegisteredAlert();
                     $("#candidate_register_form")[0].reset();
                     return false;
                 }
@@ -488,11 +488,7 @@ $(document).ready(function () {
                     $(".error-message").remove();
 
                     $("#insurer_register_button").attr("disabled", true);
-                    $("#register_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                        response.message +
-                        "</div>"
-                    );
+                    RegisteredAlert();
                     $("#insurer_register_form")[0].reset();
                     return false;
                 }
@@ -692,11 +688,7 @@ $(document).ready(function () {
                     $(".error-message").remove();
 
                     $("#institute_register_button").attr("disabled", true);
-                    $("#register_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    RegisteredAlert();
                     $("#institute_register_form")[0].reset();
                     return false;
                 }
