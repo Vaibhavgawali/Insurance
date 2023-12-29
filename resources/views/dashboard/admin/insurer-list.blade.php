@@ -16,7 +16,6 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Insurer Table</h4>
-
             </p>
             <x-table-component :data="$insurers" />
             <div class="d-flex my-3 align-items-center">
