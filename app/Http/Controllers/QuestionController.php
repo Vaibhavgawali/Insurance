@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      */
@@ -94,11 +96,12 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         // print_r($request->all());die;
-
+        // print_r(intval($request->correct_answer));die;
+        $quiz_id=$request->input('quiz_id');
         $request->validate([
             'question_text' => 'required|string',
             'answers' => 'required|array|min:4',
-            'correct_answer' => 'required|integer',
+            'correct_answer' => 'required|integer|in:0,1,2,3',
             'answers.*' => 'required|string',
         ], [
             'answers.*.required' => 'Answer :attribute is required.',
@@ -106,14 +109,14 @@ class QuestionController extends Controller
 
         $question = Question::create([
             'question_text' => $request->input('question_text'),
-            'quiz_id'=>$request->input('quiz_id')
+            'quiz_id'=>$quiz_id
         ]);
 
         // print_r($question);
 
         // Create answers for the question
         foreach ($request->input('answers') as $index => $answerText) {
-            $correct = $index + 1 == $request->input('correct_answer');
+            $correct = $index  == $request->input('correct_answer');
     
             $question->answers()->create([
                 'answer_text' => $answerText,
@@ -121,7 +124,7 @@ class QuestionController extends Controller
             ]);
         }
     
-        return redirect()->route('questions.create')->with('success', 'Question created successfully');
+        return redirect()->route('quizes.show',$quiz_id)->with('success', 'Question created successfully');
     }
 
     /**
@@ -129,11 +132,16 @@ class QuestionController extends Controller
      */
     public function show(string $id)
     {
-        $question = Question::find($id);
-        $answers=$question->answers;
-        dd($answers);
+        $question = Question::with('answers')->find($id);
+        $question_text=$question->question_text;
+        $quiz_id=$question->quiz_id;
+        if ($question) {
+            $answers = $question->answers;
+            $correctOption = $answers->firstWhere('is_correct');
+        }
+        return view('dashboard.questions.show', ['question_text'=>$question_text,'correctOption'=>$correctOption,'answers'=>$answers,'question_id'=>$id,'quiz_id'=>$quiz_id]);
 
-        return view('dashboard.questions.show', compact('question'));
+        // return view('dashboard.questions.show', compact('question'));
     }
 
     /**
@@ -142,29 +150,61 @@ class QuestionController extends Controller
     public function edit(string $id)
     {
         //
-        $quizzes = Quiz::all();
-        $question = Question::find($id);
-        $quizzes = $quizzes->map(function($item){
-            return [
-                'name'=>$item->title,
-                'id'=>$item->id,
-                'quiz_id'=>$item->quiz_id
-            ];
-        });
-        
-        $fields = [
-            ['name' => 'question_text', 'label' => 'Question text', 'type' => 'text', 'placeholder' => 'Question text'],
-            ['name' => 'quiz_id', 'label' => 'Quiz', 'type' => 'select', 'placeholder' => 'Quiz','options'=>json_decode($quizzes),'multiple'=>false],
-            ['name' => 'level', 'label' => 'Level', 'type' => 'text', 'placeholder' => 'Level'],
-        ];
-        return view('dashboard.questions.edit', ['question'=>$question,'fields'=>$fields]);
+        $question = Question::with('answers')->find($id);
+        $question_text=$question->question_text;
+        $quiz_id=$question->quiz_id;
+        if ($question) {
+            $answers = $question->answers;
+            $correctOption = $answers->firstWhere('is_correct');
+        }
+        return view('dashboard.questions.edit', ['question_text'=>$question_text,'correctOption'=>$correctOption,'answers'=>$answers,'question_id'=>$id,'quiz_id'=>$quiz_id]);
     }
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+        $quiz_id=$request->input('quiz_id');
+        $request->validate([
+            'question_text' => 'required|string',
+            'answers' => 'required|array|min:4',
+            'correct_answer' => 'required|integer',
+            'answers.*' => 'required|string',
+        ], [
+            'answers.*.required' => 'Answer :attribute is required.',
+        ]);
+    
+        $question = Question::findOrFail($id);
+    
+        $question->update([
+            'question_text' => $request->input('question_text'),
+        ]);
+    
+        // Update existing answers
+        foreach ($request->input('answers') as $index => $answerText) {
+            $correct = $index + 1 == $request->input('correct_answer');
+    
+            // Find the existing answer by its index
+            $answer = $question->answers->get($index);
+    
+            // Update the answer if it exists
+            if ($answer) {
+                $answer->update([
+                    'answer_text' => $answerText,
+                    'is_correct' => $correct,
+                ]);
+            } else {
+                // If the answer doesn't exist, create a new one
+                $question->answers()->create([
+                    'answer_text' => $answerText,
+                    'is_correct' => $correct,
+                ]);
+            }
+        }
+    
+        return redirect()->route('quizes.show',$quiz_id)->with('success', 'Question updated successfully');
     }
 
     /**
@@ -175,7 +215,7 @@ class QuestionController extends Controller
         //
         $question = Question::find($id);
         $question->delete();
-        return redirect()->route('questions.index')
-            ->with('success', 'Question deleted successfully');
+        return redirect()->back()->with('success', 'Question deleted successfully');
+
     }
 }

@@ -12,8 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Add Question</h4>
-                    <p class="card-description"> Add Question Details</p>
-                    
+                    <p class="card-description"> Add Question Details</p>           
                     <form method="post" action="{{ route('questions.store') }}">
                         @csrf
                         <input type="hidden" name="quiz_id" value={{$quiz_id}}>
@@ -25,7 +24,7 @@
 
                         <label>Answers:</label>
 
-                        @for ($i = 1; $i <= 4; $i++)
+                        <!-- @for ($i = 1; $i <= 4; $i++)
                             <div>
                                 <input type="radio" name="correct_answer" value="{{ $i }}" {{ old('correct_answer') == $i ? 'checked' : '' }}>
                                 <label for="answer{{ $i }}">Answer {{ $i }}</label>
@@ -34,8 +33,19 @@
                             @if($errors->has('answers.' . ($i - 1)))
                                 <div class="invalid-feedback d-block"> {{ $errors->first('answers.' . ($i - 1)) }}</div>
                             @endif
-                        @endfor
+                        @endfor -->
 
+                        @for ($i = 0; $i < 4; $i++)
+                            <div>
+                                <input type="radio" name="correct_answer" value="{{ $i }}" {{ old('correct_answer') == $i ? 'checked' : '' }}>
+                                <label for="answer{{ $i }}">Answer {{ $i + 1 }}</label>
+                                <input type="text" name="answers[]" value="{{ old('answers.' . $i) }}">
+                            </div>
+                            @if($errors->has('answers.' . $i))
+                                <div class="invalid-feedback d-block">{{ $errors->first('answers.' . $i) }}</div>
+                            @endif
+                        @endfor
+                           
                         <button type="submit">Submit</button>
                     </form>
                 </div>

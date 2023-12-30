@@ -11,10 +11,14 @@
         </tr>
     </thead>
     <tbody>
+    @php
+        $i = 1;
+    @endphp
         @foreach($items as $item)
         <tr>
             @foreach($headers as $key)
-            <td>{{ $item[$key] }}</td>
+            <td>{{ $key == "id" ? $i++ : $item[$key] }}</td>
+
             @endforeach
             @if(count($actions) > 0)
             <td>
@@ -28,6 +32,7 @@
                     @endif
                 </a>
                 @endif
+                
                 @if($action['action']=='delete')
                 <form action="{{ $action['url']($item) }}" method="POST" class="d-inline" >
                     @csrf

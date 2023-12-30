@@ -14,26 +14,21 @@
             <div class="card">
                 <div class="card-body table-responsive">
                     <h4 class="card-title">Paper List</h4>
-                    <p class="card-description"> Paper List </p> <a href="/questions/create" class="btn btn-primary btn-sm">Add</a>
 
                     <form >
                         @csrf
                         <label for="question">Question:</label>
-                        <input type="text" name="question_text" value="{{ old('question_text')}}">
+                        <input type="text" name="question_text" value="{{ $question_text }}" readonly>
 
                         <label>Answers:</label>
 
                         @for ($i = 1; $i <= 4; $i++)
                             <div>
-                                <input type="radio" name="correct_answer" value="{{ $i }}" {{ old('correct_answer') == $i ? 'checked' : '' }}>
+                                <input type="radio" name="correct_answer" value="{{ $i }}" {{ old('correct_answer', optional($correctOption)->id) == $answers->get($i - 1)->id ? 'checked' : '' }} class="form-check-input" disabled>
                                 <label for="answer{{ $i }}">Answer {{ $i }}</label>
-                                <input type="text" name="answers[]" value="{{ old('answers.' . ($i - 1)) }}">
+                                <input type="text" name="answers[]" value="{{ old('answers.' . ($i - 1), optional($answers->get($i - 1))->answer_text) }}" readonly>
                             </div>
-                            @if($errors->has('answers.' . ($i - 1)))
-                                <div class="invalid-feedback d-block"> {{ $errors->first('answers.' . ($i - 1)) }}</div>
-                            @endif
                         @endfor
-                        
                         <button>Close</button>
                     </form>
                 </div>

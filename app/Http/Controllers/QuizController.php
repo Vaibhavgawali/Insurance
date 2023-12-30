@@ -6,8 +6,18 @@ use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Validator;
+
 class QuizController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+
+        //  Spatie middleware here
+        $this->middleware(['role_or_permission:Superadmin']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -69,19 +79,18 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
+        $input = array_map('trim', $request->all());
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|string',
+            'description' => 'required|string',
             'level' => 'required',
         ]);
         $request['created_by'] = Auth::user()->user_id;
-        // dd($request->all());
+
         $quiz = Quiz::create($request->all()); //if all data sent
 
-        // return redirect()->route('quizes.show', $quiz->id)
-        //     ->with('success', 'Quiz created successfully');
-            return redirect()->route('quizes.index')
-            ->with('success', 'Quiz created successfully');
+        return redirect()->route('quizes.index')
+        ->with('success', 'Quiz created successfully');
     }
 
     /**
@@ -180,17 +189,17 @@ class QuizController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $input = array_map('trim', $request->all());
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|string',
+            'description' => 'required|string',
             'level' => 'required',
         ]);
 
         $quiz = Quiz::find($id);
-        // dd($quiz);
+        
         $quiz->update($request->all());
-        // return redirect()->route('quizes.show', $id)
-        //     ->with('success', 'Quiz updated successfully');
+
         return redirect()->route('quizes.index')
             ->with('success', 'Quiz updated successfully');
     }
@@ -200,8 +209,6 @@ class QuizController extends Controller
      */
     public function destroy($id)
     {
-        // dd($id);
-        //
         $quiz = Quiz::find($id);
         $quiz->delete();
         return redirect()->route('quizes.index')
