@@ -14,6 +14,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserDocumentsController;
+use App\Http\Controllers\admin\RequirementsController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -61,6 +62,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('user-address', UserAddressController::class);
     Route::resource('user-experience', UserExperienceController::class);
     Route::resource('user-documents', UserDocumentsController::class) ;
+
+    Route::resource('requirements', RequirementsController::class);
 
     Route::post('image-upload', [UserProfileController::class, 'profileImageUpload']);
 
