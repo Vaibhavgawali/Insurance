@@ -84,20 +84,11 @@ dropArea.addEventListener("drop", function (e) {
 $(document).ready(function () {
     // Profile Image Upload function
     $("#image-upload-button").click(function (event) {
-        // var profile_image = $("#profile_image").val();
-        // var user_id = $("#user_id").val();
+   
         var formData = new FormData($('#Profile-image-upload-form')[0]);
 
         $("#profile_image_error").html("");
 
-        // var data = {
-        //     profile_image: profile_image,
-        //     user_id: user_id,
-        // };
-
-        // Update the user_id value in the data object
-        // data.user_id = extractAndConvertToInteger(data.user_id);
-        // console.log(data);
 
         event.preventDefault();
 
@@ -117,10 +108,9 @@ $(document).ready(function () {
                     $("#image-upload-button").attr("disabled", true);
                     imageUploadAlert();
 
-                    // Optional: You can add a delay before reloading the page
                     // setTimeout(function () {
                     //     window.location.reload();
-                    // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+                    // },1500); // 2000 milliseconds (2 seconds) delay, adjust as needed
                     
 
                     return false;
@@ -416,31 +406,6 @@ $(document).ready(function () {
             $("#age").focus();
             return false;
         }
-
-        // if (
-        //     preffered_line == "" ||
-        //     preffered_line == null ||
-        //     preffered_line == "undefined" ||
-        //     preffered_line == undefined
-        // ) {
-        //     $("#preffered_line_error").html(
-        //         '<div class=" invalid-feedback d-block">Prefferd Line is required.</div>'
-        //     );
-        //     $("#preffered_line").focus();
-        //     return false;
-        // }
-        // if (
-        //     spoc == "" ||
-        //     spoc == null ||
-        //     spoc == "undefined" ||
-        //     spoc == undefined
-        // ) {
-        //     $("#spoc_error").html(
-        //         '<div class=" invalid-feedback d-block">SPOC is required.</div>'
-        //     );
-        //     $("#spoc").focus();
-        //     return false;
-        // }
 
         var data = {
             date_of_birth: date_of_birth,

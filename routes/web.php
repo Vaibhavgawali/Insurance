@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\admin\UserController;
 
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InsurerController;
 use App\Http\Controllers\InstituteController;
 use App\Http\Controllers\UserProfileController;
@@ -31,6 +32,8 @@ Route::get('/', [WelcomeController::class,'index']);
 Route::get('/candidate-register', [WelcomeController::class,'candidate_register']);
 Route::get('/insurer-register', [WelcomeController::class,'insurer_register']);
 Route::get('/institute-register', [WelcomeController::class,'institute_register']);
+Route::get('/images/{filename}', [ImageController::class,'show'])->name ('image.show');
+
 
 Route::middleware(['web'])->group(function () {
     Route::get('/login', [LoginController::class,'showLoginForm'])->name('login');

@@ -1,12 +1,19 @@
 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-3 profile-info-section">
   <div class="card">
-    
+
     <div class="d-flex justify-content-between p-3">
       <h6>Registered on {{ $data->created_at->format('Y-m-d') }}</h6>
     </div>
 
     <div class="profile-img-div text-center">
       @if(auth()->user()->user_id == $data->user_id)
+      @if($data->profile->profile_image)
+    <div id="image-view">
+        <img src="{{asset('public/images/cjTve0W21L7ak1OXVPapgcGe9CVqynMEMCE9jraG.jpg')}}" alt="{{$data->profile->profile_image}}">
+    </div>
+@else
+
+
       <form action="" id="Profile-image-upload-form">
         <div id="profile_image_status"></div>
         @csrf
@@ -30,13 +37,17 @@
           <button style="display:none" ; type="submit" class="btn btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
         </div>
       </form>
+      @endif
+
       @else
-      <h3>Show Image</h3>
+      <div id="image-view">
+        <img src="{{ asset('images/' . $data->profile->profile_image) }}" alt="{{ asset('images/' . $data->profile->profile_image) }}">
+      </div>
       @endif
     </div>
-    
-    
-    
+
+
+
 
 
 

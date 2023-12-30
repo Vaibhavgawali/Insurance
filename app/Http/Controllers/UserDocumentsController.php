@@ -59,10 +59,10 @@ class UserDocumentsController extends Controller
             ]);
 
             if($user_documents){
-                return Response(['message' => "User documents added successfully"],200);
+                return Response(['status'=>true,'message' => "User documents added successfully"],200);
             }
         }       
-        return Response(['message' => "Something went wrong"],500);   
+        return Response(['status'=>false,'message' => "Something went wrong"],500);   
     }
 
     /**
