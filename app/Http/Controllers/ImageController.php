@@ -8,15 +8,15 @@ class ImageController extends Controller
 {
     public function show($filename)
     {
-        $path = storage_path('app/' . $filename);
+        $path = storage_path('app/public/' . $filename);
          dd($path);
 
-        if (!Storage::exists('/' . $filename)) {
+        if (!Storage::exists('public/' . $filename)) {
             abort(404);
         }
 
-        $file = Storage::get('/' . $filename);
-        $type = Storage::mimeType('/' . $filename);
+        $file = Storage::get('public/' . $filename);
+        $type = Storage::mimeType('public/' . $filename);
 
         $response = response($file, 200)->header('Content-Type', $type);
 
