@@ -7,11 +7,11 @@
 
     <div class="profile-img-div text-center">
       @if(auth()->user()->user_id == $data->user_id)
-      @if($data->profile->profile_image)
-    <div id="image-view">
-        <img src="{{asset('public/images/cjTve0W21L7ak1OXVPapgcGe9CVqynMEMCE9jraG.jpg')}}" alt="{{$data->profile->profile_image}}">
-    </div>
-@else
+      @if($data->profile && $data->profile->profile_image)
+      <div id="image-view">
+        <img src="{{ asset('storage/images/') }}/{{$data->profile->profile_image}}" alt="{{$data->profile->profile_image}}" class="img-fluid">
+      </div>
+      @else
 
 
       <form action="" id="Profile-image-upload-form">
