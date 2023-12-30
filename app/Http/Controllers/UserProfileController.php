@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Auth;
-use Validator;
+// use Auth;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\UserProfile;
+use Illuminate\Support\Facades\Validator;
 
 class UserProfileController extends Controller
 {
@@ -140,12 +142,11 @@ class UserProfileController extends Controller
                 $user = UserProfile::where('user_id', $userId)->first();
 
                 // Delete the old image
-                if($user->profile_image){
+                if(isset($user->profile_image)){
                     $oldimage=$user->profile_image;
                     Storage::delete($oldimage);
                 }
-
-                $user->profile_image = $imagepath;
+                $user->profile_image = $imageName;
                 $user->save();
                 return Response(['status'=>true,'message' => 'Image stored successfully', 'path' => $imagepath]);
             } else {
