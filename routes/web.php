@@ -62,6 +62,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('user-experience', UserExperienceController::class);
     Route::resource('user-documents', UserDocumentsController::class) ;
 
+    Route::resource('requirements', RequirementsController::class);
+
     Route::post('image-upload', [UserProfileController::class, 'profileImageUpload']);
 
     Route::get('refresh-token', [LoginController::class, 'refreshAuthToken']);
