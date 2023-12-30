@@ -38,7 +38,8 @@ class RequirementsController extends Controller
         } else {
             $requirements = null;
         }
-    
+        // return view('dashboard.admin.dashboard', ['requirements' => $requirements]);
+
         return $requirements
             ? response(['requirements' => $requirements], 200)
             : response(['message' => 'Requirements not found'], 404);

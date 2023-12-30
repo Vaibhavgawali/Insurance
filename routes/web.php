@@ -14,6 +14,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserDocumentsController;
+use App\Http\Controllers\admin\RequirementsController;
 use Illuminate\Support\Facades\Auth;
 
 /*

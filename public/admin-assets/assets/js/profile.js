@@ -13,6 +13,10 @@ let resumeUploadAlert =()=>
 {
     swal("Good job!", "Resume Uploaded SuccessFully!", "success");
 }
+let requirementsAlert =()=>
+{
+    swal("Nice!", "We will get back to you soon!", "success");
+}
 deleteAlert = () => {
     swal({
         title: "Are you sure?",
@@ -1032,6 +1036,84 @@ $(document).ready(function () {
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
 
+                    $(".error-message").remove();
+
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+            },
+        });
+    });
+});
+
+$(document).ready(function () {
+    // Reuirements  Update function
+    $("#put-query-submit-button").click(function (event) {
+        var requirement_text = $("#put-query").val();
+        var user_id = $("#user_id").val();
+
+
+        $("#put-query_error").html("");
+       
+       
+
+        if (
+            requirement_text == "" ||
+            requirement_text == null ||
+            requirement_text == "undefined" ||
+            requirement_text == undefined
+        ) {
+            $("#put-query_error").html(
+                '<div class=" invalid-feedback d-block">Query is required.</div>'
+            );
+            $("#put-query").focus();
+            return false;
+        }
+
+
+
+        var data = {
+            requirement_text: requirement_text,
+            user_id: user_id,
+        };
+       
+        event.preventDefault();
+
+        var url = window.location.origin + `/requirements`;
+        console.log(url);
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.status == true) {
+                    $(".error-message").remove();
+                    $("#put-query-submit-button").attr("disabled", true);
+                    requirementsAlert();
+                    // Optional: You can add a delay before reloading the page
+                    // setTimeout(function () {
+                    //     window.location.reload();
+                    // }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+                    return false;
+                }
+            },
+            error: function (response) {
+                // console.log(response);
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+                    console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
