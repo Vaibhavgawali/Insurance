@@ -1,3 +1,42 @@
+// Alert Box
+
+
+let loginAlert =()=>
+{
+    swal("Good job!", "You clicked the button!", "success");
+}
+let imageUploadAlert =()=>
+{
+    swal("Good job!", "Image Uploaded SuccessFully!", "success");
+}
+let resumeUploadAlert =()=>
+{
+    swal("Good job!", "Resume Uploaded SuccessFully!", "success");
+}
+deleteAlert = () => {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to see the candidate!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+            });
+            // If the user confirms, proceed with form submission
+            // Assuming you have a form with an ID, replace 'yourFormId' with the actual ID
+            document.getElementById('candidate-delete-form').submit();
+        } else {
+            swal("Your imaginary file is safe!");
+            // If the user cancels, return false to prevent form submission
+            return false;
+        }
+    });
+}
+
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("profile_image");
 const imageView = document.getElementById("image-view");
@@ -45,47 +84,34 @@ dropArea.addEventListener("drop", function (e) {
 $(document).ready(function () {
     // Profile Image Upload function
     $("#image-upload-button").click(function (event) {
-        var profile_image = $("#profile_image").val();
-        var user_id = $("#user_id").val();
+   
+        var formData = new FormData($('#Profile-image-upload-form')[0]);
 
         $("#profile_image_error").html("");
 
-        var data = {
-            profile_image: profile_image,
-            user_id: user_id,
-        };
-
-        // Update the user_id value in the data object
-        // data.user_id = extractAndConvertToInteger(data.user_id);
-        // console.log(data);
 
         event.preventDefault();
 
-        var url = window.location.origin + `/image-upload/${user_id.trim()}`;
+        var url = window.location.origin + `/image-upload`;
         console.log(url);
 
         $.ajax({
             type: "POST",
             url: url,
-            data: data,
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function (response) {
                 console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#image-upload-button").attr("disabled", true);
-                    $("#profile_image_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    imageUploadAlert();
 
-                    // Optional: You can add a delay before reloading the page
                     // setTimeout(function () {
                     //     window.location.reload();
-                    // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+                    // },1500); // 2000 milliseconds (2 seconds) delay, adjust as needed
+                    
 
                     return false;
                 }
@@ -142,11 +168,7 @@ var baseUrl = $('meta[name="base-url"]').attr('content');
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_cv_update_button").attr("disabled", true);
-                    $("#profile_cv_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    resumeUploadAlert();
 
                     // Optional: You can add a delay before reloading the page
                     // setTimeout(function () {
@@ -384,31 +406,6 @@ $(document).ready(function () {
             $("#age").focus();
             return false;
         }
-
-        // if (
-        //     preffered_line == "" ||
-        //     preffered_line == null ||
-        //     preffered_line == "undefined" ||
-        //     preffered_line == undefined
-        // ) {
-        //     $("#preffered_line_error").html(
-        //         '<div class=" invalid-feedback d-block">Prefferd Line is required.</div>'
-        //     );
-        //     $("#preffered_line").focus();
-        //     return false;
-        // }
-        // if (
-        //     spoc == "" ||
-        //     spoc == null ||
-        //     spoc == "undefined" ||
-        //     spoc == undefined
-        // ) {
-        //     $("#spoc_error").html(
-        //         '<div class=" invalid-feedback d-block">SPOC is required.</div>'
-        //     );
-        //     $("#spoc").focus();
-        //     return false;
-        // }
 
         var data = {
             date_of_birth: date_of_birth,

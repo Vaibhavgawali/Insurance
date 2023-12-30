@@ -33,8 +33,7 @@ class UserDocumentsController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = Auth::user()->user_id;
-
+        
         $validator=Validator::make($request->all(),[
             "document_title"=> 'string|max:40',
             "document_url"=> 'required|mimes:pdf,doc,docx|max:2048',
@@ -60,10 +59,10 @@ class UserDocumentsController extends Controller
             ]);
 
             if($user_documents){
-                return Response(['message' => "User documents added successfully"],200);
+                return Response(['status'=>true,'message' => "User documents added successfully"],200);
             }
         }       
-        return Response(['message' => "Something went wrong"],500);   
+        return Response(['status'=>false,'message' => "Something went wrong"],500);   
     }
 
     /**
