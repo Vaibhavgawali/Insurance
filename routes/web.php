@@ -56,6 +56,7 @@ Route::resource('institute', InstituteController::class);
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/dashboard', [AdminController::class,'dashboard']);
     Route::get('/insurer-dashboard', [AdminController::class,'insurer_dashboard']);
+    Route::get('/institution-dashboard', [AdminController::class,'institution_dashboard']);
     Route::resource('user-profile', UserProfileController::class);
     Route::resource('user-address', UserAddressController::class);
     Route::resource('user-experience', UserExperienceController::class);

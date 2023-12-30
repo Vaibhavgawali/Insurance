@@ -8,9 +8,51 @@
     <div class="profile-img-div text-center">
       @if(auth()->user()->user_id == $data->user_id)
       @if($data->profile->profile_image)
-    <div id="image-view">
-        <img src="{{asset('public/images/cjTve0W21L7ak1OXVPapgcGe9CVqynMEMCE9jraG.jpg')}}" alt="{{$data->profile->profile_image}}">
+    <div id="image-view-1">
+        <img src="https://dummyimage.com/640x4:3/" alt="{{$data->profile->profile_image}}">
+        <div class="mt-3" id="change-profile-image">
+        <button class="btn btn-primary btn-sm" onclick="toggleProfileImageDiv()"><i class="mdi mdi-account-convert fs-4"></i></button>
+        </div>
     </div>
+
+     <div style="display:none" id="profile-image-change-div">
+     <form action="" id="Profile-image-upload-form">
+        <div id="profile_image_status"></div>
+        @csrf
+        <label for="profile_image" id="drop-area">
+          <input type="file" accept="image/*" id="profile_image" name="profile_image" hidden>
+          <div id="image-view">
+            <!-- <img src="icon.png" alt=""> -->
+            <i class="mdi mdi-cloud-upload "></i>
+
+            <p>Drag and drop or click here <br>to upload image</p>
+            <!-- <span>Upload any images From dekstop</span> -->
+          </div>
+          <div id="profile_image_error"></div>
+        </label>
+        <div class="form-group">
+          <label for="user_id"></label>
+          <input type="text" class="form-control" id="user_id" placeholder="user_id" value=" {{$data->user_id}}" hidden>
+        </div>
+        <br>
+        <div class="d-flex w-100 justify-content-center align-items-center ">
+          <button style="display:none" ; type="submit" class="btn btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
+        </div>
+      </form>
+     </div>
+     <script>
+     function toggleProfileImageDiv() {
+        var profileImageDiv = document.getElementById('profile-image-change-div');
+        var imageView1Div = document.getElementById('image-view-1');
+
+        // Toggle the profile-image-change-div
+        profileImageDiv.style.display = (profileImageDiv.style.display === 'none' || profileImageDiv.style.display === '') ? 'block' : 'none';
+
+        // Hide image-view-1 if profile-image-change-div is visible
+        imageView1Div.style.display = (profileImageDiv.style.display === 'block') ? 'none' : 'block';
+    }
+</script>
+    
 @else
 
 

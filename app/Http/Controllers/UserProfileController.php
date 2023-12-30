@@ -119,7 +119,7 @@ class UserProfileController extends Controller
         if(Auth::check()){
             $validator=Validator::make($request->all(),[
                 // 'profile_image'=>'required|image|mimes:jpeg,png,jpg|max:2048'
-                'profile_image'=>'required|image|mimes:jpeg,png,jpg|2048'
+                'profile_image'=>'required|image|mimes:jpeg,png,jpg'
             ]);
 
             if($validator->fails()){

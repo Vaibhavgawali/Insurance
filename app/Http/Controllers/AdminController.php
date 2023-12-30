@@ -15,5 +15,9 @@ class AdminController extends Controller
     {
         return view('dashboard.admin.insurer-login');
     }
+    function institution_dashboard()
+    {
+        return view('dashboard.admin.institution-login');
+    }
 }
 
