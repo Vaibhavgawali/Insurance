@@ -69,6 +69,7 @@ class InsurerController extends Controller
                                 ->numbers()
                                 ->symbols()
             ],
+            'password_confirmation' => 'required|same:password',
             'spoc'=>'required|string|max:60',
             'preferred_line'=>'required|string|max:60',
             'city'=>'required|string|max:60'

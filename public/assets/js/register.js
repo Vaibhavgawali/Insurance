@@ -252,6 +252,7 @@ $(document).ready(function () {
             city: city,
             experience: experience,
             preferred_line: preferred_line,
+            password_confirmation: password_confirmation,
         };
 
         if (experience == "experienced") {
@@ -486,6 +487,7 @@ $(document).ready(function () {
             phone: phone,
             email: email,
             password: password,
+            password_confirmation: password_confirmation,
             city: city,
             spoc: spoc,
             preferred_line: preferred_line,
@@ -697,6 +699,7 @@ $(document).ready(function () {
             phone: phone,
             email: email,
             password: password,
+            password_confirmation: password_confirmation,
             city: city,
             spoc: spoc,
         };
