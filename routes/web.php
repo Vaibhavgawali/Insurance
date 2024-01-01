@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\ModulesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AdminController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserDocumentsController;
 use App\Http\Controllers\admin\RequirementsController;
+
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -51,13 +53,11 @@ Route::resource('admin/user', UserController::class)->middleware('auth:sanctum')
 Route::resource('candidate', CandidateController::class);
 Route::resource('insurer', InsurerController::class);
 Route::resource('institute', InstituteController::class);
-
+Route::resource('module-1',ModulesController::class);
 // Auth::routes();
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/dashboard', [AdminController::class,'dashboard']);
-    Route::get('/insurer-dashboard', [AdminController::class,'insurer_dashboard']);
-    Route::get('/institution-dashboard', [AdminController::class,'institution_dashboard']);
     Route::resource('user-profile', UserProfileController::class);
     Route::resource('user-address', UserAddressController::class);
     Route::resource('user-experience', UserExperienceController::class);

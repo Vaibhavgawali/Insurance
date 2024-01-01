@@ -106,7 +106,7 @@ class UserDocumentsController extends Controller
                 ]);
 
                 if($validator->fails()){
-                    return Response(['message' => $validator->errors()],401);
+                    return Response(['status'=>false,'message' => $validator->errors()],422);
                 }   
 
                 // Save the image to the storage
@@ -128,13 +128,13 @@ class UserDocumentsController extends Controller
                 ]);
 
                 if($isUpdated){
-                    return Response(['message' => "User documents updated successfully"],200);
+                    return Response(['status'=>true,'message' => "User documents updated successfully"],200);
                 }
-                return Response(['message' => "Something went wrong"],500);
+                return Response(['status'=>false,'message' => "Something went wrong"],500);
             }
-            return Response(['message'=>"Invalid form method "],405);
+            return Response(['status'=>false,'message'=>"Invalid form method "],405);
         }
-        return Response(['message'=>'Unauthorized'],401);
+        return Response(['status'=>false,'message'=>'Unauthorized'],401);
     }
 
     /**

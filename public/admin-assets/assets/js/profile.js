@@ -1,22 +1,17 @@
 // Alert Box
 
-
-let loginAlert =()=>
-{
+let loginAlert = () => {
     swal("Good job!", "You clicked the button!", "success");
-}
-let imageUploadAlert =()=>
-{
+};
+let imageUploadAlert = () => {
     swal("Good job!", "Image Uploaded SuccessFully!", "success");
-}
-let resumeUploadAlert =()=>
-{
+};
+let resumeUploadAlert = () => {
     swal("Good job!", "Resume Uploaded SuccessFully!", "success");
-}
-let requirementsAlert =()=>
-{
+};
+let requirementsAlert = () => {
     swal("Nice!", "We will get back to you soon!", "success");
-}
+};
 deleteAlert = () => {
     swal({
         title: "Are you sure?",
@@ -24,22 +19,21 @@ deleteAlert = () => {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-    })
-    .then((willDelete) => {
+    }).then((willDelete) => {
         if (willDelete) {
             swal("Poof! Your imaginary file has been deleted!", {
                 icon: "success",
             });
             // If the user confirms, proceed with form submission
             // Assuming you have a form with an ID, replace 'yourFormId' with the actual ID
-            document.getElementById('candidate-delete-form').submit();
+            document.getElementById("candidate-delete-form").submit();
         } else {
             swal("Your imaginary file is safe!");
             // If the user cancels, return false to prevent form submission
             return false;
         }
     });
-}
+};
 
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("profile_image");
@@ -88,11 +82,9 @@ dropArea.addEventListener("drop", function (e) {
 $(document).ready(function () {
     // Profile Image Upload function
     $("#image-upload-button").click(function (event) {
-   
-        var formData = new FormData($('#Profile-image-upload-form')[0]);
+        var formData = new FormData($("#Profile-image-upload-form")[0]);
 
         $("#profile_image_error").html("");
-
 
         event.preventDefault();
 
@@ -112,10 +104,9 @@ $(document).ready(function () {
                     $("#image-upload-button").attr("disabled", true);
                     imageUploadAlert();
 
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // },1500); // 2000 milliseconds (2 seconds) delay, adjust as needed
-                    
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1500); // 2000 milliseconds (2 seconds) delay, adjust as needed
 
                     return false;
                 }
@@ -142,32 +133,94 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function(e) {
-    $('#profile_cv_update_button').click(function() {
-        var formData = new FormData($('#profile_cv_form')[0]);
+$(document).ready(function (e) {
+    //cv update method
+    $("#profile_cv_update-1_button").click(function () {
+        var formData = new FormData($("#profile_update_cv_form")[0]);
+        var user_id = $("#user_id").val().trim();
+        user_id = parseInt(user_id);
+
+        var documentUrlInput = $("#document_url")[0];
+        var documentUrl = documentUrlInput.files[0];
+        var documentUrlValue = documentUrl ? documentUrl.name : null;
+
+        // formData.append("document_url", documentUrl, documentUrlInput.name);
+        formData.append(
+            "server_expected_key",
+            documentUrl,
+            documentUrlInput.name
+        );
+
+        console.log("user_id:", user_id);
+        console.log("document_title:", $("#document_title").val());
+        console.log("document_url:", documentUrl);
+        console.log("document_url_value:", documentUrlValue);
         var url = window.location.origin + `/user-documents`;
         // Get base URL from meta tag
-var baseUrl = $('meta[name="base-url"]').attr('content');
+        var baseUrl = $('meta[name="base-url"]').attr("content");
 
-// $.ajax({
-//     url: 
-//     type: 'GET',
-//     // other AJAX options...
-//     success: function(response) {
-//         // handle success
-//     },
-//     error: function(error) {
-//         // handle error
-//     }
-// });
-        // e.preventDefault();
+        //  e.preventDefault();
         $.ajax({
-            url:baseUrl + '/user-documents',
-            type: 'POST',
+            url: baseUrl + `/user-documents/${user_id}`,
+            type: "PATCH",
             data: formData,
             contentType: false,
             processData: false,
-            success:  function (response) {
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.status == true) {
+                    $(".error-message").remove();
+                    $("#profile_cv_update-1_button").attr("disabled", true);
+                    resumeUploadAlert();
+
+                    // Optional: You can add a delay before reloading the page
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+
+                    return false;
+                }
+            },
+            error: function (response) {
+                // console.log(response);
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+                    console.log(errors);
+                    $(".error-message").remove();
+
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+            },
+        });
+    });
+});
+
+$(document).ready(function (e) {
+    $("#profile_cv_update_button").click(function () {
+        var formData = new FormData($("#profile_cv_form")[0]);
+        var url = window.location.origin + `/user-documents`;
+        // Get base URL from meta tag
+        var baseUrl = $('meta[name="base-url"]').attr("content");
+
+        e.preventDefault();
+        $.ajax({
+            url: baseUrl + "/user-documents",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
                 console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
@@ -175,9 +228,9 @@ var baseUrl = $('meta[name="base-url"]').attr('content');
                     resumeUploadAlert();
 
                     // Optional: You can add a delay before reloading the page
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // },1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
 
                     return false;
                 }
@@ -204,6 +257,56 @@ var baseUrl = $('meta[name="base-url"]').attr('content');
     });
 });
 
+$(document).ready(function (e) {
+    $("#profile_cv_update_button").click(function () {
+        var formData = new FormData($("#profile_cv_form")[0]);
+        var url = window.location.origin + `/user-documents`;
+        // Get base URL from meta tag
+        var baseUrl = $('meta[name="base-url"]').attr("content");
+
+        e.preventDefault();
+        $.ajax({
+            url: baseUrl + "/user-documents",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                console.log(response);
+                if (response.status == true) {
+                    $(".error-message").remove();
+                    $("#profile_cv_update_button").attr("disabled", true);
+                    resumeUploadAlert();
+
+                    // Optional: You can add a delay before reloading the page
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+
+                    return false;
+                }
+            },
+            error: function (response) {
+                // console.log(response);
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+                    console.log(errors);
+                    $(".error-message").remove();
+
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+            },
+        });
+    });
+});
 
 $(document).ready(function () {
     // Profile info Update function
@@ -246,7 +349,7 @@ $(document).ready(function () {
         }
 
         function validatePhoneNumber(phone) {
-            var phonePattern = /^[0-9]{10}$/;
+            var phonePattern = /^[6-9]\d{9}$/;
             return phonePattern.test(phone);
         }
 
@@ -984,7 +1087,6 @@ $(document).ready(function () {
             return false;
         }
 
-      
         var data = {
             is_current_company: is_current_company,
             organization: organization,
@@ -994,9 +1096,8 @@ $(document).ready(function () {
             job_profile_description: job_profile_description,
             joining_date: joining_date,
             relieving_date: relieving_date,
-            user_id:user_id
+            user_id: user_id,
         };
-      
 
         event.preventDefault();
 
@@ -1014,10 +1115,7 @@ $(document).ready(function () {
                 console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
-                    $("#profile_experience_add_button").attr(
-                        "disabled",
-                        true
-                    );
+                    $("#profile_experience_add_button").attr("disabled", true);
                     $("#profile_experience_status").html(
                         "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
                             response.message +
@@ -1059,10 +1157,7 @@ $(document).ready(function () {
         var requirement_text = $("#put-query").val();
         var user_id = $("#user_id").val();
 
-
         $("#put-query_error").html("");
-       
-       
 
         if (
             requirement_text == "" ||
@@ -1077,13 +1172,11 @@ $(document).ready(function () {
             return false;
         }
 
-
-
         var data = {
             requirement_text: requirement_text,
             user_id: user_id,
         };
-       
+
         event.preventDefault();
 
         var url = window.location.origin + `/requirements`;

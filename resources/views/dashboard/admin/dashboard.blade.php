@@ -2,6 +2,7 @@
 @section('main-section')
 
 <!-- partial -->
+@if(auth()->user()->hasRole('Superadmin'))
   <div class="content-wrapper">
     <div class="page-header">
       <h3 class="page-title">
@@ -75,7 +76,20 @@
       </div>
     </div>
   </div>
+  @endif
 
+  @if(auth()->user()->hasRole('Candidate'))
+  Candidate Dashboard
+  @endif
+
+
+  @if(auth()->user()->hasRole('Insurer'))
+  Insurer Dashboard
+  @endif
+
+  @if(auth()->user()->hasRole('Institute'))
+  Institute Dashboard
+  @endif
 <!-- main-panel ends -->
 
 @endsection

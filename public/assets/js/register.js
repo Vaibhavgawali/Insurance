@@ -1,13 +1,14 @@
-let RegisteredAlert =()=>
-{
+let RegisteredAlert = () => {
     swal("Good job!", "Registered sucessfully!", "success");
-}
+};
+
 $(document).ready(function () {
     $("#candidate_register_button").click(function (event) {
         var name = $("#name").val();
         var email = $("#email").val();
         var phone = $("#phone").val();
         var password = $("#password").val();
+        var password_confirmation = $("#password_confirmation").val();
 
         var experience = $("#experience").val();
         var organization = $("#organization").val();
@@ -23,6 +24,7 @@ $(document).ready(function () {
         $("#phone_error").html("");
         $("#email_error").html("");
         $("#password_error").html("");
+        $("#password_confirmation_error").html("");
         $("#city_error").html("");
 
         $("#experience_error").html("");
@@ -63,7 +65,7 @@ $(document).ready(function () {
         }
 
         function validatePhoneNumber(phone) {
-            var phonePattern = /^[0-9]{10}$/;
+            var phonePattern = /^[6-9]\d{9}$/;
             return phonePattern.test(phone);
         }
 
@@ -114,7 +116,7 @@ $(document).ready(function () {
             $("#password").focus();
             return false;
         }
-
+        
         function validatePassword(password) {
             // Minimum 8 characters, at least one uppercase letter,
             // one lowercase letter, one number, and one special character
@@ -129,6 +131,14 @@ $(document).ready(function () {
                 '<div class=" invalid-feedback d-block">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</div>'
             );
             $("#password").focus();
+            return false;
+        }
+
+        if (password_confirmation !== password) {
+            $("#password_confirmation_error").html(
+                '<div class=" invalid-feedback d-block">Confirm password do not match with password.</div>'
+            );
+            $("#password_confirmation").focus();
             return false;
         }
 
@@ -242,6 +252,7 @@ $(document).ready(function () {
             city: city,
             experience: experience,
             preferred_line: preferred_line,
+            password_confirmation: password_confirmation,
         };
 
         if (experience == "experienced") {
@@ -276,7 +287,6 @@ $(document).ready(function () {
                     return false;
                 }
             },
-            
 
             error: function (response) {
                 if (response.status === 422) {
@@ -303,6 +313,7 @@ $(document).ready(function () {
         var phone = $("#phone").val();
         var email = $("#email").val();
         var password = $("#password").val();
+        var password_confirmation = $("#password_confirmation").val();
         var city = $("#city").val();
         var spoc = $("#spoc").val();
         var preferred_line = $("#preferred_line").val();
@@ -311,6 +322,7 @@ $(document).ready(function () {
         $("#phone_error").html("");
         $("#email_error").html("");
         $("#password_error").html("");
+        $("#password_confirmation_error").html("");
         $("#city_error").html("");
         $("#spoc_error").html("");
         $("#preferred_line_error").html("");
@@ -345,7 +357,7 @@ $(document).ready(function () {
         }
 
         function validatePhoneNumber(phone) {
-            var phonePattern = /^[0-9]{10}$/;
+            var phonePattern = /^[6-9]\d{9}$/;
             return phonePattern.test(phone);
         }
 
@@ -394,6 +406,14 @@ $(document).ready(function () {
                 '<div class=" invalid-feedback d-block">Password is required.</div>'
             );
             $("#password").focus();
+            return false;
+        }
+
+        if (password_confirmation !== password) {
+            $("#password_confirmation_error").html(
+                '<div class=" invalid-feedback d-block">Confirm password do not match with password.</div>'
+            );
+            $("#password_confirmation").focus();
             return false;
         }
 
@@ -467,6 +487,7 @@ $(document).ready(function () {
             phone: phone,
             email: email,
             password: password,
+            password_confirmation: password_confirmation,
             city: city,
             spoc: spoc,
             preferred_line: preferred_line,
@@ -519,6 +540,7 @@ $(document).ready(function () {
         var phone = $("#phone").val();
         var email = $("#email").val();
         var password = $("#password").val();
+        var password_confirmation = $("#password_confirmation").val();
         var city = $("#city").val();
         var spoc = $("#spoc").val();
 
@@ -526,6 +548,7 @@ $(document).ready(function () {
         $("#phone_error").html("");
         $("#email_error").html("");
         $("#password_error").html("");
+        $("#password_confirmation_error").html("");
         $("#city_error").html("");
         $("#spoc_error").html("");
         $("#flexCheckDefault_error").html("");
@@ -559,7 +582,7 @@ $(document).ready(function () {
         }
 
         function validatePhoneNumber(phone) {
-            var phonePattern = /^[0-9]{10}$/;
+            var phonePattern = /^[6-9]\d{9}$/;
             return phonePattern.test(phone);
         }
 
@@ -608,6 +631,14 @@ $(document).ready(function () {
                 '<div class=" invalid-feedback d-block">Password is required.</div>'
             );
             $("#password").focus();
+            return false;
+        }
+
+        if (password_confirmation !== password) {
+            $("#password_confirmation_error").html(
+                '<div class=" invalid-feedback d-block">Confirm password do not match with password.</div>'
+            );
+            $("#password_confirmation").focus();
             return false;
         }
 
@@ -668,6 +699,7 @@ $(document).ready(function () {
             phone: phone,
             email: email,
             password: password,
+            password_confirmation: password_confirmation,
             city: city,
             spoc: spoc,
         };

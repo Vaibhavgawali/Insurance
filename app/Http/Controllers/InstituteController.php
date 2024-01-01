@@ -62,7 +62,7 @@ class InstituteController extends Controller
         $validator=Validator::make($request->all(),[
             'name'=>'required|string',
             'email'=>'required|email|unique:users,email',
-            'phone'=>'required|numeric|digits:10',
+            'phone'=>'required|numeric|digits:10|regex:/^[6-9]\d{9}$/',
             'password'=>[
                         'required',
                         Password::min(8)
@@ -70,6 +70,7 @@ class InstituteController extends Controller
                                 ->numbers()
                                 ->symbols()
             ],
+            'password_confirmation' => 'required|same:password',
             'spoc'=>'required|string|max:60',
             'city'=>'required|string|max:60'
         ]);
