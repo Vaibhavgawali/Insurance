@@ -70,6 +70,7 @@ class InstituteController extends Controller
                                 ->numbers()
                                 ->symbols()
             ],
+            'password_confirmation' => 'required|same:password',
             'spoc'=>'required|string|max:60',
             'city'=>'required|string|max:60'
         ]);

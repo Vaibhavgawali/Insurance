@@ -72,7 +72,8 @@ class CandidateController extends Controller
                     ->numbers()
                     ->symbols()
             ],
-            'experience' => 'required|in:experienced,fresher', //start and end date
+            'password_confirmation' => 'required|same:password',
+            'experience' => 'required|in:experienced,fresher', 
             'ctc' => 'required_if:experience,experienced',
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',

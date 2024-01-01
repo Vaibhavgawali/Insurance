@@ -56,13 +56,19 @@
                             </div>
 
                             <div class="mb-3">
+                              <label for="password_confirmation" class="form-label" >Confirm Password</label>
+                              <input type="password"  name="password_confirmation" class="form-control" id="password_confirmation" aria-describedby="passwordHelp" placeholder="Enter Your Confirm Password">
+                              <div id="password_confirmation_error"></div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="city" class="form-label">City</label>
                                 <input type="text"  name="city"   class="form-control" id="city" aria-describedby="cityHelp" placeholder="Enter City">
                                 <div id="city_error"></div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Prefered Line</label>
+                                <label for="phone" class="form-label">Experience</label>
                                 <select class="form-control"  name="experience" id="experience" aria-label="work status">
                                     <option selected disabled>-- Select --</option>
                                     <option value="experienced">Experienced</option>
