@@ -61,7 +61,7 @@ class InsurerController extends Controller
         $validator=Validator::make($request->all(),[
             'name'=>'required|string',
             'email'=>'required|email|unique:users,email',
-            'phone'=>'required|numeric|digits:10',
+            'phone'=>'required|numeric|digits:10|regex:/^[6-9]\d{9}$/',
             'password'=>[
                         'required',
                         Password::min(8)

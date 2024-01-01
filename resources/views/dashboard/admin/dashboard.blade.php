@@ -75,7 +75,7 @@
       </div>
     </div>
   </div>
-  @if($userData->hasRole('Insurer'))
+  @if(auth()->user()->hasRole('Insurer'))
   <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">

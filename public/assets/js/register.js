@@ -1,7 +1,7 @@
-let RegisteredAlert =()=>
-{
+let RegisteredAlert = () => {
     swal("Good job!", "Registered sucessfully!", "success");
-}
+};
+
 $(document).ready(function () {
     $("#candidate_register_button").click(function (event) {
         var name = $("#name").val();
@@ -63,7 +63,7 @@ $(document).ready(function () {
         }
 
         function validatePhoneNumber(phone) {
-            var phonePattern = /^[0-9]{10}$/;
+            var phonePattern = /^[6-9]\d{9}$/;
             return phonePattern.test(phone);
         }
 
@@ -276,7 +276,6 @@ $(document).ready(function () {
                     return false;
                 }
             },
-            
 
             error: function (response) {
                 if (response.status === 422) {
@@ -345,7 +344,7 @@ $(document).ready(function () {
         }
 
         function validatePhoneNumber(phone) {
-            var phonePattern = /^[0-9]{10}$/;
+            var phonePattern = /^[6-9]\d{9}$/;
             return phonePattern.test(phone);
         }
 
@@ -559,7 +558,7 @@ $(document).ready(function () {
         }
 
         function validatePhoneNumber(phone) {
-            var phonePattern = /^[0-9]{10}$/;
+            var phonePattern = /^[6-9]\d{9}$/;
             return phonePattern.test(phone);
         }
 
