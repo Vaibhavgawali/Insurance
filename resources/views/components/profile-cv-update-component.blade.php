@@ -1,7 +1,7 @@
 <div class="profie-cv-update-section" id="profie-cv-update-section">
     <div class="card">
         <div class="d-flex justify-content-center align-items-center gap-5 gap-sm-2 p-3">
-            <div><button class="btn btn-md btn-warning btn-rounded">View CV</button></div>
+            <div><a class="btn btn-md btn-warning btn-rounded" target="_blank" href="#">View CV</a></div>
             <div><button class="btn btn-md btn-success btn-rounded" id="profile-cv-update-button">Update CV</button></div>
         </div>
     </div>
