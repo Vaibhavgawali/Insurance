@@ -80,7 +80,7 @@
 
       @else
       <div id="image-view">
-        <img src="{{ asset('images/' . $data->profile->profile_image) }}" alt="{{ asset('images/' . $data->profile->profile_image) }}">
+      <img src="{{ asset('storage/images/') }}/{{$data->profile->profile_image}}" alt="{{$data->profile->profile_image}}" class="img-fluid">
       </div>
       @endif
     </div>
