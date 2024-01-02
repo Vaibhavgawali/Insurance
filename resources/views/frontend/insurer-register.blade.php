@@ -82,7 +82,7 @@
                                     <option value="health">Health</option>
                                     <option value="other">Other</option>
                                 </select>
-                                <div id="preferred_line_error"></div>
+                                <div id="preffered_line_error"></div>
                             </div>
                            
                              <div class="d-flex align-items-center ">
