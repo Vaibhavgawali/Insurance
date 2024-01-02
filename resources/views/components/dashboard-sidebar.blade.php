@@ -53,12 +53,12 @@
         
         @endhasrole
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('module-1')  )
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" href="/module-1">
                 <span class="menu-title">Module-1</span>
                 <i class="mdi mdi-account-card-details menu-icon"></i>
             </a>
-        </li>
+        </li> -->
         @endif
 
     </ul>
