@@ -60,11 +60,7 @@ class CandidateController extends Controller
      */
     public function store(Request $request): Response
     {
-<<<<<<< HEAD
-        dd($request->all());
-=======
-        // dd($request->preffered_line);
->>>>>>> 76b45dd64fdc29e445dadc6f595c482b57d1dfd7
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
