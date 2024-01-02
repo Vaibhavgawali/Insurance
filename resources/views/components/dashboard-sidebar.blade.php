@@ -3,8 +3,12 @@
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
                 <div class="nav-profile-image">
+                    @if($user->profile->profile_image)
                     <img src="{{ asset('storage/images/') }}/{{$user->profile->profile_image}}" alt="{{$user->profile->profile_image}}" class="img-fluid">
-                    <span class="login-status online"></span>
+                    @else
+                    <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">
+                    @endif
+                    <!-- <span class="login-status online"></span> -->
                     <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
