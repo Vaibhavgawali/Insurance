@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Auth;
-use Validator;
+// use Auth;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\UserProfile;
+use Illuminate\Support\Facades\Validator;
 
 class UserProfileController extends Controller
 {
@@ -66,7 +68,8 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $userId = Auth::user()->user_id; 
+        $user=Auth::user();
+        $userId = $user->user_id; 
         if($userId == $id){
             $formMethod = $request->method();
             if($formMethod == "PATCH"){
@@ -74,12 +77,14 @@ class UserProfileController extends Controller
                     "date_of_birth"=> 'date_format:Y-m-d',
                     "gender"=>'string|in:"M","F","O"',
                     "age"=>'numeric|integer|min:1',
-                    "preffered_line"=> 'string|max:20',
-                    "spoc"=> 'string|max:60',
+                    // "preffered_line"=> 'string|max:20',
+                    // "spoc"=> 'string|max:60',
+                    "preffered_line" =>$user->hasAnyRole(['Candidate', 'Insurer']) ? 'required|string|max:20' : 'nullable|string|max:20',
+                    "spoc" =>$user->hasAnyRole(['Institute', 'Insurer']) ? 'required|string|max:60' : 'nullable|string|max:60',
                 ]);
 
                 if($validator->fails()){
-                    return Response(['message' => $validator->errors()],422);
+                    return Response(['status'=>false,'errors' => $validator->errors()],422);
                 }   
 
                 $user= UserProfile::where('user_id', $id)->first();
@@ -120,10 +125,9 @@ class UserProfileController extends Controller
             ]);
 
             if($validator->fails()){
-                return Response(['message' => $validator->errors()],401);
+                return Response(['status'=>false,'errors' => $validator->errors()],422);
             } 
             
-
             // Save the image to the storage
             $image=$request->file("profile_image");
             $imageName=$image->hashName();
@@ -138,17 +142,16 @@ class UserProfileController extends Controller
                 $user = UserProfile::where('user_id', $userId)->first();
 
                 // Delete the old image
-                if($user->profile_image){
+                if(isset($user->profile_image)){
                     $oldimage=$user->profile_image;
                     Storage::delete($oldimage);
                 }
-
-                $user->profile_image = $imagepath;
+                $user->profile_image = $imageName;
                 $user->save();
-                return Response(['message' => 'Image stored successfully', 'path' => $imagepath]);
+                return Response(['status'=>true,'message' => 'Image stored successfully', 'path' => $imagepath]);
             } else {
                 // Image storage failed
-                return Response(['message' => 'Failed to store image'], 500);
+                return Response(['status'=>false,'message' => 'Failed to store image'], 500);
             }            
         }
         return Response(['message'=>'Unauthorized'],401);

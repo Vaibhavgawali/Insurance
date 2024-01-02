@@ -64,7 +64,7 @@ class CandidateController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'phone' => 'required|numeric|digits:10',
+            'phone' => 'required|numeric|digits:10|regex:/^[6-9]\d{9}$/',
             'password' => [
                 'required',
                 Password::min(8)
@@ -72,7 +72,8 @@ class CandidateController extends Controller
                     ->numbers()
                     ->symbols()
             ],
-            'experience' => 'required|in:experienced,fresher', //start and end date
+            'password_confirmation' => 'required|same:password',
+            'experience' => 'required|in:experienced,fresher', 
             'ctc' => 'required_if:experience,experienced',
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
@@ -169,11 +170,11 @@ class CandidateController extends Controller
                 $validator = Validator::make($request->all(), [
                     'name' => 'required|string',
                     'email' => 'required|email|unique:users,email,'.$userId .',user_id',
-                    'phone' => 'required|numeric|digits:10'
+                    'phone' => 'required|numeric|digits:10|regex:/^[6-9]\d{9}$/'
                 ]);
 
                 if ($validator->fails()) {
-                    return Response(['message' => $validator->errors()], 401);
+                    return Response(['status'=>false,'errors' => $validator->errors()], 422);
                 }
 
                 $user = User::where('user_id', $id);

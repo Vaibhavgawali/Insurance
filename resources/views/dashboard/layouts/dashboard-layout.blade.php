@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Insurance next</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="/admin-assets/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/admin-assets/assets/vendors/css/vendor.bundle.base.css">
@@ -16,10 +17,15 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="/admin-assets/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="/admin-assets/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.jpg" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="base-url" content="{{ url('') }}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script
+
 </head>
+
 <body>
+    
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -30,9 +36,9 @@
             <x-dashboard-sidebar></x-dashboard-sidebar>
             <!-- partial -->
             <div class="main-panel">
-               
-                    @yield('main-section')
-                
+
+                @yield('main-section')
+      
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
                 <x-dashboard-footer></x-dashboard-footer>
@@ -61,4 +67,5 @@
     <script src="/admin-assets/assets/js/todolist.js"></script>
     <!-- End custom js for this page -->
 </body>
+
 </html>

@@ -7,7 +7,7 @@
       <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white me-2">
           <i class="mdi mdi-account-card-details"></i>
-        </span>Candidates
+        </span>Institute
       </h3>
 
     </div>
@@ -15,9 +15,10 @@
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Insurer Table</h4>
+            <h4 class="card-title">Institute Table</h4>
+
             </p>
-            <x-table-component :data="$insurers" />
+            <x-table-component :data="$institutes" />
             <div class="d-flex my-3 align-items-center">
               <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
                 <i class="mdi mdi-chevron-left"></i>

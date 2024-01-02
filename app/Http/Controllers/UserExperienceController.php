@@ -32,6 +32,7 @@ class UserExperienceController extends Controller
      */
     public function store(Request $request)
     {
+        $id = $request->input('user_id');
         $userId = Auth::user()->user_id; 
         if($userId == $id){
             $validator=Validator::make($request->all(),[
@@ -41,11 +42,10 @@ class UserExperienceController extends Controller
                 "state"=>'string|max:20',
                 "job_profile_description"=>'string|max:60',
                 "joining_date"=>'required|date_format:Y-m-d',
-                "relieving_date"=>'required|date_format:Y-m-d',
             ]);
 
             if($validator->fails()){
-                return Response(['message' => $validator->errors()],401);
+                return Response(['message' => $validator->errors()],422);
             }   
 
             $data=$request->all();
@@ -99,29 +99,29 @@ class UserExperienceController extends Controller
                     "organization"=>'required|string|max:60',
                     "designation"=>'required|string|max:30',
                     "ctc"=>'required|numeric',
-                    "state"=>'string|max:20',
+                    "state"=>'string|max:50',
                     "job_profile_description"=>'string|max:60',
                     "joining_date"=>'required|date_format:Y-m-d',
-                    "relieving_date"=>'required|date_format:Y-m-d',
+                    "relieving_date"=>'date_format:Y-m-d',
                 ]);
 
                 if($validator->fails()){
-                    return Response(['message' => $validator->errors()],401);
+                    return Response(['status'=>false,'errors' => $validator->errors()],422);
                 }   
 
                 $user = UserExperience::where('user_id', $userId)->first(); ;
                 if($user){
                     $isUpdated=$user->update($request->all());
                     if($isUpdated){
-                        return Response(['message' => "User experience updated successfully"],200);
+                        return Response(['status'=>true,'message' => "User experience updated successfully"],200);
                     }
-                    return Response(['message' => "Something went wrong"],500);
+                    return Response(['status'=>false,'message' => "Something went wrong"],500);
                 }                    
-                return Response(['message'=>"User not found"],404);
+                return Response(['status'=>false,'message'=>"User not found"],404);
             }
-            return Response(['message'=>"Invalid form method "],405);
+            return Response(['status'=>false,'message'=>"Invalid form method "],405);
         }
-        return Response(['message'=>'Unauthorized'],401);
+        return Response(['status'=>false,'message'=>'Unauthorized'],401);
     }
 
     /**

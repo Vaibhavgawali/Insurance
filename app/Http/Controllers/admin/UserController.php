@@ -75,7 +75,7 @@ class UserController extends Controller
                 $LoggedUser=Auth::user();
                 if($LoggedUser->hasPermissionTo('view_candidate_details')){
                     $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->find($id);
-                    return view('dashboard.admin.profile', ['userData' => $userData]);
+                    return view('dashboard.admin.user-profile', ['userData' => $users]);
                     // return Response(['user' => $users], 200);
                 }
 
@@ -87,7 +87,7 @@ class UserController extends Controller
                     $permissions = $userData->getPermissionsViaRoles(); 
                     
                     // return Response(['user' => $userData], 200);
-                    return view('dashboard.admin.profile', ['userData' => $userData]);
+                    return view('dashboard.admin.user-profile', ['userData' => $userData]);
                  }
             }
             return Response(['message' => 'User not found'], 401);
@@ -143,7 +143,18 @@ class UserController extends Controller
             if ($userId) {
                 $isTrashed = $userId->delete();
                 if ($isTrashed) {
-                    return Response(['message' => "User trashed successfully"], 200);
+                    // return Response(['message' => "User trashed successfully"], 200);
+                    if($userId->hasRole('Candidate')){
+                    return redirect()->route('candidate.index')->with('success','User Deleted Successfully');
+                    }
+                    if($userId->hasRole('Insurer')){
+                        return redirect()->route('insurer.index')->with('success','User Deleted Successfully');
+                        }
+
+                        if($userId->hasRole('Institute')){
+                            return redirect()->route('institute.index')->with('success','User Deleted Successfully');
+                            }
+                    
                 }
                 return Response(['message' => "Something went wrong"], 500);
             }
@@ -161,6 +172,7 @@ class UserController extends Controller
             $users = User::onlyTrashed()->get();
             if($users){
                 return Response(['message' => "Users trashed","users"=>$users],200);
+               
             }  
             return Response(['message'=>"Users not found in trashed "],404);
         }

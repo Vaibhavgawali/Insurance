@@ -1,3 +1,9 @@
+let loginAlert =()=>
+{
+    swal("Good job!", "Logged In sucessfully!", "success");
+}
+
+
 $(document).ready(function () {
     $("#login_btn").click(function (event) {
         var email = $("#email").val();
@@ -77,7 +83,12 @@ $(document).ready(function () {
                     // $("#login_form")[0].reset();
                     // return false;
 
-                    window.location.href = response.redirect;
+                  
+                    loginAlert();
+                    setTimeout(function () {
+                        window.location.href = response.redirect;
+                    }, 2000);
+
                 }
             },
 

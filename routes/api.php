@@ -15,6 +15,8 @@ use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserDocumentsController;
 use App\Http\Controllers\admin\UserController;
 
+use App\Http\Controllers\admin\RequirementsController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,6 +36,8 @@ Route::resource('admin/user', UserController::class)->middleware('auth:sanctum')
 
 Route::post('login',[LoginController::class,'loginUser']);
 
+Route::resource('requirements', RequirementsController::class);
+
 // Route::resource('candidate', CandidateController::class);
 Route::resource('insurer', InsurerController::class);
 Route::resource('institute', InstituteController::class);
@@ -44,6 +48,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::resource('user-address', UserAddressController::class);
     Route::resource('user-experience', UserExperienceController::class);
     Route::resource('user-documents', UserDocumentsController::class);
+
 
     Route::post('image-upload',[UserProfileController::class,'profileImageUpload']); 
     

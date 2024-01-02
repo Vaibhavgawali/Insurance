@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserDocuments::class,'user_id','user_id');
     }
+    public function requirements() 
+    {
+        return $this->hasMany(Requirements::class,'user_id','user_id');
+    }
+
 }
