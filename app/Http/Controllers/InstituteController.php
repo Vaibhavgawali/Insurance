@@ -34,7 +34,7 @@ class InstituteController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $users = User::role('Institute')->get();
+            $users = User::role('Institute')->orderBy('user_id', 'desc')->get();
             if ($users) {
                 // return Response(['data' => $users], 200);
                 return view('dashboard.admin.institute-list', ['institutes' => $users]);

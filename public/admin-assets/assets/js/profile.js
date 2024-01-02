@@ -213,7 +213,7 @@ $(document).ready(function (e) {
         // Get base URL from meta tag
         var baseUrl = $('meta[name="base-url"]').attr("content");
 
-        e.preventDefault();
+        // e.preventDefault();
         $.ajax({
             url: baseUrl + "/user-documents",
             type: "POST",
