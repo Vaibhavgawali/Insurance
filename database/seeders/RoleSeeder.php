@@ -6,7 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Models\User;
 
 class RoleSeeder extends Seeder
 {
@@ -30,98 +29,68 @@ class RoleSeeder extends Seeder
         $view_requirement = Permission::create(['name' => 'view_requirement']);
         $delete_requirement = Permission::create(['name' => 'delete_requirement']);
         
-        // $upload_resume=Permission::create(['name'=>'upload_resume']);
-        // $view_modules=Permission::create(['name'=>'view_modules']);
-        // $take_assessment=Permission::create(['name'=>'take_assessment']);
-        // $download_certificate=Permission::create(['name'=>'download_certificate']);
+        $upload_resume=Permission::create(['name'=>'upload_resume']);
+        $view_modules=Permission::create(['name'=>'view_modules']);
+        $take_assessment=Permission::create(['name'=>'take_assessment']);
+        $download_certificate=Permission::create(['name'=>'download_certificate']);
 
-        // $put_requirement=Permission::create(['name'=>'put_requirement']);
-        // $view_candidate_list=Permission::create(['name'=>'view_candidate_list']);
-        // $view_candidate_details=Permission::create(['name'=>'view_candidate_details']);
-        // $download_candidate_details=Permission::create(['name'=>'download_candidate_details']);
-        // $view_candidate_resume=Permission::create(['name'=>'view_candidate_resume']);
-        // $download_candidate_resume=Permission::create(['name'=>'download_candidate_resume']);
-        // $view_self_requirement_list=Permission::create(['name'=>'view_self_requirement_list']);
+        $put_requirement=Permission::create(['name'=>'put_requirement']);
+        $view_candidate_list=Permission::create(['name'=>'view_candidate_list']);
+        $view_candidate_details=Permission::create(['name'=>'view_candidate_details']);
+        $download_candidate_details=Permission::create(['name'=>'download_candidate_details']);
+        $view_candidate_resume=Permission::create(['name'=>'view_candidate_resume']);
+        $download_candidate_resume=Permission::create(['name'=>'download_candidate_resume']);
+        $view_self_requirement_list=Permission::create(['name'=>'view_self_requirement_list']);
 
-        // $superadmin_permissions=[
-        //     $view_users_list,
-        //     $view_user_details,
-        //     $update_user_details,
-        //     $delete_user,
-        //     $view_requirement_list,
-        //     $view_requirement,
-        //     $delete_requirement
-        // ];
+        $superadmin_permissions=[
+            $view_users_list,
+            $view_user_details,
+            $update_user_details,
+            $delete_user,
+            $view_requirement_list,
+            $view_requirement,
+            $delete_requirement
+        ];
 
-        // $candidate_permissions=[
-        //     $upload_resume,
-        //     $view_modules,
-        //     $take_assessment,
-        //     $download_certificate
-        // ];
+        $candidate_permissions=[
+            $upload_resume,
+            $view_modules,
+            $take_assessment,
+            $download_certificate
+        ];
         
-        // $insurer_permissions=[
-        //     $view_candidate_list,
-        //     $view_candidate_details,
-        //     $view_candidate_resume,
-        //     $download_candidate_details,
-        //     $download_candidate_resume,
-        //     $put_requirement,
-        //     $view_self_requirement_list,
-        // ];
+        $insurer_permissions=[
+            $view_candidate_list,
+            $view_candidate_details,
+            $view_candidate_resume,
+            $download_candidate_details,
+            $download_candidate_resume,
+            $put_requirement,
+            $view_self_requirement_list,
+        ];
 
-        // $institute_permissions=[
-        //     $put_requirement,
-        //     $view_modules
-        // ];
+        $institute_permissions=[
+            $put_requirement,
+            $view_modules,
+            $view_self_requirement_list
+        ];
 
-        // $other_permissions=[
-        //     $view_candidate_list,
-        //     $view_candidate_details,
-        //     $view_candidate_resume,
-        //     $download_candidate_details,
-        //     $download_candidate_resume,
-        //     $put_requirement,
-        //     $view_self_requirement_list,
-        // ];
+        $other_permissions=[
+            $view_candidate_list,
+            $view_candidate_details,
+            $view_candidate_resume,
+            $download_candidate_details,
+            $download_candidate_resume,
+            $put_requirement,
+            $view_self_requirement_list,
+        ];
 
-        // $superadmin->syncPermissions($superadmin_permissions);
-        // $candidate->syncPermissions($candidate_permissions);
-        // $insurer->syncPermissions($insurer_permissions);
-        // $institute->syncPermissions($institute_permissions);
-        // $other->syncPermissions($other_permissions);
+        $superadmin->syncPermissions($superadmin_permissions);
+        $candidate->syncPermissions($candidate_permissions);
+        $insurer->syncPermissions($insurer_permissions);
+        $institute->syncPermissions($institute_permissions);
+        $other->syncPermissions($other_permissions);
 
-        // Create a new user
-        // $user = User::create([
-        //     'name' => 'Admin',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => bcrypt('Admin@123'),
-        //     'phone'=>'6677554488'
-        // ]);
-        // $user->assignRole('Superadmin');
-
-        $insurer = User::create([
-            'name' => 'Insurer',
-            'email' => 'insurer@gmail.com',
-            'password' => bcrypt('Insurer@123'),
-            'phone'=>'6677554488'
-        ]);
-        $insurer->assignRole('Insurer');
-
-        $institute = User::create([
-            'name' => 'Institute',
-            'email' => 'institute@gmail.com',
-            'password' => bcrypt('Institute@123'),
-            'phone'=>'6677554488'
-        ]);
-        $institute->assignRole('Institute');
-
-        $candidate = User::create([
-            'name' => 'Candidate',
-            'email' => 'candidate@gmail.com',
-            'password' => bcrypt('Candidate@123'),
-            'phone'=>'6677554488'
-        ]);
-        $candidate->assignRole('Candidate');
+ 
     }
 }

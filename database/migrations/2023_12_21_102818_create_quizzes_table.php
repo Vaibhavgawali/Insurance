@@ -22,7 +22,7 @@ class CreateQuizzesTable extends Migration
             $table->unsignedInteger('time_limit')->nullable(); // Assuming you added a time_limit column
             $table->timestamps();
 
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by')->references('user_id')->on('users')->onDelete('cascade');
 
         });
     }
