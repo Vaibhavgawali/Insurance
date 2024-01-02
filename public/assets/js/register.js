@@ -17,7 +17,7 @@ $(document).ready(function () {
         var relieving_date = $("#relieving_date").val();
         var ctc = $("#ctc").val();
 
-        var preferred_line = $("#preferred_line").val();
+        var preffered_line = $("#preffered_line").val();
         var city = $("#city").val();
 
         $("#name_error").html("");
@@ -223,15 +223,15 @@ $(document).ready(function () {
         }
 
         if (
-            preferred_line == "" ||
-            preferred_line == null ||
-            preferred_line == "undefined" ||
-            preferred_line == undefined
+            preffered_line == "" ||
+            preffered_line == null ||
+            preffered_line == "undefined" ||
+            preffered_line == undefined
         ) {
             $("#preferred_line_error").html(
                 '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
             );
-            $("#preferred_line").focus();
+            $("#preffered_line").focus();
             return false;
         }
 
@@ -251,7 +251,7 @@ $(document).ready(function () {
             password: password,
             city: city,
             experience: experience,
-            preferred_line: preferred_line,
+            preffered_line: preffered_line,
             password_confirmation: password_confirmation,
         };
 
@@ -316,7 +316,7 @@ $(document).ready(function () {
         var password_confirmation = $("#password_confirmation").val();
         var city = $("#city").val();
         var spoc = $("#spoc").val();
-        var preferred_line = $("#preferred_line").val();
+        var preffered_line = $("#preffered_line").val();
 
         $("#name_error").html("");
         $("#phone_error").html("");
@@ -461,15 +461,15 @@ $(document).ready(function () {
         }
 
         if (
-            preferred_line == "" ||
-            preferred_line == null ||
-            preferred_line == "undefined" ||
-            preferred_line == undefined
+            preffered_line == "" ||
+            preffered_line == null ||
+            preffered_line == "undefined" ||
+            preffered_line == undefined
         ) {
             $("#preferred_line_error").html(
                 '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
             );
-            $("#preferred_line").focus();
+            $("#preffered_line").focus();
             return false;
         }
 
@@ -490,7 +490,7 @@ $(document).ready(function () {
             password_confirmation: password_confirmation,
             city: city,
             spoc: spoc,
-            preferred_line: preferred_line,
+            preffered_line: preffered_line,
         };
 
         event.preventDefault();
