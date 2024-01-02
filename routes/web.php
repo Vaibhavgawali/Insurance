@@ -42,11 +42,7 @@ Route::middleware(['web'])->group(function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-
-// Route::get('/candidate-list', [AdminController::class,'candidate_list_table']);
-
 Route::resource('admin/user', UserController::class)->middleware('auth:sanctum');
-
 
 Route::resource('candidate', CandidateController::class);
 Route::resource('insurer', InsurerController::class);
@@ -70,6 +66,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('refresh-token', [LoginController::class, 'refreshAuthToken']);
     Route::get('/home', [App\Http\Controllers\AdminController::class, 'dashboard']);
 });
+
 
 Route::group(['middleware' => ['auth:sanctum','role:Superadmin']],function(){
     Route::get('admin/users/trash',[UserController::class,'trashed_users']);
