@@ -71,7 +71,7 @@ class InsurerController extends Controller
             ],
             'password_confirmation' => 'required|same:password',
             'spoc'=>'required|string|max:60',
-            'preferred_line'=>'required|string|max:60',
+            'preffered_line'=>'required|string|max:60',
             'city'=>'required|string|max:60'
         ]);
 
@@ -92,7 +92,7 @@ class InsurerController extends Controller
             $user_profile=UserProfile::create([
                 'user_id'=>$user_id,
                 'spoc'=>$request->spoc,
-                'preferred_line'=>$request->preferred_line,
+                'preffered_line'=>$request->preffered_line,
             ]);
 
             $user_address=UserAddress::create([
