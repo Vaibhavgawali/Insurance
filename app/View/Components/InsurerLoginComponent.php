@@ -6,14 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class insurer-login-component extends Component
+class InsurerLoginComponent extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $data;
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**

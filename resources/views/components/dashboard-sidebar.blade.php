@@ -3,8 +3,12 @@
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
                 <div class="nav-profile-image">
+                    @if($user->profile->profile_image)
                     <img src="{{ asset('storage/images/') }}/{{$user->profile->profile_image}}" alt="{{$user->profile->profile_image}}" class="img-fluid">
-                    <span class="login-status online"></span>
+                    @else
+                    <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">
+                    @endif
+                    <!-- <span class="login-status online"></span> -->
                     <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
@@ -46,7 +50,16 @@
                 <i class="mdi mdi-airplay menu-icon"></i>
             </a>
         </li>
+        
         @endhasrole
+        @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('module-1')  )
+        <li class="nav-item">
+            <a class="nav-link" href="/module-1">
+                <span class="menu-title">Module-1</span>
+                <i class="mdi mdi-account-card-details menu-icon"></i>
+            </a>
+        </li>
+        @endif
 
     </ul>
 </nav>
