@@ -15,7 +15,7 @@
                 <div class="card-body table-responsive">
                     <h4 class="card-title">Paper List</h4>
                     <p class="card-description"> Paper List </p> <a href="/questions/create" class="btn btn-primary btn-sm">Add Question</a>
-                    <x-table-component :items="$data" :headers="$headers" :tableClass="'table-striped'" :actions="$actions" />
+                    <x-quiz-table-component :items="$data" :headers="$headers" :tableClass="'table-striped'" :actions="$actions" />
                 </div>
             </div>
         </div>
