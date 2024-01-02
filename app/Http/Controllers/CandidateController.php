@@ -60,7 +60,7 @@ class CandidateController extends Controller
      */
     public function store(Request $request): Response
     {
-        // dd($request->all());
+        dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
