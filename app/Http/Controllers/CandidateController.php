@@ -37,7 +37,7 @@ class CandidateController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $users = User::role('Candidate')->get();
+            $users = User::role('Candidate')->orderBy('user_id','desc')->get();
             if ($users) {
                 // return Response(['data' => $users], 200);
                 return view('dashboard.admin.candidate-list', ['candidates' => $users]);
