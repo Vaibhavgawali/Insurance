@@ -884,18 +884,7 @@ $(document).ready(function () {
             return false;
         }
 
-        // if (
-        //     relieving_date == "" ||
-        //     relieving_date == null ||
-        //     relieving_date == "undefined" ||
-        //     relieving_date == undefined
-        // ) {
-        //     $("#relieving_date_error").html(
-        //         '<div class=" invalid-feedback d-block">Relieving date  is required.</div>'
-        //     );
-        //     $("#relieving_date").focus();
-        //     return false;
-        // }
+  
 
         var data = {
             is_current_company: is_current_company,

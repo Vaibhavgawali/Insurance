@@ -37,7 +37,7 @@ class CandidateController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $users = User::role('Candidate')->orderBy('user_id', 'desc')->get();
+            $users = User::role('Candidate')->get();
             if ($users) {
                 // return Response(['data' => $users], 200);
                 return view('dashboard.admin.candidate-list', ['candidates' => $users]);
@@ -78,7 +78,7 @@ class CandidateController extends Controller
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
             "joining_date" => 'required_if:experience,experienced',
-            'preferred_line' => 'required|string|max:60',
+            'preffered_line' => 'required|string|max:60',
             'city' => 'required|string|max:60'
         ]);
 
@@ -95,18 +95,18 @@ class CandidateController extends Controller
 
         if ($user) {
             $user_id = $user->user_id;
-
             $user_profile = UserProfile::create([
                 'user_id' => $user_id,
-                'preferred_line' => $request->preferred_line,
+                'preffered_line' => $request->preffered_line,
             ]);
+            // dd($user_profile);
 
-            if ($request->experience == "experienced") {
+            // if ($request->experience == "experienced") {
                 $user_address = UserAddress::create([
                     'user_id' => $user_id,
                     'city' => $request->city,
                 ]);
-            }
+            // }
 
             if ($request->experience == "experienced") {
                 $user_experience = UserExperience::create([

@@ -39,7 +39,7 @@
 
         <div class="form-group">
           <label for="job_profile_description">Job Profile Description</label>
-          <textarea class="form-control" id="job_profile_description" name="job_profile_description" rows="4" disabled>{{ $data->user_profile->job_profile_description ?? "N/A" }}</textarea>
+          <textarea class="form-control" id="job_profile_description" name="job_profile_description" rows="4" disabled>{{ $data->experience->job_profile_description ?? "N/A" }}</textarea>
           <div id="job_profile_description_error"></div>
         </div>
 
