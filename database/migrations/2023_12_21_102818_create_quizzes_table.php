@@ -19,7 +19,6 @@ class CreateQuizzesTable extends Migration
             $table->text('description');
             $table->string('level');
             $table->unsignedBigInteger('created_by');
-            $table->unsignedInteger('time_limit')->nullable(); // Assuming you added a time_limit column
             $table->timestamps();
 
             $table->foreign('created_by')->references('user_id')->on('users')->onDelete('cascade');

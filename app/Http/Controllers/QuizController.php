@@ -24,7 +24,7 @@ class QuizController extends Controller
     public function index()
     {
         $quizzes = Quiz::all();
-        $headers = ['id', 'title', 'description', 'level'];
+        $headers = ['id', 'title', 'description', 'level','quiz_time'];
 
         $actions = [
             [
@@ -69,6 +69,8 @@ class QuizController extends Controller
             ['name' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'Quiz title'],
             ['name' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'Quiz description'],
             ['name' => 'level', 'label' => 'Level', 'type' => 'text', 'placeholder' => 'Level'],
+            ['name' => 'quiz_time', 'label' => 'Quiz Time', 'type' => 'text', 'placeholder' => 'Quiz time'],
+
         ];
         return view('dashboard.quizes.create', ['fields' => $fields]);
     }
@@ -84,6 +86,7 @@ class QuizController extends Controller
             'title' => 'required|string',
             'description' => 'required|string',
             'level' => 'required',
+            'quiz_time'=>'required|integer'
         ]);
         $request['created_by'] = Auth::user()->user_id;
 
@@ -178,6 +181,7 @@ class QuizController extends Controller
             ['name' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'Quiz title'],
             ['name' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'Quiz description'],
             ['name' => 'level', 'label' => 'Level', 'type' => 'text', 'placeholder' => 'Level'],
+            ['name' => 'quiz_time', 'label' => 'Quiz Time', 'type' => 'text', 'placeholder' => 'Quiz time'],
         ];
         $quiz = Quiz::find($id);
         // dd($quiz);
@@ -189,16 +193,17 @@ class QuizController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd($request->all());
         $input = array_map('trim', $request->all());
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
             'level' => 'required',
+            'quiz_time'=>'required'
         ]);
 
         $quiz = Quiz::find($id);
-        
-        $quiz->update($request->all());
+        $quiz_updt=$quiz->update($request->all());
 
         return redirect()->route('quizes.index')
             ->with('success', 'Quiz updated successfully');

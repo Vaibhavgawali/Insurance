@@ -16,7 +16,7 @@ use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserDocumentsController;
 use App\Http\Controllers\admin\RequirementsController;
-
+use App\Http\Controllers\CandidateQuizController;
 
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionController;
@@ -83,6 +83,12 @@ Route::group(['middleware' => ['auth:sanctum','role:Superadmin']],function(){
     Route::resource('quizes', QuizController::class);
     Route::resource('questions', QuestionController::class);
     Route::resource('answers', AnswerController::class);
+
 });
 
+
+// Route::group(['middleware'=>['auth:sanctum']],function(){
+    // Route::resource('candidate/quizes', CandidateQuizController::class);
+// });
+// Route::resource('candidate/quizes', CandidateQuizController::class);
 

@@ -112,8 +112,6 @@ class QuestionController extends Controller
             'quiz_id'=>$quiz_id
         ]);
 
-        // print_r($question);
-
         // Create answers for the question
         foreach ($request->input('answers') as $index => $answerText) {
             $correct = $index  == $request->input('correct_answer');

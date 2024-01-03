@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->text('question_text');
             $table->unsignedBigInteger('quiz_id');
-            $table->string('level'); // Assuming you added a level column
+            $table->string('level')->nullable(); // Assuming you added a level column
             $table->timestamps();
 
             $table->foreign('quiz_id')->references('id')->on('quizes')->onDelete('cascade');
