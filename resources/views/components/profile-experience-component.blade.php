@@ -128,7 +128,7 @@ let Profile_Experience_toggle = () => {
             ctcInput.setAttribute("disabled", true);
             profileDescriptionInput.setAttribute("disabled", true);
             jobStateInput.setAttribute("disabled", true);
-            experienceYearInput.removeAttribute("disabled",true);
+            experienceYearInput.setAttribute("disabled",true);
             // joiningDateInput.setAttribute("disabled", true);
             // relievingDateInput.setAttribute("disabled", true);
         }
@@ -143,7 +143,7 @@ let Profile_Experience_toggle = () => {
         ctcInput.setAttribute("disabled", true);
         profileDescriptionInput.setAttribute("disabled", true);
         jobStateInput.setAttribute("disabled", true);
-        experienceYearInput.removeAttribute("disabled",true);
+        experienceYearInput.setAttribute("disabled",true);
         // joiningDateInput.setAttribute("disabled", true);
         // relievingDateInput.setAttribute("disabled", true);
     });

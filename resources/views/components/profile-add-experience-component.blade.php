@@ -50,6 +50,12 @@
         </div>
 
         <div class="form-group">
+          <label for="experience_year">Experience (in year)</label>
+          <input type="number" class="form-control" name="experience_year" id="experience_year" disabled value=''>
+          <div id="experience_year_error"></div>
+        </div>
+
+        <!-- <div class="form-group">
           <label for="joining_date">Joining Date</label>
           <input type="date" class="form-control" name="joining_date" id="joining_date" disabled value=''>
           <div id="joining_date_error"></div>
@@ -59,7 +65,7 @@
           <label for="relieving_date">Reliving Date</label>
           <input type="date" class="form-control" name="relieving_date" id="relieving_date" disabled value=''>
           <div id="relieving_date_error"></div>
-        </div>
+        </div> -->
 
         <div class="form-group">
           <label for="user_id"></label>
@@ -92,8 +98,9 @@
             "job_profile_description"
           );
           let jobStateInput = document.getElementById("job_state");
-          let joiningDateInput = document.getElementById("joining_date");
-          let relievingDateInput = document.getElementById("relieving_date");
+          let experienceYearInput = document.getElementById("experience_year");
+          // let joiningDateInput = document.getElementById("joining_date");
+          // let relievingDateInput = document.getElementById("relieving_date");
 
           let toggle = false;
 
@@ -109,8 +116,9 @@
               ctcInput.removeAttribute("disabled");
               profileDescriptionInput.removeAttribute("disabled");
               jobStateInput.removeAttribute("disabled");
-              joiningDateInput.removeAttribute("disabled");
-              relievingDateInput.removeAttribute("disabled");
+              experienceYearInput.removeAttribute("disabled");
+              // joiningDateInput.removeAttribute("disabled");
+              // relievingDateInput.removeAttribute("disabled");
             } else {
               profileUpdateButtonDiv.style.display = "none";
               currentCompanyInput.setAttribute("disabled", true);
@@ -119,8 +127,9 @@
               ctcInput.setAttribute("disabled", true);
               profileDescriptionInput.setAttribute("disabled", true);
               jobStateInput.setAttribute("disabled", true);
-              joiningDateInput.setAttribute("disabled", true);
-              relievingDateInput.setAttribute("disabled", true);
+              experienceYearInput.setAttribute("disabled",true);
+              // joiningDateInput.setAttribute("disabled", true);
+              // relievingDateInput.setAttribute("disabled", true);
             }
           });
           profileCancelButton.addEventListener("click", () => {
@@ -133,8 +142,9 @@
             ctcInput.setAttribute("disabled", true);
             profileDescriptionInput.setAttribute("disabled", true);
             jobStateInput.setAttribute("disabled", true);
-            joiningDateInput.setAttribute("disabled", true);
-            relievingDateInput.setAttribute("disabled", true);
+            experienceYearInput.setAttribute("disabled",true);
+            // joiningDateInput.setAttribute("disabled", true);
+            // relievingDateInput.setAttribute("disabled", true);
           });
         };
 
