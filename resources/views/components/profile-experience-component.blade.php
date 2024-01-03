@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-          <label for="experience_year">Joining Date</label>
+          <label for="experience_year">Experience (in year)</label>
           <input type="number" class="form-control" name="experience_year" id="experience_year" disabled value='{{ $data->experience->experience_year ?? "N/A" }}'>
           <div id="experience_year_error"></div>
         </div>
