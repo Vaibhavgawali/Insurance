@@ -33,7 +33,7 @@
         </div>
 
         
-       @if(auth()->user()->user_id == $data->user_id)
+  
           @if($data->hasAnyRole(['Candidate','Insurer','Superadmin']))
         <div class="form-group">
           <label for="preffered_line" class="form-label ">Preffered Line</label>
@@ -56,7 +56,7 @@
               <div id="spoc_error"></div>
             </div>
           @endif
-        @endif
+
 
         @if(auth()->user()->user_id == $data->user_id)
 
