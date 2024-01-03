@@ -23,7 +23,7 @@
                         
                         
                         
-                       
+                
                     </div>     
                 </div>
 
@@ -186,15 +186,8 @@
                 }
             ]
 
-        },
-        {
-            "id":15,
-            "isSubHeading":true,
-            "title":"General Insurance",
-            "subTitle":"Overview of General Insurance",
-            "subParagraph":"General insurance covers a range of non-life risks and provides financial protection against losses related to health, property, travel, and more.",
-            "subTypeTitle":"Types of General Insurance Policies",
         }
+       
         
     ]
     let midpoint = Math.ceil(chapter1.length / 2);
