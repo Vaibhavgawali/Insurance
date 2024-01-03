@@ -77,7 +77,8 @@ class CandidateController extends Controller
             'ctc' => 'required_if:experience,experienced',
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
-            "joining_date" => 'required_if:experience,experienced',
+            // "joining_date" => 'required_if:experience,experienced',
+            'experience_year'=>'required_if:experience,experienced|numeric',
             'preffered_line' => 'required|string|max:60',
             'city' => 'required|string|max:60'
         ]);
@@ -114,6 +115,7 @@ class CandidateController extends Controller
                     'organization' => $request->organization,
                     'designation' => $request->designation,
                     'ctc' => $request->ctc,
+                    'experience_year'=>$request->experience_year,
                     "joining_date" => $request->joining_date,
                     "relieving_date" => $request->relieving_date
                 ]);
