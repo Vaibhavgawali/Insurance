@@ -13,8 +13,9 @@ $(document).ready(function () {
         var experience = $("#experience").val();
         var organization = $("#organization").val();
         var designation = $("#designation").val();
-        var joining_date = $("#joining_date").val();
-        var relieving_date = $("#relieving_date").val();
+        var experience_year = $("#experience_year").val();
+        // var joining_date = $("#joining_date").val();
+        // var relieving_date = $("#relieving_date").val();
         var ctc = $("#ctc").val();
 
         var preffered_line = $("#preffered_line").val();
@@ -31,7 +32,8 @@ $(document).ready(function () {
         $("#organization_error").html("");
         $("#designation_error").html("");
         $("#ctc_error").html("");
-        $("#joining_date_error").html("");
+        $("#experience_year_error").html("");
+        // $("#joining_date_error").html("");
 
         $("#preffered_line_error").html("");
         $("#flexCheckDefault_error").html("");
@@ -116,7 +118,7 @@ $(document).ready(function () {
             $("#password").focus();
             return false;
         }
-        
+
         function validatePassword(password) {
             // Minimum 8 characters, at least one uppercase letter,
             // one lowercase letter, one number, and one special character
@@ -196,15 +198,15 @@ $(document).ready(function () {
             }
 
             if (
-                joining_date == "" ||
-                joining_date == null ||
-                joining_date == "undefined" ||
-                joining_date == undefined
+                experience_year == "" ||
+                experience_year == null ||
+                experience_year == "undefined" ||
+                experience_year == undefined
             ) {
-                $("#joining_date_error").html(
-                    '<div class=" invalid-feedback d-block">Joining date is required.</div>'
+                $("#experience_year_error").html(
+                    '<div class=" invalid-feedback d-block">Experience in year is required.</div>'
                 );
-                $("#joining_date").focus();
+                $("#experience_year").focus();
                 return false;
             }
 
@@ -258,8 +260,9 @@ $(document).ready(function () {
         if (experience == "experienced") {
             data["organization"] = organization;
             data["designation"] = designation;
-            data["joining_date"] = joining_date;
-            data["relieving_date"] = relieving_date;
+            data["experience_year"] = experience_year;
+            // data["joining_date"] = joining_date;
+            // data["relieving_date"] = relieving_date;
             data["ctc"] = ctc;
         }
 

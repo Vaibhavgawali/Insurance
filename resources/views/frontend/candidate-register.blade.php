@@ -91,7 +91,7 @@
                                     <div id="designation_error"></div>
                                 </div>
 
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label for="joining_date" class="form-label">Joining Date</label>
                                     <input type="date" class="form-control"  name="joining_date" id="joining_date" aria-describedby="joiningDateHelp" placeholder="YYYY-MM-DD">
                                     <div id="joining_date_error"></div>
@@ -100,6 +100,12 @@
                                 <div class="mb-3">
                                     <label for="relieving_date" class="form-label">Relieving Date</label>
                                     <input type="date" class="form-control"  name="relieving_date" id="relieving_date" aria-describedby="relievingDateHelp" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD">
+                                </div> -->
+                                
+                                <div class="mb-3">
+                                    <label for="experience_year" class="form-label">Experience (in years)</label>
+                                    <input type="number" class="form-control"  name="experience_year" id="experience_year" aria-describedby="ctcHelp" placeholder="Enter your experience">
+                                    <div id="experience_year_error"></div>
                                 </div>
 
                                 <div class="mb-3">

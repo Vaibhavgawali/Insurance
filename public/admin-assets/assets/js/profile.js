@@ -778,8 +778,9 @@ $(document).ready(function () {
         var ctc = $("#ctc").val();
         var job_profile_description = $("#job_profile_description").val();
         var state = $("#job_state").val();
-        var joining_date = $("#joining_date").val();
-        var relieving_date = $("#relieving_date").val();
+        var experience_year = $("#experience_year").val();
+        // var joining_date = $("#joining_date").val();
+        // var relieving_date = $("#relieving_date").val();
         var user_id = $("#user_id").val();
 
         $("#is_current_company_error").html("");
@@ -788,8 +789,9 @@ $(document).ready(function () {
         $("#ctc_error").html("");
         $("#job_profile_description_error").html("");
         $("#job_state_error").html("");
-        $("#joining_date_error").html("");
-        $("#relieving_date_error").html("");
+        $("#experience_year_error").html("");
+        // $("#joining_date_error").html("");
+        // $("#relieving_date_error").html("");
 
         $("#profile_experience_status").html("");
 
@@ -872,19 +874,17 @@ $(document).ready(function () {
         }
 
         if (
-            joining_date == "" ||
-            joining_date == null ||
-            joining_date == "undefined" ||
-            joining_date == undefined
+            experience_year == "" ||
+            experience_year == null ||
+            experience_year == "undefined" ||
+            experience_year == undefined
         ) {
-            $("#joining_date_error").html(
-                '<div class=" invalid-feedback d-block">Joining date   is required.</div>'
+            $("#experience_year_error").html(
+                '<div class=" invalid-feedback d-block">Experience is required.</div>'
             );
-            $("#joining_date").focus();
+            $("#experience_year").focus();
             return false;
         }
-
-  
 
         var data = {
             is_current_company: is_current_company,
@@ -893,8 +893,9 @@ $(document).ready(function () {
             ctc: ctc,
             state: state,
             job_profile_description: job_profile_description,
-            joining_date: joining_date,
-            relieving_date: relieving_date,
+            experience_year: experience_year,
+            // joining_date: joining_date,
+            // relieving_date: relieving_date,
         };
         // function extractAndConvertToInteger(str) {
         //     const trimmedStr = str.trim(); // Trim leading and trailing spaces
@@ -970,8 +971,9 @@ $(document).ready(function () {
         var ctc = $("#ctc").val();
         var job_profile_description = $("#job_profile_description").val();
         var state = $("#job_state").val();
-        var joining_date = $("#joining_date").val();
-        var relieving_date = $("#relieving_date").val();
+        var experience_year = $("#experience_year").val();
+        // var joining_date = $("#joining_date").val();
+        // var relieving_date = $("#relieving_date").val();
         var user_id = $("#user_id").val();
 
         $("#is_current_company_error").html("");
@@ -980,8 +982,9 @@ $(document).ready(function () {
         $("#ctc_error").html("");
         $("#job_profile_description_error").html("");
         $("#job_state_error").html("");
-        $("#joining_date_error").html("");
-        $("#relieving_date_error").html("");
+        $("#experience_year_error").html("");
+        // $("#joining_date_error").html("");
+        // $("#relieving_date_error").html("");
 
         $("#profile_experience_status").html("");
 
@@ -1064,15 +1067,15 @@ $(document).ready(function () {
         }
 
         if (
-            joining_date == "" ||
-            joining_date == null ||
-            joining_date == "undefined" ||
-            joining_date == undefined
+            experience_year == "" ||
+            experience_year == null ||
+            experience_year == "undefined" ||
+            experience_year == undefined
         ) {
-            $("#joining_date_error").html(
+            $("#experience_year_error").html(
                 '<div class=" invalid-feedback d-block">Joining date   is required.</div>'
             );
-            $("#joining_date").focus();
+            $("#experience_year").focus();
             return false;
         }
 
@@ -1083,8 +1086,9 @@ $(document).ready(function () {
             ctc: ctc,
             state: state,
             job_profile_description: job_profile_description,
-            joining_date: joining_date,
-            relieving_date: relieving_date,
+            experience_year: experience_year,
+            // joining_date: joining_date,
+            // relieving_date: relieving_date,
             user_id: user_id,
         };
 

@@ -50,6 +50,12 @@
         </div>
 
         <div class="form-group">
+          <label for="experience_year">Experience (in year)</label>
+          <input type="number" class="form-control" name="experience_year" id="experience_year" disabled value='{{ $data->experience->experience_year ?? "N/A" }}'>
+          <div id="experience_year_error"></div>
+        </div>
+
+        <!-- <div class="form-group">
           <label for="joining_date">Joining Date</label>
           <input type="date" class="form-control" name="joining_date" id="joining_date" disabled value='{{ $data->experience->joining_date ?? "N/A" }}'>
           <div id="joining_date_error"></div>
@@ -59,18 +65,18 @@
           <label for="relieving_date">Reliving Date</label>
           <input type="date" class="form-control" name="relieving_date" id="relieving_date" disabled value='{{ $data->experience->relieving_date ?? "N/A" }}'>
           <div id="relieving_date_error"></div>
-        </div>
+        </div> -->
 
         <div class="form-group">
             <label for="user_id"></label>
             <input type="text" class="form-control" id="user_id" placeholder="user_id"  value=" {{$data->user_id}}" hidden>
           </div>
           @if(auth()->user()->user_id == $data->user_id)
-        <div id="profile_experience_update_button_div">
-          <button type="submit" class="btn btn-gradient-primary me-2"  id="profile_experience_update_button">Submit</button>
-          <button class="btn btn-light" id="profile_experience_cancel_button">Cancel</button>
-        </div>
-@endif
+            <div id="profile_experience_update_button_div">
+              <button type="submit" class="btn btn-gradient-primary me-2"  id="profile_experience_update_button">Submit</button>
+              <button class="btn btn-light" id="profile_experience_cancel_button">Cancel</button>
+            </div>
+          @endif
       </form>
       <script>
         
@@ -93,8 +99,9 @@ let Profile_Experience_toggle = () => {
         "job_profile_description"
     );
     let jobStateInput = document.getElementById("job_state");
-    let joiningDateInput = document.getElementById("joining_date");
-    let relievingDateInput = document.getElementById("relieving_date");
+    let experienceYearInput = document.getElementById("experience_year");
+    // let joiningDateInput = document.getElementById("joining_date");
+    // let relievingDateInput = document.getElementById("relieving_date");
 
     let toggle = false;
 
@@ -110,8 +117,9 @@ let Profile_Experience_toggle = () => {
             ctcInput.removeAttribute("disabled");
             profileDescriptionInput.removeAttribute("disabled");
             jobStateInput.removeAttribute("disabled");
-            joiningDateInput.removeAttribute("disabled");
-            relievingDateInput.removeAttribute("disabled");
+            experienceYearInput.removeAttribute("disabled");
+            // joiningDateInput.removeAttribute("disabled");
+            // relievingDateInput.removeAttribute("disabled");
         } else {
             profileUpdateButtonDiv.style.display = "none";
             currentCompanyInput.setAttribute("disabled", true);
@@ -120,8 +128,9 @@ let Profile_Experience_toggle = () => {
             ctcInput.setAttribute("disabled", true);
             profileDescriptionInput.setAttribute("disabled", true);
             jobStateInput.setAttribute("disabled", true);
-            joiningDateInput.setAttribute("disabled", true);
-            relievingDateInput.setAttribute("disabled", true);
+            experienceYearInput.setAttribute("disabled",true);
+            // joiningDateInput.setAttribute("disabled", true);
+            // relievingDateInput.setAttribute("disabled", true);
         }
     });
     profileCancelButton.addEventListener("click", () => {
@@ -134,8 +143,9 @@ let Profile_Experience_toggle = () => {
         ctcInput.setAttribute("disabled", true);
         profileDescriptionInput.setAttribute("disabled", true);
         jobStateInput.setAttribute("disabled", true);
-        joiningDateInput.setAttribute("disabled", true);
-        relievingDateInput.setAttribute("disabled", true);
+        experienceYearInput.setAttribute("disabled",true);
+        // joiningDateInput.setAttribute("disabled", true);
+        // relievingDateInput.setAttribute("disabled", true);
     });
 };
 
