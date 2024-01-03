@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('experience', function (Blueprint $table) {
-            $table->decimal('experience_year', 8, 2)->after('job_profile_description');
+            $table->decimal('experience_year', 8, 1)->after('job_profile_description');
         });
     }
 

@@ -23,6 +23,7 @@ class UserExperience extends Model
         'ctc',
         'state',
         'job_profile_description',
+        'experience_year',
         'joining_date',
         'relieving_date'
     ];

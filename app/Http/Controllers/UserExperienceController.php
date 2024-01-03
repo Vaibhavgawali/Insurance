@@ -101,8 +101,9 @@ class UserExperienceController extends Controller
                     "ctc"=>'required|numeric',
                     "state"=>'string|max:50',
                     "job_profile_description"=>'string|max:60',
-                    "joining_date"=>'required|date_format:Y-m-d',
-                    "relieving_date"=>'nullable|date_format:Y-m-d',
+                    'experience_year'=>'required|numeric',
+                    // "joining_date"=>'required|date_format:Y-m-d',
+                    // "relieving_date"=>'nullable|date_format:Y-m-d',
                 ]);
 
                 if($validator->fails()){
