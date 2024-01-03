@@ -133,6 +133,30 @@
                                 </select>
                                 <div id="preffered_line_error"></div>
                             </div>
+                            <div class="mb-3" style="display:none" id="preffered_line_otherDiv">
+                                    <label for="preffered_line" class="form-label">Preffered Line</label>
+                                    <input type="input" class="form-control"  name="preffered_line" id="preffered_line" aria-describedby="preffered_lineHelp" placeholder="Write Some Preffered Line for Other">
+                                    <div id="preferred_line_error"></div>
+                            </div>
+                            <script>
+    // Add event listener to the select element
+    document.getElementById('preffered_line').addEventListener('change', function () {
+        // Get the selected value
+        var selectedValue = this.value;
+
+        // Get the other div
+        var otherDiv = document.getElementById('preffered_line_otherDiv');
+
+        // Check if the selected value is "other"
+        if (selectedValue === 'other') {
+            // Display the other div
+            otherDiv.style.display = 'block';
+        } else {
+            // Hide the other div
+            otherDiv.style.display = 'none';
+        }
+    });
+</script>
                            
                              <div class="d-flex align-items-center ">
                                 <input class="form-check-input m-2" type="checkbox" value="" id="flexCheckDefault">
