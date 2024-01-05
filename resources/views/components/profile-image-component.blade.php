@@ -80,7 +80,7 @@
 
       @else
       
-      @if(empty($data->profile->profile_image))
+      @if(empty($data->profile) && empty($data->profile->profile_image))
       <div id="image-view">
         <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">
       </div>

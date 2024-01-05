@@ -37,7 +37,9 @@ class CandidateController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $users = User::role('Candidate')->get();
+            // $users = User::role('Candidate')->get();
+            $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->get();
+            // dd($users);
             if ($users) {
                 // return Response(['data' => $users], 200);
                 return view('dashboard.admin.candidate-list', ['candidates' => $users]);
@@ -46,6 +48,7 @@ class CandidateController extends Controller
         }
         return Response(['data' => 'Unauthorized'], 401);
     }
+
 
     /**
      * Show the form for creating a new resource.
