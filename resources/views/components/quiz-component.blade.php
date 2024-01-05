@@ -1,7 +1,9 @@
 <!-- <div> -->
-<form method="post" action="/submit-quiz/{{$quizId}}" id="quizForm">
+<!-- action="/submit-quiz/{{$quizId}}" -->
+<form method="post" id="quizForm">
     @csrf
     @php $i = 1; @endphp
+    <input type="hidden" name="quiz_id" value={{$quizId}} id="quiz_id" />
     @foreach ($questions as $question)
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
@@ -39,6 +41,8 @@
         </div>
         @php ++$i; @endphp
     @endforeach
-
+    <div class="button-container">
+        <button id="quiz_submit" type="submit" class="right-button px-4 pt-3 pb-3 button-style-2 text-white fw-bold text-uppercase">Submit</button>
+    </div>
 </form>
 <!-- </div> -->

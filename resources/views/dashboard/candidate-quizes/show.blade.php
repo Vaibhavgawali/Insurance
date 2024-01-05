@@ -17,17 +17,14 @@
                 </h3>
             </div>
             <x-quiz-component :questions="$questions" :quizId="$quiz_id"/>
-            <div class="button-container">
-                <!-- <button class="left-button px-4 pt-3 pb-3  button-style fw-bold text-uppercase text-white">Reset</button> -->
-                <button class="right-button px-4 pt-3 pb-3 button-style-2 text-white fw-bold text-uppercase">Submit</button>
-            </div>
+           
 
         </div>
     </div>
 </div>
 
 <script>
-   let quizTime = localStorage.getItem('quizTime') || {{$quiz_time}};
+   let initialQuizTime =  window.localStorage.getItem('quizTime') || {{$quiz_time}}; 
 
    function updateTimerDisplay(minutes, seconds) {
         const formattedMinutes = String(minutes).padStart(2, '0');
@@ -37,6 +34,7 @@
    }
 
    function startTimer() {
+      let quizTime = initialQuizTime;
       let seconds = localStorage.getItem('timerSeconds') || 0;
 
       const timerInterval = setInterval(function() {
@@ -44,8 +42,9 @@
             clearInterval(timerInterval);
 
             // Handle quiz submission or timeout here
-            // document.forms[0].submit();
-            // alert("Time's up! Submitted your quiz.");
+            if (confirm("Time's up! Do you want to submit your quiz?")) {
+                $("#quizForm").submit();
+            }
 
          } else {
             if (seconds <= 0) {
@@ -63,8 +62,8 @@
       }, 1000);
    }
 
-   // Start the timer when the page loads
-   window.onload = function() {
+  // Start the timer when the page loads
+    window.onload = function() {
       startTimer();
 
       // Prompt the user before leaving the page
@@ -76,7 +75,7 @@
    };
 
     // Disable keys    
-   document.addEventListener('keydown', function (event) {
+    document.addEventListener('keydown', function (event) {
         if (event.ctrlKey && (event.key === 'p' || event.keyCode === 80)) {
             event.preventDefault();
         }

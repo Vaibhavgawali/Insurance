@@ -65,7 +65,8 @@
     <!-- Custom js for this page -->
     <script src="/admin-assets/assets/js/dashboard.js"></script>
     <script src="/admin-assets/assets/js/profile.js"></script>
-    <script src="/admin-assets/assets/js/todolist.js"></script>
+    <script src="/admin-assets/assets/js/profile.js"></script>
+    <script src="/admin-assets/assets/js/quiz.js"></script>
     <!-- End custom js for this page -->
 </body>
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Quiz;
+use App\Models\UserQuiz;
 
 class CandidateQuizController extends Controller
 {
@@ -112,35 +113,59 @@ class CandidateQuizController extends Controller
         //
     }
 
-    public function submit(Request $request, $id)
+    public function submit(Request $request, $quizId)
     {
-        dd("ok");
-        $userAnswers = $request->input('answers');
-        $correctAnswers = $this->calculateCorrectAnswers($quiz, $userAnswers);
+        $quiz = Quiz::findOrFail($quizId);
+        $userAnswers = $request->except('_token');
 
-        Auth::user()->quizzes()->attach($quiz->id, [
-            'score' => count($correctAnswers),
-        ]);
+        $score = $this->calculateScore($userAnswers,$quizId);
+   
+        $passingScore = 2;
+        $is_passed=$score >= $passingScore;
 
-        return redirect()->route('quizzes.show', $quiz->id)
-            ->with(['quizSubmitted' => true, 'correctAnswers' => $correctAnswers]);
-    }
+        $user_quiz = UserQuiz::where([
+            'user_id' => Auth::id(),
+            'quiz_id' => $quiz->id,
+        ])->first();
 
-    // Helper method to calculate correct answers
-    private function calculateCorrectAnswers(Quiz $quiz, $userAnswers)
-    {
-        $correctAnswers = [];
-
-        foreach ($quiz->questions as $question) {
-            $correctAnswerId = $question->answers()->where('is_correct', true)->value('id');
-
-            if ($userAnswers[$question->id] == $correctAnswerId) {
-                $correctAnswers[$question->id] = true;
-            } else {
-                $correctAnswers[$question->id] = false;
-            }
+        if ($user_quiz && $score > $user_quiz->score) {
+            $user_quiz->update(['score' => $score,'pass_status'=>$is_passed ]);
+        } elseif (!$user_quiz) {
+            UserQuiz::create([
+                'user_id' => Auth::id(),
+                'quiz_id' => $quiz->id,
+                'score' => $score,
+                'pass_status'=>$is_passed 
+            ]);
         }
 
-        return $correctAnswers;
+        if($is_passed){
+            // certificate logic
+            $message="You have passed";
+        }else{
+            $message="You have failed";
+        }
+
+        return Response(['message' => $message], 200);
+        // return redirect()->route('quizzes.show', $quiz->id)
+        //     ->with(['quizSubmitted' => true, 'correctAnswers' => $correctAnswers]);
+    }
+
+    // Helper method to calculate score 
+    private function calculateScore($userAnswers,$quizId)
+    {
+        $score = 0;
+        $correctAnswersScore = 2;
+        $quiz = Quiz::findOrFail($quizId);
+
+        foreach ($quiz->questions as $question) {
+            $correctAnswerText = $question->answers()->where('is_correct', true)->value('answer_text');
+ 
+            $userSelectedAnswerText = $userAnswers[$question->id];
+
+            $score += ($userSelectedAnswerText == $correctAnswerText) ? $correctAnswersScore : 0 ;
+        }
+
+        return $score;
     }
 }
