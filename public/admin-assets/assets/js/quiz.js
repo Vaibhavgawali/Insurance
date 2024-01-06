@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#quizForm").submit(function (e) {
         e.preventDefault();
-        alert("quiz :" + localStorage.getItem("quizTime"));
+        // alert("quiz :" + localStorage.getItem("quizTime"));
         var quiz_id = $("#quiz_id").val().trim();
 
         // Serialize form data
@@ -13,10 +13,10 @@ $(document).ready(function () {
             data: formData,
             success: function (response) {
                 console.log(response);
-
+                // alert(localStorage.getItem("quizTime"));
                 // Remove local storage items
                 try {
-                    // localStorage.clear();
+                    localStorage.clear();
                     // localStorage.removeItem("quizTime");
                     // localStorage.removeItem("timerSeconds");
                     // localStorage.removeItem("quizAnswers");
