@@ -62,6 +62,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('user-address', UserAddressController::class);
     Route::resource('user-experience', UserExperienceController::class);
     Route::resource('user-documents', UserDocumentsController::class) ;
+    Route::post('user-documents-update/{id}', [UserDocumentsController::class, 'update'])->name('update');
 
     Route::resource('requirements', RequirementsController::class);
 
