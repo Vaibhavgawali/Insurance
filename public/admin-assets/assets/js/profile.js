@@ -1,5 +1,6 @@
 // Alert Box
 
+
 let loginAlert = () => {
     swal("Good job!", "You clicked the button!", "success");
 };
@@ -34,6 +35,83 @@ deleteAlert = () => {
         }
     });
 };
+
+$(document).ready(function () {
+    // Reuirements  Update function
+    $("#requirement_text_submit_button").click(function (event) {
+        console.log("clicked");
+        var requirement_text = $("#requirement_text").val();
+        var user_id = $("#user_id").val();
+        console.log(requirement_text);;
+
+        $("#requirement_text_error").html("");
+
+        if (
+            requirement_text == "" ||
+            requirement_text == null ||
+            requirement_text == "undefined" ||
+            requirement_text == undefined
+        ) {
+            $("#requirement_text_error").html(
+                '<div class=" invalid-feedback d-block">Query is required.</div>'
+            );
+            $("#requirement_text").focus();
+            console.log("Error");
+            return false;
+        }
+        var data = {
+            requirement_text: requirement_text,
+            user_id: user_id,
+        };
+        console.log(data);
+
+        event.preventDefault();
+
+        var url = window.location.origin + `/requirements`;
+        console.log(url);
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.status == true) {
+                    $(".error-message").remove();
+                    $("#requirement_text_submit_button").attr("disabled", true);
+                    requirementsAlert();
+                    // Optional: You can add a delay before reloading the page
+                    // setTimeout(function () {
+                    //     window.location.reload();
+                    // }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+                    return false;
+                }
+            },
+            error: function (response) {
+                // console.log(response);
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+                    console.log(errors);
+                    $(".error-message").remove();
+
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+            },
+        });
+    });
+});
+
 
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("profile_image");
@@ -213,7 +291,7 @@ $(document).ready(function (e) {
         // Get base URL from meta tag
         var baseUrl = $('meta[name="base-url"]').attr("content");
 
-      
+        // e.preventDefault();
         $.ajax({
             url: baseUrl + "/user-documents",
             type: "POST",
@@ -884,18 +962,7 @@ $(document).ready(function () {
             return false;
         }
 
-        // if (
-        //     relieving_date == "" ||
-        //     relieving_date == null ||
-        //     relieving_date == "undefined" ||
-        //     relieving_date == undefined
-        // ) {
-        //     $("#relieving_date_error").html(
-        //         '<div class=" invalid-feedback d-block">Relieving date  is required.</div>'
-        //     );
-        //     $("#relieving_date").focus();
-        //     return false;
-        // }
+  
 
         var data = {
             is_current_company: is_current_company,
@@ -1151,75 +1218,4 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    // Reuirements  Update function
-    $("#put-query-submit-button").click(function (event) {
-        var requirement_text = $("#put-query").val();
-        var user_id = $("#user_id").val();
 
-        $("#put-query_error").html("");
-
-        if (
-            requirement_text == "" ||
-            requirement_text == null ||
-            requirement_text == "undefined" ||
-            requirement_text == undefined
-        ) {
-            $("#put-query_error").html(
-                '<div class=" invalid-feedback d-block">Query is required.</div>'
-            );
-            $("#put-query").focus();
-            return false;
-        }
-
-        var data = {
-            requirement_text: requirement_text,
-            user_id: user_id,
-        };
-
-        event.preventDefault();
-
-        var url = window.location.origin + `/requirements`;
-        console.log(url);
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: data,
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            success: function (response) {
-                console.log(response);
-                if (response.status == true) {
-                    $(".error-message").remove();
-                    $("#put-query-submit-button").attr("disabled", true);
-                    requirementsAlert();
-                    // Optional: You can add a delay before reloading the page
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-                    return false;
-                }
-            },
-            error: function (response) {
-                // console.log(response);
-                if (response.status === 422) {
-                    var errors = response.responseJSON.errors;
-                    console.log(errors);
-                    $(".error-message").remove();
-
-                    // Display new errors
-                    $.each(errors, function (field, messages) {
-                        var input = $('[name="' + field + '"]');
-                        input.after(
-                            '<div class="error-message invalid-feedback d-block">' +
-                                messages.join(", ") +
-                                "</div>"
-                        );
-                    });
-                }
-            },
-        });
-    });
-});

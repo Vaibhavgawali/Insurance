@@ -84,11 +84,11 @@
 
 
   @if(auth()->user()->hasRole('Insurer'))
-  Insurer Dashboard
+  <x-dashboard-insurer-login />
   @endif
 
   @if(auth()->user()->hasRole('Institute'))
-  Institute Dashboard
+  <x-dashboard-institution-login /> <!--User Profile section comp  -->
   @endif
 <!-- main-panel ends -->
 

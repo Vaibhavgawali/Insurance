@@ -13,11 +13,12 @@ $(document).ready(function () {
         var experience = $("#experience").val();
         var organization = $("#organization").val();
         var designation = $("#designation").val();
-        var joining_date = $("#joining_date").val();
-        var relieving_date = $("#relieving_date").val();
+        var experience_year = $("#experience_year").val();
+        // var joining_date = $("#joining_date").val();
+        // var relieving_date = $("#relieving_date").val();
         var ctc = $("#ctc").val();
 
-        var preferred_line = $("#preferred_line").val();
+        var preffered_line = $("#preffered_line").val();
         var city = $("#city").val();
 
         $("#name_error").html("");
@@ -31,7 +32,8 @@ $(document).ready(function () {
         $("#organization_error").html("");
         $("#designation_error").html("");
         $("#ctc_error").html("");
-        $("#joining_date_error").html("");
+        $("#experience_year_error").html("");
+        // $("#joining_date_error").html("");
 
         $("#preffered_line_error").html("");
         $("#flexCheckDefault_error").html("");
@@ -196,15 +198,15 @@ $(document).ready(function () {
             }
 
             if (
-                joining_date == "" ||
-                joining_date == null ||
-                joining_date == "undefined" ||
-                joining_date == undefined
+                experience_year == "" ||
+                experience_year == null ||
+                experience_year == "undefined" ||
+                experience_year == undefined
             ) {
-                $("#joining_date_error").html(
-                    '<div class=" invalid-feedback d-block">Joining date is required.</div>'
+                $("#experience_year_error").html(
+                    '<div class=" invalid-feedback d-block">Experience in year is required.</div>'
                 );
-                $("#joining_date").focus();
+                $("#experience_year").focus();
                 return false;
             }
 
@@ -223,15 +225,24 @@ $(document).ready(function () {
         }
 
         if (
-            preferred_line == "" ||
-            preferred_line == null ||
-            preferred_line == "undefined" ||
-            preferred_line == undefined
+            preffered_line == "" ||
+            preffered_line == null ||
+            preffered_line == "undefined" ||
+            preffered_line == undefined
         ) {
-            $("#preferred_line_error").html(
-                '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
+            $("#preffered_line_error").html(
+                '<div class=" invalid-feedback d-block">Please select preffered line is required</div>'
             );
-            $("#preferred_line").focus();
+            $("#preffered_line").focus();
+            return false;
+        }
+        else if (
+            preffered_line.length>60
+        ) {
+            $("#preffered_line_error").html(
+                '<div class=" invalid-feedback d-block">Preffered line must not be greater than 60 characters</div>'
+            );
+            $("#preffered_line").focus();
             return false;
         }
 
@@ -251,14 +262,16 @@ $(document).ready(function () {
             password: password,
             city: city,
             experience: experience,
-            preferred_line: preferred_line,
+            preffered_line: preffered_line,
+            password_confirmation: password_confirmation,
         };
 
         if (experience == "experienced") {
             data["organization"] = organization;
             data["designation"] = designation;
-            data["joining_date"] = joining_date;
-            data["relieving_date"] = relieving_date;
+            data["experience_year"] = experience_year;
+            // data["joining_date"] = joining_date;
+            // data["relieving_date"] = relieving_date;
             data["ctc"] = ctc;
         }
 
@@ -315,7 +328,7 @@ $(document).ready(function () {
         var password_confirmation = $("#password_confirmation").val();
         var city = $("#city").val();
         var spoc = $("#spoc").val();
-        var preferred_line = $("#preferred_line").val();
+        var preffered_line = $("#preffered_line").val();
 
         $("#name_error").html("");
         $("#phone_error").html("");
@@ -324,7 +337,7 @@ $(document).ready(function () {
         $("#password_confirmation_error").html("");
         $("#city_error").html("");
         $("#spoc_error").html("");
-        $("#preferred_line_error").html("");
+        $("#preffered_line_error").html("");
         $("#flexCheckDefault_error").html("");
 
         $("#register_status").html("");
@@ -453,22 +466,31 @@ $(document).ready(function () {
             spoc == undefined
         ) {
             $("#spoc_error").html(
-                '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
+                '<div class=" invalid-feedback d-block">SPOC is required</div>'
             );
             $("#spoc").focus();
             return false;
         }
 
         if (
-            preferred_line == "" ||
-            preferred_line == null ||
-            preferred_line == "undefined" ||
-            preferred_line == undefined
+            preffered_line == "" ||
+            preffered_line == null ||
+            preffered_line == "undefined" ||
+            preffered_line == undefined
         ) {
-            $("#preferred_line_error").html(
-                '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
+            $("#preffered_line_error").html(
+                '<div class=" invalid-feedback d-block">Please select preffered line is required</div>'
             );
-            $("#preferred_line").focus();
+            $("#preffered_line").focus();
+            return false;
+        }
+       else if (
+            preffered_line.length>60
+        ) {
+            $("#preffered_line_error").html(
+                '<div class=" invalid-feedback d-block">Preffered line must not be greater than 60 characters</div>'
+            );
+            $("#preffered_line").focus();
             return false;
         }
 
@@ -486,9 +508,10 @@ $(document).ready(function () {
             phone: phone,
             email: email,
             password: password,
+            password_confirmation: password_confirmation,
             city: city,
             spoc: spoc,
-            preferred_line: preferred_line,
+            preffered_line: preffered_line,
         };
 
         event.preventDefault();
@@ -697,6 +720,7 @@ $(document).ready(function () {
             phone: phone,
             email: email,
             password: password,
+            password_confirmation: password_confirmation,
             city: city,
             spoc: spoc,
         };
@@ -741,6 +765,6 @@ $(document).ready(function () {
                     });
                 }
             },
-        });
-    });
+        });
+    });
 });

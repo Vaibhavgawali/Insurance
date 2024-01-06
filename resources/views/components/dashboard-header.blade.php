@@ -21,10 +21,17 @@
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="nav-profile-img">
-
+                        @if($user->profile && $user->profile->profile_image)
+                        <!-- If user has a profile and a profile image, display it -->
                         <img src="{{ asset('storage/images/') }}/{{$user->profile->profile_image}}" alt="{{$user->profile->profile_image}}" class="img-fluid">
                         <span class="availability-status online"></span>
+                        @else
+                        <!-- If user does not have a profile or profile image, display a default placeholder image -->
+                        <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">
+                        <span class="availability-status online"></span>
+                        @endif
                     </div>
+
                     <div class="nav-profile-text">
                         <p class="mb-1 text-black"> {{ Illuminate\Support\Str::limit(explode(' ', $user->namecc)[0], 9, '..') }}
                         </p>
