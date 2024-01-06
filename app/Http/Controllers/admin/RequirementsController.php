@@ -32,19 +32,20 @@ class RequirementsController extends Controller
         $user = Auth::user();
     
         if ($user->hasRole('Superadmin')) {
-            $requirements = Requirements::with('user')->get();
+            $requirements = Requirements::with('user')->orderBy('user_id', 'desc')->get();
+            
+            
         } elseif ($user->hasRole(['Insurer', 'Institute'])) {
             $requirements = Requirements::with('user')->where('user_id', $user->user_id)->get();
         } else {
             $requirements = null;
         }
-        // return view('dashboard.admin.dashboard', ['requirements' => $requirements]);
-
-        return $requirements
-            ? response(['requirements' => $requirements], 200)
-            : response(['message' => 'Requirements not found'], 404);
+        return view('dashboard.admin.requirements-list',['requirements' => $requirements]);
     }
+ 
+       
     /**
+     * 
      * Show the form for creating a new resource.
      */
     public function create()
@@ -91,9 +92,7 @@ class RequirementsController extends Controller
             $requirement = Requirements::where(['user_id' => $user->user_id, 'id' => $id])->first();
         }
 
-        return $requirement
-                ? response(['requirement' => $requirement], 200)
-                : response(['message' => 'Requirement not found'], 404);
+        return view('dashboard.admin.requirements-list',['requirement' => $requirement]);
     }
 
     /**
