@@ -18,21 +18,14 @@ use Illuminate\Support\Str;
     @foreach($data as $row)
     <tr>
       <td>{{$i++}}</td>
-      <td>{{$row->user->name}}</td>
-      {{$row->user}}
+      <td>{{$row->user->name}}</td> 
       <td>{{ \Carbon\Carbon::parse($row->created_at)->format('Y-m-d') }}</td>
       <td>{{ Str::limit($row->requirement_text, $limit = 30, $end = '...') }}</td>
       <td class="text-center">
-            <button class="btn btn-sm btn-gradient-success btn-rounded view-btn"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal" 
-                    data-requirement="{{$row->requirement_text}}"
-                    data-user-date="{{ \Carbon\Carbon::parse($row->created_at)->format('Y-m-d') }}"
-                    data-user-name="{{$row->user->name}}"
-                    data-user-email="{{$row->user->email}}"
-                    data-user-phone="{{$row->user->phone}}">
-                View
-            </button>
-        </td>
+        <button class="btn btn-sm btn-gradient-success btn-rounded view-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-requirement="{{$row->requirement_text}}" data-user-date="{{ \Carbon\Carbon::parse($row->created_at)->format('Y-m-d') }}" data-user-name="{{$row->user->name}}" data-user-email="{{$row->user->email}}" data-user-phone="{{$row->user->phone}}">
+          View
+        </button>
+      </td>
       <!-- Modal -->
     </tr>
     @endforeach
@@ -41,37 +34,60 @@ use Illuminate\Support\Str;
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Use inline style to set max height and enable scrolling -->
-                <div>
-                   <div id="date-div"><h2 id-></h2></div>
-                </div>
-                <div style="max-height: 400px; overflow-y: auto;" id="modal-content">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Requirements</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Use inline style to set max height and enable scrolling -->
+        <div>
+          <div id="date-div">
+            <h6 id="date" class="fs-6 text-end"></h6>
+          </div>
+          <div id="name-div">
+            <h5 id="name"></h5>
+          </div>
+          <div id="email-div">
+            <h5 id="email"></h5>
+          </div>
+          <div id="phone-div">
+            <h5 id="phone"></h5>
+          </div>
+
+
         </div>
+        <div style="max-height: 400px; overflow-y: auto;" id="modal-content" class="text-justify">
+          Requirements: <br>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- jQuery script -->
 <script>
-    $(document).ready(function () {
-        $('.view-btn').click(function () {
-            var userId = $(this).data('user-id');
-            var requirementText = $(this).data('requirement');
+  $(document).ready(function() {
+    $('.view-btn').click(function() {
+      var userId = $(this).data('user-id');
+      var requirementText = $(this).data('requirement');
+      var date = $(this).data("user-date");
+      var email = $(this).data("user-email");
+      var name = $(this).data("user-name");
+      var phone = $(this).data("user-phone");
 
-            $('#modal-content').html(requirementText);
-            $('#exampleModalLabel').text('Viewing Requirements for User ID: ' + userId);
-        });
+
+      $("#date").html('Date: ' + date);
+      $("#name").html('Name: ' + name);
+      $("#email").html('Email: ' + email);
+      $("#phone").html('Phone: ' + phone);
+
+      $('#modal-content').html(requirementText);
+
     });
+  });
 </script>
