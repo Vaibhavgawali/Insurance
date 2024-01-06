@@ -102,7 +102,7 @@ class UserExperienceController extends Controller
                     "state"=>'string|max:50',
                     "job_profile_description"=>'string|max:60',
                     "joining_date"=>'required|date_format:Y-m-d',
-                    "relieving_date"=>'date_format:Y-m-d',
+                    "relieving_date"=>'nullable|date_format:Y-m-d',
                 ]);
 
                 if($validator->fails()){

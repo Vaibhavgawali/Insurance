@@ -9,47 +9,47 @@
       @if(auth()->user()->user_id == $data->user_id)
       @if($data->profile && $data->profile->profile_image)
       <div id="image-view-1">
-      <img src="{{ asset('storage/images/') }}/{{$data->profile->profile_image}}" alt="{{$data->profile->profile_image}}" class="img-fluid">
+        <img src="{{ asset('storage/images/') }}/{{$data->profile->profile_image}}" alt="{{$data->profile->profile_image}}" class="img-fluid">
         <div class="mt-3" id="change-profile-image">
-        <button class="btn btn-primary btn-sm" onclick="toggleProfileImageDiv()">Update image</button>
+          <button class="btn btn-primary btn-sm" onclick="toggleProfileImageDiv()">Update image</button>
         </div>
-    </div>
+      </div>
 
-     <div style="display:none" id="profile-image-change-div">
-     <form action="" id="Profile-image-upload-form" >
-        @csrf
-        <label for="profile_image" id="drop-area">
-         
-          <div id="image-view">
-            <!-- <img src="icon.png" alt=""> -->
-            <i class="mdi mdi-cloud-upload "></i>
+      <div style="display:none" id="profile-image-change-div">
+        <form action="" id="Profile-image-upload-form">
+          @csrf
+          <label for="profile_image" id="drop-area">
 
-            <p>Drag and drop or click here <br>to upload image</p>
-            <!-- <span>Upload any images From dekstop</span> -->
+            <div id="image-view">
+              <!-- <img src="icon.png" alt=""> -->
+              <i class="mdi mdi-cloud-upload "></i>
+
+              <p>Drag and drop or click here <br>to upload image</p>
+              <!-- <span>Upload any images From dekstop</span> -->
+            </div>
+            <input type="file" accept="image/*" id="profile_image" name="profile_image" hidden>
+          </label>
+          <div class="form-group">
+            <label for="user_id"></label>
+            <input type="text" class="form-control" id="user_id" placeholder="user_id" value=" {{$data->user_id}}" hidden>
           </div>
-          <input type="file" accept="image/*" id="profile_image" name="profile_image" hidden>
-        </label>
-        <div class="form-group">
-          <label for="user_id"></label>
-          <input type="text" class="form-control" id="user_id" placeholder="user_id" value=" {{$data->user_id}}" hidden>
-        </div>
-        <br>
-        <div class="d-flex w-100 justify-content-center align-items-center ">
-          <button style="display:none" ; type="submit" class="btn btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
-        </div>
-      </form>
-      <div id="profile_image_error"></div>
-     </div>
-     <script>
-     function toggleProfileImageDiv() {
-        var profileImageDiv = document.getElementById('profile-image-change-div');
-        var imageView1Div = document.getElementById('image-view-1');
-        // Toggle the profile-image-change-div
-        profileImageDiv.style.display = (profileImageDiv.style.display === 'none' || profileImageDiv.style.display === '') ? 'block' : 'none';
-        // Hide image-view-1 if profile-image-change-div is visible
-        imageView1Div.style.display = (profileImageDiv.style.display === 'block') ? 'none' : 'block';
-    }
-</script>
+          <br>
+          <div class="d-flex w-100 justify-content-center align-items-center ">
+            <button style="display:none" ; type="submit" class="btn btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
+          </div>
+        </form>
+        <div id="profile_image_error"></div>
+      </div>
+      <script>
+        function toggleProfileImageDiv() {
+          var profileImageDiv = document.getElementById('profile-image-change-div');
+          var imageView1Div = document.getElementById('image-view-1');
+          // Toggle the profile-image-change-div
+          profileImageDiv.style.display = (profileImageDiv.style.display === 'none' || profileImageDiv.style.display === '') ? 'block' : 'none';
+          // Hide image-view-1 if profile-image-change-div is visible
+          imageView1Div.style.display = (profileImageDiv.style.display === 'block') ? 'none' : 'block';
+        }
+      </script>
       @else
 
 
@@ -79,9 +79,16 @@
       @endif
 
       @else
+      
+      @if(empty($data->profile) && empty($data->profile->profile_image))
       <div id="image-view">
-        <img src="{{ asset('images/' . $data->profile->profile_image) }}" alt="{{ asset('images/' . $data->profile->profile_image) }}">
+        <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">
       </div>
+      @else
+      <div id="image-view">
+        <img src="{{ asset('storage/images/') }}/{{$data->profile->profile_image}}" alt="{{$data->profile->profile_image}}" class="img-fluid">
+      </div>
+      @endif
       @endif
     </div>
 

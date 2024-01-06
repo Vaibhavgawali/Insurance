@@ -71,6 +71,7 @@ class RequirementsController extends Controller
             'requirement_text' => $request->requirement_text,
             'user_id' => $user->user_id,
         ]);
+        
 
         return $requirement
                 ? response(['status' => true, 'message' => 'Requirement added successfully'], 200)

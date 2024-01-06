@@ -74,16 +74,64 @@
                             </div>
        
                             <div class="mb-3">
-                            <label for="phone" class="form-label">Prefered Line</label>
-                                <select  class="form-control" name="preferred_line" id="preferred_line" aria-label="work status">
-                                    <option selected disabled>--Select--</option>
-                                    <option value="life">Life</option>
-                                    <option value="general">General</option>
-                                    <option value="health">Health</option>
-                                    <option value="other">Other</option>
-                                </select>
-                                <div id="preferred_line_error"></div>
-                            </div>
+                            <div class="mb-3">
+                            <label for="phone" class="form-label">Preffered Line</label>
+                            <select class="form-control" name="preffered_line" id="preffered_line" aria-label="work status">
+                                <option selected disabled>-- Select --</option>
+                                <option value="life">Life</option>
+                                <option value="general">General</option>
+                                <option value="health">Health</option>
+                                <option value="other" id="preffered_line_other_value">Other</option>
+                            </select>
+                            <div id="preffered_line_error"></div>
+                        </div>
+
+                        <div class="mb-3" style="display:none" id="preffered_line_otherDiv">
+                            <label for="preffered_line_other" class="form-label">Other preffered Line</label>
+                            <input type="text" class="form-control" name="preffered_line_other" id="preffered_line_other" aria-describedby="preffered_line_otherHelp" placeholder="Write Some Preffered Line for Other">
+                            <div id="preffered_line_other_error"></div>
+                        </div>
+
+                        <script>
+                            // Add event listener to the input element
+                            document.getElementById('preffered_line_other').addEventListener('input', function() {
+                                // Get the input value
+                                var inputValue = this.value;
+
+                                // Update the "Other" option in the select tag's value attribute
+                                var otherOption = document.getElementById("preffered_line_other_value");
+                                otherOption.value = inputValue;
+                                console.log(otherOption.value);
+                            });
+
+                            // Add event listener to the select element
+                            // Add event listener to the select element
+                            document.getElementById('preffered_line').addEventListener('change', function() {
+                                // Get the selected option
+                                var selectedOption = this.options[this.selectedIndex];
+
+                                // Get the other div
+                                var otherDiv = document.getElementById('preffered_line_otherDiv');
+
+                                // Check if the selected option's text content is "Other"
+                                if (selectedOption.textContent === 'Other') {
+                                    // Display the other div
+                                    otherDiv.style.display = 'block';
+                                } else {
+                                    // Hide the other div
+                                    otherDiv.style.display = 'none';
+                                }
+                            });
+
+
+                            document.getElementById('preffered_line').addEventListener('change', function() {
+                                // Get the selected value
+                                var selectedValue = this.value;
+
+                                // Log the selected value to the console
+                                // console.log("Selected Value:", selectedValue);
+                            });
+                        </script>
                            
                              <div class="d-flex align-items-center ">
                                 <input class="form-check-input m-2" type="checkbox" value="" id="flexCheckDefault">
