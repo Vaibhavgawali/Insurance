@@ -21,7 +21,7 @@
     <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.jpg" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ url('') }}">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 
@@ -51,6 +51,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    
     <script src="/admin-assets/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
