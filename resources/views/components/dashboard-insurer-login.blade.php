@@ -1,4 +1,3 @@
-<!-- partial -->
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">
@@ -106,7 +105,6 @@
                         </div>
                         <div>
                             <p> insurancecareer.in is committed to work as a Platform which attracts right set of people to the Insurance Industry. It also incubates freshers and make them job ready.</p>
-                            <p> We offer modules for Institutions to provide practical training on insurance industry which will help students to get a favourable acceptance from the Industry for a Career.</p>
                         </div>
 
                     </div>
