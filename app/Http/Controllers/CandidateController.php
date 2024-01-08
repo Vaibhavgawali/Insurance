@@ -37,9 +37,7 @@ class CandidateController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            // $users = User::role('Candidate')->get();
-            $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->orderBy('user_id', 'desc')->get();
-            // dd($users);
+            $users = User::role('Candidate')->orderBy('user_id','desc')->get();
             if ($users) {
                 // return Response(['data' => $users], 200);
                 return view('dashboard.admin.candidate-list', ['candidates' => $users]);
@@ -63,7 +61,7 @@ class CandidateController extends Controller
      */
     public function store(Request $request): Response
     {
-        // dd($request->preffered_line);
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
@@ -80,7 +78,8 @@ class CandidateController extends Controller
             'ctc' => 'required_if:experience,experienced',
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
-            "joining_date" => 'required_if:experience,experienced',
+            // "joining_date" => 'required_if:experience,experienced',
+            'experience_year'=>'required_if:experience,experienced|numeric',
             'preffered_line' => 'required|string|max:60',
             'city' => 'required|string|max:60'
         ]);
@@ -117,6 +116,7 @@ class CandidateController extends Controller
                     'organization' => $request->organization,
                     'designation' => $request->designation,
                     'ctc' => $request->ctc,
+                    'experience_year'=>$request->experience_year,
                     "joining_date" => $request->joining_date,
                     "relieving_date" => $request->relieving_date
                 ]);

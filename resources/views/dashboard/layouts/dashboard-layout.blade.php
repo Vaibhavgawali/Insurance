@@ -16,6 +16,7 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="/admin-assets/assets/css/style.css">
+    <link rel="stylesheet" href="/admin-assets/assets/css/candidate-quiz.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.jpg" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -64,7 +65,9 @@
     <!-- Custom js for this page -->
     <script src="/admin-assets/assets/js/dashboard.js"></script>
     <script src="/admin-assets/assets/js/profile.js"></script>
-    <script src="/admin-assets/assets/js/todolist.js"></script>
+    <script src="/admin-assets/assets/js/profile.js"></script>
+    <script src="/admin-assets/assets/js/quiz.js"></script>
+    <script src="/admin-assets/assets/js/question.js"></script>
     <!-- End custom js for this page -->
 </body>
 

@@ -72,5 +72,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Requirements::class,'user_id','user_id');
     }
-
+    public function quizzes()
+    {
+        return $this->hasMany(UserQuiz::class,'user_id','user_id');
+    }
 }

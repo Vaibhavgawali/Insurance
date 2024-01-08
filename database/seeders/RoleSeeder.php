@@ -71,7 +71,8 @@ class RoleSeeder extends Seeder
 
         $institute_permissions=[
             $put_requirement,
-            $view_modules
+            $view_modules,
+            $view_self_requirement_list
         ];
 
         $other_permissions=[
@@ -89,5 +90,7 @@ class RoleSeeder extends Seeder
         $insurer->syncPermissions($insurer_permissions);
         $institute->syncPermissions($institute_permissions);
         $other->syncPermissions($other_permissions);
+
+ 
     }
 }

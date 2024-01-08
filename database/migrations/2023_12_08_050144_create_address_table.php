@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('address', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            // $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            // $table->foreignId('user_id')->constrained(table: 'users', indexName: 'user_id')->onDelete('cascade');
             $table->string('line1')->nullable();
             $table->string('line2')->nullable();
             $table->string('line3')->nullable();
@@ -24,6 +22,7 @@ return new class extends Migration
             $table->string('pincode')->nullable();
             $table->string('country')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
         });
     }
 

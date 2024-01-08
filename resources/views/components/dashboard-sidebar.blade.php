@@ -53,6 +53,12 @@
                 <i class="mdi mdi-airplay menu-icon"></i>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/quizes">
+                <span class="menu-title">Add Quiz</span>
+                <i class="mdi mdi-airplay menu-icon"></i>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="/requirements">
@@ -62,13 +68,23 @@
         </li>
 
         @endhasrole
-        @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('module-1') )
+
+        @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('take_assessment'))
         <li class="nav-item">
+            <a class="nav-link" href="/candidate-quizes">
+                <span class="menu-title">Take Quiz</span>
+                <i class="mdi mdi-account-card-details menu-icon"></i>
+            </a>
+        </li>
+        @endif
+
+        @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('module-1') )
+        <!-- <li class="nav-item">
             <a class="nav-link" href="/module-1">
                 <span class="menu-title">Module-1</span>
                 <i class="mdi mdi-account-card-details menu-icon"></i>
             </a>
-        </li>
+        </li> -->
         @endif
 
     </ul>
