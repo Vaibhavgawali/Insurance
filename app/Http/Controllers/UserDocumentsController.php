@@ -119,7 +119,7 @@ class UserDocumentsController extends Controller
                 // Delete the old document
                 if ($user_document && $user_document->document_url) {
                     $old_document = $user_document->document_url;
-                    Storage::delete($old_document);
+                    Storage::delete("public/documents/".$old_document);
                 }
 
                 $isUpdated = $user_document->update([
