@@ -56,13 +56,19 @@
                             </div>
 
                             <div class="mb-3">
+                              <label for="password_confirmation" class="form-label" >Confirm Password</label>
+                              <input type="password"  name="password_confirmation" class="form-control" id="password_confirmation" aria-describedby="passwordHelp" placeholder="Enter Your Confirm Password">
+                              <div id="password_confirmation_error"></div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="city" class="form-label">City</label>
                                 <input type="text"  name="city"   class="form-control" id="city" aria-describedby="cityHelp" placeholder="Enter City">
                                 <div id="city_error"></div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Prefered Line</label>
+                                <label for="phone" class="form-label">Experience</label>
                                 <select class="form-control"  name="experience" id="experience" aria-label="work status">
                                     <option selected disabled>-- Select --</option>
                                     <option value="experienced">Experienced</option>
@@ -85,7 +91,7 @@
                                     <div id="designation_error"></div>
                                 </div>
 
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label for="joining_date" class="form-label">Joining Date</label>
                                     <input type="date" class="form-control"  name="joining_date" id="joining_date" aria-describedby="joiningDateHelp" placeholder="YYYY-MM-DD">
                                     <div id="joining_date_error"></div>
@@ -94,6 +100,12 @@
                                 <div class="mb-3">
                                     <label for="relieving_date" class="form-label">Relieving Date</label>
                                     <input type="date" class="form-control"  name="relieving_date" id="relieving_date" aria-describedby="relievingDateHelp" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD">
+                                </div> -->
+                                
+                                <div class="mb-3">
+                                    <label for="experience_year" class="form-label">Experience (in years)</label>
+                                    <input type="number" class="form-control"  name="experience_year" id="experience_year" aria-describedby="ctcHelp" placeholder="Enter your experience">
+                                    <div id="experience_year_error"></div>
                                 </div>
 
                                 <div class="mb-3">
@@ -118,14 +130,14 @@
                            
                            <div class="mb-3">
                             <label for="phone" class="form-label">Prefered Line</label>
-                                <select  class="form-control" name="preferred_line" id="preferred_line" aria-label="work status">
+                                <select  class="form-control" name="preffered_line" id="preffered_line" aria-label="work status">
                                     <option selected disabled>-- Select --</option>
                                     <option value="life">Life</option>
                                     <option value="general">General</option>
                                     <option value="health">Health</option>
                                     <option value="other">Other</option>
                                 </select>
-                                <div id="preferred_line_error"></div>
+                                <div id="preffered_line_error"></div>
                             </div>
                            
                              <div class="d-flex align-items-center ">

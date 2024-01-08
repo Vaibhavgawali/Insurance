@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\ModulesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AdminController;
@@ -14,6 +15,12 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserDocumentsController;
+use App\Http\Controllers\admin\RequirementsController;
+use App\Http\Controllers\CandidateQuizController;
+
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -27,40 +34,36 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [WelcomeController::class,'index']);
+Route::get('/', [WelcomeController::class, 'index']);
 
-Route::get('/candidate-register', [WelcomeController::class,'candidate_register']);
-Route::get('/insurer-register', [WelcomeController::class,'insurer_register']);
-Route::get('/institute-register', [WelcomeController::class,'institute_register']);
-Route::get('/images/{filename}', [ImageController::class,'show'])->name ('image.show');
+Route::get('/candidate-register', [WelcomeController::class, 'candidate_register']);
+Route::get('/insurer-register', [WelcomeController::class, 'insurer_register']);
+Route::get('/institute-register', [WelcomeController::class, 'institute_register']);
+Route::get('/images/{filename}', [ImageController::class, 'show'])->name('image.show');
 
 
 Route::middleware(['web'])->group(function () {
-    Route::get('/login', [LoginController::class,'showLoginForm'])->name('login');
-    Route::post('/login', [LoginController::class,'login']);
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-
-// Route::get('/candidate-list', [AdminController::class,'candidate_list_table']);
-
 Route::resource('admin/user', UserController::class)->middleware('auth:sanctum');
-
 
 Route::resource('candidate', CandidateController::class);
 Route::resource('insurer', InsurerController::class);
 Route::resource('institute', InstituteController::class);
-
+Route::resource('module-1', ModulesController::class);
 // Auth::routes();
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::get('/dashboard', [AdminController::class,'dashboard']);
-    Route::get('/insurer-dashboard', [AdminController::class,'insurer_dashboard']);
-    Route::get('/institution-dashboard', [AdminController::class,'institution_dashboard']);
+    Route::get('/dashboard', [AdminController::class, 'dashboard']);
     Route::resource('user-profile', UserProfileController::class);
     Route::resource('user-address', UserAddressController::class);
     Route::resource('user-experience', UserExperienceController::class);
-    Route::resource('user-documents', UserDocumentsController::class) ;
+    Route::resource('user-documents', UserDocumentsController::class);
+
+    Route::resource('requirements', RequirementsController::class);
 
     Route::post('image-upload', [UserProfileController::class, 'profileImageUpload']);
 
@@ -68,13 +71,23 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/home', [App\Http\Controllers\AdminController::class, 'dashboard']);
 });
 
-Route::group(['middleware' => ['auth:sanctum','role:Superadmin']],function(){
-    Route::get('admin/users/trash',[UserController::class,'trashed_users']);
-    Route::patch('admin/user/restore/{id}',[UserController::class,'restore_user']);
+
+Route::group(['middleware' => ['auth:sanctum', 'role:Superadmin']], function () {
+    Route::get('admin/users/trash', [UserController::class, 'trashed_users']);
+    Route::patch('admin/user/restore/{id}', [UserController::class, 'restore_user']);
     // Route::delete('admin/user/delete/{id}',[UserController::class,'hard_delete']);
 
-    Route::get('/roles_wise_permission',[UserController::class,'get_roles_wise_permissions']);
-    Route::post('assign-role/{id}',[UserController::class,'assignRole']);
+    Route::get('/roles_wise_permission', [UserController::class, 'get_roles_wise_permissions']);
+    Route::post('assign-role/{id}', [UserController::class, 'assignRole']);
+
+    Route::resource('quizes', QuizController::class);
+    Route::resource('questions', QuestionController::class);
+    Route::resource('answers', AnswerController::class);
 });
 
 
+// Route::group(['middleware'=>['auth:sanctum']],function(){
+Route::resource('candidate-quizes', CandidateQuizController::class);
+Route::post('submit-quiz/{quiz_id}', [CandidateQuizController::class, 'submit']);
+Route::get('/start-quiz', [CandidateQuizController::class, 'startQuiz']);
+// });

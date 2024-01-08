@@ -31,22 +31,20 @@
           <input type="number" class="form-control p-4" id="age" name="age" rows="8" placeholder="Age" disabled value='{{ $data->profile->age ?? "N/A" }}'>
           <div id="age_error"></div>
         </div>
+       
+        @if($data->hasAnyRole(['Candidate','Insurer','Superadmin']))
+          <div class="form-group">
+            <label for="preffered_line" class="form-label ">Preffered Line</label>
+            <select class="form-control p-5" name="preffered_line" id="preffered_line" aria-label="work status" disabled>
+              <option value="" selected disabled>-- Select --</option>
+              <option value="life" {{ $data->profile->preffered_line === 'life' ? 'selected' : '' }}>Life</option>
+              <option value="general" {{ $data->profile->preffered_line === 'general' ? 'selected' : '' }}>General</option>
+              <option value="health" {{ $data->profile->preffered_line === 'health' ? 'selected' : '' }}>Health</option>
+              <option value="other" {{ $data->profile->preffered_line === 'other' ? 'selected' : '' }}>Other</option>
+            </select>
 
-        
-       @if(auth()->user()->user_id == $data->user_id)
-          @if($data->hasAnyRole(['Candidate','Insurer','Superadmin']))
-        <div class="form-group">
-          <label for="preffered_line" class="form-label ">Preffered Line</label>
-          <select class="form-control p-5" name="preffered_line" id="preffered_line" aria-label="work status" disabled>
-            <option value="" selected disabled>-- Select --</option>
-            <option value="life" {{ $data->profile->preffered_line === 'life' ? 'selected' : '' }}>Life</option>
-            <option value="general" {{ $data->profile->preffered_line === 'general' ? 'selected' : '' }}>General</option>
-            <option value="health" {{ $data->profile->preffered_line === 'health' ? 'selected' : '' }}>Health</option>
-            <option value="other" {{ $data->profile->preffered_line === 'other' ? 'selected' : '' }}>Other</option>
-          </select>
-
-          <div id="preffered_line_error"></div>
-        </div>
+            <div id="preffered_line_error"></div>
+          </div>
         @endif
 
         @if($data->hasAnyRole(['Institute','Insurer','Superadmin']))
@@ -55,8 +53,7 @@
               <textarea class="form-control p-4" id="spoc" name="spoc" rows="8" disabled>{{ $data->profile->spoc ?? "N/A" }}</textarea>
               <div id="spoc_error"></div>
             </div>
-          @endif
-        @endif
+        @endif    
 
         @if(auth()->user()->user_id == $data->user_id)
 

@@ -13,6 +13,7 @@ class ModulesController extends Controller
     public function index()
     {
         //
+        return view('dashboard.admin.module-1');
     }
 
     /**

@@ -1,35 +1,39 @@
-let RegisteredAlert =()=>
-{
+let RegisteredAlert = () => {
     swal("Good job!", "Registered sucessfully!", "success");
-}
+};
+
 $(document).ready(function () {
     $("#candidate_register_button").click(function (event) {
         var name = $("#name").val();
         var email = $("#email").val();
         var phone = $("#phone").val();
         var password = $("#password").val();
+        var password_confirmation = $("#password_confirmation").val();
 
         var experience = $("#experience").val();
         var organization = $("#organization").val();
         var designation = $("#designation").val();
-        var joining_date = $("#joining_date").val();
-        var relieving_date = $("#relieving_date").val();
+        var experience_year = $("#experience_year").val();
+        // var joining_date = $("#joining_date").val();
+        // var relieving_date = $("#relieving_date").val();
         var ctc = $("#ctc").val();
 
-        var preferred_line = $("#preferred_line").val();
+        var preffered_line = $("#preffered_line").val();
         var city = $("#city").val();
 
         $("#name_error").html("");
         $("#phone_error").html("");
         $("#email_error").html("");
         $("#password_error").html("");
+        $("#password_confirmation_error").html("");
         $("#city_error").html("");
 
         $("#experience_error").html("");
         $("#organization_error").html("");
         $("#designation_error").html("");
         $("#ctc_error").html("");
-        $("#joining_date_error").html("");
+        $("#experience_year_error").html("");
+        // $("#joining_date_error").html("");
 
         $("#preffered_line_error").html("");
         $("#flexCheckDefault_error").html("");
@@ -63,7 +67,7 @@ $(document).ready(function () {
         }
 
         function validatePhoneNumber(phone) {
-            var phonePattern = /^[0-9]{10}$/;
+            var phonePattern = /^[6-9]\d{9}$/;
             return phonePattern.test(phone);
         }
 
@@ -129,6 +133,14 @@ $(document).ready(function () {
                 '<div class=" invalid-feedback d-block">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</div>'
             );
             $("#password").focus();
+            return false;
+        }
+
+        if (password_confirmation !== password) {
+            $("#password_confirmation_error").html(
+                '<div class=" invalid-feedback d-block">Confirm password do not match with password.</div>'
+            );
+            $("#password_confirmation").focus();
             return false;
         }
 
@@ -186,15 +198,15 @@ $(document).ready(function () {
             }
 
             if (
-                joining_date == "" ||
-                joining_date == null ||
-                joining_date == "undefined" ||
-                joining_date == undefined
+                experience_year == "" ||
+                experience_year == null ||
+                experience_year == "undefined" ||
+                experience_year == undefined
             ) {
-                $("#joining_date_error").html(
-                    '<div class=" invalid-feedback d-block">Joining date is required.</div>'
+                $("#experience_year_error").html(
+                    '<div class=" invalid-feedback d-block">Experience in year is required.</div>'
                 );
-                $("#joining_date").focus();
+                $("#experience_year").focus();
                 return false;
             }
 
@@ -213,15 +225,15 @@ $(document).ready(function () {
         }
 
         if (
-            preferred_line == "" ||
-            preferred_line == null ||
-            preferred_line == "undefined" ||
-            preferred_line == undefined
+            preffered_line == "" ||
+            preffered_line == null ||
+            preffered_line == "undefined" ||
+            preffered_line == undefined
         ) {
             $("#preferred_line_error").html(
                 '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
             );
-            $("#preferred_line").focus();
+            $("#preffered_line").focus();
             return false;
         }
 
@@ -241,14 +253,16 @@ $(document).ready(function () {
             password: password,
             city: city,
             experience: experience,
-            preferred_line: preferred_line,
+            preffered_line: preffered_line,
+            password_confirmation: password_confirmation,
         };
 
         if (experience == "experienced") {
             data["organization"] = organization;
             data["designation"] = designation;
-            data["joining_date"] = joining_date;
-            data["relieving_date"] = relieving_date;
+            data["experience_year"] = experience_year;
+            // data["joining_date"] = joining_date;
+            // data["relieving_date"] = relieving_date;
             data["ctc"] = ctc;
         }
 
@@ -276,7 +290,6 @@ $(document).ready(function () {
                     return false;
                 }
             },
-            
 
             error: function (response) {
                 if (response.status === 422) {
@@ -303,14 +316,16 @@ $(document).ready(function () {
         var phone = $("#phone").val();
         var email = $("#email").val();
         var password = $("#password").val();
+        var password_confirmation = $("#password_confirmation").val();
         var city = $("#city").val();
         var spoc = $("#spoc").val();
-        var preferred_line = $("#preferred_line").val();
+        var preffered_line = $("#preffered_line").val();
 
         $("#name_error").html("");
         $("#phone_error").html("");
         $("#email_error").html("");
         $("#password_error").html("");
+        $("#password_confirmation_error").html("");
         $("#city_error").html("");
         $("#spoc_error").html("");
         $("#preferred_line_error").html("");
@@ -345,7 +360,7 @@ $(document).ready(function () {
         }
 
         function validatePhoneNumber(phone) {
-            var phonePattern = /^[0-9]{10}$/;
+            var phonePattern = /^[6-9]\d{9}$/;
             return phonePattern.test(phone);
         }
 
@@ -397,6 +412,14 @@ $(document).ready(function () {
             return false;
         }
 
+        if (password_confirmation !== password) {
+            $("#password_confirmation_error").html(
+                '<div class=" invalid-feedback d-block">Confirm password do not match with password.</div>'
+            );
+            $("#password_confirmation").focus();
+            return false;
+        }
+
         function validatePassword(password) {
             // Minimum 8 characters, at least one uppercase letter,
             // one lowercase letter, one number, and one special character
@@ -441,15 +464,15 @@ $(document).ready(function () {
         }
 
         if (
-            preferred_line == "" ||
-            preferred_line == null ||
-            preferred_line == "undefined" ||
-            preferred_line == undefined
+            preffered_line == "" ||
+            preffered_line == null ||
+            preffered_line == "undefined" ||
+            preffered_line == undefined
         ) {
             $("#preferred_line_error").html(
                 '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
             );
-            $("#preferred_line").focus();
+            $("#preffered_line").focus();
             return false;
         }
 
@@ -467,9 +490,10 @@ $(document).ready(function () {
             phone: phone,
             email: email,
             password: password,
+            password_confirmation: password_confirmation,
             city: city,
             spoc: spoc,
-            preferred_line: preferred_line,
+            preffered_line: preffered_line,
         };
 
         event.preventDefault();
@@ -519,6 +543,7 @@ $(document).ready(function () {
         var phone = $("#phone").val();
         var email = $("#email").val();
         var password = $("#password").val();
+        var password_confirmation = $("#password_confirmation").val();
         var city = $("#city").val();
         var spoc = $("#spoc").val();
 
@@ -526,6 +551,7 @@ $(document).ready(function () {
         $("#phone_error").html("");
         $("#email_error").html("");
         $("#password_error").html("");
+        $("#password_confirmation_error").html("");
         $("#city_error").html("");
         $("#spoc_error").html("");
         $("#flexCheckDefault_error").html("");
@@ -559,7 +585,7 @@ $(document).ready(function () {
         }
 
         function validatePhoneNumber(phone) {
-            var phonePattern = /^[0-9]{10}$/;
+            var phonePattern = /^[6-9]\d{9}$/;
             return phonePattern.test(phone);
         }
 
@@ -608,6 +634,14 @@ $(document).ready(function () {
                 '<div class=" invalid-feedback d-block">Password is required.</div>'
             );
             $("#password").focus();
+            return false;
+        }
+
+        if (password_confirmation !== password) {
+            $("#password_confirmation_error").html(
+                '<div class=" invalid-feedback d-block">Confirm password do not match with password.</div>'
+            );
+            $("#password_confirmation").focus();
             return false;
         }
 
@@ -668,6 +702,7 @@ $(document).ready(function () {
             phone: phone,
             email: email,
             password: password,
+            password_confirmation: password_confirmation,
             city: city,
             spoc: spoc,
         };

@@ -6,14 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class institution-login extends Component
+class InsurerLoginComponent extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $data;
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -21,6 +23,6 @@ class institution-login extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.institution-login');
+        return view('components.insurer-login-component');
     }
 }

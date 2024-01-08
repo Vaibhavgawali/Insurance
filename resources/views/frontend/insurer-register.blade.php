@@ -56,6 +56,12 @@
                             </div>
 
                             <div class="mb-3">
+                              <label for="password_confirmation" class="form-label" >Confirm Password</label>
+                              <input type="password"  name="password_confirmation" class="form-control" id="password_confirmation" aria-describedby="passwordHelp" placeholder="Enter Your Confirm Password">
+                              <div id="password_confirmation_error"></div>
+                            </div>
+                            
+                            <div class="mb-3">
                                 <label for="city" class="form-label">City</label>
                                 <input type="text"  name="city"   class="form-control" id="city" aria-describedby="cityHelp" placeholder="Enter City">
                                 <div id="city_error"></div>
@@ -69,14 +75,14 @@
        
                             <div class="mb-3">
                             <label for="phone" class="form-label">Prefered Line</label>
-                                <select  class="form-control" name="preferred_line" id="preferred_line" aria-label="work status">
+                                <select  class="form-control" name="preffered_line" id="preffered_line" aria-label="work status">
                                     <option selected disabled>--Select--</option>
                                     <option value="life">Life</option>
                                     <option value="general">General</option>
                                     <option value="health">Health</option>
                                     <option value="other">Other</option>
                                 </select>
-                                <div id="preferred_line_error"></div>
+                                <div id="preffered_line_error"></div>
                             </div>
                            
                              <div class="d-flex align-items-center ">

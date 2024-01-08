@@ -37,7 +37,7 @@ class CandidateController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $users = User::role('Candidate')->get();
+            $users = User::role('Candidate')->orderBy('user_id','desc')->get();
             if ($users) {
                 // return Response(['data' => $users], 200);
                 return view('dashboard.admin.candidate-list', ['candidates' => $users]);
@@ -64,7 +64,7 @@ class CandidateController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'phone' => 'required|numeric|digits:10',
+            'phone' => 'required|numeric|digits:10|regex:/^[6-9]\d{9}$/',
             'password' => [
                 'required',
                 Password::min(8)
@@ -72,12 +72,14 @@ class CandidateController extends Controller
                     ->numbers()
                     ->symbols()
             ],
-            'experience' => 'required|in:experienced,fresher', //start and end date
+            'password_confirmation' => 'required|same:password',
+            'experience' => 'required|in:experienced,fresher', 
             'ctc' => 'required_if:experience,experienced',
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
-            "joining_date" => 'required_if:experience,experienced',
-            'preferred_line' => 'required|string|max:60',
+            // "joining_date" => 'required_if:experience,experienced',
+            'experience_year'=>'required_if:experience,experienced|numeric',
+            'preffered_line' => 'required|string|max:60',
             'city' => 'required|string|max:60'
         ]);
 
@@ -94,18 +96,18 @@ class CandidateController extends Controller
 
         if ($user) {
             $user_id = $user->user_id;
-
             $user_profile = UserProfile::create([
                 'user_id' => $user_id,
-                'preferred_line' => $request->preferred_line,
+                'preffered_line' => $request->preffered_line,
             ]);
+            // dd($user_profile);
 
-            if ($request->experience == "experienced") {
+            // if ($request->experience == "experienced") {
                 $user_address = UserAddress::create([
                     'user_id' => $user_id,
                     'city' => $request->city,
                 ]);
-            }
+            // }
 
             if ($request->experience == "experienced") {
                 $user_experience = UserExperience::create([
@@ -113,6 +115,7 @@ class CandidateController extends Controller
                     'organization' => $request->organization,
                     'designation' => $request->designation,
                     'ctc' => $request->ctc,
+                    'experience_year'=>$request->experience_year,
                     "joining_date" => $request->joining_date,
                     "relieving_date" => $request->relieving_date
                 ]);
@@ -169,7 +172,7 @@ class CandidateController extends Controller
                 $validator = Validator::make($request->all(), [
                     'name' => 'required|string',
                     'email' => 'required|email|unique:users,email,'.$userId .',user_id',
-                    'phone' => 'required|numeric|digits:10'
+                    'phone' => 'required|numeric|digits:10|regex:/^[6-9]\d{9}$/'
                 ]);
 
                 if ($validator->fails()) {

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('document_title')->nullable();
             $table->string('document_url');
             $table->timestamps();
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
         });
     }
 
