@@ -24,9 +24,25 @@ class CandidateQuizController extends Controller
      */
     public function index()
     {
-        // dd("ok");
+        // $quizzes = Quiz::all();
+        $user = auth()->user();
+        $completedQuizIds = $user->quizzes->where('pass_status', true)->pluck('quiz_id')->toArray();
 
-        $quizzes = Quiz::all();
+        // If user has completed quizzes, get the next level quizzes
+        if (!empty($completedQuizIds)) {
+            $nextLevel = Quiz::whereNotIn('id', $completedQuizIds)->min('level');
+            
+            if ($nextLevel) {
+                $quizzes = Quiz::where('level', $nextLevel)->get();
+            } else {
+                // User has completed all available levels
+                $quizzes = collect();
+            }
+        } else {
+            // User hasn't completed any quizzes, show level 1 quizzes
+            $quizzes = Quiz::where('level', 1)->get();
+        }
+
         $headers = ['id', 'title', 'description', 'level'];
 
         $actions = [
