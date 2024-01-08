@@ -268,13 +268,15 @@ class CandidateQuizController extends Controller
             'users' => $users
         ]; 
             
-        // $pdf = PDF::loadView('dashboard.candidate-quizes.certificate', compact('data'))->setOptions(['defaultFont' => 'sans-serif'],['isRemoteEnabled' => true]);
-        $pdf = PDF::loadView('dashboard.candidate-quizes.certificate', compact('data'))->setOptions(['defaultFont' => 'sans-serif'],['isRemoteEnabled' => true]);
+        $pdf = PDF::loadView('dashboard.candidate-quizes.certificate', compact('data'))
+                    ->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true])
+                    ->setPaper('A4');
+
+            $pdfContents = $pdf->output();
+
+        // $pdfPath = 'public/certificate/'.Auth::id().'_certificate.pdf';
         
-        $pdfContents = $pdf->output();
-        $pdfPath = 'public/certificate/'.Auth::id().'_certificate.pdf';
-        
-        Storage::disk('local')->put($pdfPath, $pdfContents);
+        // Storage::disk('local')->put($pdfPath, $pdfContents);
         return $pdf->download('itsolutionstuff.pdf');
     }
 }
