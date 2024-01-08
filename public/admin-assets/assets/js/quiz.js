@@ -27,6 +27,23 @@ $(document).ready(function () {
                     );
                 }
 
+                if (response.pdf_path) {
+                    // Construct the download link
+                    var downloadLink = $("<a>", {
+                        href: response.pdf_path,
+                        download: "itsolutionstuff.pdf",
+                        target: "_blank",
+                    });
+
+                    // Append the link to the body and trigger a click event to initiate the download
+                    $("body").append(downloadLink);
+                    downloadLink[0].click();
+                    downloadLink.remove();
+                    alert("Congratulations! You have passed.");
+                } else {
+                    alert("Sorry, you did not pass.");
+                }
+
                 alert("Quiz submitted successfully!");
 
                 window.location.href = "/candidate-quizes";

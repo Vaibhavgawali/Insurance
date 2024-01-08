@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Quiz;
 use App\Models\UserQuiz;
@@ -157,12 +159,39 @@ class CandidateQuizController extends Controller
 
         if($is_passed){
             // certificate logic
+            
             $message="You have passed";
+
+            try {
+                $data = [
+                    'title' => 'Welcome InsuranceNext',
+                    'date' => date('m/d/Y'),
+                    'users' => $users
+                ]; 
+                    
+                // Your PDF generation code
+                $pdf = PDF::loadView('dashboard.candidate-quizes.certificate',$data);
+                print_r("ok");
+
+            } catch (\Exception $e) {
+                \Log::error($e->getMessage());
+                // Handle the exception or return an error response
+                print_r("ok");
+            }       
+         
+            // Save the PDF to storage
+            $pdfContents = $pdf->output();
+            $pdfPath = 'public/documents/'.Auth::id().'_certificate.pdf';
+            
+            Storage::disk('local')->put($pdfPath, $pdfContents);
+
+            return Response(['status'=>true,'message' => $message, 'pdf_path' => $pdfPath],200);
         }else{
             $message="You have failed";
+            return Response(['status'=>false,'message' => $message], 200);
         }
 
-        return Response(['message' => $message], 200);
+        // return Response(['message' => $message], 200);
         // return redirect()->route('quizzes.show', $quiz->id)
         //     ->with(['quizSubmitted' => true, 'correctAnswers' => $correctAnswers]);
     }
@@ -183,5 +212,25 @@ class CandidateQuizController extends Controller
         }
 
         return $score;
+    }
+
+    public function generatePDF()
+    {
+        $users = Quiz::get();
+  
+        $data = [
+            'title' => 'Welcome to InsuranceNext',
+            'date' => date('m/d/Y'),
+            'users' => $users
+        ]; 
+            
+        // $pdf = PDF::loadView('dashboard.candidate-quizes.certificate', compact('data'))->setOptions(['defaultFont' => 'sans-serif'],['isRemoteEnabled' => true]);
+        $pdf = PDF::loadView('dashboard.candidate-quizes.certificate', compact('data'))->setOptions(['defaultFont' => 'sans-serif'],['isRemoteEnabled' => true]);
+        
+        $pdfContents = $pdf->output();
+        $pdfPath = 'public/certificate/'.Auth::id().'_certificate.pdf';
+        
+        Storage::disk('local')->put($pdfPath, $pdfContents);
+        return $pdf->download('itsolutionstuff.pdf');
     }
 }

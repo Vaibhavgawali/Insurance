@@ -91,5 +91,6 @@ Route::group(['middleware' => ['auth:sanctum','role:Superadmin']],function(){
     Route::resource('candidate-quizes', CandidateQuizController::class);
     Route::post('submit-quiz/{quiz_id}',[CandidateQuizController::class,'submit']);
 // });
+Route::get('generate-pdf', [CandidateQuizController::class, 'generatePDF']);
 
 
