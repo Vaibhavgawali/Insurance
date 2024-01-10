@@ -170,7 +170,6 @@ class QuestionController extends Controller
     public function update(Request $request, string $id)
     {
         // dd($request->all());
-        
         $quiz_id=$request->input('quiz_id');
         $validator = Validator::make($request->all(), [
             'question_text' => 'required|string',
@@ -221,6 +220,7 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
+        // dd($id);
         $question = Question::find($id);
         $question->delete();
         return redirect()->back()->with('success', 'Question deleted successfully');

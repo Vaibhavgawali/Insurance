@@ -187,3 +187,81 @@ $(document).ready(function () {
     });
 });
 
+
+
+
+
+$(document).on('click', '.delete-question-button', function (e) {
+    e.preventDefault();
+    let question_id = $(this).closest('.delete-question-form').data('question-id');
+    console.log('Clicked delete button with ID:', question_id);
+    questionDeleteAlert(question_id);
+    debugger;
+});
+
+
+
+
+let questionDeleteAlert = (question_id) => {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this question!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            deleteQuestionFunction(question_id);
+            // setTimeout(function () {
+            //     window.location.reload();
+            // }, 1000);
+            swal("! Your question file has been deleted!", {
+                icon: "success",
+            });
+        } else {
+            swal("Your question is safe!");
+        }
+    });
+}
+
+// Delete question
+const deleteQuestionFunction = (question_id) => {
+    var data = {
+        question_id: question_id
+    }
+    console.log(data);
+    let question_url = window.location.origin +`/questions/${question_id}`
+    console.log("question_url:"+question_url);
+  debugger;
+    $.ajax({
+        url: question_url,
+        type: "DELETE",
+        data: data,
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        success: function (response) {
+            console.log(response);
+            if (response.status == true) {
+                $(".delete-question-button[data-question-id='" + question_id + "']").attr("disabled", true);
+                // setTimeout(function () {
+                //     window.location.reload();
+                // }, 1000);
+                return false;
+            }
+        },
+        error: function (response) {
+            if (response.status === 422) {
+                var errors = response.responseJSON.errors;
+                $.each(errors, function (field, messages) {
+                    var input = $('[name="' + field + '"]');
+                    input.after('<div class="error-message invalid-feedback d-block">' + messages.join(", ") + "</div>");
+                });
+            }
+        },
+    });
+}
+
+
+
