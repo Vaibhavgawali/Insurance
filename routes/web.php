@@ -17,6 +17,7 @@ use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserDocumentsController;
 use App\Http\Controllers\admin\RequirementsController;
 use App\Http\Controllers\CandidateQuizController;
+use App\Http\Controllers\Admin\RolePermissionController;
 
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionController;
@@ -95,3 +96,6 @@ Route::get('generate-pdf', [CandidateQuizController::class, 'generatePDF']);
 Route::get('generate-candidate-profile-pdf/{id}', [CandidateController::class, 'downloadCandidateProfilePDF']);
 
 
+Route::get('/admin/role_permission/get_user_details', [RolePermissionController::class, 'getUserDetails']);
+
+Route::post('/admin/role_permission/update_user_roles_permissions', [RolePermissionController::class, 'updateUserRolesPermissions']);

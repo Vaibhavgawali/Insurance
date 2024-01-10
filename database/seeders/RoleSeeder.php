@@ -91,6 +91,5 @@ class RoleSeeder extends Seeder
         $institute->syncPermissions($institute_permissions);
         $other->syncPermissions($other_permissions);
 
- 
     }
 }

@@ -36,7 +36,7 @@
         @endif
         
         @hasrole('Superadmin')
-        <a href="#" class="btn btn-sm btn-gradient-warning btn-rounded " data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>
+        <a  class="btn btn-sm btn-gradient-warning btn-rounded editButton"  data-user-id="{{$row->user_id}}">Edit</a>
 
         <form  id="candidate-delete-form" action="admin/user/{{$row->user_id}}" method="POST" >
           @csrf
