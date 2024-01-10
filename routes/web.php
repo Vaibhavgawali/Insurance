@@ -81,6 +81,7 @@ Route::group(['middleware' => ['auth:sanctum','role:Superadmin']],function(){
     Route::post('assign-role/{id}',[UserController::class,'assignRole']);
 
     Route::resource('quizes', QuizController::class);
+    Route::get('show_quiz/{quiz_id}',[QuizController::class,'show_quiz']);
     Route::resource('questions', QuestionController::class);
     Route::resource('answers', AnswerController::class);
 

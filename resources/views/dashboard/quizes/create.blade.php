@@ -44,18 +44,11 @@
                         <div class="form-group row">
                             <label for="quiz_time" class="col-sm-3 col-form-label">Quiz Time</label>
                             <div class="col-sm-9">
-                                <select name="quiz_time" id="quiz_time" class="form-control p-3" >
-                                    <option value="" selected disabled>--Select--</option>
-                                    <option value="1">1 min</option>
-                                    <option value="2">2 min</option>
-                                    <option value="3">3 min</option>
-                                    <option value="4">4 min</option>
-                                    <option value="5">5 min</option>
-                                </select>
+                            <input type="text" class="form-control" name="quiz_time" id="quiz_time" placeholder="Write quiz time in minute" value="">
                             </div>
                         </div>
 
-                        <button type="submit" id="quiz_create_button" class="btn btn-gradient-primary me-2">Create Paper</button>
+                        <button type="submit" id="quiz_create_button" class="btn btn-gradient-primary me-2">Create quiz</button>
                         <a href="/quizes/" class="btn btn-light">Cancel</a>
                     </form>
                 </div>

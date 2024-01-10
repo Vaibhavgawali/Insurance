@@ -193,6 +193,19 @@ class QuizController extends Controller
         return view('dashboard.quizes.edit', compact('quiz', 'fields'));
     }
 
+    public function show_quiz(string $id)
+    {
+        $fields = [
+            ['name' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'Quiz title'],
+            ['name' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'Quiz description'],
+            ['name' => 'level', 'label' => 'Level', 'type' => 'text', 'placeholder' => 'Level'],
+            ['name' => 'quiz_time', 'label' => 'Quiz Time', 'type' => 'text', 'placeholder' => 'Quiz time'],
+        ];
+        $quiz = Quiz::find($id);
+        // dd($quiz);
+        return view('dashboard.quizes.show_quiz', compact('quiz', 'fields'));
+    }
+
     /**
      * Update the specified resource in storage.
      */

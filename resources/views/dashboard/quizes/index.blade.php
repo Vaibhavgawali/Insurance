@@ -21,8 +21,9 @@
                                 <th class="text-uppercase">id</th>
                                 <th class="text-uppercase">title</th>
                                 <th class="text-uppercase">description</th>
-                                <th class="text-uppercase">level</th>
-                                <th class="text-uppercase">quiz_time</th>
+                                <th class="text-uppercase ">level</th>
+                                <th class="text-uppercase">quiz_time <span style="font-size: 12px;" class="text-lowwercase">(in min)</span>
+                                </th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -31,21 +32,35 @@
                             @foreach($data as $row)
                             <tr>
                                 <td>{{$i}}</td>
-                                <td>{{$row->title}}</td>
-                                <td>{{$row->description}}</td>
-                                <td>{{$row->level}}</td>
-                                <td>{{$row->quiz_time}}</td>
                                 <td>
-                                    <a href="{{$row->id}}/edit" class="btn btn-primary btn-sm">
-                                        Edit
+                                    @if(strlen($row->title) > 32)
+                                    {{ substr($row->title, 0, 32) . '...' }}
+                                    @else
+                                    {{ $row->title }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(strlen($row->description) > 32)
+                                    {{ substr($row->description, 0, 32) . '...' }}
+                                    @else
+                                    {{ $row->description }}
+                                    @endif
+                                </td>
+                                <td class="text-center">{{$row->level}}</td>
+                                <td class="text-center">{{$row->quiz_time}}</td>
+                                <td>
+                                    <a href="/quizes/{{$row->id}}/edit" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit quiz">
+                                        <i class="mdi mdi-pen"></i>
                                     </a>
-                                    <a href="/quizes/{{$row->id}}" class="btn btn-info btn-sm">
-                                        View
+                                    <a href="/show_quiz/{{$row->id}}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="View quiz">
+                                      <i class="mdi mdi-eye"></i>
                                     </a>
+                                    <a href="/quizes/{{$row->id}}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Add question"><i class="mdi mdi-comment-question-outline"></i></a>
+                                    
                                     <form class="delete-form d-inline" data-quiz-id="{{$row->id}}">
                                         @csrf
-                                        <button type="submit" class="btn btn-danger btn-sm delete-button">
-                                            Delete
+                                        <button type="submit" class="btn btn-danger btn-sm delete-button" data-toggle="tooltip" data-placement="top" title="Delete quiz">
+                                            <i class="mdi mdi-delete"></i>
                                         </button>
                                     </form>
                                 </td>

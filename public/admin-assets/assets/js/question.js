@@ -99,10 +99,10 @@ $(document).ready(function () {
 //Edit question
 $(document).ready(function () {
     $("#edit_question").submit(function (event) {
-        var quiz_id = $("#quiz_id").val();
+        var question_id = $("#question_id").val();
         var question_text = $("#question_text").val();
         var correct = $('input[name="correct"]:checked').val();
-        // console.log(quiz_id)
+        console.log("Question edit:"+question_id);
 
         
         var answerTextArray = [];
@@ -142,7 +142,7 @@ $(document).ready(function () {
         }
 
         var data = {
-            quiz_id: quiz_id,
+            question_id: question_id,
             question_text: question_text,
             answers: answerTextArray,
             correct_answer: correct
@@ -150,7 +150,7 @@ $(document).ready(function () {
         console.log(data);
         
 
-        var url =window.location.origin +`/questions/${quiz_id}`;
+        var url =window.location.origin +`/questions/${question_id}`;
         console.log(url);
        
 
@@ -213,9 +213,9 @@ let questionDeleteAlert = (question_id) => {
     .then((willDelete) => {
         if (willDelete) {
             deleteQuestionFunction(question_id);
-            // setTimeout(function () {
-            //     window.location.reload();
-            // }, 1000);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
             swal("! Your question file has been deleted!", {
                 icon: "success",
             });

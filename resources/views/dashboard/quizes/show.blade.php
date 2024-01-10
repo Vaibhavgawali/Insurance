@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-body table-responsive">
                     <h4 class="card-title">Paper List</h4>
-                    <p class="card-description"> Paper List </p><div class="d-flex justify-content-between"> <a href="/questions/create?quiz_id={{ $quiz_id }}" class="btn btn-primary btn-sm">Add Question</a> <a class="btn btn-primary btn-sm text-end" href="/quizes/"> <i class="mdi mdi-arrow-left"></i>Quizes</a></div>
+                    <p class="card-description"> Paper List </p> <a href="/questions/create?quiz_id={{ $quiz_id }}" class="btn btn-primary btn-sm">Add Question</a>
                     <table class="table table-striped">
                         <thead>
                             <tr>

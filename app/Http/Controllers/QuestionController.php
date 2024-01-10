@@ -170,7 +170,8 @@ class QuestionController extends Controller
     public function update(Request $request, string $id)
     {
         // dd($request->all());
-        $quiz_id=$request->input('quiz_id');
+        $question_id=$request->input('question_id');
+        // dd($question_id);
         $validator = Validator::make($request->all(), [
             'question_text' => 'required|string',
             'answers' => 'required|array|min:4',
@@ -182,8 +183,8 @@ class QuestionController extends Controller
         if ($validator->fails()) {
             return Response(['status' => false, 'errors' => $validator->errors()], 422);
         }
-    
-        $question = Question::findOrFail($id);
+        $question = Question::findOrFail($question_id);
+        // dd($question);
     
         $question->update(['question_text' => $request->input('question_text'),]);
     
@@ -223,7 +224,8 @@ class QuestionController extends Controller
         // dd($id);
         $question = Question::find($id);
         $question->delete();
-        return redirect()->back()->with('success', 'Question deleted successfully');
+        // return redirect()->back()->with('success', 'Question deleted successfully');
+        return response()->json(['status' => 'success', 'message' => 'Question deleted successfully']);
 
     }
 }
