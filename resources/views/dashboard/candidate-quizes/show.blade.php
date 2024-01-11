@@ -2,7 +2,6 @@
 @section('main-section')
 
 <!-- quiz dynamic -->
-
         <div class="content-wrapper">
             <div class="page-header">
                 <h3 class="page-title">
@@ -16,20 +15,9 @@
                 </h3>
             </div>
             <x-quiz-component :questions="$questions" :quizId="$quiz_id" />
-        </div>
-        <script>
-document.addEventListener("DOMContentLoaded", function() {
-  var questionCards = document.querySelectorAll('.question-card');
-  questionCards.forEach(function(card, index) {
-    if (index % 2 === 0) {
-      card.querySelector('.card').style.backgroundColor = '#fff';
-    } else {
-      card.querySelector('.card').style.backgroundColor = '#fff'; 
-    }
-  });
-});
-</script>
 
+
+        </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -106,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         function submitQuiz() {
+            console.log("first");
             var formData = $("#quizForm").serialize();
             var baseUrl = $('meta[name="base-url"]').attr("content");
             var quiz_id = <?php echo $quiz_id; ?>;
@@ -120,11 +109,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (response.success) {
                         clearInterval(intervalId);
                         localStorage.removeItem("quizAnswers");
-                        debugger;
-
-                        // window.location.href = "/candidate-quizes/"
-                        
+                        window.location.href = `${baseUrl}/candidate-quizes/`;
+                    
                         // Handle success (e.g., redirect to a result page)
+                    }else{
+                        // outside the valid time span
+                        console.log(response);
+                        window.location.href = `${baseUrl}/candidate-quizes/`;
                     }
                 }
             });
@@ -134,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
             submitQuiz();
         })
-
 
     });
 </script>

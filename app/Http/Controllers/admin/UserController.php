@@ -163,6 +163,7 @@ class UserController extends Controller
         return Response(['data' => 'Unauthorized'], 401);
     }
 
+
     /**
      * List of Soft deleted user
      */

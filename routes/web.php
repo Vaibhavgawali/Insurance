@@ -93,3 +93,7 @@ Route::resource('candidate-quizes', CandidateQuizController::class);
 Route::post('submit-quiz/{quiz_id}', [CandidateQuizController::class, 'submit']);
 Route::get('/start-quiz', [CandidateQuizController::class, 'startQuiz']);
 // });
+Route::get('generate-pdf', [CandidateQuizController::class, 'generatePDF']);
+Route::get('generate-candidate-profile-pdf/{id}', [CandidateController::class, 'downloadCandidateProfilePDF']);
+
+
