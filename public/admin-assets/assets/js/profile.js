@@ -214,33 +214,18 @@ $(document).ready(function () {
 $(document).ready(function (e) {
     //cv update method
     $("#profile_cv_update-1_button").click(function () {
+
         var formData = new FormData($("#profile_update_cv_form")[0]);
         var user_id = $("#user_id").val().trim();
         user_id = parseInt(user_id);
 
-        var documentUrlInput = $("#document_url")[0];
-        var documentUrl = documentUrlInput.files[0];
-        var documentUrlValue = documentUrl ? documentUrl.name : null;
-
-        // formData.append("document_url", documentUrl, documentUrlInput.name);
-        formData.append(
-            "server_expected_key",
-            documentUrl,
-            documentUrlInput.name
-        );
-
-        console.log("user_id:", user_id);
-        console.log("document_title:", $("#document_title").val());
-        console.log("document_url:", documentUrl);
-        console.log("document_url_value:", documentUrlValue);
-        var url = window.location.origin + `/user-documents`;
         // Get base URL from meta tag
         var baseUrl = $('meta[name="base-url"]').attr("content");
 
-        //  e.preventDefault();
+      
         $.ajax({
-            url: baseUrl + `/user-documents/${user_id}`,
-            type: "PATCH",
+            url: baseUrl + `/user-documents-update/${user_id}`,
+            type: "POST",
             data: formData,
             contentType: false,
             processData: false,
@@ -284,7 +269,7 @@ $(document).ready(function (e) {
     });
 });
 
-$(document).ready(function (e) {
+$(document).ready(function () {
     $("#profile_cv_update_button").click(function () {
         var formData = new FormData($("#profile_cv_form")[0]);
         var url = window.location.origin + `/user-documents`;

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Quiz;
 use App\Models\UserQuiz;
+use Illuminate\Support\Carbon;
 
 class CandidateQuizController extends Controller
 {
@@ -57,7 +58,7 @@ class CandidateQuizController extends Controller
         ];
 
         // dd($headers);
-        return view('dashboard.candidate-quizes.index', ['data'=>$quizzes,'headers'=>$headers,'actions'=>$actions]);
+        return view('dashboard.candidate-quizes.index', ['data' => $quizzes, 'headers' => $headers, 'actions' => $actions]);
     }
 
     /**
@@ -82,26 +83,26 @@ class CandidateQuizController extends Controller
     public function show($id)
     {
         $quiz = Quiz::find($id);
-        $quiz_level=$quiz->level;
-        $quiz_title=$quiz->title;
-        $quiz_time=$quiz->quiz_time;
-        $questions=$quiz->questions;
-        $questions=$questions->map(function ($item){
+        $quiz_level = $quiz->level;
+        $quiz_title = $quiz->title;
+        $quiz_time = $quiz->quiz_time;
+        $questions = $quiz->questions;
+        $questions = $questions->map(function ($item) {
             $options = $item->answers->take(4);
 
             return [
-                'id'=> $item->id,
-                'question_text'=>$item->question_text,
-                'option_1'=>$options->get(0)->answer_text ?? null,
-                'option_2'=>$options->get(1)->answer_text ?? null,
-                'option_3'=>$options->get(2)->answer_text ?? null,
-                'option_4'=>$options->get(3)->answer_text ?? null,
+                'id' => $item->id,
+                'question_text' => $item->question_text,
+                'option_1' => $options->get(0)->answer_text ?? null,
+                'option_2' => $options->get(1)->answer_text ?? null,
+                'option_3' => $options->get(2)->answer_text ?? null,
+                'option_4' => $options->get(3)->answer_text ?? null,
             ];
         });
 
-        $headers = ['id', 'question_text','option_1','option_2','option_3','option_4'];//, 'quiz_id', 'level'
+        $headers = ['id', 'question_text', 'option_1', 'option_2', 'option_3', 'option_4']; //, 'quiz_id', 'level'
 
-        return view('dashboard.candidate-quizes.show', ['questions'=>$questions,'quiz_id'=>$id,'quiz_title'=>$quiz_title,'quiz_level'=>$quiz_level,'quiz_time'=>$quiz_time]);
+        return view('dashboard.candidate-quizes.show', ['questions' => $questions, 'quiz_id' => $id, 'quiz_title' => $quiz_title, 'quiz_level' => $quiz_level, 'quiz_time' => $quiz_time]);
     }
 
 
@@ -131,13 +132,34 @@ class CandidateQuizController extends Controller
 
     public function submit(Request $request, $quizId)
     {
+
         $quiz = Quiz::findOrFail($quizId);
+
+        $startTime = $request->session()->get('quiz_start_time') ? Carbon::parse($request->session()->get('quiz_start_time')) :"";
+        $quizDurationInMinutes = $quiz->quiz_time + 1; // 1 hour
+        $currentTime = Carbon::now();
+
+        // Calculate quiz end time
+        if($startTime){
+            $quizEndTime = $startTime->copy()->addMinutes($quizDurationInMinutes);
+        }
+        
+        // Check if the current time is within the valid time span
+        if ($startTime && $currentTime->between($startTime, $quizEndTime)) {
+            // User has submitted within the valid time span
+
+        } else {
+            // User has submitted outside the valid time span
+            $message= "Quiz submission is outside the valid time span.";
+            return Response(['success' => true, 'message' => $message], 200);
+        }
+
         $userAnswers = $request->except('_token');
 
-        $score = $this->calculateScore($userAnswers,$quizId);
-   
+        $score = $this->calculateScore($userAnswers, $quizId);
+
         $passingScore = 2;
-        $is_passed=$score >= $passingScore;
+        $is_passed = $score >= $passingScore;
 
         $user_quiz = UserQuiz::where([
             'user_id' => Auth::id(),
@@ -145,43 +167,65 @@ class CandidateQuizController extends Controller
         ])->first();
 
         if ($user_quiz && $score > $user_quiz->score) {
-            $user_quiz->update(['score' => $score,'pass_status'=>$is_passed ]);
+            $user_quiz->update(['score' => $score, 'pass_status' => $is_passed]);
         } elseif (!$user_quiz) {
             UserQuiz::create([
                 'user_id' => Auth::id(),
                 'quiz_id' => $quiz->id,
                 'score' => $score,
-                'pass_status'=>$is_passed 
+                'pass_status' => $is_passed
             ]);
         }
 
-        if($is_passed){
+        if ($is_passed) {
             // certificate logic
-            $message="You have passed";
-        }else{
-            $message="You have failed";
+            $message = "You have passed";
+        } else {
+            $message = "You have failed";
         }
-
-        return Response(['message' => $message], 200);
+        // Reset the quiz start time in the session
+        $request->session()->forget('quiz_start_time');
+        return Response(['success' => true, 'message' => $message], 200);
         // return redirect()->route('quizzes.show', $quiz->id)
         //     ->with(['quizSubmitted' => true, 'correctAnswers' => $correctAnswers]);
     }
 
     // Helper method to calculate score 
-    private function calculateScore($userAnswers,$quizId)
+    private function calculateScore($userAnswers, $quizId)
     {
         $score = 0;
         $correctAnswersScore = 2;
         $quiz = Quiz::findOrFail($quizId);
 
+        if (count($userAnswers) <= 0) {
+            return 0;
+        }
         foreach ($quiz->questions as $question) {
             $correctAnswerText = $question->answers()->where('is_correct', true)->value('answer_text');
- 
+
             $userSelectedAnswerText = $userAnswers[$question->id];
 
-            $score += ($userSelectedAnswerText == $correctAnswerText) ? $correctAnswersScore : 0 ;
+            $score += ($userSelectedAnswerText == $correctAnswerText) ? $correctAnswersScore : 0;
         }
 
         return $score;
+    }
+
+    public function startQuiz(Request $request)
+    {
+        // Store the quiz start time in the session
+        $startTime = $request->session()->get('quiz_start_time');
+
+        if (!$startTime) {
+            // Quiz not started  
+            // Get the current timestamp with microseconds
+            $timestampWithMicroseconds = microtime(true);
+            // Format the timestamp with microseconds
+            $currentDateTime = date('Y-m-d H:i:s', $timestampWithMicroseconds);
+            $request->session()->put('quiz_start_time', $currentDateTime);
+            $startTime = $request->session()->get('quiz_start_time');
+        }
+
+        return response()->json(['success' => true, 'start_time' => $startTime]);
     }
 }

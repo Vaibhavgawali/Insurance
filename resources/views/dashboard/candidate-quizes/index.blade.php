@@ -1,6 +1,6 @@
 @extends('dashboard/layouts/dashboard-layout')
 @section('main-section')
-<div>
+<div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">

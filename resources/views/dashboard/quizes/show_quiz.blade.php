@@ -4,7 +4,7 @@
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title"> <span class="page-title-icon bg-gradient-primary text-white me-2">
-                <i class="mdi mdi-account-plus"></i>
+                <i class="mdi mdi-eye"></i>
             </span>Quiz</h3>
         <x-breadcrumb :breadcrumbs="$breadcrumbs??[]"></x-breadcrumb>
     </div>

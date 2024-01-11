@@ -4,8 +4,8 @@
     <div class="page-header">
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
-                <i class="mdi mdi-account-multiple"></i>
-            </span>Paper List
+                <i class="mdi mdi-comment-plus-outline"></i>
+            </span>Quizes List
         </h3>
         <x-breadcrumb :breadcrumbs="$breadcrumbs??[]"></x-breadcrumb>
     </div>
@@ -13,8 +13,8 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <h4 class="card-title">Paper List</h4>
-                    <p class="card-description"> Paper List </p><a href="/quizes/create" class="btn btn-primary btn-sm">Add Quiz</a>
+                    <h4 class="card-title">Quizes List</h4>
+                    <p class="card-description">Quizes List  Details</p><a href="/quizes/create" class="btn btn-primary btn-sm">Add Quiz</a>
                     <table class="table table-striped">
                         <thead>
                             <tr>

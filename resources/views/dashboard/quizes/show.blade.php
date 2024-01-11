@@ -4,8 +4,8 @@
     <div class="page-header">
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
-                <i class="mdi mdi-account-multiple"></i>
-            </span>Paper List {{$quiz_id}}
+                <i class="mdi mdi-comment-question-outline"></i>
+            </span>Question List {{$quiz_id}}
         </h3>
         <x-breadcrumb :breadcrumbs="$breadcrumbs??[]"></x-breadcrumb>
     </div>
