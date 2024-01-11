@@ -1,12 +1,11 @@
 <div class="profie-cv-update-section" id="profie-cv-update-section">
     <div class="card">
         <div class="d-flex justify-content-center align-items-center gap-5 gap-sm-2 p-3">
-            <div><a class="btn btn-md btn-warning btn-rounded" href="{{asset('storage/documents/'.$data->documents->first()->document_url)}}" target="_blank">View CV</a></div>
+            <div><a class="btn btn-md btn-warning btn-rounded" href="{{asset('storage/documents/'.$data->documents->document_url)}}" target="_blank">View CV</a></div>
             <div><button class="btn btn-md btn-success btn-rounded" id="profile-cv-update-button">Update CV</button></div>
         </div>
     </div>
 </div>
-
 <div class="profie-cv-upload-section" id="profie-cv-upload-section" style="display: none;">
     <div class="card">
     <div class="profile-personal-cv-div p-3">
