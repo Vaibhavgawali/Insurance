@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use PDF;
 
 use App\Models\User;
 use App\Models\UserProfile;
@@ -202,4 +203,20 @@ class CandidateController extends Controller
     {
         //
     }
+
+    /**
+     * Download candidate profile
+     */
+    public function downloadCandidateProfilePDF($userId)
+    {
+        $user = User::findOrFail($userId);
+        $userData = User::with('address', 'profile', 'experience')->find($user->user_id);
+
+        $pdf = PDF::loadView('dashboard.admin.profile-pdf', compact('userData'))
+                ->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true])
+                ->setPaper('A4');
+
+        return $pdf->download('certificate_'.$user->id.'.pdf');
+    }
+
 }
