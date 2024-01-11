@@ -98,6 +98,7 @@
         }
 
         function submitQuiz() {
+            console.log("first");
             var formData = $("#quizForm").serialize();
             var baseUrl = $('meta[name="base-url"]').attr("content");
             var quiz_id = <?php echo $quiz_id; ?>;
@@ -112,8 +113,13 @@
                     if (response.success) {
                         clearInterval(intervalId);
                         localStorage.removeItem("quizAnswers");
-                        // window.location.href = "http://localhost:8000/dashboard"
+                        window.location.href = `${baseUrl}/candidate-quizes/`;
+                    
                         // Handle success (e.g., redirect to a result page)
+                    }else{
+                        // outside the valid time span
+                        console.log(response);
+                        window.location.href = `${baseUrl}/candidate-quizes/`;
                     }
                 }
             });
@@ -123,7 +129,6 @@
             e.preventDefault();
             submitQuiz();
         })
-
 
     });
 </script>

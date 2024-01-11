@@ -150,75 +150,65 @@ class CandidateQuizController extends Controller
         if ($startTime && $currentTime->between($startTime, $quizEndTime)) {
             // User has submitted within the valid time span
 
-        } else {
-            // User has submitted outside the valid time span
-            $message= "Quiz submission is outside the valid time span.";
-            return Response(['success' => true, 'message' => $message], 200);
-        }
+            $userAnswers = $request->except('_token');
 
-        $userAnswers = $request->except('_token');
+            $score = $this->calculateScore($userAnswers, $quizId);
 
-        $score = $this->calculateScore($userAnswers, $quizId);
+            $passingScore = 2;
+            $is_passed = $score >= $passingScore;
 
-        $passingScore = 2;
-        $is_passed = $score >= $passingScore;
-
-        $user_quiz = UserQuiz::where([
-            'user_id' => Auth::id(),
-            'quiz_id' => $quiz->id,
-        ])->first();
-
-        if ($user_quiz && $score > $user_quiz->score) {
-            $user_quiz->update(['score' => $score, 'pass_status' => $is_passed]);
-        } elseif (!$user_quiz) {
-            UserQuiz::create([
+            $user_quiz = UserQuiz::where([
                 'user_id' => Auth::id(),
                 'quiz_id' => $quiz->id,
-                'score' => $score,
-                'pass_status' => $is_passed
-            ]);
-        }
+            ])->first();
 
-        if ($is_passed) {
-            // certificate logic
-            
-            $message="You have passed";
+            if ($user_quiz && $score > $user_quiz->score) {
+                $user_quiz->update(['score' => $score, 'pass_status' => $is_passed]);
+            } elseif (!$user_quiz) {
+                UserQuiz::create([
+                    'user_id' => Auth::id(),
+                    'quiz_id' => $quiz->id,
+                    'score' => $score,
+                    'pass_status' => $is_passed
+                ]);
+            }
 
-            try {
-                $data = [
-                    'title' => 'Welcome InsuranceNext',
-                    'date' => date('m/d/Y'),
-                    'users' => $users
-                ]; 
+            if ($is_passed) {
+                // certificate logic
+                
+                $message="You have passed";
+
+                    $data = [
+                        'title' => 'Welcome InsuranceNext',
+                        'date' => date('m/d/Y'),
+                        'score'=>$score
+                    ]; 
+                        // print_r($data);
+                    // Your PDF generation code
+                    // $pdf = PDF::loadView('dashboard.candidate-quizes.certificate',$data);
+                    // $pdfContents = $pdf->output();
+                    // $pdfPath = 'public/documents/'.Auth::id().'_certificate.pdf';
                     
-                // Your PDF generation code
-                $pdf = PDF::loadView('dashboard.candidate-quizes.certificate',$data);
-                print_r("ok");
+                    // Save the PDF to storage
+                    // Storage::disk('local')->put($pdfPath, $pdfContents);
+                    return Response(['success'=>true,'message' => $message],200);//, 'pdf_path' => $pdfPath
 
-            } catch (\Exception $e) {
-                \Log::error($e->getMessage());
-                // Handle the exception or return an error response
-                print_r("ok");
-            }       
-         
-            // Save the PDF to storage
-            $pdfContents = $pdf->output();
-            $pdfPath = 'public/documents/'.Auth::id().'_certificate.pdf';
-            
-            Storage::disk('local')->put($pdfPath, $pdfContents);
+            }else{
+                $message="You have failed";
+                return Response(['success'=>true,'message' => $message], 200);
+            }
 
-            return Response(['status'=>true,'message' => $message, 'pdf_path' => $pdfPath],200);
-        }else{
-            $message="You have failed";
-            return Response(['status'=>false,'message' => $message], 200);
+            // Reset the quiz start time in the session
+            $request->session()->forget('quiz_start_time');
+            return Response(['success' => true, 'message' => $message], 200);
+
+    } else {
+            // User has submitted outside the valid time span
+            $message= "Quiz submission is outside the valid time span.";
+            return Response(['success' => false, 'message' => $message], 200);
         }
-        // Reset the quiz start time in the session
-        $request->session()->forget('quiz_start_time');
-        return Response(['success' => true, 'message' => $message], 200);
-        // return redirect()->route('quizzes.show', $quiz->id)
-        //     ->with(['quizSubmitted' => true, 'correctAnswers' => $correctAnswers]);
     }
-
+      
     // Helper method to calculate score 
     private function calculateScore($userAnswers, $quizId)
     {
