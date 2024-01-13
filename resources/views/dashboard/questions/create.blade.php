@@ -1,6 +1,6 @@
 @extends('dashboard/layouts/dashboard-layout')
 @section('main-section')
-<div>
+<div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title"> <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-account-plus"></i>
@@ -12,45 +12,36 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Add Question</h4>
-                    <p class="card-description"> Add Question Details</p>           
-                    <form method="post" action="{{ route('questions.store') }}">
+                    <p class="card-description"> Add Question Details</p>
+                    <form class="form-sample" id="create_question">
                         @csrf
-                        <input type="hidden" name="quiz_id" value={{$quiz_id}}>
-                        <label for="question">Question:</label>
-                        <input type="text" name="question_text" value="{{ old('question_text')}}">
-                        @if($errors->has('question_text'))
-                        <div class="invalid-feedback d-block"> {{ $errors->first('question_text') }}</div>
-                        @endif
+                        <div class="form-group">
+                            <input type="hidden" name="quiz_id" id="quiz_id" value={{$quiz_id}}>
+                            <label for="question">Question:</label>
+                            <input class="form-control" type="text" name="question_text" id="question_text" value="{{ old('question_text')}}">
+                            <div id="question_text_error"></div>
+                        </div>
+
 
                         <label>Answers:</label>
 
-                        <!-- @for ($i = 1; $i <= 4; $i++)
-                            <div>
-                                <input type="radio" name="correct_answer" value="{{ $i }}" {{ old('correct_answer') == $i ? 'checked' : '' }}>
-                                <label for="answer{{ $i }}">Answer {{ $i }}</label>
-                                <input type="text" name="answers[]" value="{{ old('answers.' . ($i - 1)) }}">
-                            </div>
-                            @if($errors->has('answers.' . ($i - 1)))
-                                <div class="invalid-feedback d-block"> {{ $errors->first('answers.' . ($i - 1)) }}</div>
-                            @endif
-                        @endfor -->
-
-                        @for ($i = 0; $i < 4; $i++)
-                            <div>
-                                <input type="radio" name="correct_answer" value="{{ $i }}" {{ old('correct_answer') == $i ? 'checked' : '' }}>
-                                <label for="answer{{ $i }}">Answer {{ $i + 1 }}</label>
-                                <input type="text" name="answers[]" value="{{ old('answers.' . $i) }}">
-                            </div>
-                            @if($errors->has('answers.' . $i))
-                                <div class="invalid-feedback d-block">{{ $errors->first('answers.' . $i) }}</div>
-                            @endif
+                        <div class="form-group">
+                            @for ($i = 0; $i < 4; $i++) <div class="form-check form-check-success ">
+                                <label class="form-check-label d-flex align-items " for="answer{{ $i }}">
+                                <input type="radio" name="correct" id="correct_{{$i}}" value="{{ $i }}" {{ old('correct_answer') == $i ? 'checked' : '' }}>Answer {{ $i + 1 }}
+                            </label>
+                        </div>
+                        <input type="text" name="answerText" id="answerText_{{$i}}" value="{{ old('answers.' . $i) }}" class="form-control">
+                        <div id="answerText_{{$i}}_error"></div>
                         @endfor
-                           
-                        <button type="submit">Submit</button>
-                    </form>
                 </div>
+                <button type="submit" id="add_question_button" class="btn btn-gradient-primary me-2">Submit</button>
+                <a href="/quizes/{{$quiz_id}}" class="btn btn-light">Cancel</a>
+                </form>
+                
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

@@ -82,6 +82,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:Superadmin']], function () 
     Route::post('assign-role/{id}', [UserController::class, 'assignRole']);
 
     Route::resource('quizes', QuizController::class);
+    Route::get('show_quiz/{quiz_id}',[QuizController::class,'show_quiz']);
     Route::resource('questions', QuestionController::class);
     Route::resource('answers', AnswerController::class);
 });
@@ -92,3 +93,7 @@ Route::resource('candidate-quizes', CandidateQuizController::class);
 Route::post('submit-quiz/{quiz_id}', [CandidateQuizController::class, 'submit']);
 Route::get('/start-quiz', [CandidateQuizController::class, 'startQuiz']);
 // });
+Route::get('generate-pdf', [CandidateQuizController::class, 'generatePDF']);
+Route::get('generate-candidate-profile-pdf/{id}', [CandidateController::class, 'downloadCandidateProfilePDF']);
+
+

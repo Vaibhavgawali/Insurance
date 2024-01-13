@@ -53,6 +53,12 @@
                 <i class="mdi mdi-airplay menu-icon"></i>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/quizes">
+                <span class="menu-title">Add Quiz</span>
+                <i class="mdi mdi-airplay menu-icon"></i>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="/requirements">

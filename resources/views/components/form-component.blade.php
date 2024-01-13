@@ -1,5 +1,5 @@
 <!-- Example in form-component.blade.php -->
-<form action="{{ $action }}" method="POST" class="{{$formClass ?? 'forms-sample'}}" enctype="multipart/form-data">
+<form action="{{ $action }}" method="POST" class="{{$formClass ?? 'forms-sample'}}" enctype="multipart/form-data" id="{{$formId}}" >
     @csrf
     @if($method == "PATCH")
     @method('PATCH')
@@ -15,6 +15,7 @@
         @endif
     </div>
     @endif
+    
     @if($field['type']=='checkbox')
     <div class="form-check form-check-flat form-check-primary">
         <label class="form-check-label">
