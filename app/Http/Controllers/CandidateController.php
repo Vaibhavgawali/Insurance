@@ -38,7 +38,7 @@ class CandidateController extends Controller
     {
         if (Auth::check()) {
             // $users = User::role('Candidate')->get();
-            $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->orderBy('user_id','desc')->get();
+            $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->orderBy('user_id', 'desc')->get();
             // dd($users);
             if ($users) {
                 // return Response(['data' => $users], 200);

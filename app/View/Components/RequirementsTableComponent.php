@@ -6,14 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class dashboard-insurer-login-component extends Component
+class RequirementsTableComponent extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $data;
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -21,6 +22,6 @@ class dashboard-insurer-login-component extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dashboard-insurer-login-component');
+        return view('components.requirements-table-component',['data' => $this->data]);
     }
 }
