@@ -173,6 +173,7 @@ class CandidateQuizController extends Controller
                 ]);
             }
 
+            $request->session()->forget('quiz_start_time');
             if ($is_passed) {
                 // certificate logic
                 
@@ -199,7 +200,7 @@ class CandidateQuizController extends Controller
             }
 
             // Reset the quiz start time in the session
-            $request->session()->forget('quiz_start_time');
+            // $request->session()->forget('quiz_start_time');
             return Response(['success' => true, 'message' => $message], 200);
 
     } else {
