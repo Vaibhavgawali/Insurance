@@ -1,0 +1,33 @@
+/* Login-container End */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  width: 100%;
+  margin: auto;
+}
+.item > h4
+{
+  border:solid 1px grey;
+  border-radius: 5px;;
+  padding: 5px 10px;
+  margin: auto;
+  width: 80%;
+}
+.info-register
+    {
+        /* margin-top: 200px !important; */
+        padding-top: 180px !important;
+        background-color:#F9F5F2;
+        
+      
+    }
