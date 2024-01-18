@@ -1,79 +1,78 @@
 //Quiz create
-let quizCreatedAlert =()=>
-{
-    swal("Good job!", "Quiz created successfully!", "success");
-}
-let quizUpdateAlert =()=>
-{
-    swal("Good job!", "Quiz Updated successfully!", "success");
-}
+let quizCreatedAlert = () => {
+    swal("Good job!", "Quiz created successfully !", "success");
+};
+let quizUpdateAlert = () => {
+    swal("Good job!", "Quiz Updated successfully !", "success");
+};
 
 $(document).ready(function () {
     $("#create_quiz").submit(function (e) {
-   
-  var title= $('#title').val();
-  var description = $('#description').val();
-  var level = $('#level').val();
-  var quiz_time = $('#quiz_time').val();
+        var title = $("#title").val();
+        var description = $("#description").val();
+        var level = $("#level").val();
+        var quiz_time = $("#quiz_time").val();
 
-
-  $(".error-message").remove(); // Remove existing error messages
+        $(".error-message").remove(); // Remove existing error messages
         $("#title_error").html("");
         $("#description_error").html("");
         $("#level_error").html("");
         $("#quiz_time_error").html("");
 
-        e.preventDefault(); 
+        e.preventDefault();
 
-if (!title || title.trim() === "") {
-    $("#title_error").html('<div class="invalid-feedback d-block">Title is ruequired.</div>');
-    console.log('question_text:'+question_text);
-    return false;
-    
-}
-if (!title || title.trim() === "") {
-    $("#description_error").html('<div class="invalid-feedback d-block">Description is ruequired.</div>');
-    console.log('question_text:'+question_text);
-    return false;
-    
-}
-if (!title || title.trim() === "") {
-    $("#level_error").html('<div class="invalid-feedback d-block">Level is ruequired.</div>');
-    console.log('question_text:'+question_text);
-    return false;
-    
-}
-if (!title || title.trim() === "") {
-    $("#quiz_time_error").html('<div class="invalid-feedback d-block">Time is ruequired.</div>');
-    console.log('question_text:'+question_text);
-    return false;
-    
-}
-var data=
-{
-    title:title,
-    description:description,
-    level:level,
-    quiz_time
-}
-   var url =window.location.origin +`/quizes/`
+        if (!title || title.trim() === "") {
+            $("#title_error").html(
+                '<div class="invalid-feedback d-block">Title is ruequired.</div>'
+            );
+            console.log("question_text:" + question_text);
+            return false;
+        }
+        if (!title || title.trim() === "") {
+            $("#description_error").html(
+                '<div class="invalid-feedback d-block">Description is ruequired.</div>'
+            );
+            console.log("question_text:" + question_text);
+            return false;
+        }
+        if (!title || title.trim() === "") {
+            $("#level_error").html(
+                '<div class="invalid-feedback d-block">Level is ruequired.</div>'
+            );
+            console.log("question_text:" + question_text);
+            return false;
+        }
+        if (!title || title.trim() === "") {
+            $("#quiz_time_error").html(
+                '<div class="invalid-feedback d-block">Time is ruequired.</div>'
+            );
+            console.log("question_text:" + question_text);
+            return false;
+        }
+        var data = {
+            title: title,
+            description: description,
+            level: level,
+            quiz_time,
+        };
+        var url = window.location.origin + `/quizes/`;
 
         $.ajax({
-            url:url,
+            url: url,
             type: "POST",
             data: data,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-               
                 console.log(response);
                 if (response.status == true) {
                     $("#quiz_create_button").attr("disabled", true);
-                     quizCreatedAlert();
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // }, 1000);
+                    quizCreatedAlert();
+                    setTimeout(function () {
+                        window.location.href =
+                            window.location.origin + "/quizes/";
+                    }, 2000);
 
                     return false;
                 }
@@ -84,7 +83,11 @@ var data=
 
                     $.each(errors, function (field, messages) {
                         var input = $('[name="' + field + '"]');
-                        input.after('<div class="error-message invalid-feedback d-block">' + messages.join(", ") + "</div>");
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
                     });
                 }
             },
@@ -94,71 +97,74 @@ var data=
 
 $(document).ready(function () {
     $("#edit_quiz").submit(function (e) {
- var quiz_id =$('#quiz_id').val();
-  var title= $('#title').val();
-  var description = $('#description').val();
-  var level = $('#level').val();
-  var quiz_time = $('#quiz_time').val();
+        var quiz_id = $("#quiz_id").val();
+        var title = $("#title").val();
+        var description = $("#description").val();
+        var level = $("#level").val();
+        var quiz_time = $("#quiz_time").val();
 
-
-  $(".error-message").remove(); // Remove existing error messages
+        $(".error-message").remove(); // Remove existing error messages
         $("#title_error").html("");
         $("#description_error").html("");
         $("#level_error").html("");
         $("#quiz_time_error").html("");
 
-        e.preventDefault(); 
+        e.preventDefault();
 
-if (!title || title.trim() === "") {
-    $("#title_error").html('<div class="invalid-feedback d-block">Title is ruequired.</div>');
-    console.log('question_text:'+question_text);
-    return false;
-    
-}
-if (!title || title.trim() === "") {
-    $("#description_error").html('<div class="invalid-feedback d-block">Description is ruequired.</div>');
-    console.log('question_text:'+question_text);
-    return false;
-    
-}
-if (!title || title.trim() === "") {
-    $("#level_error").html('<div class="invalid-feedback d-block">Level is ruequired.</div>');
-    console.log('question_text:'+question_text);
-    return false;
-    
-}
-if (!title || title.trim() === "") {
-    $("#quiz_time_error").html('<div class="invalid-feedback d-block">Time is ruequired.</div>');
-    console.log('question_text:'+question_text);
-    return false;
-    
-}
-var data=
-{
-    quiz_id:quiz_id,
-    title:title,
-    description:description,
-    level:level,
-    quiz_time
-}
-   var url =window.location.origin +`/quizes/${quiz_id}`
+        if (!title || title.trim() === "") {
+            $("#title_error").html(
+                '<div class="invalid-feedback d-block">Title is ruequired.</div>'
+            );
+            console.log("question_text:" + question_text);
+            return false;
+        }
+        if (!title || title.trim() === "") {
+            $("#description_error").html(
+                '<div class="invalid-feedback d-block">Description is ruequired.</div>'
+            );
+            console.log("question_text:" + question_text);
+            return false;
+        }
+        if (!title || title.trim() === "") {
+            $("#level_error").html(
+                '<div class="invalid-feedback d-block">Level is ruequired.</div>'
+            );
+            console.log("question_text:" + question_text);
+            return false;
+        }
+        if (!title || title.trim() === "") {
+            $("#quiz_time_error").html(
+                '<div class="invalid-feedback d-block">Time is ruequired.</div>'
+            );
+            console.log("question_text:" + question_text);
+            return false;
+        }
+        var data = {
+            quiz_id: quiz_id,
+            title: title,
+            description: description,
+            level: level,
+            quiz_time,
+        };
+        var url = window.location.origin + `/quizes/${quiz_id}`;
 
         $.ajax({
-            url:url,
+            url: url,
             type: "PATCH",
             data: data,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-               
                 console.log(response);
                 if (response.status == true) {
                     $("#quiz_create_button").attr("disabled", true);
-                     quizUpdateAlert();
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // }, 1000);
+                    quizUpdateAlert();
+                    setTimeout(function () {
+                        // window.location.reload();
+                        window.location.href =
+                            window.location.origin + "/quizes/";
+                    }, 2000);
 
                     return false;
                 }
@@ -169,7 +175,11 @@ var data=
 
                     $.each(errors, function (field, messages) {
                         var input = $('[name="' + field + '"]');
-                        input.after('<div class="error-message invalid-feedback d-block">' + messages.join(", ") + "</div>");
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
                     });
                 }
             },
@@ -177,17 +187,13 @@ var data=
     });
 });
 
-
-
-
-
 // Event delegation for delete buttons
-$(document).on('click', '.delete-button', function (e) {
+$(document).on("click", ".delete-button", function (e) {
     e.preventDefault();
-    let quiz_id = $(this).closest('.delete-form').data('quiz-id');
+    let quiz_id = $(this).closest(".delete-form").data("quiz-id");
     quizDeleteAlert(quiz_id);
-    console.log('quiz_id:'+quiz_id);
-    debugger;
+    // console.log("quiz_id:" + quiz_id);
+    // debugger;
 });
 
 let quizDeleteAlert = (quiz_id) => {
@@ -197,31 +203,28 @@ let quizDeleteAlert = (quiz_id) => {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-    })
-    .then((willDelete) => {
+    }).then((willDelete) => {
         if (willDelete) {
             deleteQuizFunction(quiz_id);
             setTimeout(function () {
                 window.location.reload();
             }, 1000);
-            swal("! Your quiz file has been deleted!", {
+            swal(" Your quiz file has been deleted !", {
                 icon: "success",
             });
         } else {
-            swal("Your quiz is safe!");
+            swal("Your quiz is safe !");
         }
     });
-}
-
-
+};
 
 // Delete quiz
 const deleteQuizFunction = (quiz_id) => {
     var data = {
-        quiz_id: quiz_id
-    }
-    var url = window.location.origin + `/quizes/${quiz_id}`
-    console.log(url)
+        quiz_id: quiz_id,
+    };
+    var url = window.location.origin + `/quizes/${quiz_id}`;
+    console.log(url);
     debugger;
 
     $.ajax({
@@ -232,9 +235,12 @@ const deleteQuizFunction = (quiz_id) => {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
         success: function (response) {
-            console.log(response);
+            // console.log(response);
             if (response.status == true) {
-                $(".delete-button[data-quiz-id='" + quiz_id + "']").attr("disabled", true);
+                $(".delete-button[data-quiz-id='" + quiz_id + "']").attr(
+                    "disabled",
+                    true
+                );
                 // quizUpdateAlert();
                 setTimeout(function () {
                     window.location.reload();
@@ -247,10 +253,13 @@ const deleteQuizFunction = (quiz_id) => {
                 var errors = response.responseJSON.errors;
                 $.each(errors, function (field, messages) {
                     var input = $('[name="' + field + '"]');
-                    input.after('<div class="error-message invalid-feedback d-block">' + messages.join(", ") + "</div>");
+                    input.after(
+                        '<div class="error-message invalid-feedback d-block">' +
+                            messages.join(", ") +
+                            "</div>"
+                    );
                 });
             }
         },
     });
-}
-
+};

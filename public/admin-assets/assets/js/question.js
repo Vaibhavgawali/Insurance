@@ -1,18 +1,9 @@
-// Create Question 
-// let button = document.getElementById("add_question_button");
-
-// button.addEventListener('click',()=>
-// {
-//  console.log("clicked");
-// })
-let createQuestionAlert =()=>
-{
-    swal("Good job!", "Question created successfully!", "success");
-}
-let editQuestionAlert =()=>
-{
-    swal("Good job!", "Question updated successfully!", "success");
-}
+let createQuestionAlert = () => {
+    swal("Good job!", "Question created successfully !", "success");
+};
+let editQuestionAlert = () => {
+    swal("Good job!", "Question updated successfully !", "success");
+};
 
 $(document).ready(function () {
     $("#create_question").submit(function (event) {
@@ -22,28 +13,31 @@ $(document).ready(function () {
         var answerTextArray = [];
 
         for (var i = 0; i < 4; i++) {
-            answerTextArray.push($('#answerText_' + i).val());
+            answerTextArray.push($("#answerText_" + i).val());
         }
 
         $(".error-message").remove(); // Remove existing error messages
         $("#question_text_error").html("");
         event.preventDefault();
-      
+
         // Perform your custom validation here
         if (!question_text || question_text.trim() === "") {
-            $("#question_text_error").html('<div class="invalid-feedback d-block">Question is required.</div>');
+            $("#question_text_error").html(
+                '<div class="invalid-feedback d-block">Question is required.</div>'
+            );
             // console.log('question_text:'+question_text);
             return false;
-            
         }
-    
+
         var answerTextEmpty = false;
 
         $.each(answerTextArray, function (index, answerText) {
             $("#answerText_" + index + "_error").html("");
             if (!answerText || answerText.trim() === "") {
-            console.log(index);
-                $("#answerText_" + index + "_error").html('<div class="invalid-feedback d-block">Answer is required.</div>');
+                console.log(index);
+                $("#answerText_" + index + "_error").html(
+                    '<div class="invalid-feedback d-block">Answer is required.</div>'
+                );
                 answerTextEmpty = true;
             }
         });
@@ -56,10 +50,10 @@ $(document).ready(function () {
             quiz_id: quiz_id,
             question_text: question_text,
             answers: answerTextArray,
-            correct_answer: correct
+            correct_answer: correct,
         };
 
-        var url =window.location.origin +`/questions`;
+        var url = window.location.origin + `/questions`;
         // console.log(url);
 
         $.ajax({
@@ -73,10 +67,11 @@ $(document).ready(function () {
                 console.log(response);
                 if (response.status == true) {
                     $("#add_question_button").attr("disabled", true);
-                     createQuestionAlert();
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // }, 1000);
+                    createQuestionAlert();
+                    setTimeout(function () {
+                        window.location.href =
+                            window.location.origin + `/quizes/${quiz_id}`;
+                    }, 2000);
 
                     return false;
                 }
@@ -87,7 +82,11 @@ $(document).ready(function () {
 
                     $.each(errors, function (field, messages) {
                         var input = $('[name="' + field + '"]');
-                        input.after('<div class="error-message invalid-feedback d-block">' + messages.join(", ") + "</div>");
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
                     });
                 }
             },
@@ -95,20 +94,20 @@ $(document).ready(function () {
     });
 });
 
-
 //Edit question
 $(document).ready(function () {
     $("#edit_question").submit(function (event) {
         var question_id = $("#question_id").val();
+        var quiz_id = $("#quiz_id").val();
         var question_text = $("#question_text").val();
         var correct = $('input[name="correct"]:checked').val();
-        console.log("Question edit:"+question_id);
+        // console.log("Question edit:" + question_id);
+        // console.log(quiz_id);
 
-        
         var answerTextArray = [];
 
-        for (var i = 1; i <=4; i++) {
-            answerTextArray.push($('#answerText_' + i).val());
+        for (var i = 1; i <= 4; i++) {
+            answerTextArray.push($("#answerText_" + i).val());
         }
         // console.log(answerTextArray)
         // debugger;
@@ -116,26 +115,28 @@ $(document).ready(function () {
         $(".error-message").remove(); // Remove existing error messages
         $("#question_text_error").html("");
         event.preventDefault();
-      
+
         // Perform your custom validation here
         if (!question_text || question_text.trim() === "") {
-            $("#question_text_error").html('<div class="invalid-feedback d-block">Question is required.</div>');
-            console.log('question_text:'+question_text);
+            $("#question_text_error").html(
+                '<div class="invalid-feedback d-block">Question is required.</div>'
+            );
+            console.log("question_text:" + question_text);
             return false;
-            
         }
-    
+
         var answerTextEmpty = false;
 
         $.each(answerTextArray, function (index, answerText) {
             $("#answerText_" + index + "_error").html("");
             if (!answerText || answerText.trim() === "") {
-            console.log(index);
-                $("#answerText_" + index + "_error").html('<div class="invalid-feedback d-block">Answer is required.</div>');
+                console.log(index);
+                $("#answerText_" + index + "_error").html(
+                    '<div class="invalid-feedback d-block">Answer is required.</div>'
+                );
                 answerTextEmpty = true;
             }
         });
-        
 
         if (answerTextEmpty) {
             return false;
@@ -145,14 +146,12 @@ $(document).ready(function () {
             question_id: question_id,
             question_text: question_text,
             answers: answerTextArray,
-            correct_answer: correct
+            correct_answer: correct,
         };
         console.log(data);
-        
 
-        var url =window.location.origin +`/questions/${question_id}`;
+        var url = window.location.origin + `/questions/${question_id}`;
         console.log(url);
-       
 
         $.ajax({
             type: "PATCH",
@@ -165,10 +164,11 @@ $(document).ready(function () {
                 console.log(response);
                 if (response.status == true) {
                     $("#edit_question_button").attr("disabled", true);
-                     editQuestionAlert();
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // }, 1000);
+                    editQuestionAlert();
+                    setTimeout(function () {
+                        window.location.href =
+                            window.location.origin + `/quizes/${quiz_id}`;
+                    }, 2000);
 
                     return false;
                 }
@@ -179,7 +179,11 @@ $(document).ready(function () {
 
                     $.each(errors, function (field, messages) {
                         var input = $('[name="' + field + '"]');
-                        input.after('<div class="error-message invalid-feedback d-block">' + messages.join(", ") + "</div>");
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
                     });
                 }
             },
@@ -187,20 +191,15 @@ $(document).ready(function () {
     });
 });
 
-
-
-
-
-$(document).on('click', '.delete-question-button', function (e) {
+$(document).on("click", ".delete-question-button", function (e) {
     e.preventDefault();
-    let question_id = $(this).closest('.delete-question-form').data('question-id');
-    console.log('Clicked delete button with ID:', question_id);
+    let question_id = $(this)
+        .closest(".delete-question-form")
+        .data("question-id");
+    console.log("Clicked delete button with ID:", question_id);
     questionDeleteAlert(question_id);
     debugger;
 });
-
-
-
 
 let questionDeleteAlert = (question_id) => {
     swal({
@@ -209,8 +208,7 @@ let questionDeleteAlert = (question_id) => {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-    })
-    .then((willDelete) => {
+    }).then((willDelete) => {
         if (willDelete) {
             deleteQuestionFunction(question_id);
             setTimeout(function () {
@@ -223,17 +221,17 @@ let questionDeleteAlert = (question_id) => {
             swal("Your question is safe!");
         }
     });
-}
+};
 
 // Delete question
 const deleteQuestionFunction = (question_id) => {
     var data = {
-        question_id: question_id
-    }
+        question_id: question_id,
+    };
     console.log(data);
-    let question_url = window.location.origin +`/questions/${question_id}`
-    console.log("question_url:"+question_url);
-  debugger;
+    let question_url = window.location.origin + `/questions/${question_id}`;
+    console.log("question_url:" + question_url);
+    debugger;
     $.ajax({
         url: question_url,
         type: "DELETE",
@@ -244,7 +242,11 @@ const deleteQuestionFunction = (question_id) => {
         success: function (response) {
             console.log(response);
             if (response.status == true) {
-                $(".delete-question-button[data-question-id='" + question_id + "']").attr("disabled", true);
+                $(
+                    ".delete-question-button[data-question-id='" +
+                        question_id +
+                        "']"
+                ).attr("disabled", true);
                 // setTimeout(function () {
                 //     window.location.reload();
                 // }, 1000);
@@ -256,12 +258,13 @@ const deleteQuestionFunction = (question_id) => {
                 var errors = response.responseJSON.errors;
                 $.each(errors, function (field, messages) {
                     var input = $('[name="' + field + '"]');
-                    input.after('<div class="error-message invalid-feedback d-block">' + messages.join(", ") + "</div>");
+                    input.after(
+                        '<div class="error-message invalid-feedback d-block">' +
+                            messages.join(", ") +
+                            "</div>"
+                    );
                 });
             }
         },
     });
-}
-
-
-
+};

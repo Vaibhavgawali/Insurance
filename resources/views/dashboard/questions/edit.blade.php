@@ -21,6 +21,7 @@
                         <div class="form-group">
                             <label for="exampleInputName1">Question</label>
                             <input type="hidden" name="question_id" id="question_id" value="{{$question_id}}" />
+                            <input type="hidden" name="quiz_id" id="quiz_id" value="{{$quiz_id}}" />
                             <input type="text" name="question_text" value="{{ old('question_text', $question_text) }}" class="form-control" id="question_text" placeholder="Write question here">
                             <div id="question_text_error"></div>
 

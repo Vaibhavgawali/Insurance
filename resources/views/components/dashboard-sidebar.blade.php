@@ -29,7 +29,7 @@
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
-
+        
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('view_candidate_list') || Auth::user()->can('view_users_list') )
         <li class="nav-item">
             <a class="nav-link" href="/candidate">
@@ -50,12 +50,6 @@
         <li class="nav-item">
             <a class="nav-link" href="/institute">
                 <span class="menu-title">Institute</span>
-                <i class="mdi mdi-airplay menu-icon"></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/quizes">
-                <span class="menu-title">Add Quiz</span>
                 <i class="mdi mdi-airplay menu-icon"></i>
             </a>
         </li>

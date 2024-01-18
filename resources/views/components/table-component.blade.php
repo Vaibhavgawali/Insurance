@@ -15,10 +15,10 @@
       <th>Sr.No</th>
       <th>Name </th>
       <th>
-        @if($data->isNotEmpty())
-        {{ $data->first()->documents ? 'CV Date' : 'Email' }}
+        @if ($data->isNotEmpty() && $data->first()->hasRole('Candidate'))
+            CV Date
         @else
-        N/A
+            Email
         @endif
       </th>
 
@@ -48,7 +48,7 @@
         <form id="candidate-delete-form" action="admin/user/{{$row->user_id}}" method="POST">
           @csrf
           @method('DELETE')
-          <button style="" type="submit" href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded " onclick="deleteAlert()">Delete</button>
+          <button  type="submit" href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded " onclick="deleteAlert()">Delete</button>
         </form>
         @endhasrole
 

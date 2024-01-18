@@ -1,6 +1,5 @@
 // Alert Box
 
-
 let loginAlert = () => {
     swal("Good job!", "You clicked the button!", "success");
 };
@@ -13,23 +12,25 @@ let resumeUploadAlert = () => {
 let requirementsAlert = () => {
     swal("Nice!", "We will get back to you soon!", "success");
 };
+
 deleteAlert = () => {
     swal({
         title: "Are you sure?",
-        text: "Once deleted, you will not be able to see the candidate!",
+        text: "Once deleted, you will not be able to see the user!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {
-            swal("Poof! Your imaginary file has been deleted!", {
-                icon: "success",
-            });
             // If the user confirms, proceed with form submission
             // Assuming you have a form with an ID, replace 'yourFormId' with the actual ID
             document.getElementById("candidate-delete-form").submit();
+
+            swal("Poof ! User has been deleted!", {
+                icon: "success",
+            });
         } else {
-            swal("Your imaginary file is safe!");
+            swal("Your user is safe!");
             // If the user cancels, return false to prevent form submission
             return false;
         }
@@ -42,7 +43,7 @@ $(document).ready(function () {
         console.log("clicked");
         var requirement_text = $("#requirement_text").val();
         var user_id = $("#user_id").val();
-        console.log(requirement_text);;
+        console.log(requirement_text);
 
         $("#requirement_text_error").html("");
 
@@ -111,7 +112,6 @@ $(document).ready(function () {
         });
     });
 });
-
 
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("profile_image");
@@ -214,7 +214,6 @@ $(document).ready(function () {
 $(document).ready(function (e) {
     //cv update method
     $("#profile_cv_update-1_button").click(function () {
-
         var formData = new FormData($("#profile_update_cv_form")[0]);
         var user_id = $("#user_id").val().trim();
         user_id = parseInt(user_id);
@@ -222,7 +221,6 @@ $(document).ready(function (e) {
         // Get base URL from meta tag
         var baseUrl = $('meta[name="base-url"]').attr("content");
 
-      
         $.ajax({
             url: baseUrl + `/user-documents-update/${user_id}`,
             type: "POST",
@@ -1206,5 +1204,3 @@ $(document).ready(function () {
         });
     });
 });
-
-
