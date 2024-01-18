@@ -47,11 +47,46 @@ class CandidateController extends Controller
         }
         return Response(['data' => 'Unauthorized'], 401);
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function getdata(Request $request)
+    {
+        if (Auth::check()) {
+            $candidates = User::role('Candidate')->orderBy('user_id', 'desc')->get();
+            if ($candidates) {
+                return view('dashboard.admin.candidate-list', ['candidates' => $candidates]);
+            }
+            return response(['message' => "Users with role Candidate not found"], 404);
+        }
+        return response(['data' => 'Unauthorized'], 401);
+    
+        $draw            = $request->get('draw');
+        $start           = $request->get("start");
+        $rowPerPage      = $request->get("length");
+        $orderArray      = $request->get('order');
+        $columnNameArray = $request->get('columns');
+        $searchArray     = $request->get('search');
+        $columnIndex     = $orderArray[0]['column'];
+        $columnName      = $columnNameArray[$columnIndex]['data'];
+        $columnSortorder = $orderArray[0]['dir'];
+        $searchValue     = $searchArray['value'];
+    
+        $query = User::role('Candidate');
+    
+        // Add logic for sorting and searching here
+    
+        $total      = $query->count();
+        $candidates = $query->orderBy('user_id', 'desc')->skip($start)->take($rowPerPage)->get();
+    
+        $response = [
+            "draw"            => intval($draw),
+            "recordsTotal"    => $total,
+            "recordsFiltered" => $total,
+            "data"            => $candidates,
+        ];
+    
+        return response()->json($response);
+    }
+    
+        
     public function create()
     {
         //

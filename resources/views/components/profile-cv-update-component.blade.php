@@ -37,6 +37,7 @@
           <a href="{{$data->user_id}}" class="btn btn-light" id="profile_cv_cancel-1_button">Cancel</a>
         </div>
       </form>
+    
 
       <script>
 

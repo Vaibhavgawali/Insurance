@@ -49,8 +49,8 @@ Route::middleware(['web'])->group(function () {
 });
 
 Route::resource('admin/user', UserController::class)->middleware('auth:sanctum');
-
 Route::resource('candidate', CandidateController::class);
+Route::get('/candidate', [CandidateController::class, 'getdata'])->name('candidate');
 Route::resource('insurer', InsurerController::class);
 Route::resource('institute', InstituteController::class);
 Route::resource('module-1', ModulesController::class);

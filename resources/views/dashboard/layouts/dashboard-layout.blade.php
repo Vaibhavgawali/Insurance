@@ -16,12 +16,18 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="/admin-assets/assets/css/style.css">
+    
     <link rel="stylesheet" href="/admin-assets/assets/css/candidate-quiz.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.jpg" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ url('') }}">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="/admin-assets/assets/css/jquery.dataTables.css" rel="stylesheet">
+    <script src="/admin-assets/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="/admin-assets/assets/js/jquery.dataTables.js"></script>
+
+
 
 </head>
 
