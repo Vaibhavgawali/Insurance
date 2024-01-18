@@ -69,6 +69,7 @@
     <script src="/admin-assets/assets/js/profile.js"></script>
     <script src="/admin-assets/assets/js/quiz.js"></script>
     <script src="/admin-assets/assets/js/question.js"></script>
+    <script src="/admin-assets/assets/js/user.js"></script>
     <!-- End custom js for this page -->
 </body>
 

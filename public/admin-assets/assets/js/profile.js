@@ -1,5 +1,6 @@
 // Alert Box
 
+
 let loginAlert = () => {
     swal("Good job!", "You clicked the button!", "success");
 };
@@ -13,29 +14,6 @@ let requirementsAlert = () => {
     swal("Nice!", "We will get back to you soon!", "success");
 };
 
-deleteAlert = () => {
-    swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to see the user!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    }).then((willDelete) => {
-        if (willDelete) {
-            // If the user confirms, proceed with form submission
-            // Assuming you have a form with an ID, replace 'yourFormId' with the actual ID
-            document.getElementById("candidate-delete-form").submit();
-
-            swal("Poof ! User has been deleted!", {
-                icon: "success",
-            });
-        } else {
-            swal("Your user is safe!");
-            // If the user cancels, return false to prevent form submission
-            return false;
-        }
-    });
-};
 
 $(document).ready(function () {
     // Reuirements  Update function
@@ -1204,3 +1182,6 @@ $(document).ready(function () {
         });
     });
 });
+
+
+
