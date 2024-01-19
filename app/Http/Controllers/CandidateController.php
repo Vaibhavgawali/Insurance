@@ -201,10 +201,35 @@ class CandidateController extends Controller
     /**
      * Soft delete user
      */
-    public function destroy(string $id)
-    {
-        //
+    /**
+ * Soft delete user
+ */
+/**
+ * Soft delete user
+ */
+public function destroy(string $id)
+{
+    // Check if the authenticated user has the "Superadmin" role
+    if (Auth::user()->hasRole('Superadmin')) {
+        $user = User::find($id);
+
+        if (!$user) {
+            return Response(['status' => false, 'message' => "User not found"], 404);
+        }
+
+        $isDeleted = $user->delete();
+
+        if ($isDeleted) {
+            return Response(['status' => true, 'message' => "User deleted successfully"], 200);
+        }
+
+        return Response(['status' => false, 'message' => "Something went wrong"], 500);
     }
+
+    return Response(['status' => false, 'message' => 'Unauthorized'], 401);
+}
+
+
 
     /**
      * Download candidate profile
