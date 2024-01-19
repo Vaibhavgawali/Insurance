@@ -14,7 +14,7 @@
         <button class="btn btn-gradient-primary btn-sm " id="profile_cv_edit_button"><i class="mdi mdi-cloud-upload"> Upload CV</i></button>
       </div>
 
-      <form class="forms-sample" id="profile_update_cv_form" action="user-documents" method="POST" enctype="multipart/form-data">
+      <form class="forms-sample" id="profile_update_cv_form" >
         <div id="profile_cv_status"></div>
         @csrf
         <div class="form-group">
@@ -25,7 +25,7 @@
 
         <div class="form-group">
           <label for="name">Upload your Documents</label>
-          <input type="file" class="form-control" id="document_url" name="document_url" placeholder="Upload your cv"  value="">
+          <input type="file" class="form-control" id="document_url" name="document_url" placeholder="Upload your cv"  value="" disabled>
           <div id="document_url_error"></div>
         </div>
 
@@ -35,7 +35,7 @@
         </div>
         <div id="profile_cv_update_button_div">
           <button type="button" class="btn btn-gradient-primary me-2" id="profile_cv_update-1_button">Upload</button>
-          <button class="btn btn-light" id="profile_cv_cancel-1_button">Cancel</button>
+          <button type="cancel" class="btn btn-light" id="profile_cv_cancel-1_button">Cancel</button>
         </div>
       </form>
 

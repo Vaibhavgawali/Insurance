@@ -226,7 +226,7 @@ $(document).ready(function (e) {
             error: function (response) {
                 // console.log(response);
                 if (response.status === 422) {
-                    var errors = response.responseJSON.errors;
+                    var errors = response.responseJSON.message;
                     console.log(errors);
                     $(".error-message").remove();
 
