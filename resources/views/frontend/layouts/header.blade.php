@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insurance Next</title>
-	<meta name="description" content="Insurin - Insurance Company HTML Template">
+	<meta name="description" content="Insurancecarrer - Insurance Company">
 	<meta name="keywords" content="	accounting, advising, advisory, business, company, consulting, corporate, finance, financial, investments, law, multi-purpose, services, tax help, visual composer">
-	<meta name="author" content="Themexriver">
+	<meta name="author" content="Zynovvatech">
 	<link rel="shortcut icon" href="{{ asset('assets/img/logo/logo-1.png')}}" type="image/x-icon">
 	<meta name="base-url" content="{{ url('/') }}">
 	<!-- Mobile Specific Meta -->
@@ -39,7 +39,7 @@
 		
 		<div class="in-header-top-content d-flex justify-content-between align-items-center">
 			<div class="brand-logo d-flex p-2 align-items-center">
-				<a href="#"><img src="{{asset('assets/img/logo/logo1.png')}}" alt=""></a>
+				<a href="/"><img src="{{asset('assets/img/logo/logo1.png')}}" alt=""></a>
 				<marquee class="top-text-scroll" style="margin-left:40px;" direction="right" scrollamount="3">Empower Your Future: Navigate the Insurance Career Landscape with us  </marquee>
                  
 			</div>
@@ -65,59 +65,14 @@
 						<li class="dropdown in-megamenu">
 							<a href="/">Home</a>
 						</li>
-						<li><a target="_blank" href="about.html">About Us</a></li>
+						<li><a target="" href="/about">About Us</a></li>
 						<li class="dropdown">
-							<a href="!#">Insights</a>
+						<a href="javascript:void(0)">Insights</a>
 							<ul class="dropdown-menu clearfix">
-								<li><a  href="#">Media Coverage</a></li>
-								<li><a  href="#">Legal Operation</a></li>
+								<li><a  href="/industry">About Industry</a></li>
+								<li><a  href="/module">Module</a></li>
 							</ul>
 						</li>
-						<!-- <li class="dropdown">
-							<a href="!#">Pages</a>
-							<ul class="dropdown-menu clearfix">
-								<li><a target="_blank" href="service.html">Services</a></li>
-								<li><a target="_blank" href="service-2.html">Service Page 2</a></li>
-								<li class="dropdown">
-									<a href="service-single.html">Services Details</a>
-									<ul class="dropdown-menu clearfix">
-										<li><a  href="service-single.html">Life Insurence</a></li>
-										<li><a  href="service-single.html">Health Insurence</a></li>
-										<li><a  href="service-single.html">Car Insurence</a></li>
-										<li><a  href="service-single.html">Home Insurence</a></li>
-										<li><a  href="service-single.html">Credit Insurence</a></li>
-										<li><a  href="service-single.html">Transport Insurence</a></li>
-										<li><a  href="service-single.html">Energy Insurence</a></li>
-									</ul>
-								</li>
-								<li class="dropdown">
-									<a href="!#">Testimonial</a>
-									<ul class="dropdown-menu clearfix">
-										<li><a  href="testimonial.html">Testimonial</a></li>
-										<li><a  href="testimonial-carousel.html">Testimonial Carousel</a></li>
-
-									</ul>
-								</li>
-								<li><a  href="team.html">Team Page</a></li>
-								<li><a  href="team-single.html">Team Details</a></li>
-								<li><a  href="faq.html">FAQ Page</a></li>
-								<li><a  href="pricing.html">Pricing Page</a></li>
-								<li><a  href="contact.html">Contact Page</a></li>
-								<li><a  href="insurance-calculator.html">Insurence Calculator</a></li>
-								<li><a  href="404.html">404</a></li>
-							</ul>
-						</li> -->
-						<!-- <li class="dropdown">
-							<a class="" href="!#">Blog</a>
-							<ul class="dropdown-menu clearfix">
-								<li><a  href="blog-list.html">News </a></li>
-								<li><a  href="blog-grid.html">News Grid</a></li>
-								<li><a  href="blog-list-2.html">News List</a></li>
-								<li><a  href="blog-slider.html">News Slider</a></li>
-								<li><a  href="blog-single.html">News Details</a></li>
-							</ul>
-						</li> -->
-						
 						<li class="dropdown">
 							<a class="btn btn-outline-success p-2" href="javascript:void(0)">Register</a>
 							<ul class="dropdown-menu clearfix">
@@ -149,7 +104,7 @@
 						<i class="fal fa-times"></i>
 					</div>
 					<div class="m-brand-logo">
-						<a  href="!#"><img src="assets/img/logo/logo-1.png" alt=""></a>
+						<a  href="/"><img src="assets/img/logo/logo-1.png" alt=""></a>
 					</div>
 					<nav class="mobile-main-navigation  clearfix ul-li">
 						<ul id="m-main-nav" class="nav navbar-nav clearfix">
@@ -157,56 +112,12 @@
 								<a href="/">Home</a>
 							</li>
 							
-							<li><a target="_blank" href="about.html">About Us</a></li>
+							<li><a  href="about.html">About Us</a></li>
 							<li class="dropdown">
-								<a href="!#">Insights</a>
+							<a href="javascript:void(0)">Insights</a>
 								<ul class="dropdown-menu clearfix">
-									<li><a target="_blank" href="#">Media Coverage</a></li>
-									<li><a target="_blank" href="#">Legal Operation</a></li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a href="!#">Pages</a>
-								<ul class="dropdown-menu clearfix">
-									<li><a target="_blank" href="service.html">Services</a></li>
-									<li><a target="_blank" href="service-2.html">Service Page 2</a></li>
-									<li class="dropdown">
-										<a href="service-single.html">Services Details</a>
-										<ul class="dropdown-menu clearfix">
-											<li><a target="_blank" href="service-single.html">Life Insurence</a></li>
-											<li><a target="_blank" href="service-single.html">Health Insurence</a></li>
-											<li><a target="_blank" href="service-single.html">Car Insurence</a></li>
-											<li><a target="_blank" href="service-single.html">Home Insurence</a></li>
-											<li><a target="_blank" href="service-single.html">Credit Insurence</a></li>
-											<li><a target="_blank" href="service-single.html">Transport Insurence</a></li>
-											<li><a target="_blank" href="service-single.html">Energy Insurence</a></li>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="!#">Testimonial</a>
-										<ul class="dropdown-menu clearfix">
-											<li><a target="_blank" href="testimonial.html">Testimonial</a></li>
-											<li><a target="_blank" href="testimonial-carousel.html">Testimonial Carousel</a></li>
-											
-										</ul>
-									</li>
-									<li><a target="_blank" href="team.html">Team Page</a></li>
-									<li><a target="_blank" href="team-single.html">Team Details</a></li>
-									<li><a target="_blank" href="faq.html">FAQ Page</a></li>
-									<li><a target="_blank"  href="pricing.html">Pricing Page</a></li>
-									<li><a target="_blank" href="contact.html">Contact Page</a></li>
-									<li><a target="_blank" href="insurance-calculator.html">Insurence Calculator</a></li>
-									<li><a target="_blank" href="404.html">404</a></li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a class="" href="!#">Blog</a>
-								<ul class="dropdown-menu clearfix">
-									<li><a target="_blank" href="blog-list.html">News </a></li>
-									<li><a target="_blank" href="blog-grid.html">News Grid</a></li>
-									<li><a target="_blank" href="blog-list-2.html">News List</a></li>
-									<li><a target="_blank" href="blog-slider.html">News Slider</a></li>
-									<li><a target="_blank" href="blog-single.html">News Details</a></li>
+									<li><a  href="/industry">About Industry</a></li>
+									<li><a  href="/module">Module</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
@@ -262,7 +173,7 @@
 					<div class="sidebar-info-contents headline pera-content">
 						<div class="content-inner">
 							<div class="logo">
-								<a href="index.html"><img src="{{asset('assets/img/logo/logo-1.png')}}" alt=""></a>
+								<a href="/"><img src="{{asset('assets/img/logo/logo-1.png')}}" alt=""></a>
 							</div>
 							<div class="content-box">
 								<h5>About Us</h5>
