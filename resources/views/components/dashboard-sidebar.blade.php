@@ -29,7 +29,7 @@
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
-
+        
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('view_candidate_list') || Auth::user()->can('view_users_list') )
         <li class="nav-item">
             <a class="nav-link" href="/candidate">
@@ -60,15 +60,31 @@
                 <i class="mdi mdi-comment-question-outline  menu-icon"></i>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/quizes">
+                <span class="menu-title">Add Quiz</span>
+                <i class="mdi mdi-airplay menu-icon"></i>
+            </a>
+        </li>
 
         @endhasrole
-        @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('module-1') )
+
+        @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('take_assessment'))
         <li class="nav-item">
+            <a class="nav-link" href="/candidate-quizes">
+                <span class="menu-title">Take Quiz</span>
+                <i class="mdi mdi-account-card-details menu-icon"></i>
+            </a>
+        </li>
+        @endif
+
+        @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('module-1') )
+        <!-- <li class="nav-item">
             <a class="nav-link" href="/module-1">
                 <span class="menu-title">Module-1</span>
                 <i class="mdi mdi-account-card-details menu-icon"></i>
             </a>
-        </li>
+        </li> -->
         @endif
 
     </ul>

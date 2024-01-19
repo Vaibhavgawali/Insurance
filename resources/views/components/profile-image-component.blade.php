@@ -78,24 +78,18 @@
       </form>
       @endif
 
-      @else
-      
-      @if(empty($data->profile) && empty($data->profile->profile_image))
-      <div id="image-view">
-        <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">
-      </div>
-      @else
-      <div id="image-view">
-        <img src="{{ asset('storage/images/') }}/{{$data->profile->profile_image}}" alt="{{$data->profile->profile_image}}" class="img-fluid">
-      </div>
-      @endif
+      @else    
+          @if(empty($data->profile) || empty($data->profile->profile_image))
+          <div id="image-view">
+            <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">
+          </div>
+          @else
+          <div id="image-view">
+            <img src="{{ asset('storage/images/') }}/{{$data->profile->profile_image}}" alt="{{$data->profile->profile_image}}" class="img-fluid">
+          </div>
+          @endif
       @endif
     </div>
-
-
-
-
-
 
     <div class="profile-personal-info-section">
       <div class="profile-personal-info-div p-3">

@@ -33,36 +33,36 @@ class UserDocumentsController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $validator=Validator::make($request->all(),[
-            "document_title"=> 'string|max:40',
-            "document_url"=> 'required|mimes:pdf,doc,docx|max:2048',
+
+        $validator = Validator::make($request->all(), [
+            "document_title" => 'string|max:40',
+            "document_url" => 'required|mimes:pdf,doc,docx|max:2048',
         ]);
         // dd($request->all());
 
-        if($validator->fails()){
-            return Response(['status'=>false,'errors' => $validator->errors()],422);
-        }   
+        if ($validator->fails()) {
+            return Response(['status' => false, 'errors' => $validator->errors()], 422);
+        }
 
         // Save the image to the storage
-        $document=$request->file("document_url");
-        $documentName=$document->hashName();
-        $documentpath= Storage::disk('local')->put('public/documents', $document);
+        $document = $request->file("document_url");
+        $documentName = $document->hashName();
+        $documentpath = Storage::disk('local')->put('public/documents', $document);
 
         if ($documentpath) {
-            $user_id=Auth::user()->user_id;
+            $user_id = Auth::user()->user_id;
 
-            $user_documents=UserDocuments::create([
-                'user_id'=>$user_id,
-                'document_title'=>$request->document_title,
-                'document_url'=>$documentName,
+            $user_documents = UserDocuments::create([
+                'user_id' => $user_id,
+                'document_title' => $request->document_title,
+                'document_url' => $documentName,
             ]);
 
-            if($user_documents){
-                return Response(['status'=>true,'message' => "User documents added successfully"],200);
+            if ($user_documents) {
+                return Response(['status' => true, 'message' => "User documents added successfully"], 200);
             }
-        }       
-        return Response(['status'=>false,'message' => "Something went wrong"],500);   
+        }
+        return Response(['status' => false, 'message' => "Something went wrong"], 500);
     }
 
     /**
@@ -70,16 +70,16 @@ class UserDocumentsController extends Controller
      */
     public function show(string $id)
     {
-        $userId = Auth::user()->user_id; 
-        if($userId == $id){
+        $userId = Auth::user()->user_id;
+        if ($userId == $id) {
             $user = UserDocuments::where('user_id', $id);
-            if($user){
-                $userData=$user->get();
-                return Response(['user documents'=>$userData],200);
+            if ($user) {
+                $userData = $user->get();
+                return Response(['user documents' => $userData], 200);
             }
-            return Response(['message'=>"User not found"],404);
+            return Response(['message' => "User not found"], 404);
         }
-        return Response(['message'=>'Unauthorized'],401);
+        return Response(['message' => 'Unauthorized'], 401);
     }
 
     /**
@@ -95,46 +95,46 @@ class UserDocumentsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $userId = Auth::user()->user_id; 
-        if($userId == $id){
+       
+        $userId = Auth::user()->user_id;
+        if ($userId == $id) {
             $formMethod = $request->method();
-            if($formMethod == "PATCH"){
+            if ($formMethod == "POST") {
 
-                $validator=Validator::make($request->all(),[
+                $validator = Validator::make($request->all(), [
                     "document_title"=> 'string|max:40',
-                    "document_url"=> 'required|mimes:pdf,doc,docx|max:2048',
+                    "document_url" => 'required|mimes:pdf,doc,docx|max:2048',
                 ]);
 
-                if($validator->fails()){
-                    return Response(['status'=>false,'message' => $validator->errors()],422);
-                }   
+                if ($validator->fails()) {
+                    return Response(['status' => false, 'message' => $validator->errors()], 422);
+                }
 
                 // Save the image to the storage
-                $document=$request->file("document_url");
-                $documentName=$document->hashName();
-                $documentpath= Storage::disk('local')->put('public/documents', $document);
+                $document = $request->file("document_url");
+                $documentName = $document->hashName();
+                $documentpath = Storage::disk('local')->put('public/documents', $document);
 
-                $user_document = UserDocuments::where('user_id', $id);
-
+                $user_document = UserDocuments::where('user_id', $id)->first();
                 // Delete the old document
-                if($user_document->document_url){
-                    $old_document=$user->document_url;
-                    Storage::delete($old_document);
+                if ($user_document && $user_document->document_url) {
+                    $old_document = $user_document->document_url;
+                    Storage::delete("public/documents/".$old_document);
                 }
 
-                $isUpdated=$user->update([
+                $isUpdated = $user_document->update([
                     'document_title'=>$request->document_title ? $request->document_title : $user_document->document_title,
-                    'document_url'=>$documentpath
+                    'document_url' => $documentName
                 ]);
 
-                if($isUpdated){
-                    return Response(['status'=>true,'message' => "User documents updated successfully"],200);
+                if ($isUpdated) {
+                    return Response(['status' => true, 'message' => "User documents updated successfully"], 200);
                 }
-                return Response(['status'=>false,'message' => "Something went wrong"],500);
+                return Response(['status' => false, 'message' => "Something went wrong"], 500);
             }
-            return Response(['status'=>false,'message'=>"Invalid form method "],405);
+            return Response(['status' => false, 'message' => "Invalid form method "], 405);
         }
-        return Response(['status'=>false,'message'=>'Unauthorized'],401);
+        return Response(['status' => false, 'message' => 'Unauthorized'], 401);
     }
 
     /**

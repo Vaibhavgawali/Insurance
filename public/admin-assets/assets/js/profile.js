@@ -13,28 +13,7 @@ let resumeUploadAlert = () => {
 let requirementsAlert = () => {
     swal("Nice!", "We will get back to you soon!", "success");
 };
-deleteAlert = () => {
-    swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to see the candidate!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    }).then((willDelete) => {
-        if (willDelete) {
-            swal("Poof! Your imaginary file has been deleted!", {
-                icon: "success",
-            });
-            // If the user confirms, proceed with form submission
-            // Assuming you have a form with an ID, replace 'yourFormId' with the actual ID
-            document.getElementById("candidate-delete-form").submit();
-        } else {
-            swal("Your imaginary file is safe!");
-            // If the user cancels, return false to prevent form submission
-            return false;
-        }
-    });
-};
+
 
 $(document).ready(function () {
     // Reuirements  Update function
@@ -42,7 +21,7 @@ $(document).ready(function () {
         console.log("clicked");
         var requirement_text = $("#requirement_text").val();
         var user_id = $("#user_id").val();
-        console.log(requirement_text);;
+        console.log(requirement_text);
 
         $("#requirement_text_error").html("");
 
@@ -111,7 +90,6 @@ $(document).ready(function () {
         });
     });
 });
-
 
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("profile_image");
@@ -218,29 +196,12 @@ $(document).ready(function (e) {
         var user_id = $("#user_id").val().trim();
         user_id = parseInt(user_id);
 
-        var documentUrlInput = $("#document_url")[0];
-        var documentUrl = documentUrlInput.files[0];
-        var documentUrlValue = documentUrl ? documentUrl.name : null;
-
-        // formData.append("document_url", documentUrl, documentUrlInput.name);
-        formData.append(
-            "server_expected_key",
-            documentUrl,
-            documentUrlInput.name
-        );
-
-        console.log("user_id:", user_id);
-        console.log("document_title:", $("#document_title").val());
-        console.log("document_url:", documentUrl);
-        console.log("document_url_value:", documentUrlValue);
-        var url = window.location.origin + `/user-documents`;
         // Get base URL from meta tag
         var baseUrl = $('meta[name="base-url"]').attr("content");
 
-        //  e.preventDefault();
         $.ajax({
-            url: baseUrl + `/user-documents/${user_id}`,
-            type: "PATCH",
+            url: baseUrl + `/user-documents-update/${user_id}`,
+            type: "POST",
             data: formData,
             contentType: false,
             processData: false,
@@ -284,7 +245,7 @@ $(document).ready(function (e) {
     });
 });
 
-$(document).ready(function (e) {
+$(document).ready(function () {
     $("#profile_cv_update_button").click(function () {
         var formData = new FormData($("#profile_cv_form")[0]);
         var url = window.location.origin + `/user-documents`;
@@ -856,8 +817,9 @@ $(document).ready(function () {
         var ctc = $("#ctc").val();
         var job_profile_description = $("#job_profile_description").val();
         var state = $("#job_state").val();
-        var joining_date = $("#joining_date").val();
-        var relieving_date = $("#relieving_date").val();
+        var experience_year = $("#experience_year").val();
+        // var joining_date = $("#joining_date").val();
+        // var relieving_date = $("#relieving_date").val();
         var user_id = $("#user_id").val();
 
         $("#is_current_company_error").html("");
@@ -866,8 +828,9 @@ $(document).ready(function () {
         $("#ctc_error").html("");
         $("#job_profile_description_error").html("");
         $("#job_state_error").html("");
-        $("#joining_date_error").html("");
-        $("#relieving_date_error").html("");
+        $("#experience_year_error").html("");
+        // $("#joining_date_error").html("");
+        // $("#relieving_date_error").html("");
 
         $("#profile_experience_status").html("");
 
@@ -950,19 +913,17 @@ $(document).ready(function () {
         }
 
         if (
-            joining_date == "" ||
-            joining_date == null ||
-            joining_date == "undefined" ||
-            joining_date == undefined
+            experience_year == "" ||
+            experience_year == null ||
+            experience_year == "undefined" ||
+            experience_year == undefined
         ) {
-            $("#joining_date_error").html(
-                '<div class=" invalid-feedback d-block">Joining date   is required.</div>'
+            $("#experience_year_error").html(
+                '<div class=" invalid-feedback d-block">Experience is required.</div>'
             );
-            $("#joining_date").focus();
+            $("#experience_year").focus();
             return false;
         }
-
-  
 
         var data = {
             is_current_company: is_current_company,
@@ -971,8 +932,9 @@ $(document).ready(function () {
             ctc: ctc,
             state: state,
             job_profile_description: job_profile_description,
-            joining_date: joining_date,
-            relieving_date: relieving_date,
+            experience_year: experience_year,
+            // joining_date: joining_date,
+            // relieving_date: relieving_date,
         };
         // function extractAndConvertToInteger(str) {
         //     const trimmedStr = str.trim(); // Trim leading and trailing spaces
@@ -1048,8 +1010,9 @@ $(document).ready(function () {
         var ctc = $("#ctc").val();
         var job_profile_description = $("#job_profile_description").val();
         var state = $("#job_state").val();
-        var joining_date = $("#joining_date").val();
-        var relieving_date = $("#relieving_date").val();
+        var experience_year = $("#experience_year").val();
+        // var joining_date = $("#joining_date").val();
+        // var relieving_date = $("#relieving_date").val();
         var user_id = $("#user_id").val();
 
         $("#is_current_company_error").html("");
@@ -1058,8 +1021,9 @@ $(document).ready(function () {
         $("#ctc_error").html("");
         $("#job_profile_description_error").html("");
         $("#job_state_error").html("");
-        $("#joining_date_error").html("");
-        $("#relieving_date_error").html("");
+        $("#experience_year_error").html("");
+        // $("#joining_date_error").html("");
+        // $("#relieving_date_error").html("");
 
         $("#profile_experience_status").html("");
 
@@ -1142,15 +1106,15 @@ $(document).ready(function () {
         }
 
         if (
-            joining_date == "" ||
-            joining_date == null ||
-            joining_date == "undefined" ||
-            joining_date == undefined
+            experience_year == "" ||
+            experience_year == null ||
+            experience_year == "undefined" ||
+            experience_year == undefined
         ) {
-            $("#joining_date_error").html(
+            $("#experience_year_error").html(
                 '<div class=" invalid-feedback d-block">Joining date   is required.</div>'
             );
-            $("#joining_date").focus();
+            $("#experience_year").focus();
             return false;
         }
 
@@ -1161,8 +1125,9 @@ $(document).ready(function () {
             ctc: ctc,
             state: state,
             job_profile_description: job_profile_description,
-            joining_date: joining_date,
-            relieving_date: relieving_date,
+            experience_year: experience_year,
+            // joining_date: joining_date,
+            // relieving_date: relieving_date,
             user_id: user_id,
         };
 
@@ -1217,5 +1182,6 @@ $(document).ready(function () {
         });
     });
 });
+
 
 

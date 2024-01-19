@@ -47,8 +47,8 @@
           </select>
 
 
-          <div id="preffered_line_error"></div>
-        </div>
+            <div id="preffered_line_error"></div>
+          </div>
         @endif
 
         @if($data->hasAnyRole(['Institute','Insurer','Superadmin']))

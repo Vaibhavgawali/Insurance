@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use PDF;
 
 use App\Models\User;
 use App\Models\UserProfile;
@@ -63,7 +64,7 @@ class CandidateController extends Controller
      */
     public function store(Request $request): Response
     {
-        // dd($request->preffered_line);
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
@@ -80,7 +81,8 @@ class CandidateController extends Controller
             'ctc' => 'required_if:experience,experienced',
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
-            "joining_date" => 'required_if:experience,experienced',
+            // "joining_date" => 'required_if:experience,experienced',
+            'experience_year'=>'required_if:experience,experienced|numeric',
             'preffered_line' => 'required|string|max:60',
             'city' => 'required|string|max:60'
         ]);
@@ -117,6 +119,7 @@ class CandidateController extends Controller
                     'organization' => $request->organization,
                     'designation' => $request->designation,
                     'ctc' => $request->ctc,
+                    'experience_year'=>$request->experience_year,
                     "joining_date" => $request->joining_date,
                     "relieving_date" => $request->relieving_date
                 ]);
@@ -198,8 +201,49 @@ class CandidateController extends Controller
     /**
      * Soft delete user
      */
-    public function destroy(string $id)
-    {
-        //
+    /**
+ * Soft delete user
+ */
+/**
+ * Soft delete user
+ */
+public function destroy(string $id)
+{
+    // Check if the authenticated user has the "Superadmin" role
+    if (Auth::user()->hasRole('Superadmin')) {
+        $user = User::find($id);
+
+        if (!$user) {
+            return Response(['status' => false, 'message' => "User not found"], 404);
+        }
+
+        $isDeleted = $user->delete();
+
+        if ($isDeleted) {
+            return Response(['status' => true, 'message' => "User deleted successfully"], 200);
+        }
+
+        return Response(['status' => false, 'message' => "Something went wrong"], 500);
     }
+
+    return Response(['status' => false, 'message' => 'Unauthorized'], 401);
+}
+
+
+
+    /**
+     * Download candidate profile
+     */
+    public function downloadCandidateProfilePDF($userId)
+    {
+        $user = User::findOrFail($userId);
+        $userData = User::with('address', 'profile', 'experience')->find($user->user_id);
+
+        $pdf = PDF::loadView('dashboard.admin.profile-pdf', compact('userData'))
+                ->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true])
+                ->setPaper('A4');
+
+        return $pdf->download('certificate_'.$user->id.'.pdf');
+    }
+
 }
