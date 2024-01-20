@@ -115,16 +115,7 @@
 									</div>
 								</div>
 							</div>
-							
-							<!-- <div class="in-sv-about-btn-cta d-flex align-items-center">
-								<div class="in-sv-btn text-uppercase">
-									<a href="contact.html">Learn More <span><i
-												class="fal fa-long-arrow-right"></i></span></a>
-								</div>
-								<div class="in-sv-about-cta d-flex align-items-center">
-									
-								</div>
-							</div> -->
+						
 						</div>
 					</div>
 				</div>
@@ -260,7 +251,6 @@
 							<div class="in-sv-insurance-type-text headline-sv pera-content">
 								 <h3><a href="service-single.html">New to the Industry</a></h3>
 								<p> Learn, Do Assessment, Post your CV and we will help you to get your dream job</p>
-								<!-- <a class="sv_read_more text-uppercase" href="service-single.html">Read more</a> -->
 							</div>
 						</div>
 					</div>
@@ -274,7 +264,6 @@
 								<h3><a href="service-single.html">Existing Professionals</a></h3>
 								<p>Stay updated, get help on their next move</p>
 								<br>
-								<!-- <a class="sv_read_more text-uppercase" href="service-single.html">Read more</a> -->
 							</div>
 						</div>
 					</div>

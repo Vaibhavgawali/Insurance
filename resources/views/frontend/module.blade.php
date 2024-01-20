@@ -10,7 +10,7 @@
 				<div class="in-service-title-text wow fadeInLeft" data-wow-delay="200ms" data-wow-duration="1000ms">
 					<div class="in-section-title-2 headline">
 						<div class="ins-category-btn wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1000ms">
-                            <a href="contact.html">Start Learning <i class="far fa-long-arrow-right"></i></a>
+                            <a href="/contact">Start Learning <i class="far fa-long-arrow-right"></i></a>
                         </div>
 						<h2>Model 1</h2>
 					</div>

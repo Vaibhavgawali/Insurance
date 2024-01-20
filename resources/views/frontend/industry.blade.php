@@ -176,7 +176,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
 							data-frame_999="o:0;st:w;"
 							style="z-index:8;font-family:'Montserrat'; font-size: 14px; font-weight: 500;"
 							><div class="in-sv-btn text-uppercase"><br />
-								<a href="contact.html">COntact Us <span><i class="fal fa-long-arrow-right"></i></span></a><br />
+								<a href="/contact">Contact Us <span><i class="fal fa-long-arrow-right"></i></span></a><br />
 							</div> 
 							</rs-layer><!--
 
@@ -281,7 +281,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
 							data-frame_999="o:0;st:w;"
 							style="z-index:8;font-family:'Montserrat'; font-size: 14px; font-weight: 500;"
 							><div class="in-sv-btn text-uppercase"><br />
-								<a href="contact.html">COntact Us <span><i class="fal fa-long-arrow-right"></i></span></a><br />
+								<a href="/contact">Contact Us <span><i class="fal fa-long-arrow-right"></i></span></a><br />
 							</div> 
 							</rs-layer><!--
 
@@ -764,7 +764,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
                   data-wow-delay="500ms"
                   data-wow-duration="1000ms"
                 >
-                  <a href="contact.html"
+                  <a href="/contact"
                     >Get In Details <i class="far fa-long-arrow-right"></i
                   ></a>
                 </div>
