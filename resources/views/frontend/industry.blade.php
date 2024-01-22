@@ -529,7 +529,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
             <div class="in-sv-service-item-3 position-relative">
               <div class="in-sv-service-serial position-absolute">01</div>
               <div class="in-sv-service-text headline-sv pera-content">
-                <h3><a href="service-single.html">Opportunity </a></h3>
+                <h3><a href="#">Opportunity </a></h3>
                 <p>
                   Professionals in the Insurance Sector have excelled as the
                   industry embraces digital advancements. Processes are robust,
@@ -539,7 +539,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
                 </p>
                 <a
                   class="sv_read_more text-uppercase"
-                  href="service-single.html"
+                  href="#"
                   >Read more</a
                 >
               </div>
@@ -550,7 +550,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
             <div class="in-sv-service-item-3 position-relative">
               <div class="in-sv-service-serial position-absolute">02</div>
               <div class="in-sv-service-text headline-sv pera-content">
-                <h3><a href="service-single.html">Professionalism </a></h3>
+                <h3><a href="#">Professionalism </a></h3>
                 <p>
                   With a positive industry outlook, robust processes, and
                   widespread digital adoption, a promising career progression
@@ -561,7 +561,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
                 </p>
                 <a
                   class="sv_read_more text-uppercase"
-                  href="service-single.html"
+                  href="#"
                   >Read more</a
                 >
               </div>
@@ -572,7 +572,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
             <div class="in-sv-service-item-3 position-relative">
               <div class="in-sv-service-serial position-absolute">03</div>
               <div class="in-sv-service-text headline-sv pera-content">
-                <h3><a href="service-single.html">Progression </a></h3>
+                <h3><a href="#">Progression </a></h3>
                 <p>
                   Despite the industry's potential, numerous white spaces offer
                   opportunities for innovation and exploration. Expressing
@@ -583,7 +583,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
 
                 <a
                   class="sv_read_more text-uppercase"
-                  href="service-single.html"
+                  href="#"
                   >Read more</a
                 >
               </div>
@@ -594,7 +594,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
             <div class="in-sv-service-item-3 position-relative">
               <div class="in-sv-service-serial position-absolute">04</div>
               <div class="in-sv-service-text headline-sv pera-content">
-                <h3><a href="service-single.html">Value Add </a></h3>
+                <h3><a href="#">Value Add </a></h3>
                 <p>
                   While there is immense potential in the Industry, there is
                   still lot to be done. There are enough white spaces to explore
@@ -604,7 +604,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
                 </p>
                 <a
                   class="sv_read_more text-uppercase"
-                  href="service-single.html"
+                  href="#"
                   >Read more</a
                 >
               </div>
@@ -615,7 +615,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
             <div class="in-sv-service-item-3 position-relative">
               <div class="in-sv-service-serial position-absolute">05</div>
               <div class="in-sv-service-text headline-sv pera-content">
-                <h3><a href="service-single.html">Rewards </a></h3>
+                <h3><a href="#">Rewards </a></h3>
                 <p>
                   High rewards are attainable based on one's ability to generate
                   awareness and business. Channels like the Agency Channel
@@ -626,7 +626,7 @@ style="z-index:5;background-color:#034b5b;font-family:'Libre Baskerville';"
                 </p>
                 <a
                   class="sv_read_more text-uppercase"
-                  href="service-single.html"
+                  href="#"
                   >Read more</a
                 >
               </div>

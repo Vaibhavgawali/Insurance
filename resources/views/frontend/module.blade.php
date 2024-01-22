@@ -28,7 +28,7 @@
 						<div class="in-service-item-2 position-relative">
 							<span class="icon-bg position-absolute"><i class="flaticon-life-insurance-1"></i></span>
 							<div class="inner-text headline pera-content">
-								<h3><a href="service-single.html">Chapter 1</a></h3>
+								<h3><a href="#">Chapter 1</a></h3>
 								<p>Basics of Insurance	
                                 </p>
 							</div>
@@ -37,7 +37,7 @@
 									<i class="flaticon-life-insurance-1"></i>
 								</div>
 								<div class="more-btn d-flex align-items-center justify-content-center">
-									<a href="service-single.html"><i class="far fa-long-arrow-right"></i></a>
+									<a href="#"><i class="far fa-long-arrow-right"></i></a>
 								</div>
 							</div>
 						</div>
@@ -46,7 +46,7 @@
 						<div class="in-service-item-2 position-relative">
 							<span class="icon-bg position-absolute"><i class="flaticon-healthcare"></i></span>
 							<div class="inner-text headline pera-content">
-								<h3><a href="service-single.html">Chapter 2</a></h3>
+								<h3><a href="#">Chapter 2</a></h3>
 								<p>Distribution Channels of Insurance Companies			
                                 </p>
 							</div>
@@ -55,7 +55,7 @@
 									<i class="flaticon-healthcare"></i>
 								</div>
 								<div class="more-btn d-flex align-items-center justify-content-center">
-									<a href="service-single.html"><i class="far fa-long-arrow-right"></i></a>
+									<a href="#"><i class="far fa-long-arrow-right"></i></a>
 								</div>
 							</div>
 						</div>
@@ -64,7 +64,7 @@
 						<div class="in-service-item-2 position-relative">
 							<span class="icon-bg position-absolute"><i class="flaticon-healthcare"></i></span>
 							<div class="inner-text headline pera-content">
-								<h3><a href="service-single.html">Chapter 3</a></h3>
+								<h3><a href="#">Chapter 3</a></h3>
 								<p>Various Products of Insurance Companies			
                                 </p>
 							</div>
@@ -73,7 +73,7 @@
 									<i class="flaticon-healthcare"></i>
 								</div>
 								<div class="more-btn d-flex align-items-center justify-content-center">
-									<a href="service-single.html"><i class="far fa-long-arrow-right"></i></a>
+									<a href="#"><i class="far fa-long-arrow-right"></i></a>
 								</div>
 							</div>
 						</div>
@@ -82,7 +82,7 @@
 						<div class="in-service-item-2 position-relative">
 							<span class="icon-bg position-absolute"><i class="flaticon-life-insurance-1"></i></span>
 							<div class="inner-text headline pera-content">
-								<h3><a href="service-single.html">Chapter 4</a></h3>
+								<h3><a href="#">Chapter 4</a></h3>
 								<p>Common Regulations around Insurance Business.</p>
 							</div>
 							<div class="inner-icon-more-btn d-flex align-items-center justify-content-between">
@@ -90,7 +90,7 @@
 									<i class="flaticon-life-insurance-1"></i>
 								</div>
 								<div class="more-btn d-flex align-items-center justify-content-center">
-									<a href="service-single.html"><i class="far fa-long-arrow-right"></i></a>
+									<a href="#"><i class="far fa-long-arrow-right"></i></a>
 								</div>
 							</div>
 						</div>
@@ -99,7 +99,7 @@
 						<div class="in-service-item-2 position-relative">
 							<span class="icon-bg position-absolute"><i class="flaticon-healthcare"></i></span>
 							<div class="inner-text headline pera-content">
-								<h3><a href="service-single.html">Chapter 5</a></h3>
+								<h3><a href="#">Chapter 5</a></h3>
 								<p>Miscellaneous</p>
 							</div>
 							<div class="inner-icon-more-btn d-flex align-items-center justify-content-between">
@@ -107,7 +107,7 @@
 									<i class="flaticon-healthcare"></i>
 								</div>
 								<div class="more-btn d-flex align-items-center justify-content-center">
-									<a href="service-single.html"><i class="far fa-long-arrow-right"></i></a>
+									<a href="#"><i class="far fa-long-arrow-right"></i></a>
 								</div>
 							</div>
 						</div>
@@ -147,7 +147,7 @@
 								</ul>
 							</div>
 							<div class="ins-category-btn wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1000ms">
-								<a href="contact.html">Get In Details <i class="far fa-long-arrow-right"></i></a>
+								<a#">Get In Details <i class="far fa-long-arrow-right"></i></a>
 							</div>
 						</div>
 					</div>
