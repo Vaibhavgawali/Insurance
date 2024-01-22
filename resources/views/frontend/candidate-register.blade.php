@@ -100,7 +100,7 @@
                                 <div class="mb-3">
                                     <label for="relieving_date" class="form-label">Relieving Date</label>
                                     <input type="date" class="form-control"  name="relieving_date" id="relieving_date" aria-describedby="relievingDateHelp" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD">
-                                </div> -->
+                                </div> 
 
                             <div class="mb-3">
                                 <label for="experience_year" class="form-label">Experience (in years)</label>

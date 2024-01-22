@@ -16,6 +16,7 @@ use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserDocumentsController;
 use App\Http\Controllers\admin\RequirementsController;
+use App\Http\Controllers\admin\PasswordController;
 use App\Http\Controllers\CandidateQuizController;
 
 use App\Http\Controllers\QuizController;
@@ -47,6 +48,9 @@ Route::middleware(['web'])->group(function () {
     Route::post('/login', [LoginController::class, 'login']);
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
+
+Route::get('/reset-password', [PasswordController::class,'resetPasswordForm']);
+Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
 
 Route::resource('admin/user', UserController::class)->middleware('auth:sanctum');
 
