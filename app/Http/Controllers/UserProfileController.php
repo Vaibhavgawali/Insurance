@@ -144,7 +144,7 @@ class UserProfileController extends Controller
                 // Delete the old image
                 if(isset($user->profile_image)){
                     $oldimage=$user->profile_image;
-                    Storage::delete($oldimage);
+                    Storage::delete("public/images/".$oldimage);
                 }
                 $user->profile_image = $imageName;
                 $user->save();
