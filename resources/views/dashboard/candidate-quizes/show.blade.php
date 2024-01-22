@@ -109,9 +109,15 @@
                     if (response.success) {
                         clearInterval(intervalId);
                         localStorage.removeItem("quizAnswers");
-                        window.location.href = `${baseUrl}/candidate-quizes/`;
-                    
-                        // Handle success (e.g., redirect to a result page)
+
+                        if(response.passed){
+                            $url=`${baseUrl}/generate-pdf`;
+                        }else{
+                            $url=`${baseUrl}/candidate-quizes/`;
+                        }
+                        window.location.href = $url;
+                        // window.location.href = `${baseUrl}/candidate-quizes/`;
+
                     }else{
                         // outside the valid time span
                         console.log(response);

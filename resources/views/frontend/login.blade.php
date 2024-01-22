@@ -11,13 +11,13 @@
                            <img src="{{asset('assets/img/3D-images/register.png')}}" alt="">
                         </div>
                         <div>
-                            <div class="ins-main-about-list-area ul-li-block">
-								<ul class="">
-									<li class="fs-6 fst-italic">Build your profile and let recruiters find you.</li>
-								    <li class="fs-6 fst-italic">Get job postings delivered right to your email.</li>
-									<li class="fs-6 fst-italic">Find a job and grow your career.</li>
-								</ul> 
-							</div>
+                        <div class="ins-main-about-list-area ul-li-block">
+                          <ul class="">
+                            <li class="fs-6 fst-italic">Build your profile and let recruiters find you.</li>
+                              <li class="fs-6 fst-italic">Get job postings delivered right to your email.</li>
+                            <li class="fs-6 fst-italic">Find a job and grow your career.</li>
+                          </ul> 
+                        </div>
                         </div>
                      </div>
                      <div class="col-12 col-md-12 col-lg-1 "></div>
@@ -54,7 +54,7 @@
 								<div>
 									<button type="submit" id="login_btn" class="btn btn-primary  my-2">Login</button>
 								</div>
-								Dont have an account ? <a href="/register" class="btn btn-secondary text-white mx-2">Register</a> 
+								 <!--Don't have an account register? <a href="/register" class="btn btn-secondary text-white mx-2">Register</a>  -->
                 <!-- <a href="/password/reset" class="btn btn-secondary text-white mx-2">Forgot Password</a> -->
 							  </div>
                           </form>

@@ -8,6 +8,7 @@
 			<a href="#">Facebook</a>
 			<a href="#">Instagram</a>
 		</div>
+		
 		<div class="ins-slider-wrapper-six position-relative">
 			<span class="ins-slider-print position-absolute"><img src="{{asset('assets/img/slider/print.png')}}" alt=""></span>
 			<div class="ins-slider-area-six">
@@ -20,7 +21,7 @@
 									<div >
 									<img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/1.png')}}" alt="">
 									</div>
-									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true">Click Here</a>
+									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/industry">Click Here</a>
 							   </div>
 							</div>
 							<div class="col-12 col-md-4 col-lg-4">
@@ -28,7 +29,7 @@
 									<div >
 									<img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/2.png')}}" alt="">
 									</div>
-									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true">Click Here</a>
+									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/module">Click Here</a>
 							   </div>
 							</div>
 							<div class="col-12 col-md-4 col-lg-4">
@@ -36,7 +37,7 @@
 									<div >
 									<img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/3.png')}}" alt="">
 									</div>
-									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true">Click Here</a>
+									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/candidate">Click Here</a>
 							   </div>
 							</div>
 						</div>
@@ -65,14 +66,14 @@
 								<h4 class="text-center text-dark  p-2">Get certified and explore career </h4>
                                <div>
 								  <h2>Register And Start Your Career</h2>
-								  <a href="">Click Here</a>
+								  <a href="/login">Click Here</a>
 							   </div>
 							</div>
 							<div class="col-12 col-md-6 col-lg-6 top-intrest-div rounded-end">
 								<h4 class="text-center text-dark  p-2">Put your current insurance career on fast track</h4>
 								 <div>
 									<h2>Express your interest</h2>
-								<a href="">Click Here</a>
+								<a href="/industry">Click Here</a>
 								 </div>
 							</div>
 
@@ -89,7 +90,7 @@
 	   <div class="container shadow-sm p-10 mb-5  rounded .bg-secondary">
 		  <div class="row align-items-center ">
 				 <div class="col-md-12">
-					<a href="#"><img  src="{{asset('assets/img/3D-images/Post Your CV Here.png')}}" alt=""></a>
+					<a href="/login"><img  src="{{asset('assets/img/3D-images/Post Your CV Here.png')}}" alt=""></a>
 				</div>
 		  </div>
 		  <section>
@@ -177,7 +178,7 @@
 										<li>Explore opportunity wrt your expertise & skill sets</li>
 										<li> Next steps to way forward</li>
 									</ul>
-									<p><a href="" class="btn btn-outline-success btn-sm ">Click here</a> to know more about the opportunity & Next Steps</p>
+									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to know more about the opportunity & Next Steps</p>
 								</div>
 								
 							</div>
@@ -187,7 +188,7 @@
 									<i  class="flaticon-home-insurance"></i>
 								</div>
 								<div class="inner-btn">
-									<a class="d-flex align-items-center justify-content-center" href="#"><i class="far fa-long-arrow-right"></i></a>
+									<a class="d-flex align-items-center justify-content-center" href="/industry"><i class="far fa-long-arrow-right"></i></a>
 								</div>
 							</div>
 						</div>
@@ -203,7 +204,7 @@
 										<li>Use the platform to be in touch with the Community</li>
 										<li>Explore your next level as you ready for future</li>
 									</ul>
-									<p><a href="" class="btn btn-outline-success btn-sm ">Click here</a> to express your interest for your next move</p>
+									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to express your interest for your next move</p>
 								</div>
 								
 							</div>
@@ -213,7 +214,7 @@
 									<i  class="flaticon-home-insurance"></i>
 								</div>
 								<div class="inner-btn">
-									<a class="d-flex align-items-center justify-content-center" href="#"><i class="far fa-long-arrow-right"></i></a>
+									<a class="d-flex align-items-center justify-content-center" href="/industry"><i class="far fa-long-arrow-right"></i></a>
 								</div>
 							</div>
 						</div>
@@ -230,7 +231,7 @@
 										<li>Get referred for a great career in Insurance Industry</li>
 									</ul>
 									<br>
-									<p><a href="" class="btn btn-outline-success btn-sm ">Click here</a> to Register & start your Certification Now</p>
+									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to Register & start your Certification Now</p>
 								</div>
 								
 							</div>
@@ -240,7 +241,7 @@
 									<i  class="flaticon-home-insurance"></i>
 								</div>
 								<div class="inner-btn">
-									<a class="d-flex align-items-center justify-content-center" href="#"><i class="far fa-long-arrow-right"></i></a>
+									<a class="d-flex align-items-center justify-content-center" href="/industry"><i class="far fa-long-arrow-right"></i></a>
 								</div>
 							</div>
 						</div>
@@ -257,7 +258,7 @@
 										<li>Certifications and placement references</li>
 									</ul>
 									<br>
-									<p><a href="" class="btn btn-outline-success btn-sm ">Click here</a> to Register & know more</p>
+									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to Register & know more</p>
 								</div>
 								
 							</div>
@@ -267,7 +268,7 @@
 									<i  class="flaticon-home-insurance"></i>
 								</div>
 								<div class="inner-btn">
-									<a class="d-flex align-items-center justify-content-center" href="#"><i class="far fa-long-arrow-right"></i></a>
+									<a class="d-flex align-items-center justify-content-center" href="/industry"><i class="far fa-long-arrow-right"></i></a>
 								</div>
 							</div>
 						</div>

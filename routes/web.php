@@ -36,6 +36,15 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/about', [WelcomeController::class, 'about']);
+Route::get('/industry', [WelcomeController::class, 'industry']);
+Route::get('/module', [WelcomeController::class, 'module']);
+Route::get('/contact', [WelcomeController::class, 'contact']);
+Route::get('/privacy', [WelcomeController::class, 'privacy']);
+Route::get('/terms', [WelcomeController::class, 'terms']);
+
+
+
 
 Route::get('/candidate-register', [WelcomeController::class, 'candidate_register']);
 Route::get('/insurer-register', [WelcomeController::class, 'insurer_register']);
