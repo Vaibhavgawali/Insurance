@@ -16,6 +16,7 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="/admin-assets/assets/css/style.css">
+    <link rel="stylesheet" href="/admin-assets/assets/css/module-1.css">
     <link rel="stylesheet" href="/admin-assets/assets/css/candidate-quiz.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.jpg" />

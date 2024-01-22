@@ -80,7 +80,7 @@
   @endif
 
   @if(auth()->user()->hasRole('Candidate'))
-  Candidate Dashboard
+  <x-dashboard-candidate-login />
   @endif
 
 
