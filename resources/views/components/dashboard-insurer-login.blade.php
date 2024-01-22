@@ -14,7 +14,20 @@
         </nav>
     </div>
     <div class="row">
-        <div class="col-md-3 stretch-card grid-margin">
+
+        <div class="col-md-4 stretch-card grid-margin">
+            <div class="card bg-gradient-danger card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h3 class="font-weight-normal mb-3">Candidate <i class="mdi mdi-desktop-mac mdi-24px float-right"></i>
+                    </h3>
+                    <h2 class="mb-5">{{$candidateCount}}</h2>
+                    <h6 class="card-text">Total Candidate</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-3 stretch-card grid-margin">
             <div class="card bg-gradient-danger card-img-holder text-white">
                 <div class="card-body">
                     <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
@@ -23,33 +36,23 @@
                     <h4 class="mb-1">Life :</h4>
                     <h4 class="mb-1">Genral :</h4>
                     <h4 class="mb-1">Health :</h4>
-                    <!-- <h6 class="card-text">Increased by 60%</h6> -->
                 </div>
             </div>
-        </div>
-        <div class="col-md-3 stretch-card grid-margin">
+        </div> -->
+
+        <div class="col-md-4 stretch-card grid-margin">
             <div class="card bg-gradient-info card-img-holder text-white">
                 <div class="card-body">
                     <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h3 class="font-weight-normal mb-3">Work status <i class="mdi mdi-office mdi-24px float-right"></i>
+                    <h3 class="font-weight-normal mb-3">Candidate Work status <i class="mdi mdi-office mdi-24px float-right"></i>
                     </h3>
-                    <h4 class="mb-1">Fresher :</h4>
-                    <h4 class="mb-1">Working :</h4>
+                    <h4 class="mb-1">Fresher : {{$freshersCount}}</h4>
+                    <h4 class="mb-1">Working : {{$candidateCount-$freshersCount}}</h4>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 stretch-card grid-margin">
-            <div class="card bg-gradient-warning card-img-holder text-white">
-                <div class="card-body">
-                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h3 class="font-weight-normal mb-3">Current Employer <i class="mdi mdi-desktop-mac mdi-24px float-right"></i>
-                    </h3>
-                    <h4 class="mb-1">Insurance :</h4>
-                    <h4 class="mb-1">Others :</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 stretch-card grid-margin">
+        
+        <!-- <div class="col-md-3 stretch-card grid-margin">
             <div class="card bg-gradient-success card-img-holder text-white">
                 <div class="card-body">
                     <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
@@ -71,9 +74,9 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-7 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -94,7 +97,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <div class="col-12 grid-margin">
             <div class="card">

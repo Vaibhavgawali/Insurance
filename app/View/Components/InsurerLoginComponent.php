@@ -11,11 +11,15 @@ class InsurerLoginComponent extends Component
     /**
      * Create a new component instance.
      */
-    public $data;
 
-    public function __construct($data)
+    public $candidateCount;
+    public $freshersCount;
+
+    public function __construct($candidateCount,$freshersCount)
     {
-        $this->data = $data;
+        $this->candidateCount = $candidateCount;
+        $this->freshersCount = $freshersCount;
+
     }
 
     /**

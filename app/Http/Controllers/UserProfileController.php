@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 // use Auth;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -132,8 +133,10 @@ class UserProfileController extends Controller
             $image=$request->file("profile_image");
             $imageName=$image->hashName();
 
-            $imagepath= Storage::disk('local')->put('public/images', $image);
+            // $imagepath= Storage::disk('local')->put('public/images', $image);
             // $imagepath = $image->storeAs('public/images', $imageName);
+            $image->move(public_path('storage/images'), $imageName);
+            $imagepath = public_path($imageName);
 
             if ($imagepath) {
                 $userId = Auth::user()->user_id; 
@@ -144,7 +147,16 @@ class UserProfileController extends Controller
                 // Delete the old image
                 if(isset($user->profile_image)){
                     $oldimage=$user->profile_image;
-                    Storage::delete($oldimage);
+                    $oldImagePath = 'storage/images/'. $oldimage;
+                    $oldImagePath = public_path($oldImagePath);
+
+                    if (File::exists($oldImagePath)) {
+                            
+                        File::delete($oldImagePath);
+                    }
+
+                    // $oldimage=$user->profile_image;
+                    // Storage::delete($oldimage);
                 }
                 $user->profile_image = $imageName;
                 $user->save();

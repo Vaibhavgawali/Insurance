@@ -45,11 +45,9 @@
     background-position: center center;
     background-repeat: no-repeat;
     height: 100vh;
-    /* text-align: center; */
-    /* border: solid; */
-  }
+  }*/
 
-  .certificate .certificate-text {
+  /* .certificate .certificate-text {
     text-align: center;
     margin-bottom: 30px;
     font-family:'Times New Roman', Times, serif;
@@ -60,7 +58,7 @@
     position: relative;
     color: rgb(197, 172, 101);
     
-} */
+}  */
 
 /* .certificate {
     padding: 80px;
@@ -140,19 +138,21 @@
     <!-- "http://localhost:8000/admin-assets/assets/images/dashboard/certificate-bg-image3.jpg" -->
     <!-- src="http://localhost:8000/public/admin-assets/assets/images/dashboard/logo-1.avif"  -->
 
-    <?php 
-        // $imagePath=public_path('admin_assets/images/dashboard/certificate-bg-image3.jpg');
-        $imagePath="http://localhost:8000/admin-assets/assets/images/dashboard/certificate-bg-image3.jpg";
-        $imageData = base64_encode(file_get_contents($imagePath));
-        $imageSrc = 'data:image/jpg;base64,' . $imageData;
-    ?>
-
-    <img src="<? $imageSrc ?>" width="18%" height="18%">
 
 
     <img src="http://localhost:8000/admin-assets/assets/images/dashboard/logo-1.avif" width="18%" height="18%">
 
-    <h1 class="certificate-text ">Certificate of Achievement</h1>
+    <h1 class="certificate-text " 
+        style=" text-align: center;
+        margin-bottom: 30px;
+        font-family:'Times New Roman', Times, serif;
+        letter-spacing: 1px;
+        word-spacing: 6px;
+        font-size: 45px;
+        font-weight: 700;
+        position: relative;
+        color: rgb(197, 172, 101);" >
+        Certificate of Achievement</h1>
     <h3 class="text-secondary text-center">This certificate is present to</h3>
     <div class="pt-3 text-center name-text-div" 
         style="text-align: center !important;

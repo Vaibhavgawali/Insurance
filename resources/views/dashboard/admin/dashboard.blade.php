@@ -20,13 +20,26 @@
     </div>
     <div class="row">
       <div class="col-md-4 stretch-card grid-margin">
+            <div class="card bg-gradient-danger card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h3 class="font-weight-normal mb-3">Candidate <i class="mdi mdi-view-dashboard mdi-24px float-right"></i>
+                    </h3>
+                    <h2 class="mb-5">{{$candidateCount}}</h2>
+                    <h6 class="card-text">Total Candidate</h6>
+                    <!-- <h6 class="card-text">Increased by 60%</h6> -->
+                </div>
+            </div>
+        </div>
+
+      <div class="col-md-4 stretch-card grid-margin">
         <div class="card bg-gradient-danger card-img-holder text-white">
           <div class="card-body">
             <img src="{{asset('admin-assets/assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
-            <h4 class="font-weight-normal mb-3">Weekly Sales <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+            <h4 class="font-weight-normal mb-3">Insurer <i class="mdi mdi-chart-line mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">$ 15,0000</h2>
-            <h6 class="card-text">Increased by 60%</h6>
+            <h2 class="mb-5">{{$insurerCount}}</h2>
+            <h6 class="card-text">Total Insurer</h6>
           </div>
         </div>
       </div>
@@ -34,14 +47,28 @@
         <div class="card bg-gradient-info card-img-holder text-white">
           <div class="card-body">
             <img src="{{asset('admin-assets/assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
-            <h4 class="font-weight-normal mb-3">Weekly Orders <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+            <h4 class="font-weight-normal mb-3">Institute<i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
             </h4>
-            <h2 class="mb-5">45,6334</h2>
-            <h6 class="card-text">Decreased by 10%</h6>
+            <h2 class="mb-5">{{$instituteCount}}</h2>
+            <h6 class="card-text">Total Institute</h6>
           </div>
         </div>
       </div>
+
+      
       <div class="col-md-4 stretch-card grid-margin">
+            <div class="card bg-gradient-info card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h3 class="font-weight-normal mb-3">Candidate Work status <i class="mdi mdi-office mdi-24px float-right"></i>
+                    </h3>
+                    <h4 class="mb-1">Fresher : {{$freshersCount}}</h4>
+                    <h4 class="mb-1">Working : {{$candidateCount-$freshersCount}}</h4>
+                </div>
+            </div>
+        </div>
+
+      <!-- <div class="col-md-4 stretch-card grid-margin">
         <div class="card bg-gradient-success card-img-holder text-white">
           <div class="card-body">
             <img src="{{asset('admin-assets/assets/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
@@ -51,10 +78,10 @@
             <h6 class="card-text">Increased by 5%</h6>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-7 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
@@ -75,7 +102,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   @endif
 
@@ -85,11 +112,15 @@
 
 
   @if(auth()->user()->hasRole('Insurer'))
-  <x-dashboard-insurer-login />
+  <x-dashboard-insurer-login 
+    :candidateCount="$candidateCount"
+    :freshersCount="$freshersCount"
+  />
   @endif
 
   @if(auth()->user()->hasRole('Institute'))
-  <x-dashboard-institution-login /> <!--User Profile section comp  -->
+  <x-dashboard-institution-login  
+      :candidateCount="$candidateCount"/> <!--User Profile section comp  -->
   @endif
 <!-- main-panel ends -->
 
