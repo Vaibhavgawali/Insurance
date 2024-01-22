@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Auth;
 use Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 use App\Models\UserDocuments;
 
@@ -47,7 +48,9 @@ class UserDocumentsController extends Controller
         // Save the image to the storage
         $document = $request->file("document_url");
         $documentName = $document->hashName();
-        $documentpath = Storage::disk('local')->put('public/documents', $document);
+        // $documentpath = Storage::disk('local')->put('public/documents', $document);
+        $document->move(public_path('storage/documents'), $documentName);
+        $documentpath = public_path($documentName);
 
         if ($documentpath) {
             $user_id = Auth::user()->user_id;
@@ -113,13 +116,22 @@ class UserDocumentsController extends Controller
                 // Save the image to the storage
                 $document = $request->file("document_url");
                 $documentName = $document->hashName();
-                $documentpath = Storage::disk('local')->put('public/documents', $document);
+                // $documentpath = Storage::disk('local')->put('public/documents', $document);
+                $document->move(public_path('storage/documents'), $documentName);
+                $documentpath = public_path($documentName);
 
                 $user_document = UserDocuments::where('user_id', $id)->first();
                 // Delete the old document
                 if ($user_document && $user_document->document_url) {
                     $old_document = $user_document->document_url;
-                    Storage::delete("public/documents/".$old_document);
+
+                    $oldDocumentPath = 'storage/documents/'. $old_document;
+                    $oldDocumentPath = public_path($oldDocumentPath);
+
+                    if (File::exists($oldDocumentPath)) {
+                            
+                        File::delete($oldDocumentPath);
+                    }
                 }
 
                 $isUpdated = $user_document->update([
