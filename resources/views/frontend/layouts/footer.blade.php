@@ -167,6 +167,7 @@
 	<script src="{{ asset('assets/js/script.js') }}"></script>
 	<script src="{{ asset('assets/js/register.js') }}"></script>
 	<script src="{{ asset('assets/js/login.js') }}"></script>
+	<script src="{{ asset('assets/js/contact.js') }}"></script>
 	
 	<script>
 		$(document).on('click', '.accordion-item', function(){

@@ -7,6 +7,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\admin\UserController;
 
+use App\Http\Controllers\ContactController;
+
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InsurerController;
@@ -44,7 +46,7 @@ Route::get('/privacy', [WelcomeController::class, 'privacy']);
 Route::get('/terms', [WelcomeController::class, 'terms']);
 
 
-
+Route::post('/submit-contact', [ContactController::class, 'submitContact']);
 
 Route::get('/candidate-register', [WelcomeController::class, 'candidate_register']);
 Route::get('/insurer-register', [WelcomeController::class, 'insurer_register']);
@@ -84,6 +86,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('refresh-token', [LoginController::class, 'refreshAuthToken']);
     Route::get('/home', [App\Http\Controllers\AdminController::class, 'dashboard']);
 });
+
+Route::resource('/contacts', ContactController::class);
 
 
 Route::group(['middleware' => ['auth:sanctum', 'role:Superadmin']], function () {

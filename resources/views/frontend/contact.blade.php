@@ -76,25 +76,36 @@
                         </div>
 
                         <div class="in-faq-contact-form">
-                            <form action="sendemail.php" method="get">
+                            <form  method="post" id="contact_form">
+                                <div id="bsalert" role="alert"></div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text" name="username" placeholder="Name">
+                                        <input type="text" name="name" id="name" placeholder="Name">
                                     </div>
+                                    <div id="name_error"></div>
+
                                     <div class="col-md-6">
-                                        <input type="email" name="email" placeholder="Email">
+                                        <input type="email" name="email" id="email" placeholder="Email">
                                     </div>
+                                    <div id="email_error"></div>
+
                                     <div class="col-md-6">
-                                        <input type="text" name="phone" placeholder="Phone">
+                                        <input type="text" name="phone" id="phone" placeholder="Phone">
                                     </div>
+                                    <div id="phone_error"></div>
+
                                     <div class="col-md-6">
-                                        <input type="text" name="subject" placeholder="Subject">
+                                        <input type="text" name="subject" id="subject" placeholder="Subject">
                                     </div>
+                                    <div id="subject_error"></div>
+
                                     <div class="col-md-12">
-                                        <textarea name="message" placeholder="Message"></textarea>
+                                        <textarea name="message" id="message" placeholder="Message"></textarea>
                                     </div>
+                                    <div id="message_error"></div>
+
                                     <div class="col-md-12">
-                                        <button type="submit">Submit Now</button>
+                                        <button type="submit" id="contact_sub_btn">Submit Now</button>
                                     </div>
                                 </div>
                             </form>
