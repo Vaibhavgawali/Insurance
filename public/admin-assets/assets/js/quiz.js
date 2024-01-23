@@ -263,3 +263,23 @@ const deleteQuizFunction = (quiz_id) => {
         },
     });
 };
+const quizStatusString = localStorage.getItem("quizstatus");
+if (quizStatusString) {
+  const quizStatusObject = JSON.parse(quizStatusString);
+  const isPassValue = quizStatusObject.isPass;
+  
+
+  if (isPassValue===false) {
+    console.log("False value:"+isPassValue);
+    // Show success alert
+    swal({
+      title: "Better Luck!",
+      text: "You are Failed!",
+      icon: "warning",
+      button: "Ok",
+    }).then(() => {
+      // Delete the 'quizstatus' key from localStorage after showing the alert
+      localStorage.removeItem("quizstatus");
+    });
+  }
+} 
