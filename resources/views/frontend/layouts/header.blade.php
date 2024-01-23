@@ -112,7 +112,7 @@
 								<a href="/">Home</a>
 							</li>
 							
-							<li><a  href="about.html">About Us</a></li>
+							<li><a  href="/about">About Us</a></li>
 							<li class="dropdown">
 							<a href="javascript:void(0)">Insights</a>
 								<ul class="dropdown-menu clearfix">

@@ -217,6 +217,27 @@
       </div>
   </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+const quizStatusString = localStorage.getItem("quizstatus");
+if (quizStatusString) {
+  const quizStatusObject = JSON.parse(quizStatusString);
+  const isPassValue = quizStatusObject.isPass;
+  if (isPassValue) {
+    // Show success alert
+    swal({
+      title: "Good job!",
+      text: "You are Passed!",
+      icon: "success",
+      button: "Ok",
+    }).then(() => {
+      // Delete the 'quizstatus' key from localStorage after showing the alert
+      localStorage.removeItem("quizstatus");
+    });
+  }
+} 
+</script>
 
 <!-- Bootstrap JS and Popper.js -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
