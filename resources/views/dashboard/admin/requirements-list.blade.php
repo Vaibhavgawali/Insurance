@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body table-responsive">
             <h4 class="card-title">Reuirements Table</h4>
 
             </p>
