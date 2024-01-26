@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-
+use Yajra\DataTables\DataTables;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\UserAddress;
@@ -37,15 +37,36 @@ class InstituteController extends Controller
             $users = User::role('Institute')->orderBy('user_id', 'desc')->get();
             if ($users) {
                 // return Response(['data' => $users], 200);
-                return view('dashboard.admin.institute-list', ['institutes' => $users]);
+                return view('dashboard.admin.institute-list');
                 // institute
             }
-            return Response(['message' => "Users with role Institute not found "], 404);
+            // return Response(['message' => "Users with role Institute not found "], 404);
         }
 
         return Response(['data' => 'Unauthorized'], 401);
     }
 
+    public function getInstituteTableData()
+    {
+        if (Auth::check()) {
+            $data = User::role('Institute')->orderBy('user_id', 'desc')->get();
+            
+            if ($data) {
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('actions', function ($row) {
+                        $actions = '<a href="/admin/user/' . $row->user_id . '" class="btn btn-sm btn-gradient-success btn-rounded">View</a>';
+                        $actions .= '<a href="#" class="btn btn-sm btn-gradient-warning btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>';
+                        $actions .= '<form class="delete-user-form" data-user-id="' . $row->user_id . '">
+                            <button type="button" class="btn btn-sm btn-gradient-danger btn-rounded delete-user-button">Delete</button>
+                        </form>';
+                        return $actions;
+                    })
+                    ->rawColumns(['actions'])
+                    ->make(true);
+            }
+        }
+    }
     /**
      * Show the form for creating a new resource.
      */

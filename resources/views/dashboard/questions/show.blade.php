@@ -35,7 +35,7 @@
                                 <input class="form-control" type="text" name="answers[]" value="{{ old('answers.' . ($i - 1), optional($answers->get($i - 1))->answer_text) }}" readonly>
                                 @endfor
                         </div>
-                        <a href="/quizes" class="btn btn-light" type="">Cancel</a>
+                        <a href="/quizes/{{$quiz_id}}" class="btn btn-light" type="">Cancel</a>
                     </form>
                 </div>
             </div>

@@ -15,10 +15,10 @@
       <th>Sr.No</th>
       <th>Name </th>
       <th>
-        @if($data->isNotEmpty())
-        {{ $data->first()->documents ? 'CV Date' : 'Email' }}
+        @if ($data->isNotEmpty() && $data->first()->hasRole('Candidate'))
+            CV Date
         @else
-        N/A
+            Email
         @endif
       </th>
 
@@ -45,11 +45,10 @@
         @hasrole('Superadmin')
         <a href="#" class="btn btn-sm btn-gradient-warning btn-rounded " data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>
 
-        <form id="candidate-delete-form" action="admin/user/{{$row->user_id}}" method="POST">
-          @csrf
-          @method('DELETE')
-          <button style="" type="submit" href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded " onclick="deleteAlert()">Delete</button>
-        </form>
+        <form class="delete-user-form" data-user-id="{{$row->user_id}}">
+            @csrf
+            <button type="button" class="btn btn-sm btn-gradient-danger btn-rounded delete-user-button">Delete</button>
+          </form>
         @endhasrole
 
       </td>

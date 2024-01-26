@@ -29,7 +29,7 @@
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
-
+        
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('view_candidate_list') || Auth::user()->can('view_users_list') )
         <li class="nav-item">
             <a class="nav-link" href="/candidate">
@@ -53,12 +53,6 @@
                 <i class="mdi mdi-airplay menu-icon"></i>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/quizes">
-                <span class="menu-title">Add Quiz</span>
-                <i class="mdi mdi-airplay menu-icon"></i>
-            </a>
-        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="/requirements">
@@ -66,7 +60,29 @@
                 <i class="mdi mdi-comment-question-outline  menu-icon"></i>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/quizes">
+                <span class="menu-title">Add Quiz</span>
+                <i class="mdi mdi-airplay menu-icon"></i>
+            </a>
+        </li>
 
+        @endhasrole
+        @hasrole('Insurer')
+        <li class="nav-item">
+            <a class="nav-link" href="/requirements">
+                <span class="menu-title">Requirements</span>
+                <i class="mdi mdi-comment-question-outline  menu-icon"></i>
+            </a>
+        </li>
+        @endhasrole
+        @hasrole('Institute')
+        <li class="nav-item">
+            <a class="nav-link" href="/requirements">
+                <span class="menu-title">Requirements</span>
+                <i class="mdi mdi-comment-question-outline  menu-icon"></i>
+            </a>
+        </li>
         @endhasrole
 
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('take_assessment'))

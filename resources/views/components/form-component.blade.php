@@ -1,5 +1,5 @@
 <!-- Example in form-component.blade.php -->
-<form action="{{ $action }}" method="POST" class="{{$formClass ?? 'forms-sample'}}" enctype="multipart/form-data">
+<form action="{{ $action }}" method="POST" class="{{$formClass ?? 'forms-sample'}}" enctype="multipart/form-data" id="{{$formId}}" >
     @csrf
     @if($method == "PATCH")
     @method('PATCH')

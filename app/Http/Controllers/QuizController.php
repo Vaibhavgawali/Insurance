@@ -82,18 +82,23 @@ class QuizController extends Controller
     public function store(Request $request)
     {
         $input = array_map('trim', $request->all());
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required|string',
             'description' => 'required|string',
             'level' => 'required',
             'quiz_time'=>'required|integer'
         ]);
+        if ($validator->fails()) {
+            return Response(['status' => false, 'errors' => $validator->errors()], 422);
+        }
         $request['created_by'] = Auth::user()->user_id;
+        
 
         $quiz = Quiz::create($request->all()); //if all data sent
 
-        return redirect()->route('quizes.index')
-        ->with('success', 'Quiz created successfully');
+        // return redirect()->route('quizes.index')
+        // ->with('success', 'Quiz created successfully');
+        return Response(['status' => true, 'message' => "Quiz created successfully"], 200);
     }
 
     /**
@@ -188,6 +193,19 @@ class QuizController extends Controller
         return view('dashboard.quizes.edit', compact('quiz', 'fields'));
     }
 
+    public function show_quiz(string $id)
+    {
+        $fields = [
+            ['name' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'Quiz title'],
+            ['name' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'Quiz description'],
+            ['name' => 'level', 'label' => 'Level', 'type' => 'text', 'placeholder' => 'Level'],
+            ['name' => 'quiz_time', 'label' => 'Quiz Time', 'type' => 'text', 'placeholder' => 'Quiz time'],
+        ];
+        $quiz = Quiz::find($id);
+        // dd($quiz);
+        return view('dashboard.quizes.show_quiz', compact('quiz', 'fields'));
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -195,18 +213,22 @@ class QuizController extends Controller
     {
         // dd($request->all());
         $input = array_map('trim', $request->all());
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required|string',
             'description' => 'required|string',
             'level' => 'required',
             'quiz_time'=>'required'
         ]);
+        if ($validator->fails()) {
+            return Response(['status' => false, 'errors' => $validator->errors()], 422);
+        }
 
         $quiz = Quiz::find($id);
         $quiz_updt=$quiz->update($request->all());
 
-        return redirect()->route('quizes.index')
-            ->with('success', 'Quiz updated successfully');
+        // return redirect()->route('quizes.index')
+        //     ->with('success', 'Quiz updated successfully');
+        return Response(['status' => true, 'message' => "Quiz updated successfully"], 200);
     }
 
     /**
@@ -214,6 +236,7 @@ class QuizController extends Controller
      */
     public function destroy($id)
     {
+        // dd($id);
         $quiz = Quiz::find($id);
         $quiz->delete();
         return redirect()->route('quizes.index')

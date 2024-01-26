@@ -2,8 +2,6 @@
 @section('main-section')
 
 <!-- quiz dynamic -->
-<div>
-    <div class="main-panel Quiz-content">
         <div class="content-wrapper">
             <div class="page-header">
                 <h3 class="page-title">
@@ -20,10 +18,22 @@
 
 
         </div>
-    </div>
-</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+
+
+let quizAlert = (message) =>
+ {
+
+  const quizStatusObject = { isPass: message };
+  localStorage.setItem("quizstatus", JSON.stringify(quizStatusObject));
+};
+
+
+
+
+
+
     document.addEventListener('DOMContentLoaded', function() {
         storeAnswers();
     });
@@ -113,9 +123,20 @@
                     if (response.success) {
                         clearInterval(intervalId);
                         localStorage.removeItem("quizAnswers");
-                        window.location.href = `${baseUrl}/candidate-quizes/`;
-                    
-                        // Handle success (e.g., redirect to a result page)
+
+                        if(response.passed){
+                            $url=`${baseUrl}/generate-pdf`;
+                            // quizPassAlert($url);
+                            quizAlert(true);
+                            // debugger
+                        }else{
+                            $url=`${baseUrl}/candidate-quizes/`;
+                            quizAlert(false);
+                           
+                        }
+                        window.location.href = $url;
+                        // window.location.href = `${baseUrl}/candidate-quizes/`;
+
                     }else{
                         // outside the valid time span
                         console.log(response);

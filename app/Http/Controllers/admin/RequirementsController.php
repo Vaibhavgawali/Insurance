@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use Validator;
+use Yajra\DataTables\DataTables;
 
 use App\Models\User;
 use App\Models\Requirements;
@@ -31,19 +32,65 @@ class RequirementsController extends Controller
     {
         $user = Auth::user();
     
-        if ($user->hasRole('Superadmin')) {
-            $requirements = Requirements::with('user')->orderBy('user_id', 'desc')->get();
+        // if ($user->hasRole('Superadmin')) {
+        //     $requirements = Requirements::with('user')->orderBy('user_id', 'desc')->get();
             
             
-        } elseif ($user->hasRole(['Insurer', 'Institute'])) {
-            $requirements = Requirements::with('user')->where('user_id', $user->user_id)->get();
-        } else {
-            $requirements = null;
-        }
-        return view('dashboard.admin.requirements-list',['requirements' => $requirements]);
+        // } elseif ($user->hasRole(['Insurer', 'Institute'])) {
+        //     $requirements = Requirements::with('user')->where('user_id', $user->user_id)->get();
+        // } else {
+        //     $requirements = null;
+        // }
+        // return view('dashboard.admin.requirements-list',['requirements' => $requirements]);
+        return view('dashboard.admin.requirements-list');
+
     }
- 
+    public function getRequirementsTableData(Request $request)
+    {
+        $user = Auth::user();
+    $filterByUser = $request->input('filterbyuser');
+
+    $query = Requirements::with('user')->orderBy('user_id', 'desc');
        
+    if ($user->hasRole('Superadmin')) {
+        if ($filterByUser) {
+            $data = $query->whereHas('user', function ($query) use ($filterByUser) {
+                $query->whereHas('roles', function ($query) use ($filterByUser) {
+                    $query->where('name', $filterByUser);
+                });
+            })->get();
+            // dd($data);
+        } else {
+            $data = $query->get();
+        }
+    } elseif ($user->hasRole(['Insurer', 'Institute'])) {
+        $data = $query->where('user_id', $user->user_id);
+
+        if ($filterByUser) {
+            $data->whereHas('user', function ($query) use ($filterByUser) {
+                $query->whereHas('roles', function ($query) use ($filterByUser) {
+                    $query->where('name', $filterByUser);
+                });
+            });
+        }
+
+        $data = $data->get();
+    } else {
+        $data = null;
+    }
+    
+        if ($data) {
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('actions', function ($row) {
+                    $actions = '<button class="btn btn-sm btn-gradient-success btn-rounded view-btn"  data-bs-target="#exampleModal" data-requirement="' . $row->requirement_text . '" data-user-date="' . $row->user->created_at . '" data-user-name="' . $row->user->name . '" data-user-email="'. $row->user->email .'" data-user-phone="'. $row->user->phone .'" >View</button>';
+                    return $actions;
+                })
+                ->rawColumns(['actions'])
+                ->make(true);
+        }
+    }
+
     /**
      * 
      * Show the form for creating a new resource.

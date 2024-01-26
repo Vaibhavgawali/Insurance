@@ -41,6 +41,9 @@
                     <a class="dropdown-item" href="/candidate/{{$user->user_id}}">
                         <i class="mdi mdi-cached me-2 text-success"></i>Profile </a>
                     <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/reset-password">
+                        <i class="mdi mdi-lock-reset me-2 text-success"></i>Reset Password </a>
+                    <div class="dropdown-divider"></div>
                     <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button class="dropdown-item" type="submit"><i class="mdi mdi-logout me-2 text-primary"></i>Logout</button>
