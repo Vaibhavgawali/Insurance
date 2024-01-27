@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Insurance Next</title>
+	<title>Insurancecareer.in</title>
 	<meta name="description" content="Insurancecarrer - Insurance Company">
 	<meta name="keywords" content="	accounting, advising, advisory, business, company, consulting, corporate, finance, financial, investments, law, multi-purpose, services, tax help, visual composer">
 	<meta name="author" content="Zynovvatech">
@@ -56,7 +56,7 @@
 					<span></span>
 				</div>
 				<div class="ins-nav-cta d-flex align-items-center">
-					<span><img src="{{asset('assets/img/logo/fire.svg')}}" alt=""></span> Hot Line: +1 800 123 456
+					<span><img src="{{asset('assets/img/logo/fire.svg')}}" alt=""></span> Hot Line: + <a href="tel:011-44748705">011-44748705</a>
 				</div>
 			</div>
 			<div class="main-navigation-menu">

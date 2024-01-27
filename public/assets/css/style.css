@@ -29,6 +29,8 @@
 /*=========
 Font load
 ===========*/
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rubik+Burned&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&family=Nunito+Sans:opsz@6..12&family=Urbanist:wght@200&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Play:wght@400;700&family=Syne:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
@@ -56,6 +58,14 @@ Font load
   background-position: 120%;
 }
 
+.nunito-font {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: <weight>; */
+  /* font-weight: 800; */
+}
+
+
 
 /*global area*/
 /*----------------------------------------------------*/
@@ -63,11 +73,17 @@ Font load
   :root {
     scroll-behavior: inherit;
    --register-bg-color:#F8F9FA;
+   --custom-italic-font:italic;
+    
   }
   *
   {
     font-family: 'Nunito';
   }
+}
+.custom-italic
+{
+  font-style: var(--custom-italic-font);
 }
 body {
   margin: 0;
@@ -1165,6 +1181,7 @@ select:visited {
 }
 .in-header-section.header-style-six .ins-header-main-navigation-area {
   padding: 25px 190px;
+  background-color: #f9f5f2;
 }
 .in-header-section.header-style-six .in-main-navigation-area li {
   margin: 0px 33px;
@@ -5263,9 +5280,9 @@ select:visited {
 }
 .ins-text-scroll-section-2 .ins-text-scroll-2 h3 {
   color: var(--theme-color);
-  font-size: 60px;
+  font-size: 30px;
   margin: 0px 20px;
-  line-height: 70px;
+  line-height: 80px;
   display: inline-block;
 }
 .ins-text-scroll-section-2 .ins-text-scroll-2 h3 span {
@@ -6691,7 +6708,8 @@ select:visited {
 /*----------------------------------------------------*/
 .ins-slider-six-section {
   margin-left: 70px;
-  background-color: #f9f5f2;
+  /* background-color: #f9f5f2; */
+  background-color: #fff;
 }
 .ins-slider-six-section .banner-social {
   left: -50px;
@@ -13845,7 +13863,7 @@ rs-module [class*=" fa-"]:before {
   border-radius: 5px;;
   padding: 5px 10px;
   margin: auto;
-  width: 80%;
+  width: 88%;
 }
 .about-section-banner-paragraph
 {
@@ -13957,3 +13975,14 @@ background-color: #F0F4FD;
   background: url(../img/about/limit-bg.png);
 }
 
+/* Custom css  */
+ .navifate-font
+ {
+  font-family: 'Nunito';
+  font-size: 20px;
+ }
+ .prabhat-text-color
+ {
+  color: var(--theme-color-custom) !important;
+  font-style: italic;
+ }
