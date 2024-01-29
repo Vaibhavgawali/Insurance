@@ -15,7 +15,7 @@
       <th>Sr.No</th>
       <th>Name </th>
       <th>
-        @if ($data->isNotEmpty() && $data->first()->hasRole('Candidate'))
+        @if ($data->isNotEmpty() && $data->first()->hasCategory('Candidate'))
             CV Date
         @else
             Email

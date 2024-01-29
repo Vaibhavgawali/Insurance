@@ -38,11 +38,13 @@ class CandidateController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            // $users = User::role('Candidate')->get();
-            $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->orderBy('user_id', 'desc')->get();
-            // dd($users);
+            // $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->orderBy('user_id', 'desc')->get();
+            $users = User::where('category', 'Candidate')
+                    ->with('address', 'profile', 'experience', 'documents')
+                    ->orderBy('user_id', 'desc')
+                    ->get();
+
             if ($users) {
-                // return Response(['data' => $users], 200);
                 return view('dashboard.admin.candidate-list', ['candidates' => $users]);
             }
             return Response(['message' => "Users with role Candidate not found "], 404);
@@ -95,7 +97,8 @@ class CandidateController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password, //Hash::make($request->password),
-            'phone' => $request->phone
+            'phone' => $request->phone,
+            'category' => "Candidate"
         ]);
 
         if ($user) {
@@ -210,7 +213,8 @@ class CandidateController extends Controller
 public function destroy(string $id)
 {
     // Check if the authenticated user has the "Superadmin" role
-    if (Auth::user()->hasRole('Superadmin')) {
+    // if (Auth::user()->hasRole('Superadmin')) {
+    if (Auth::user()->hasCategory('Superadmin')) {
         $user = User::find($id);
 
         if (!$user) {

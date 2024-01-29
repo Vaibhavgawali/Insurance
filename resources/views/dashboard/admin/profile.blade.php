@@ -23,19 +23,19 @@
         <x-profile-personal-details-component :data="$userData" /> <!--User Personal Details comp  -->
         <x-profile-address-component :data="$userData" /> <!--User Address Comp comp  -->
 
-        @if($userData->hasRole('Candidate'))
-        @if($userData->experience)
-        <x-profile-experience-component :data="$userData" /> <!--User Experience Comp comp  -->
-        @else
-        <x-profile-add-experience-component :data="$userData" /> <!--User Experience Comp comp  -->
-        @endif
+        @if($userData->hasCategory('Candidate'))
+          @if($userData->experience)
+            <x-profile-experience-component :data="$userData" /> <!--User Experience Comp comp  -->
+          @else
+            <x-profile-add-experience-component :data="$userData" /> <!--User Experience Comp comp  -->
+          @endif
 
-        @if($userData->documents)
-        <!--User Documents Comp comp  -->
-        <x-profile-cv-update-component :data="$userData" /> <!--User Cv update Comp comp  -->
-        @else
-        <x-profile-cv-upload-component :data="$userData" /> <!--User Cv upload Comp comp  -->
-        @endif
+          @if($userData->documents)
+          <!--User Documents Comp comp  -->
+            <x-profile-cv-update-component :data="$userData" /> <!--User Cv update Comp comp  -->
+          @else
+            <x-profile-cv-upload-component :data="$userData" /> <!--User Cv upload Comp comp  -->
+          @endif
         @endif
 
 

@@ -2,6 +2,7 @@
 @section('main-section')
 
 <!-- partial -->
+<!-- hasCategory -->
 @if(auth()->user()->hasRole('Superadmin'))
   <div class="content-wrapper">
     <div class="page-header">
@@ -106,19 +107,19 @@
   </div>
   @endif
 
-  @if(auth()->user()->hasRole('Candidate'))
+  @if(auth()->user()->hasCategory('Candidate'))
   <x-dashboard-candidate-login />
   @endif
 
 
-  @if(auth()->user()->hasRole('Insurer'))
+  @if(auth()->user()->hasCategory('Insurer'))
   <x-dashboard-insurer-login 
     :candidateCount="$candidateCount"
     :freshersCount="$freshersCount"
   />
   @endif
 
-  @if(auth()->user()->hasRole('Institute'))
+  @if(auth()->user()->hasCategory('Institute'))
   <x-dashboard-institution-login  
       :candidateCount="$candidateCount"/> <!--User Profile section comp  -->
   @endif

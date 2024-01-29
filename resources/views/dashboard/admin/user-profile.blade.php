@@ -22,21 +22,22 @@
         <x-profile-personal-details-component :data="$userData" /> <!--User Personal Details comp  -->
         <x-profile-address-component :data="$userData" /> <!--User Address Comp comp  -->
 
-        @if($userData->hasRole('Candidate'))
-        @if($userData->experience)
-        <x-profile-experience-component :data="$userData" /> <!--User Experience Comp comp  -->
-        @endif
-        @if($userData->documents)
-        <!--User Documents Comp comp  -->
-
-        <div class="profie-cv-update-section" id="profie-cv-update-section">
-          <div class="card">
-            <div class="d-flex justify-content-center align-items-center gap-5 gap-sm-2 p-3">
-              <div><a class="btn btn-md btn-warning btn-rounded" href="{{asset('storage/documents/'.$userData->documents->document_url)}}" target="_blank">View CV</a></div>
-            </div>
-          </div>
-        </div>
-        @endif
+        @if($userData->hasCategory('Candidate'))
+          @if($userData->experience)
+          <x-profile-experience-component :data="$userData" /> <!--User Experience Comp comp  -->
+          @endif
+          @if($userData->documents)
+          <!--User Documents Comp comp  -->
+            @if(Auth::user()->can('view_candidate_resume') || Auth::user()->hasRole('Superadmin'))
+              <div class="profie-cv-update-section" id="profie-cv-update-section">
+                <div class="card">
+                  <div class="d-flex justify-content-center align-items-center gap-5 gap-sm-2 p-3">
+                    <div><a class="btn btn-md btn-warning btn-rounded" href="{{asset('storage/documents/'.$userData->documents->document_url)}}" target="_blank">View CV</a></div>
+                  </div>
+                </div>
+              </div>
+            @endif
+          @endif
         @endif
 
 

@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'phone',
+        'category',
         'isLogginAllowed',
         'isAdminVerified',
         'password',
@@ -75,5 +76,15 @@ class User extends Authenticatable
     public function quizzes()
     {
         return $this->hasMany(UserQuiz::class,'user_id','user_id');
+    }
+
+    public function hasCategory($category)
+    {
+        return $this->category === $category;
+    }
+
+    public function hasAnyCategory($categories)
+    {
+        return in_array($this->category, $categories);
     }
 }

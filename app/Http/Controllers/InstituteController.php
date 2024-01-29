@@ -34,7 +34,7 @@ class InstituteController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $users = User::role('Institute')->orderBy('user_id', 'desc')->get();
+            $users = User::where('category', 'Institute')->orderBy('user_id', 'desc')->get();
             if ($users) {
                 // return Response(['data' => $users], 200);
                 return view('dashboard.admin.institute-list', ['institutes' => $users]);
@@ -83,7 +83,8 @@ class InstituteController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>$request->password, //Hash::make($request->password),
-            'phone'=>$request->phone
+            'phone'=>$request->phone,
+            'category' => "Institute"
         ]);
 
         if($user){
