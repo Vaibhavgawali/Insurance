@@ -8,7 +8,6 @@
     </div>
     <div class="profile-birth-div p-3">
       <form class="forms-sample" id="profile_details_update_form">
-        <div id="profile_details_status"></div>
         @csrf
         <div class="form-group">
           <label for="date_of_birth">Date of birth</label>

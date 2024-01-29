@@ -56,7 +56,6 @@
 
 
       <form action="" id="Profile-image-upload-form">
-        <div id="profile_image_status"></div>
         @csrf
         <label for="profile_image" id="drop-area">
           <input type="file" accept="image/*" id="profile_image" name="profile_image" hidden>
@@ -114,7 +113,7 @@
           <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Email" disabled value=" {{ $data->email }}">
-            <div id="name_error"></div>
+            <div id="email_error"></div>
           </div>
 
           <div class="form-group">

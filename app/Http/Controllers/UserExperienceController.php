@@ -46,7 +46,8 @@ class UserExperienceController extends Controller
             ]);
 
             if($validator->fails()){
-                return Response(['message' => $validator->errors()],422);
+                return Response(['status'=>false,'errors' => $validator->errors()],422);
+
             }   
 
             $data=$request->all();
@@ -54,11 +55,11 @@ class UserExperienceController extends Controller
 
             $isAdded=UserExperience::create($data);
             if($isAdded){
-                return Response(['message' => "User experience added successfully"],200);
+                return Response(['status'=>true,'message' => "User experience added successfully"],200);
             }
-            return Response(['message' => "Something went wrong"],500);
+            return Response(['status'=>false,'message' => "Something went wrong"],500);
         }
-        return Response(['message'=>'Unauthorized'],401);
+        return Response(['status'=>false,'message'=>'Unauthorized'],401);
     }
 
     /**

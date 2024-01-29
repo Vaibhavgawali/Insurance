@@ -127,11 +127,15 @@ let quizAlert = (message) =>
                         if(response.passed){
                             $url=`${baseUrl}/generate-pdf`;
                             // quizPassAlert($url);
+                            debugger
                             quizAlert(true);
+                            console.log(true);
                             // debugger
                         }else{
                             $url=`${baseUrl}/candidate-quizes/`;
                             quizAlert(false);
+                            debugger;
+                            console.log(false);
                            
                         }
                         window.location.href = $url;

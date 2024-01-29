@@ -1,6 +1,5 @@
 // Alert Box
 
-
 let loginAlert = () => {
     swal("Good job!", "You clicked the button!", "success");
 };
@@ -13,7 +12,25 @@ let resumeUploadAlert = () => {
 let requirementsAlert = () => {
     swal("Nice!", "We will get back to you soon!", "success");
 };
+let userProfileInfoAlert = () => {
+    swal("Good job!", "Profile Updated successfully  !", "success");
+};
 
+let userProfileDetailsAlert = () => {
+    swal("Good job!", "Profile Details Updated successfully  !", "success");
+};
+
+let userProfileAddressAlert = () => {
+    swal("Good job!", "Address Updated successfully  !", "success");
+};
+
+let userExperienceAlert = () => {
+    swal("Good job!", "Experience Updated successfully  !", "success");
+};
+
+let userExperienceAddAlert = () => {
+    swal("Good job!", "Experience Added successfully  !", "success");
+};
 
 $(document).ready(function () {
     // Reuirements  Update function
@@ -416,7 +433,8 @@ $(document).ready(function () {
         function validateEmail($email) {
             var emailReg =
                 /^\w+([-+.'][^\s]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-            return emailReg.test($email);
+            var gmailReg = /@gmail\.com$/;
+            return emailReg.test($email) && gmailReg.test($email);
         }
 
         if (!validateEmail(email)) {
@@ -460,11 +478,7 @@ $(document).ready(function () {
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_info_update_button").attr("disabled", true);
-                    $("#profile_info_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    userProfileInfoAlert();
 
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
@@ -526,7 +540,18 @@ $(document).ready(function () {
             $("#date_of_birth").focus();
             return false;
         }
+        function calculateAge(dob) {
+            let today = new Date();
+            let birthDate = new Date(dob);
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let m = today.getMonth() - birthDate.getMonth();
 
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            return age;
+        }
         if (
             gender == "" ||
             gender == null ||
@@ -553,6 +578,20 @@ $(document).ready(function () {
             return false;
         }
 
+        var countedAge = calculateAge(date_of_birth);
+        // console.log("countedAge:", countedAge, "age:", age);
+        
+        // Convert age to number
+        var ageNumber = parseInt(age, 10);
+        
+        if (isNaN(ageNumber) || ageNumber < 0 || ageNumber !== countedAge) {
+            
+            $("#age_error").html(`<div class="invalid-feedback d-block">Please enter valid age`);
+            $("#age").focus();
+            return false;
+        }
+        
+
         var data = {
             date_of_birth: date_of_birth,
             gender: gender,
@@ -569,7 +608,7 @@ $(document).ready(function () {
 
         // Update the user_id value in the data object
         data.user_id = extractAndConvertToInteger(data.user_id);
-        console.log(data);
+        // console.log(data);
 
         event.preventDefault();
 
@@ -588,11 +627,7 @@ $(document).ready(function () {
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_details_update_button").attr("disabled", true);
-                    $("#profile_details_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    userProfileDetailsAlert();
 
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
@@ -769,11 +804,7 @@ $(document).ready(function () {
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_address_update_button").attr("disabled", true);
-                    $("#profile_address_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    userProfileAddressAlert();
 
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
@@ -936,15 +967,7 @@ $(document).ready(function () {
             // joining_date: joining_date,
             // relieving_date: relieving_date,
         };
-        // function extractAndConvertToInteger(str) {
-        //     const trimmedStr = str.trim(); // Trim leading and trailing spaces
-        //     const numericPart = trimmedStr.replace(/\D/g, ''); // Remove non-numeric characters
-        //     return parseInt(numericPart, 10); // Convert to integer
-        // }
 
-        // Update the user_id value in the data object
-        // data.user_id = extractAndConvertToInteger(data.user_id);
-        // console.log(data);
 
         event.preventDefault();
 
@@ -966,11 +989,7 @@ $(document).ready(function () {
                         "disabled",
                         true
                     );
-                    $("#profile_experience_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    userExperienceAlert();
 
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
@@ -1004,6 +1023,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     // Profile Experience Add function
     $("#profile_experience_add_button").click(function (event) {
+        // debugger;
         var is_current_company = $("#is_current_company").val();
         var organization = $("#organization").val();
         var designation = $("#designation").val();
@@ -1145,15 +1165,12 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response);
+                debugger;
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_experience_add_button").attr("disabled", true);
-                    $("#profile_experience_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
-
+                    userExperienceAddAlert();
+                    //   debugger;
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
                         window.location.reload();
@@ -1163,6 +1180,7 @@ $(document).ready(function () {
                 }
             },
             error: function (response) {
+                debugger
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
 
@@ -1182,6 +1200,3 @@ $(document).ready(function () {
         });
     });
 });
-
-
-

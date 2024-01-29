@@ -29,7 +29,21 @@
                   <option value="other">Other</option>
                 </select>
               </div>
+           
 
+<div class="toast-container position-absolute  top-0 start-0">
+  <div id="liveToast" class="toast bg-success text-light   border-0 " role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i class="mdi mdi-filter btn-primary btn btn-sm"></i>
+      <strong class="me-auto mx-2" id="filter_name"></strong>
+      <small>Filtered results</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" id="filter_body">
+      
+    </div>
+  </div>
+</div>
             </div>
             <div class="col-4">
               <div class="form-group">
@@ -142,7 +156,18 @@
               });
               $('#filterbypreffered_line').on('change', function() {
                 // Reload the DataTable when the filter value changes
+               let filter_name = $('#filterbypreffered_line').val()
+               if(filter_name==='')
+               {
+                 filter_name="all";
+               }
                 table.ajax.reload();
+                $('#filter_name').html(filter_name);
+                $('#filter_body').html(`Showing results for ${filter_name}`);
+                const toastLiveExample = document.getElementById('liveToast')
+               const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+                toastBootstrap.show()
+
               });
               $('#filterbycv').on('change', function() {
                 // Reload the DataTable when the filter value changes

@@ -93,9 +93,9 @@ $(document).ready(function () {
         }
 
         function validateEmail($email) {
-            var emailReg =
-                /^\w+([-+.'][^\s]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-            return emailReg.test($email);
+            var emailReg = /^\w+([-+.'][^\s]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            var gmailReg = /@gmail\.com$/;
+            return emailReg.test($email) && gmailReg.test($email);
         }
 
         if (!validateEmail(email)) {
