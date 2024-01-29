@@ -34,7 +34,7 @@ class InsurerController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $users = User::role('Insurer')->orderBy('user_id', 'desc')->get();
+            $users = User::where('category', 'Insurer')->orderBy('user_id', 'desc')->get();
             if ($users) {
                 // return Response(['data' => $users], 200);
                 return view('dashboard.admin.insurer-list', ['insurers' => $users]);
@@ -83,7 +83,8 @@ class InsurerController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>$request->password, //Hash::make($request->password),
-            'phone'=>$request->phone
+            'phone'=>$request->phone,
+            'category' => "Insurer"
         ]);
 
         if($user){

@@ -79,9 +79,10 @@ class UserProfileController extends Controller
                     "gender"=>'string|in:"M","F","O"',
                     "age"=>'numeric|integer|min:1',
                     // "preffered_line"=> 'string|max:20',
-                    // "spoc"=> 'string|max:60',
-                    "preffered_line" =>$user->hasAnyRole(['Candidate', 'Insurer']) ? 'required|string|max:20' : 'nullable|string|max:20',
-                    "spoc" =>$user->hasAnyRole(['Institute', 'Insurer']) ? 'required|string|max:60' : 'nullable|string|max:60',
+                    // "spoc"=> 'string|max:60',  
+                    // "preffered_line" =>$user->hasAnyRole(['Candidate', 'Insurer']) ? 'required|string|max:20' : 'nullable|string|max:20',
+                    "preffered_line" =>$user->hasAnyCategory(['Candidate', 'Insurer']) ? 'required|string|max:20' : 'nullable|string|max:20',
+                    "spoc" =>$user->hasAnyCategory(['Institute', 'Insurer']) ? 'required|string|max:60' : 'nullable|string|max:60',
                 ]);
 
                 if($validator->fails()){

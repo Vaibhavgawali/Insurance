@@ -18,7 +18,8 @@
                     <span class="font-weight-bold mb-2">
                         {{ Illuminate\Support\Str::limit(explode(' ', $user->name)[0], 9, '..') }}
                     </span>
-                    <span class="text-secondary text-small">{{$user->roles->first()->name}}</span>
+                    <!-- <span class="text-secondary text-small">{{$user->roles->first()->name}}</span> -->
+                    <span class="text-secondary text-small">{{$user->category}}</span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
