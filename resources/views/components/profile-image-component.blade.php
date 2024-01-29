@@ -12,6 +12,7 @@
         <img src="{{ asset('storage/images/') }}/{{$data->profile->profile_image}}" alt="{{$data->profile->profile_image}}" class="img-fluid">
         <div class="mt-3" id="change-profile-image">
           <button class="btn btn-primary btn-sm" onclick="toggleProfileImageDiv()">Update image</button>
+
         </div>
       </div>
 
@@ -35,7 +36,8 @@
           </div>
           <br>
           <div class="d-flex w-100 justify-content-center align-items-center ">
-            <button style="display:none" ; type="submit" class="btn btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
+            <button style="display:none" ; type="submit" class="btn btn-sm btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
+            <a href="" class="btn btn-secondary btn-sm">Cancel</a>
           </div>
         </form>
         <div id="profile_image_error"></div>
@@ -78,24 +80,18 @@
       </form>
       @endif
 
-      @else
-      
-      @if(empty($data->profile->profile_image))
-      <div id="image-view">
-        <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">
-      </div>
-      @else
-      <div id="image-view">
-        <img src="{{ asset('storage/images/') }}/{{$data->profile->profile_image}}" alt="{{$data->profile->profile_image}}" class="img-fluid">
-      </div>
-      @endif
+      @else    
+          @if(empty($data->profile) || empty($data->profile->profile_image))
+          <div id="image-view">
+            <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">
+          </div>
+          @else
+          <div id="image-view">
+            <img src="{{ asset('storage/images/') }}/{{$data->profile->profile_image}}" alt="{{$data->profile->profile_image}}" class="img-fluid">
+          </div>
+          @endif
       @endif
     </div>
-
-
-
-
-
 
     <div class="profile-personal-info-section">
       <div class="profile-personal-info-div p-3">

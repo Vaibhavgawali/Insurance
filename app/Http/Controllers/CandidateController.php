@@ -38,7 +38,9 @@ class CandidateController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $users = User::role('Candidate')->orderBy('user_id','desc')->get();
+            // $users = User::role('Candidate')->get();
+            $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->orderBy('user_id', 'desc')->get();
+            // dd($users);
             if ($users) {
                 // return Response(['data' => $users], 200);
                 return view('dashboard.admin.candidate-list', ['candidates' => $users]);
@@ -47,6 +49,7 @@ class CandidateController extends Controller
         }
         return Response(['data' => 'Unauthorized'], 401);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -198,10 +201,35 @@ class CandidateController extends Controller
     /**
      * Soft delete user
      */
-    public function destroy(string $id)
-    {
-        //
+    /**
+ * Soft delete user
+ */
+/**
+ * Soft delete user
+ */
+public function destroy(string $id)
+{
+    // Check if the authenticated user has the "Superadmin" role
+    if (Auth::user()->hasRole('Superadmin')) {
+        $user = User::find($id);
+
+        if (!$user) {
+            return Response(['status' => false, 'message' => "User not found"], 404);
+        }
+
+        $isDeleted = $user->delete();
+
+        if ($isDeleted) {
+            return Response(['status' => true, 'message' => "User deleted successfully"], 200);
+        }
+
+        return Response(['status' => false, 'message' => "Something went wrong"], 500);
     }
+
+    return Response(['status' => false, 'message' => 'Unauthorized'], 401);
+}
+
+
 
     /**
      * Download candidate profile

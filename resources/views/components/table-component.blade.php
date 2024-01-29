@@ -13,8 +13,15 @@
   <thead>
     <tr>
       <th>Sr.No</th>
-      <th> Name </th>
-      <th>Email</th>
+      <th>Name </th>
+      <th>
+        @if ($data->isNotEmpty() && $data->first()->hasRole('Candidate'))
+            CV Date
+        @else
+            Email
+        @endif
+      </th>
+
       <th>Phone</th>
       <th class="text-center">Action</th>
     </tr>
@@ -27,22 +34,21 @@
 
       </td>
       <td> {{$row->name}}</td>
-      <td>{{$row->email}}</td>
+      <td>{{ $row->hasRole('Candidate')?  $row->documents ? \Carbon\Carbon::parse($row->documents->created_at)->format('Y-m-d') : 'Not uploaded' :$row->email}}</td>
       <td>{{$row->phone}}</td>
 
-      <td style="display: flex; gap:10px" class="text-center">
+      <td style="display: flex; gap:10px;justify-content:center" class="text-center">
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('view_candidate_details') || Auth::user()->can('view_users_details') )
         <a href="/admin/user/{{$row->user_id}}" class="btn btn-sm btn-gradient-success btn-rounded">View</a>
         @endif
-        
+
         @hasrole('Superadmin')
         <a  class="btn btn-sm btn-gradient-warning btn-rounded editButton"  data-user-id="{{$row->user_id}}">Edit</a>
 
-        <form  id="candidate-delete-form" action="admin/user/{{$row->user_id}}" method="POST" >
-          @csrf
-          @method('DELETE')
-          <button style="" type="submit" href="profile.html" class="btn btn-sm btn-gradient-danger btn-rounded " onclick="deleteAlert()">Delete</button>
-        </form>
+        <form class="delete-user-form" data-user-id="{{$row->user_id}}">
+            @csrf
+            <button type="button" class="btn btn-sm btn-gradient-danger btn-rounded delete-user-button">Delete</button>
+          </form>
         @endhasrole
 
       </td>
