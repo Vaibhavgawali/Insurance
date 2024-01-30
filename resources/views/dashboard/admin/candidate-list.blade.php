@@ -37,34 +37,5 @@
 
   <!-- resources/views/admin/role_permission/index.blade.php -->
 
-<!-- Modal -->
-<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">Edit User Roles and Permissions</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Add a form to submit changes -->
-                <form id="editUserForm">
-                    <div class="form-group">
-                        <label for="currentRole">Current Role:</label>
-                        <input type="text" class="form-control" id="currentRole" disabled>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Permissions:</label>
-                        <div id="permissionsList">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
  
 @endsection

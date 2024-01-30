@@ -238,7 +238,7 @@ class UserController extends Controller
         $validator=Validator::make($request->all(),['role'=>'required|in:Superadmin,Candidate,Insurer,Institute,Other']);
 
         if($validator->fails()){
-            return Response(['message' => $validator->errors()],401);
+            return Response(['message' => $validator->errors()],422);
         }
 
         $new_role=$request->role;

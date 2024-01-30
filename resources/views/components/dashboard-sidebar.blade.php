@@ -61,13 +61,21 @@
                 <i class="mdi mdi-comment-question-outline  menu-icon"></i>
             </a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/roles">
+                <span class="menu-title">Add Role</span>
+                <i class="mdi mdi-account-card-details menu-icon"></i>
+            </a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link" href="/quizes">
                 <span class="menu-title">Add Quiz</span>
                 <i class="mdi mdi-airplay menu-icon"></i>
             </a>
         </li>
-
+        
         @endhasrole
 
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('take_assessment'))

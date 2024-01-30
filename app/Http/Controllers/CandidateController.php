@@ -213,8 +213,9 @@ class CandidateController extends Controller
 public function destroy(string $id)
 {
     // Check if the authenticated user has the "Superadmin" role
-    // if (Auth::user()->hasRole('Superadmin')) {
-    if (Auth::user()->hasCategory('Superadmin')) {
+    // if (Auth::user()->hasCategory('Superadmin')) {
+
+    if (Auth::user()->hasRole('Superadmin')) {
         $user = User::find($id);
 
         if (!$user) {

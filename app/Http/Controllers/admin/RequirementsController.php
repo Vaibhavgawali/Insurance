@@ -33,8 +33,7 @@ class RequirementsController extends Controller
     
         if ($user->hasRole('Superadmin')) {
             $requirements = Requirements::with('user')->orderBy('user_id', 'desc')->get();
-            
-            
+        
         } elseif ($user->hasRole(['Insurer', 'Institute'])) {
             $requirements = Requirements::with('user')->where('user_id', $user->user_id)->get();
         } else {

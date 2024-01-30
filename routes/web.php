@@ -18,7 +18,7 @@ use App\Http\Controllers\UserDocumentsController;
 use App\Http\Controllers\admin\RequirementsController;
 use App\Http\Controllers\admin\PasswordController;
 use App\Http\Controllers\CandidateQuizController;
-use App\Http\Controllers\Admin\RolePermissionController;
+use App\Http\Controllers\admin\RolesController;
 
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionController;
@@ -93,12 +93,16 @@ Route::group(['middleware' => ['auth:sanctum', 'role:Superadmin']], function () 
     // Route::delete('admin/user/delete/{id}',[UserController::class,'hard_delete']);
 
     Route::get('/roles_wise_permission', [UserController::class, 'get_roles_wise_permissions']);
-    Route::post('assign-role/{id}', [UserController::class, 'assignRole']);
+    Route::get('get-role/{id}', [RolesController::class, 'getUserRoles']);
+    Route::post('assign-role/{id}', [RolesController::class, 'assignRole']);
 
     Route::resource('quizes', QuizController::class);
     Route::get('show_quiz/{quiz_id}',[QuizController::class,'show_quiz']);
     Route::resource('questions', QuestionController::class);
     Route::resource('answers', AnswerController::class);
+
+    Route::resource('roles', RolesController::class);
+
 });
 
 
@@ -109,8 +113,3 @@ Route::get('/start-quiz', [CandidateQuizController::class, 'startQuiz']);
 // });
 Route::get('generate-pdf', [CandidateQuizController::class, 'generatePDF']);
 Route::get('generate-candidate-profile-pdf/{id}', [CandidateController::class, 'downloadCandidateProfilePDF']);
-
-
-Route::get('/admin/role_permission/get_user_details', [RolePermissionController::class, 'getUserDetails']);
-
-Route::post('/admin/role_permission/update_user_roles_permissions', [RolePermissionController::class, 'updateUserRolesPermissions']);

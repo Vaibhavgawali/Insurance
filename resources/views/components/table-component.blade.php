@@ -1,14 +1,4 @@
-<!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
-<!-- @foreach($data as $row)
-                          
-                          <tr>
-                          <th>{{$row->id}}</th>
-                          <th>{{$row->name}}</th>
-                          <th>{{$row->email}}</th>
-                          <th>{{$row->phone}}</th>
-                          <th class="text-center">Action</th>
-                        </tr>
-                        @endforeach -->
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -57,3 +47,37 @@
     @endforeach
   </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUserModalLabel">Edit User Roles and Permissions</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <form id="editUserRoleForm">
+                  <input type="hidden" class="form-control" id="user_id">
+
+                    <div class="form-group">
+                        <label for="currentRole">Current Role:</label>
+                        <input type="text" class="form-control" id="currentRole" disabled>
+                    </div>
+
+                    <div class="form-group pb-2">
+                        <label for="newRole">Select New Role:</label>
+                        <select class="form-control" id="newRole" name="newRole">
+                            <!-- Dropdown options will be dynamically generated here -->
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
