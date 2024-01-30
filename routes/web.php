@@ -63,10 +63,16 @@ Route::get('/reset-password', [PasswordController::class,'resetPasswordForm']);
 Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
 
 Route::resource('admin/user', UserController::class)->middleware('auth:sanctum');
-
 Route::resource('candidate', CandidateController::class);
+
+Route::get('/getCandidateTableData', [CandidateController::class, 'getCandidateTableData'])->name('getCandidateTableData');
+
 Route::resource('insurer', InsurerController::class);
+Route::get('/getInsurerTableData', [InsurerController::class, 'getInsurerTableData'])->name('getInsurerTableData');
+
 Route::resource('institute', InstituteController::class);
+Route::get('/getInstituteTableData', [InstituteController::class, 'getInstituteTableData'])->name('getInstituteTableData');
+
 Route::resource('module-1', ModulesController::class);
 // Auth::routes();
 
@@ -79,6 +85,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('user-documents-update/{id}', [UserDocumentsController::class, 'update'])->name('update');
 
     Route::resource('requirements', RequirementsController::class);
+    Route::get('/getRequirementsTableData', [RequirementsController::class, 'getRequirementsTableData'])->name('getRequirementsTableData');
+
+
 
     Route::post('image-upload', [UserProfileController::class, 'profileImageUpload']);
 
@@ -97,7 +106,11 @@ Route::group(['middleware' => ['auth:sanctum', 'role:Superadmin']], function () 
     Route::post('assign-role/{id}', [RolesController::class, 'assignRole']);
 
     Route::resource('quizes', QuizController::class);
+    Route::get('/getQuizesTableData', [QuizController::class, 'getQuizesTableData'])->name('getQuizesTableData');
+
     Route::get('show_quiz/{quiz_id}',[QuizController::class,'show_quiz']);
+    Route::get('getQuestionsTableData/{quiz_id}', [QuizController::class, 'getQuestionsTableData'])->name('getQuestionsTableData');
+
     Route::resource('questions', QuestionController::class);
     Route::resource('answers', AnswerController::class);
 

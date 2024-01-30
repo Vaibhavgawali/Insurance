@@ -3325,7 +3325,7 @@ progress {
   --bs-table-bg: transparent;
   --bs-table-accent-bg: transparent;
   --bs-table-striped-color: #212529;
-  --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+  --bs-table-striped-bg: rgb(242,237,243);
   --bs-table-active-color: #212529;
   --bs-table-active-bg: rgba(0, 0, 0, 0.1);
   --bs-table-hover-color: #212529;
@@ -3367,7 +3367,15 @@ progress {
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
   --bs-table-accent-bg: var(--bs-table-striped-bg);
-  color: var(--bs-table-striped-color); }
+  color: var(--bs-table-striped-color);
+  border: none;
+ }
+ .table-striped > tbody > tr:nth-of-type(even) > * {
+  /* --bs-table-accent-bg: var(--bs-table-striped-bg);
+  color: var(--bs-table-striped-color); */
+  border: none;
+ }
+
 
 .table-active {
   --bs-table-accent-bg: var(--bs-table-active-bg);
@@ -14520,6 +14528,11 @@ dl {
 {
   font-size: 100px;
   color: #C479FF;
+}
+.custom-actions {
+  display: flex !important;
+  gap: 10px;
+  justify-content: center;
 }
 
 /* .question-card .card :nth-child(even) {

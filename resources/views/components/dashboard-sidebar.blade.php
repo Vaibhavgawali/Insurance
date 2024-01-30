@@ -77,6 +77,22 @@
         </li>
         
         @endhasrole
+        @hasrole('Insurer')
+        <li class="nav-item">
+            <a class="nav-link" href="/requirements">
+                <span class="menu-title">Requirements</span>
+                <i class="mdi mdi-comment-question-outline  menu-icon"></i>
+            </a>
+        </li>
+        @endhasrole
+        @hasrole('Institute')
+        <li class="nav-item">
+            <a class="nav-link" href="/requirements">
+                <span class="menu-title">Requirements</span>
+                <i class="mdi mdi-comment-question-outline  menu-icon"></i>
+            </a>
+        </li>
+        @endhasrole
 
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('take_assessment'))
         <li class="nav-item">

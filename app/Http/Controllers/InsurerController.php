@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Auth\Events\EmailVerified;
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-
+use Yajra\DataTables\DataTables;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\UserAddress;
@@ -37,12 +37,50 @@ class InsurerController extends Controller
             $users = User::where('category', 'Insurer')->orderBy('user_id', 'desc')->get();
             if ($users) {
                 // return Response(['data' => $users], 200);
-                return view('dashboard.admin.insurer-list', ['insurers' => $users]);
+                return view('dashboard.admin.insurer-list');
             }
-            return Response(['message' => "Users with role Insurer not found "], 404);
+            // return Response(['message' => "Users with role Insurer not found "], 404);
         }
 
         return Response(['data' => 'Unauthorized'], 401);
+    }
+    public function getInsurerTableData()
+    {
+        if (Auth::check()) {
+            $data = User::role('Insurer')
+        ->with('profile')
+        ->when(request()->has('filter_Line'), function ($query) {
+        $filterLine = request('filter_Line');
+
+        if ($filterLine === 'other') {
+            // Exclude rows where preffered_line is 'life', 'general', or 'health'
+            $query->whereHas('profile', function ($profileQuery) {
+                $profileQuery->whereNotIn('preffered_line', ['life', 'general', 'health']);
+            });
+        } else {
+            // Include rows where preffered_line is like the specified filter
+            $query->whereHas('profile', function ($profileQuery) use ($filterLine) {
+                $profileQuery->where('preffered_line', 'like', '%' . $filterLine . '%');
+            });
+        }     
+    })
+    ->orderBy('user_id', 'desc')->get();
+            // dd($data);
+            if ($data) {
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('actions', function ($row) {
+                        $actions = '<a href="/admin/user/' . $row->user_id . '" class="btn btn-sm btn-gradient-success btn-rounded">View</a>';
+                        $actions .= '<a href="#" class="btn btn-sm btn-gradient-warning btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>';
+                        $actions .= '<form class="delete-user-form" data-user-id="' . $row->user_id . '">
+                            <button type="button" class="btn btn-sm btn-gradient-danger btn-rounded delete-user-button">Delete</button>
+                        </form>';
+                        return $actions;
+                    })
+                    ->rawColumns(['actions'])
+                    ->make(true);
+            }
+        }
     }
 
     /**
