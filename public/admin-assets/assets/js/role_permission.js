@@ -188,7 +188,9 @@ $(document).ready(function () {
     });
 
     // Delete role
-    $(".delete-role-button").on("click", function (e) {
+    // $(".delete-role-button").on("click", function (e) {
+    $(document).on("click", ".delete-role-button", function (e) {
+        e.preventDefault();
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this role!",

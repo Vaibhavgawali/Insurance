@@ -87,8 +87,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('requirements', RequirementsController::class);
     Route::get('/getRequirementsTableData', [RequirementsController::class, 'getRequirementsTableData'])->name('getRequirementsTableData');
 
-
-
     Route::post('image-upload', [UserProfileController::class, 'profileImageUpload']);
 
     Route::get('refresh-token', [LoginController::class, 'refreshAuthToken']);
@@ -115,6 +113,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:Superadmin']], function () 
     Route::resource('answers', AnswerController::class);
 
     Route::resource('roles', RolesController::class);
+    Route::get('getRolesTableData', [RolesController::class, 'getRolesTableData'])->name('getRolesTableData');
 
 });
 

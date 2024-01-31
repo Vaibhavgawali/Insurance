@@ -211,6 +211,7 @@ class QuizController extends Controller
         return view('dashboard.quizes.show',['quiz_id'=>$id]);
 
     }
+    
     public function getQuestionsTableData($quiz_id)
     {   
         $quiz = Quiz::find($quiz_id);

@@ -108,12 +108,11 @@ class CandidateController extends Controller
             ]);
             // dd($user_profile);
 
-            // if ($request->experience == "experienced") {
-                $user_address = UserAddress::create([
-                    'user_id' => $user_id,
-                    'city' => $request->city,
-                ]);
-            // }
+            $user_address = UserAddress::create([
+                'user_id' => $user_id,
+                'city' => $request->city,
+            ]);
+          
             if ($request->experience == "experienced") {
                 $user_experience = UserExperience::create([
                     'user_id' => $user_id,
@@ -124,11 +123,7 @@ class CandidateController extends Controller
                     "joining_date" => $request->joining_date,
                     "relieving_date" => $request->relieving_date
                 ]);
-        //  dd($user_experience);           //experienced
-
             }
-        //  dd($request->experience);           //experienced
-
 
             // event(new Registered($user));
             // if($user->sendEmailVerificationNotification()){
@@ -145,10 +140,10 @@ class CandidateController extends Controller
     public function getCandidateTableData()
     {
         if (Auth::check()) {
-            $data = User::role('Candidate')
-    ->with('address', 'profile', 'experience', 'documents')
-    ->when(request()->has('filter_Line'), function ($query) {
-        $filterLine = request('filter_Line');
+            $data = User::where('category', 'Candidate')
+                    ->with('address', 'profile', 'experience', 'documents')
+                    ->when(request()->has('filter_Line'), function ($query) {
+                        $filterLine = request('filter_Line');
 
         if ($filterLine === 'other') {
             // Exclude rows where preffered_line is 'life', 'general', or 'health'
@@ -164,7 +159,7 @@ class CandidateController extends Controller
     })
     ->when(request()->has('documents'), function ($query) {
         $documents = request('documents');
-        if ($documents === 'uploaded') { // Corrected the condition
+        if ($documents === 'uploaded') { 
             $query->whereHas('documents');
         } else if ($documents === 'not_uploaded') {
             $query->whereDoesntHave('documents');
@@ -172,7 +167,7 @@ class CandidateController extends Controller
     })
     ->when(request()->has('experience'), function ($query) {
         $experience = request('experience');
-        if ($experience === 'experienced') { // Corrected the condition
+        if ($experience === 'experienced') { 
             $query->whereHas('experience');
         } else if ($experience === 'fresher') {
             $query->whereDoesntHave('experience');
@@ -186,7 +181,7 @@ class CandidateController extends Controller
                     ->addIndexColumn()
                     ->addColumn('actions', function ($row) {
                         $actions = '<a href="/admin/user/' . $row->user_id . '" class="btn btn-sm btn-gradient-success btn-rounded">View</a>';
-                        $actions .= '<a href="#" class="btn btn-sm btn-gradient-warning btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>';
+                        $actions .= '<a class="btn btn-sm btn-gradient-warning btn-rounded editButton" data-user-id="' . $row->user_id . '" >Edit</a>';
                         $actions .= '<form class="delete-user-form" data-user-id="' . $row->user_id . '">
                             <button type="button" class="btn btn-sm btn-gradient-danger btn-rounded delete-user-button">Delete</button>
                         </form>';
@@ -197,10 +192,6 @@ class CandidateController extends Controller
             }
         }
     }
-    
-    
-    
-    
 
     /**
      * Display the specified resource.

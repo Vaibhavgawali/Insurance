@@ -14,7 +14,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body table-responsive">
-          <h4 class="card-title">Institute Table</h4>
+          <h4 class="card-title">Requirements Table</h4>
           <table id='requirements' class="table table-striped">
             <div class="row">
               <div class="col-4">

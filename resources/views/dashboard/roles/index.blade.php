@@ -16,17 +16,21 @@
         <div class="card">
           <div class="card-body table-responsive">
             <h4 class="card-title">Roles Table</h4>
-            <a href="/roles/create" class="btn btn-primary btn-sm">Add Role</a></p>
-            <x-role-component :roles="$roles" />
-            <div class="d-flex my-3 align-items-center">
-              <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
-                <i class="mdi mdi-chevron-left"></i>
-              </button>
-              <div class="text-info p-2">1</div>
-              <button type="button" class="btn btn-inverse-primary btn-rounded btn-icon">
-                <i class="mdi mdi-chevron-right"></i>
-              </button>
-            </div>
+            
+            <table id='roles' class="table table-striped">
+                <div class="d-flex align-items-center gap-4  m-3">
+                    <a href="/roles/create" class="btn btn-primary btn-sm">Add Role</a>
+                </div>
+                <thead class="">
+                    <tr>
+                        <th class="text-uppercase">SR.No</th>
+                        <th class="text-uppercase">role</th>
+                        <th class="text-uppercase">permissions</th>
+                        <th class="text-center text-uppercase">Actions</th>
+                    </tr>
+                </thead>
+            </table>
+
           </div>
 
         </div>
@@ -34,36 +38,57 @@
     </div>
   </div>
 
-  <!-- resources/views/admin/role_permission/index.blade.php -->
-
-<!-- Modal -->
-<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">Edit User Roles and Permissions</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Add a form to submit changes -->
-                <form id="editUserForm">
-                    <div class="form-group">
-                        <label for="currentRole">Current Role:</label>
-                        <input type="text" class="form-control" id="currentRole" disabled>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Permissions:</label>
-                        <div id="permissionsList">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            var table = $('#roles').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('getRolesTableData') }}",
+                    data: function(d) {
+                        // var level_Filter = document.getElementById('filterbylevel');
+                        // d.filter_Level = level_Filter.value;
+                        return d;
+                    }
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: true,
+                        searchable: false,
+                        className: 'text-center'
+                    },
+                    {
+                        data: 'name',
+                        render: function(data, type, row) {
+                            // Truncate names longer than 9 characters
+                            return  data;//data.length > 10 ? data.substring(0, 10) + '...' :data
+                        }
+                    },
+                    {
+                        data: 'permissions',
+                        orderable: false,
+                        render: function(data, type, row) {
+                            // Truncate names longer than 9 characters
+                            return data; //data.length > 32 ? data.substring(0, 32) + '...' : data;
+                        }
+                    },
+                    {
+                        data: 'actions',
+                        orderable: false,
+                        searchable: false
+                    },
+                ],
+                createdRow: function(row, data, dataIndex) {
+                    var actionsColumn = $(row).find('td:eq(6)');
+                    actionsColumn.addClass('custom-actions');
+                }
+            });
+           
+        });
+    </script>
  
 @endsection

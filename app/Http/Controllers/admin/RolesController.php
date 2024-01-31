@@ -10,6 +10,7 @@ use Auth;
 use Validator;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Yajra\DataTables\DataTables;
 
 use App\Models\User;
 
@@ -20,9 +21,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        // return $roles;
-        return view('dashboard.roles.index',['roles' => $roles]);
+        return view('dashboard.roles.index');
     }
 
     /**
@@ -32,6 +31,38 @@ class RolesController extends Controller
     {
         $all_permissions  = Permission::all();
         return view('dashboard.roles.create',['permissions' => $all_permissions]); 
+    }
+
+    public function getRolesTableData(Request $request)
+    {   
+        $query = Role::query(); 
+    
+        $data = $query->get();
+  
+        if ($data) {
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('actions', function ($row) {
+                  
+                    $actions = '<a href="/roles/'. $row->id .'/edit" class="btn btn-primary btn-sm mx-1" data-toggle="tooltip" data-placement="top" title="Edit Role"><i class="mdi mdi-pen"></i></a>';
+                    $actions .= '<form class="delete-role-form mx-1 d-inline" data-role-id="'. $row->id .'">';
+                    $actions .= '<button type="submit" class="btn btn-danger btn-sm delete-role-button" data-toggle="tooltip" data-placement="top" title="Delete Role"><i class="mdi mdi-delete"></i></button>';
+                    $actions .= '</form>';
+                    
+                    return $actions;
+                })
+                ->addColumn('permissions', function ($row) {
+                    $permissions = '';
+                
+                    foreach ($row->permissions as $perm) {
+                        $permissions .= '<span class="badge badge-info" style="margin-right: 5px;">' . $perm->name . '</span>';
+                    }
+                
+                    return $permissions;
+                })
+                ->rawColumns(['actions','permissions'])
+                ->make(true);
+        }
     }
 
     /**
@@ -115,11 +146,10 @@ class RolesController extends Controller
      */
     public function destroy(string $id)
     {
-
+// dd($id);
         $role = Role::findById($id,'web');
 
         if (!is_null($role)) {
-            // dd($role);
 
             $isDeleted = $role->delete();
 

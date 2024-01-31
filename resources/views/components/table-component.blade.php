@@ -24,7 +24,7 @@
 
       </td>
       <td> {{$row->name}}</td>
-      <td>{{ $row->hasRole('Candidate')?  $row->documents ? \Carbon\Carbon::parse($row->documents->created_at)->format('Y-m-d') : 'Not uploaded' :$row->email}}</td>
+      <td>{{ $row->hasCategory('Candidate')?  $row->documents ? \Carbon\Carbon::parse($row->documents->created_at)->format('Y-m-d') : 'Not uploaded' :$row->email}}</td>
       <td>{{$row->phone}}</td>
 
       <td style="display: flex; gap:10px;justify-content:center" class="text-center">

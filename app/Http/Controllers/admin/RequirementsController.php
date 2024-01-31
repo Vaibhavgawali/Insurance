@@ -48,37 +48,37 @@ class RequirementsController extends Controller
     public function getRequirementsTableData(Request $request)
     {
         $user = Auth::user();
-    $filterByUser = $request->input('filterbyuser');
+        $filterByUser = $request->input('filterbyuser');
 
-    $query = Requirements::with('user')->orderBy('user_id', 'desc');
-       
-    if ($user->hasRole('Superadmin')) {
-        if ($filterByUser) {
-            $data = $query->whereHas('user', function ($query) use ($filterByUser) {
-                $query->whereHas('roles', function ($query) use ($filterByUser) {
-                    $query->where('name', $filterByUser);
+        $query = Requirements::with('user')->orderBy('user_id', 'desc');
+        
+        if ($user->hasRole('Superadmin')) {
+            if ($filterByUser) {
+                $data = $query->whereHas('user', function ($query) use ($filterByUser) {
+                    $query->whereHas('roles', function ($query) use ($filterByUser) {
+                        $query->where('name', $filterByUser);
+                    });
+                })->get();
+                
+            } else {
+                $data = $query->get();
+            }
+        } elseif ($user->hasRole(['Insurer', 'Institute'])) {
+            $data = $query->where('user_id', $user->user_id);
+
+            if ($filterByUser) {
+                $data->whereHas('user', function ($query) use ($filterByUser) {
+                    $query->whereHas('roles', function ($query) use ($filterByUser) {
+                        $query->where('name', $filterByUser);
+                    });
                 });
-            })->get();
-            // dd($data);
+            }
+
+            $data = $data->get();
         } else {
-            $data = $query->get();
+            $data = null;
         }
-    } elseif ($user->hasRole(['Insurer', 'Institute'])) {
-        $data = $query->where('user_id', $user->user_id);
-
-        if ($filterByUser) {
-            $data->whereHas('user', function ($query) use ($filterByUser) {
-                $query->whereHas('roles', function ($query) use ($filterByUser) {
-                    $query->where('name', $filterByUser);
-                });
-            });
-        }
-
-        $data = $data->get();
-    } else {
-        $data = null;
-    }
-    
+        
         if ($data) {
             return DataTables::of($data)
                 ->addIndexColumn()

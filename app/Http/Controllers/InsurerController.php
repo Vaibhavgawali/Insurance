@@ -47,7 +47,7 @@ class InsurerController extends Controller
     public function getInsurerTableData()
     {
         if (Auth::check()) {
-            $data = User::role('Insurer')
+            $data = User::where('category', 'Insurer')
         ->with('profile')
         ->when(request()->has('filter_Line'), function ($query) {
         $filterLine = request('filter_Line');
@@ -71,7 +71,7 @@ class InsurerController extends Controller
                     ->addIndexColumn()
                     ->addColumn('actions', function ($row) {
                         $actions = '<a href="/admin/user/' . $row->user_id . '" class="btn btn-sm btn-gradient-success btn-rounded">View</a>';
-                        $actions .= '<a href="#" class="btn btn-sm btn-gradient-warning btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>';
+                        $actions .= '<a class="btn btn-sm btn-gradient-warning btn-rounded editButton" data-user-id="' . $row->user_id . '" >Edit</a>';
                         $actions .= '<form class="delete-user-form" data-user-id="' . $row->user_id . '">
                             <button type="button" class="btn btn-sm btn-gradient-danger btn-rounded delete-user-button">Delete</button>
                         </form>';

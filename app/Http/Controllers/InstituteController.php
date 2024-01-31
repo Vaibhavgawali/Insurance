@@ -49,14 +49,14 @@ class InstituteController extends Controller
     public function getInstituteTableData()
     {
         if (Auth::check()) {
-            $data = User::role('Institute')->orderBy('user_id', 'desc')->get();
+            $data = User::where('category', 'Institute')->orderBy('user_id', 'desc')->get();
             
             if ($data) {
                 return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('actions', function ($row) {
                         $actions = '<a href="/admin/user/' . $row->user_id . '" class="btn btn-sm btn-gradient-success btn-rounded">View</a>';
-                        $actions .= '<a href="#" class="btn btn-sm btn-gradient-warning btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>';
+                        $actions .= '<a class="btn btn-sm btn-gradient-warning btn-rounded editButton" data-user-id="' . $row->user_id . '" >Edit</a>';
                         $actions .= '<form class="delete-user-form" data-user-id="' . $row->user_id . '">
                             <button type="button" class="btn btn-sm btn-gradient-danger btn-rounded delete-user-button">Delete</button>
                         </form>';
