@@ -3,7 +3,7 @@
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                    @if($user->profile->profile_image)
+                    @if($user->profile && $user->profile->profile_image)
                     <img src="{{ asset('storage/images/') }}/{{$user->profile->profile_image}}" alt="{{$user->profile->profile_image}}" class="img-fluid">
                     @else
                     <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">

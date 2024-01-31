@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../your-laravel-project"
+		},
+		{
+			"path": "../../../../../mean-projects"
+		}
+	],
+	"settings": {}
+}

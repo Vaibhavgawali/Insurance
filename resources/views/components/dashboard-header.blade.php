@@ -21,7 +21,7 @@
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="nav-profile-img">
-                        @if($user->profile->profile_image)
+                        @if($user->profile && $user->profile->profile_image)
                         <img src="{{ asset('storage/images/') }}/{{$user->profile->profile_image}}" alt="{{$user->profile->profile_image}}" class="img-fluid">
                         <span class="availability-status online"></span>
                         @else
