@@ -54,8 +54,8 @@
 								<div>
 									<button type="submit" id="login_btn" class="btn btn-primary  my-2">Login</button>
 								</div>
-								 <!--Don't have an account register? <a href="/register" class="btn btn-secondary text-white mx-2">Register</a>  -->
-                <!-- <a href="/password/reset" class="btn btn-secondary text-white mx-2">Forgot Password</a> -->
+								Dont have an account ? <a href="/register" class="btn btn-secondary text-white mx-2">Register</a> 
+                <a href="/password/reset" class="btn btn-secondary text-white mx-2">Forgot Password</a>
 							  </div>
                           </form>
                        </div>
