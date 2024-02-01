@@ -129,7 +129,7 @@ Route::resource('candidate-quizes', CandidateQuizController::class);
 Route::post('submit-quiz/{quiz_id}', [CandidateQuizController::class, 'submit']);
 Route::get('/start-quiz', [CandidateQuizController::class, 'startQuiz']);
 // });
-Route::get('generate-pdf', [CandidateQuizController::class, 'generatePDF']);
+Route::get('generate-pdf/{id}', [CandidateQuizController::class, 'generatePDF']);
 Route::get('generate-candidate-profile-pdf/{id}', [CandidateController::class, 'downloadCandidateProfilePDF']);
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');

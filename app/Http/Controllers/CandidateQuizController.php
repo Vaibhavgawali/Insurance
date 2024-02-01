@@ -180,12 +180,12 @@ class CandidateQuizController extends Controller
                 
                 $message="You have passed";
 
-                $data = [
-                    'title' => 'Welcome InsuranceNext',
-                    'date' => date('m/d/Y'),
-                    'score'=>$score,
-                    'level'=>$quiz->level
-                ]; 
+                // $data = [
+                //     'title' => 'Welcome InsuranceNext',
+                //     'date' => date('m/d/Y'),
+                //     'score'=>$score,
+                //     'level'=>$quiz->level
+                // ]; 
 
                 // $pdf=$this->generatePDF($data);
 
@@ -197,7 +197,7 @@ class CandidateQuizController extends Controller
                 // dd($passed_quiz);
                 // $is_updated= $passed_quiz->update(['certificate_path' => $pdf]);
 
-                return Response(['success'=>true,'message' => $message,'passed'=>true],200); //,'pdf'=>$pdf
+                return Response(['user_quiz_id'=>$passed_quiz->id,'success'=>true,'message' => $message,'passed'=>true],200); //,'pdf'=>$pdf
 
             }else{
                 $message="You have failed";
@@ -206,7 +206,7 @@ class CandidateQuizController extends Controller
 
             return Response(['success' => true, 'message' => $message], 200);
 
-    } else {
+        } else {
             // User has submitted outside the valid time span
             $message= "Quiz submission is outside the valid time span.";
             return Response(['success' => false, 'message' => $message], 200);
@@ -262,10 +262,26 @@ class CandidateQuizController extends Controller
         return response()->json(['success' => true, 'start_time' => $startTime]);
     }
 
-    public function generatePDF()//$data
+    public function generatePDF($userQuizId)//$data
     {
-        // return "ok";
-        return view('dashboard.candidate-quizes.certificate_demo');
+        // $user_quiz = UserQuiz::findOrFail($userQuizId);
+        $user_quiz = UserQuiz::with('user', 'quiz')
+                ->where('id', $userQuizId)
+                ->where('pass_status', 1)
+                ->firstOrFail();
+    
+        $score = $user_quiz->score;
+        $date = $user_quiz->updated_at ?? $user_quiz->created_at;
+        
+        $data = [
+            'title' => 'Welcome to InsuranceNext',
+            'date' => $date->format('m/d/Y'),
+            'name' => $user_quiz->user->name,
+            'score' => $score,
+            'level' => $user_quiz->quiz->level,
+        ];
+
+        return view('dashboard.candidate-quizes.certificate_demo',compact('data'));
 
         // $users = Quiz::get();
             
