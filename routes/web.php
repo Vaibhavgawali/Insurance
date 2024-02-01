@@ -19,6 +19,7 @@ use App\Http\Controllers\admin\RequirementsController;
 use App\Http\Controllers\admin\PasswordController;
 use App\Http\Controllers\CandidateQuizController;
 use App\Http\Controllers\admin\RolesController;
+use App\Http\Controllers\ResultsController;
 
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionController;
@@ -114,6 +115,9 @@ Route::group(['middleware' => ['auth:sanctum', 'role:Superadmin']], function () 
 
     Route::resource('roles', RolesController::class);
     Route::get('getRolesTableData', [RolesController::class, 'getRolesTableData'])->name('getRolesTableData');
+
+    Route::get('results', [ResultsController::class,'index']);
+    Route::get('getResultsTableData', [ResultsController::class, 'getResultsTableData'])->name('getResultsTableData');
 
 });
 

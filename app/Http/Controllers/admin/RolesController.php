@@ -146,7 +146,6 @@ class RolesController extends Controller
      */
     public function destroy(string $id)
     {
-// dd($id);
         $role = Role::findById($id,'web');
 
         if (!is_null($role)) {

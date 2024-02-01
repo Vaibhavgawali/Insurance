@@ -144,6 +144,7 @@ class CandidateController extends Controller
                     ->with('address', 'profile', 'experience', 'documents')
                     ->when(request()->has('filter_Line'), function ($query) {
                         $filterLine = request('filter_Line');
+                        
 
         if ($filterLine === 'other') {
             // Exclude rows where preffered_line is 'life', 'general', or 'health'

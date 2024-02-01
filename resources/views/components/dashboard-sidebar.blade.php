@@ -40,7 +40,7 @@
         </li>
         @endif
 
-        @hasrole('Superadmin')
+        @if(Auth::user()->hasCategory('Superadmin'))
         <li class="nav-item">
             <a class="nav-link" href="/insurer">
                 <span class="menu-title">Insurer</span>
@@ -70,29 +70,37 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="/results">
+                <span class="menu-title">Results</span>
+                <i class="mdi mdi-airplay menu-icon"></i>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="/quizes">
                 <span class="menu-title">Add Quiz</span>
                 <i class="mdi mdi-airplay menu-icon"></i>
             </a>
         </li>
-        
-        @endhasrole
-        @hasrole('Insurer')
+        @endif
+
+        @if(Auth::user()->hasCategory('Insurer'))
         <li class="nav-item">
             <a class="nav-link" href="/requirements">
                 <span class="menu-title">Requirements</span>
                 <i class="mdi mdi-comment-question-outline  menu-icon"></i>
             </a>
         </li>
-        @endhasrole
-        @hasrole('Institute')
+        @endif
+
+        @if(Auth::user()->hasCategory('Institute'))
         <li class="nav-item">
             <a class="nav-link" href="/requirements">
                 <span class="menu-title">Requirements</span>
                 <i class="mdi mdi-comment-question-outline  menu-icon"></i>
             </a>
         </li>
-        @endhasrole
+        @endif
 
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('take_assessment'))
         <li class="nav-item">
