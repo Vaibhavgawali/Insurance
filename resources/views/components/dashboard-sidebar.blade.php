@@ -4,13 +4,16 @@
             <a href="#" class="nav-link">
                 <div class="nav-profile-image">
                     @if($user->profile && $user->profile->profile_image)
+                    <!-- If user has a profile and a profile image, display it -->
                     <img src="{{ asset('storage/images/') }}/{{$user->profile->profile_image}}" alt="{{$user->profile->profile_image}}" class="img-fluid">
                     @else
+                    <!-- If user does not have a profile or profile image, display a default placeholder image -->
                     <img src="/admin-assets/assets/images/profile.jpg" alt="Placeholder Image" class="img-fluid">
                     @endif
                     <!-- <span class="login-status online"></span> -->
-                    <!--change to offline or busy as needed-->
+                    <!-- Change to offline or busy as needed -->
                 </div>
+
                 <div class="nav-profile-text d-flex flex-column">
                     <span class="font-weight-bold mb-2">
                         {{ Illuminate\Support\Str::limit(explode(' ', $user->name)[0], 9, '..') }}
@@ -26,7 +29,7 @@
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
-
+        
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('view_candidate_list') || Auth::user()->can('view_users_list') )
         <li class="nav-item">
             <a class="nav-link" href="/candidate">
@@ -50,13 +53,36 @@
                 <i class="mdi mdi-airplay menu-icon"></i>
             </a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/requirements">
+                <span class="menu-title">Requirements</span>
+                <i class="mdi mdi-comment-question-outline  menu-icon"></i>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="/quizes">
                 <span class="menu-title">Add Quiz</span>
                 <i class="mdi mdi-airplay menu-icon"></i>
             </a>
         </li>
-        
+
+        @endhasrole
+        @hasrole('Insurer')
+        <li class="nav-item">
+            <a class="nav-link" href="/requirements">
+                <span class="menu-title">Requirements</span>
+                <i class="mdi mdi-comment-question-outline  menu-icon"></i>
+            </a>
+        </li>
+        @endhasrole
+        @hasrole('Institute')
+        <li class="nav-item">
+            <a class="nav-link" href="/requirements">
+                <span class="menu-title">Requirements</span>
+                <i class="mdi mdi-comment-question-outline  menu-icon"></i>
+            </a>
+        </li>
         @endhasrole
 
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('take_assessment'))
@@ -68,7 +94,7 @@
         </li>
         @endif
 
-        @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('module-1')  )
+        @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('module-1') )
         <!-- <li class="nav-item">
             <a class="nav-link" href="/module-1">
                 <span class="menu-title">Module-1</span>

@@ -11,11 +11,11 @@ class InstitutionLogin extends Component
     /**
      * Create a new component instance.
      */
-    public $data;
+    public $candidateCount;
 
-    public function __construct($data)
+    public function __construct($candidateCount)
     {
-        $this->data = $data;
+        $this->candidateCount = $candidateCount;
     }
     /**
      * Get the view / contents that represent the component.

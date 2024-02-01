@@ -4,7 +4,7 @@
 		<div class="ins-social-content d-flex align-items-center">
 			<div class="ins-social-item">
 				<a href="#">
-					<img src="{{asset('assets/img/logo/fb.png')}}" alt="">
+					<img src="#" alt="">
 					<span>Facebook</span>
 				</a>
 			</div>
@@ -54,7 +54,7 @@
 					Contact us at @insurancecareer.in
 				</div>
 				<div class="ins-footer-logo position-relative">
-					<a href="#"><img src="{{asset('assets/img/logo/logo1.png')}}" alt=""><span class="logo-vector position-absolute"><img src="assets/img/logo/logo-v.png" alt=""></span></a>
+					<a href="/"><img src="{{asset('assets/img/logo/logo1.png')}}" alt=""><span class="logo-vector position-absolute"><img src="assets/img/logo/logo-v.png" alt=""></span></a>
 				</div>
 				
 				<!-- <div class="ins-footer-newslatter position-relative">
@@ -90,12 +90,12 @@
 				
 				<div class="ins-footer-menu text-center ul-li">
 					<ul>
-						<li><a href="#">home</a></li>
-						<li><a href="#">Domain</a></li>
-						<li><a href="#">Hostings</a></li>
-						<li><a href="#">pages</a></li>
-						<li><a href="#">news</a></li>
-						<li><a href="#">About</a></li>
+						<li><a href="/">home</a></li>
+						<li><a href="/about">About</a></li>
+						<li><a href="/industry">Know about industry</a></li>
+						<li><a href="/privacy">Privacy</a></li>
+						<li><a href="/terms">Terms & conditions</a></li>
+						<li><a href="/contact">contact</a></li>
 					</ul>
 				</div>
 			</div>
@@ -105,8 +105,8 @@
 				</div>
 				<div class="ins-copy-right-menu ul-li">
 					<ul>
-						<li><a href="#">Terms and conditions</a></li>
-						<li><a href="#"> Privacy policy</a></li>
+						<li><a href="/terms">Terms and conditions</a></li>
+						<li><a href="/privacy"> Privacy policy</a></li>
 					</ul>
 				</div>
 			</div>

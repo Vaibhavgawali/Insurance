@@ -230,8 +230,17 @@ $(document).ready(function () {
             preffered_line == "undefined" ||
             preffered_line == undefined
         ) {
-            $("#preferred_line_error").html(
-                '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
+            $("#preffered_line_error").html(
+                '<div class=" invalid-feedback d-block">Please select preffered line is required</div>'
+            );
+            $("#preffered_line").focus();
+            return false;
+        }
+        else if (
+            preffered_line.length>60
+        ) {
+            $("#preffered_line_error").html(
+                '<div class=" invalid-feedback d-block">Preffered line must not be greater than 60 characters</div>'
             );
             $("#preffered_line").focus();
             return false;
@@ -328,7 +337,7 @@ $(document).ready(function () {
         $("#password_confirmation_error").html("");
         $("#city_error").html("");
         $("#spoc_error").html("");
-        $("#preferred_line_error").html("");
+        $("#preffered_line_error").html("");
         $("#flexCheckDefault_error").html("");
 
         $("#register_status").html("");
@@ -457,7 +466,7 @@ $(document).ready(function () {
             spoc == undefined
         ) {
             $("#spoc_error").html(
-                '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
+                '<div class=" invalid-feedback d-block">SPOC is required</div>'
             );
             $("#spoc").focus();
             return false;
@@ -469,8 +478,17 @@ $(document).ready(function () {
             preffered_line == "undefined" ||
             preffered_line == undefined
         ) {
-            $("#preferred_line_error").html(
-                '<div class=" invalid-feedback d-block">Please select preferred line is required</div>'
+            $("#preffered_line_error").html(
+                '<div class=" invalid-feedback d-block">Please select preffered line is required</div>'
+            );
+            $("#preffered_line").focus();
+            return false;
+        }
+       else if (
+            preffered_line.length>60
+        ) {
+            $("#preffered_line_error").html(
+                '<div class=" invalid-feedback d-block">Preffered line must not be greater than 60 characters</div>'
             );
             $("#preffered_line").focus();
             return false;
@@ -747,6 +765,6 @@ $(document).ready(function () {
                     });
                 }
             },
-        });
-    });
+        });
+    });
 });

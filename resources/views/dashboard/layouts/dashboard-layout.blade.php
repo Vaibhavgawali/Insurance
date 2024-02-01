@@ -16,12 +16,18 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="/admin-assets/assets/css/style.css">
+    <link rel="stylesheet" href="/admin-assets/assets/css/module-1.css">
     <link rel="stylesheet" href="/admin-assets/assets/css/candidate-quiz.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.jpg" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ url('') }}">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="/admin-assets/assets/css/jquery.dataTables.css" rel="stylesheet">
+    <script src="/admin-assets/assets/vendors/js/vendor.bundle.base.js"></script>
+
+
 
 </head>
 
@@ -51,8 +57,8 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    
-    <script src="/admin-assets/assets/vendors/js/vendor.bundle.base.js"></script>
+   
+   
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <script src="/admin-assets/assets/vendors/chart.js/Chart.min.js"></script>
@@ -66,8 +72,11 @@
     <!-- Custom js for this page -->
     <script src="/admin-assets/assets/js/dashboard.js"></script>
     <script src="/admin-assets/assets/js/profile.js"></script>
-    <script src="/admin-assets/assets/js/profile.js"></script>
     <script src="/admin-assets/assets/js/quiz.js"></script>
+    <script src="/admin-assets/assets/js/question.js"></script>
+    <script src="/admin-assets/assets/js/user.js"></script>
+    <script src="/admin-assets/assets/js/password.js"></script>
+    
     <!-- End custom js for this page -->
 </body>
 

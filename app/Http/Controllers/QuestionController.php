@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
+use Auth;
+use Validator;
 
 class QuestionController extends Controller
 {
@@ -98,7 +100,7 @@ class QuestionController extends Controller
         // print_r($request->all());die;
         // print_r(intval($request->correct_answer));die;
         $quiz_id=$request->input('quiz_id');
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'question_text' => 'required|string',
             'answers' => 'required|array|min:4',
             'correct_answer' => 'required|integer|in:0,1,2,3',
@@ -106,6 +108,9 @@ class QuestionController extends Controller
         ], [
             'answers.*.required' => 'Answer :attribute is required.',
         ]);
+        if ($validator->fails()) {
+            return Response(['status' => false, 'errors' => $validator->errors()], 422);
+        }
 
         $question = Question::create([
             'question_text' => $request->input('question_text'),
@@ -121,8 +126,9 @@ class QuestionController extends Controller
                 'is_correct' => $correct,
             ]);
         }
-    
-        return redirect()->route('quizes.show',$quiz_id)->with('success', 'Question created successfully');
+        return Response(['status' => true, 'message' => "Question created successfully"], 200);
+        // return redirect()->route('quizes.show',$quiz_id)->with('success', 'Question created successfully');
+        
     }
 
     /**
@@ -164,8 +170,9 @@ class QuestionController extends Controller
     public function update(Request $request, string $id)
     {
         // dd($request->all());
-        $quiz_id=$request->input('quiz_id');
-        $request->validate([
+        $question_id=$request->input('question_id');
+        // dd($question_id);
+        $validator = Validator::make($request->all(), [
             'question_text' => 'required|string',
             'answers' => 'required|array|min:4',
             'correct_answer' => 'required|integer',
@@ -173,16 +180,18 @@ class QuestionController extends Controller
         ], [
             'answers.*.required' => 'Answer :attribute is required.',
         ]);
+        if ($validator->fails()) {
+            return Response(['status' => false, 'errors' => $validator->errors()], 422);
+        }
+        $question = Question::findOrFail($question_id);
+        // dd($question);
     
-        $question = Question::findOrFail($id);
-    
-        $question->update([
-            'question_text' => $request->input('question_text'),
-        ]);
+        $question->update(['question_text' => $request->input('question_text'),]);
     
         // Update existing answers
         foreach ($request->input('answers') as $index => $answerText) {
-            $correct = $index + 1 == $request->input('correct_answer');
+    $correct = $index + 1 == $request->input('correct_answer');
+    
     
             // Find the existing answer by its index
             $answer = $question->answers->get($index);
@@ -201,8 +210,9 @@ class QuestionController extends Controller
                 ]);
             }
         }
-    
-        return redirect()->route('quizes.show',$quiz_id)->with('success', 'Question updated successfully');
+        return Response(['status' => true, 'message' => "Question updated successfully"], 200);
+        
+        // return redirect()->route('quizes.show',$quiz_id)->with('success', 'Question updated successfully');
     }
 
     /**
@@ -211,9 +221,11 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
+        // dd($id);
         $question = Question::find($id);
         $question->delete();
-        return redirect()->back()->with('success', 'Question deleted successfully');
+        // return redirect()->back()->with('success', 'Question deleted successfully');
+        return response()->json(['status' => 'success', 'message' => 'Question deleted successfully']);
 
     }
 }

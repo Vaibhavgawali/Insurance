@@ -20,9 +20,10 @@ class FormComponent extends Component
     public $formClass;
     public $fieldColumn;
     public $modelData;
+    public $formId;
 
 
-    public function __construct($action, $method = "POST", $fields, $layout, $submitLabel, $formClass, $fieldColumn = "row-cols-md-2", $modelData = [])
+    public function __construct($action, $method = "POST", $fields, $layout, $submitLabel, $formClass, $fieldColumn = "row-cols-md-2", $modelData = [], $formId='1')
     {
         //
         $this->action = $action;
@@ -33,6 +34,7 @@ class FormComponent extends Component
         $this->formClass = $formClass;
         $this->fieldColumn = $fieldColumn;
         $this->modelData = $modelData;
+        $this->formId=$formId;
     }
 
     /**

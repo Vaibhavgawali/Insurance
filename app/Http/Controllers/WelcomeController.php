@@ -11,6 +11,30 @@ class WelcomeController extends Controller
     {
         return view('frontend.index');
     }
+    function about()
+    {
+        return view('frontend.about');
+    }
+    function industry()
+    {
+        return view('frontend.industry');
+    }
+    function module()
+    {
+        return view('frontend.module');
+    }
+    function contact()
+    {
+        return view('frontend.contact');
+    }
+    function privacy()
+    {
+        return view('frontend.privacy');
+    } 
+    function terms()
+    {
+        return view('frontend.terms');
+    }
     function candidate_register()
     {
         return view('frontend.candidate-register');

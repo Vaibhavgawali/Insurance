@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&family=Noto+Sans&family=Nunito+Sans:opsz@6..12&family=Urbanist:wght@200&display=swap');
+
 .Quiz-options{
     padding-left: 45px;
     font-size: 14px;
@@ -21,6 +23,7 @@
 
     .Question-text-style{
         font-size: 17px !important;
+       
     }
 
     .button-style{
@@ -72,7 +75,20 @@
     background-color: rgba(184, 63, 208, 0.879);
     letter-spacing: 1px;
 }
+.Question-text-style{
+  
+    font-family: 'noto sans';
+    font-weight: 600;
 
+}
+.options
+{
+    font-family: 'noto sans';
+}
+.question
+{
+    cursor: pointer;
+}
 
 
 

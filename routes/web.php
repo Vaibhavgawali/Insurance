@@ -16,6 +16,7 @@ use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserExperienceController;
 use App\Http\Controllers\UserDocumentsController;
 use App\Http\Controllers\admin\RequirementsController;
+use App\Http\Controllers\admin\PasswordController;
 use App\Http\Controllers\CandidateQuizController;
 
 use App\Http\Controllers\QuizController;
@@ -37,6 +38,15 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/about', [WelcomeController::class, 'about']);
+Route::get('/industry', [WelcomeController::class, 'industry']);
+Route::get('/module', [WelcomeController::class, 'module']);
+Route::get('/contact', [WelcomeController::class, 'contact']);
+Route::get('/privacy', [WelcomeController::class, 'privacy']);
+Route::get('/terms', [WelcomeController::class, 'terms']);
+
+
+
 
 Route::get('/candidate-register', [WelcomeController::class, 'candidate_register']);
 Route::get('/insurer-register', [WelcomeController::class, 'insurer_register']);
@@ -50,11 +60,20 @@ Route::middleware(['web'])->group(function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-Route::resource('admin/user', UserController::class)->middleware('auth:sanctum');
+Route::get('/reset-password', [PasswordController::class,'resetPasswordForm']);
+Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
 
+Route::resource('admin/user', UserController::class)->middleware('auth:sanctum');
 Route::resource('candidate', CandidateController::class);
+
+Route::get('/getCandidateTableData', [CandidateController::class, 'getCandidateTableData'])->name('getCandidateTableData');
+
 Route::resource('insurer', InsurerController::class);
+Route::get('/getInsurerTableData', [InsurerController::class, 'getInsurerTableData'])->name('getInsurerTableData');
+
 Route::resource('institute', InstituteController::class);
+Route::get('/getInstituteTableData', [InstituteController::class, 'getInstituteTableData'])->name('getInstituteTableData');
+
 Route::resource('module-1', ModulesController::class);
 // Auth::routes();
 
@@ -64,8 +83,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('user-address', UserAddressController::class);
     Route::resource('user-experience', UserExperienceController::class);
     Route::resource('user-documents', UserDocumentsController::class);
+    Route::post('user-documents-update/{id}', [UserDocumentsController::class, 'update'])->name('update');
 
     Route::resource('requirements', RequirementsController::class);
+    Route::get('/getRequirementsTableData', [RequirementsController::class, 'getRequirementsTableData'])->name('getRequirementsTableData');
+
+
 
     Route::post('image-upload', [UserProfileController::class, 'profileImageUpload']);
 
@@ -83,6 +106,11 @@ Route::group(['middleware' => ['auth:sanctum', 'role:Superadmin']], function () 
     Route::post('assign-role/{id}', [UserController::class, 'assignRole']);
 
     Route::resource('quizes', QuizController::class);
+    Route::get('/getQuizesTableData', [QuizController::class, 'getQuizesTableData'])->name('getQuizesTableData');
+
+    Route::get('show_quiz/{quiz_id}',[QuizController::class,'show_quiz']);
+    Route::get('getQuestionsTableData/{quiz_id}', [QuizController::class, 'getQuestionsTableData'])->name('getQuestionsTableData');
+
     Route::resource('questions', QuestionController::class);
     Route::resource('answers', AnswerController::class);
 });

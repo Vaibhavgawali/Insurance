@@ -1,5 +1,6 @@
 // Alert Box
 
+
 let loginAlert = () => {
     swal("Good job!", "You clicked the button!", "success");
 };
@@ -12,28 +13,83 @@ let resumeUploadAlert = () => {
 let requirementsAlert = () => {
     swal("Nice!", "We will get back to you soon!", "success");
 };
-deleteAlert = () => {
-    swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to see the candidate!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    }).then((willDelete) => {
-        if (willDelete) {
-            swal("Poof! Your imaginary file has been deleted!", {
-                icon: "success",
-            });
-            // If the user confirms, proceed with form submission
-            // Assuming you have a form with an ID, replace 'yourFormId' with the actual ID
-            document.getElementById("candidate-delete-form").submit();
-        } else {
-            swal("Your imaginary file is safe!");
-            // If the user cancels, return false to prevent form submission
+
+
+$(document).ready(function () {
+    // Reuirements  Update function
+    $("#requirement_text_submit_button").click(function (event) {
+        console.log("clicked");
+        var requirement_text = $("#requirement_text").val();
+        var user_id = $("#user_id").val();
+        console.log(requirement_text);
+
+        $("#requirement_text_error").html("");
+
+        if (
+            requirement_text == "" ||
+            requirement_text == null ||
+            requirement_text == "undefined" ||
+            requirement_text == undefined
+        ) {
+            $("#requirement_text_error").html(
+                '<div class=" invalid-feedback d-block">Query is required.</div>'
+            );
+            $("#requirement_text").focus();
+            console.log("Error");
             return false;
         }
+        var data = {
+            requirement_text: requirement_text,
+            user_id: user_id,
+        };
+        console.log(data);
+
+        event.preventDefault();
+
+        var url = window.location.origin + `/requirements`;
+        console.log(url);
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.status == true) {
+                    $(".error-message").remove();
+                    $("#requirement_text_submit_button").attr("disabled", true);
+                    requirementsAlert();
+                    // Optional: You can add a delay before reloading the page
+                    // setTimeout(function () {
+                    //     window.location.reload();
+                    // }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+                    return false;
+                }
+            },
+            error: function (response) {
+                // console.log(response);
+                if (response.status === 422) {
+                    var errors = response.responseJSON.errors;
+                    console.log(errors);
+                    $(".error-message").remove();
+
+                    // Display new errors
+                    $.each(errors, function (field, messages) {
+                        var input = $('[name="' + field + '"]');
+                        input.after(
+                            '<div class="error-message invalid-feedback d-block">' +
+                                messages.join(", ") +
+                                "</div>"
+                        );
+                    });
+                }
+            },
+        });
     });
-};
+});
 
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("profile_image");
@@ -140,29 +196,12 @@ $(document).ready(function (e) {
         var user_id = $("#user_id").val().trim();
         user_id = parseInt(user_id);
 
-        var documentUrlInput = $("#document_url")[0];
-        var documentUrl = documentUrlInput.files[0];
-        var documentUrlValue = documentUrl ? documentUrl.name : null;
-
-        // formData.append("document_url", documentUrl, documentUrlInput.name);
-        formData.append(
-            "server_expected_key",
-            documentUrl,
-            documentUrlInput.name
-        );
-
-        console.log("user_id:", user_id);
-        console.log("document_title:", $("#document_title").val());
-        console.log("document_url:", documentUrl);
-        console.log("document_url_value:", documentUrlValue);
-        var url = window.location.origin + `/user-documents`;
         // Get base URL from meta tag
         var baseUrl = $('meta[name="base-url"]').attr("content");
 
-        //  e.preventDefault();
         $.ajax({
-            url: baseUrl + `/user-documents/${user_id}`,
-            type: "PATCH",
+            url: baseUrl + `/user-documents-update/${user_id}`,
+            type: "POST",
             data: formData,
             contentType: false,
             processData: false,
@@ -187,7 +226,7 @@ $(document).ready(function (e) {
             error: function (response) {
                 // console.log(response);
                 if (response.status === 422) {
-                    var errors = response.responseJSON.errors;
+                    var errors = response.responseJSON.message;
                     console.log(errors);
                     $(".error-message").remove();
 
@@ -206,7 +245,7 @@ $(document).ready(function (e) {
     });
 });
 
-$(document).ready(function (e) {
+$(document).ready(function () {
     $("#profile_cv_update_button").click(function () {
         var formData = new FormData($("#profile_cv_form")[0]);
         var url = window.location.origin + `/user-documents`;
@@ -1144,75 +1183,5 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    // Reuirements  Update function
-    $("#put-query-submit-button").click(function (event) {
-        var requirement_text = $("#put-query").val();
-        var user_id = $("#user_id").val();
 
-        $("#put-query_error").html("");
 
-        if (
-            requirement_text == "" ||
-            requirement_text == null ||
-            requirement_text == "undefined" ||
-            requirement_text == undefined
-        ) {
-            $("#put-query_error").html(
-                '<div class=" invalid-feedback d-block">Query is required.</div>'
-            );
-            $("#put-query").focus();
-            return false;
-        }
-
-        var data = {
-            requirement_text: requirement_text,
-            user_id: user_id,
-        };
-
-        event.preventDefault();
-
-        var url = window.location.origin + `/requirements`;
-        console.log(url);
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: data,
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            success: function (response) {
-                console.log(response);
-                if (response.status == true) {
-                    $(".error-message").remove();
-                    $("#put-query-submit-button").attr("disabled", true);
-                    requirementsAlert();
-                    // Optional: You can add a delay before reloading the page
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // }, 1000); // 2000 milliseconds (2 seconds) delay, adjust as needed
-                    return false;
-                }
-            },
-            error: function (response) {
-                // console.log(response);
-                if (response.status === 422) {
-                    var errors = response.responseJSON.errors;
-                    console.log(errors);
-                    $(".error-message").remove();
-
-                    // Display new errors
-                    $.each(errors, function (field, messages) {
-                        var input = $('[name="' + field + '"]');
-                        input.after(
-                            '<div class="error-message invalid-feedback d-block">' +
-                                messages.join(", ") +
-                                "</div>"
-                        );
-                    });
-                }
-            },
-        });
-    });
-});
