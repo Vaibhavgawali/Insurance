@@ -101,7 +101,7 @@
 			</div>
 			<div class="ins-footer-copyright d-flex justify-content-between">
 				<div class="ins-footer-copyright-text">
-					© Copyright ©2023 <a href="https://insurance-next.com">Insurance Next</a> All Rights Reserved Designed & Developed by <a href="https://zynovvatech.com/">ZynovvaTech</a>
+					© Copyright ©2023 <a href="https://insurancecareer.in">Insurancecareer.in</a> All Rights Reserved Designed & Developed by <a href="https://zynovvatech.com/">ZynovvaTech</a>
 				</div>
 				<div class="ins-copy-right-menu ul-li">
 					<ul>

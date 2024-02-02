@@ -74,6 +74,8 @@ Font load
     scroll-behavior: inherit;
    --register-bg-color:#F8F9FA;
    --custom-italic-font:italic;
+   --custom-color:#0163ea;
+
     
   }
   *
@@ -496,12 +498,12 @@ select:visited {
 .in-header-section .in-sidebar-btn span:nth-child(2) {
   top: 0;
   right: 0;
-  background-color: #000000;
+  background-color: var(--theme-color);
 }
 .in-header-section .in-sidebar-btn span:nth-child(3) {
   left: 0;
   bottom: 0;
-  background-color: #000000;
+  background-color: var(--theme-color);
 }
 .in-header-section .in-sidebar-btn span:nth-child(4) {
   right: 0;
@@ -518,7 +520,7 @@ select:visited {
   top: 2px;
   right: -14px;
   font-size: 14px;
-  color: #fff;
+  color: #171717;
   font-weight: 300;
   content: "\f107";
   font-weight: 900;
@@ -3915,7 +3917,7 @@ select:visited {
   content: "";
   border-radius: 10px;
   position: absolute;
-  background:#FFB966;
+  background:var(--base-color)
 }
 .in-service-item-3 .inner-text p {
   -webkit-transition: 500ms all ease;
@@ -3933,7 +3935,7 @@ select:visited {
 }
 .in-service-item-3 .inner-icon-btn .inner-icon i {
   font-size: 55px;
-  color:#056251;
+  color:var(--theme-color)
 }
 .in-service-item-3 .inner-icon-btn .inner-btn a {
   width: 40px;
@@ -7203,7 +7205,7 @@ select:visited {
 }
 .ins-main-about-list-area li:hover:before {
   color: #fff;
-  background-color: #056251;
+  background-color: var(--theme-color-2);
 }
 
 /*---------------------------------------------------- */
@@ -13663,7 +13665,7 @@ rs-module [class*=" fa-"]:before {
         font-weight: 500;
         line-height: 20px;
         letter-spacing: -0.06em;
-        color: var(--theme-color);
+        color: var(--theme-color) ;
        }
    /* top-about-div End */
    
@@ -13677,7 +13679,7 @@ rs-module [class*=" fa-"]:before {
      .top-register-section .top-register-div h2
      {
       font-size: 22px;
-      color: var(--theme-color-2);
+      color: #fff;
      }
      .top-register-section .top-register-div a
      {
@@ -13740,7 +13742,7 @@ rs-module [class*=" fa-"]:before {
      .top-register-section .top-intrest-div h2
      {
       font-size: 22px;
-      color: var(--theme-color);
+      color: #fff;
      }
      .top-register-section .top-intrest-div a
      {
@@ -13981,8 +13983,23 @@ background-color: #F0F4FD;
   font-family: 'Nunito';
   font-size: 20px;
  }
+ .custom-color
+ {
+  color: var(--custom-color);
+ }
  .prabhat-text-color
  {
-  color: var(--theme-color-custom) !important;
+  color:var(--custom-color);
   font-style: italic;
+ }
+ .custom-btn
+ {
+  background:  linear-gradient(to right,var(--gradiant-color-from),var(--gradiant-color-to));
+  color: #fff !important;
+ }
+ .custom-btn:hover
+ {
+  background: #fff;
+  color: var(--theme-color) !important;;
+  border: solid 1px;
  }

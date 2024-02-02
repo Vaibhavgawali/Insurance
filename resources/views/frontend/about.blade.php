@@ -6,7 +6,7 @@
 		<div class="container  p-5">
 		   <div class="row">
 			   <div class="col-lg-12">
-				   <h3 class="text-justify fs-5"><span class="fs-2 text-dark">Insurancecareer.in</span> has been founded with a clear vision of establishing a Platform for budding and existing/aspiring insurance professionals to learn, stay updated and navigate their career in the promising Insurance Industry.</h3>
+				   <h3 class="text-justify fs-5"><span class="fs-2 custom-color custom-italic">Insurancecareer.in</span> has been founded with a clear vision of establishing a Platform for budding and existing/aspiring insurance professionals to learn, stay updated and navigate their career in the promising Insurance Industry.</h3>
 			   </div>
 		   </div>
 		</div>
@@ -84,7 +84,7 @@
 									About Us
 								</div>
 								<h2>About the Founder </h2>
-								<p >Insurancecareer.in had been founded by Prabhat Bajaj, an insurance veteran who has
+								<p ><span class="custom-color custom-italic">Insurancecareer.in</span> had been founded by Prabhat Bajaj, an insurance veteran who has
 									seen evolvement of Private Insurers right from the beginning and has been part of
 									Life Insurance Industry for more than 2 decades </p>
 								<p>Prabhat is a BFSI Professional Veteran who has worked extensively in Mutual Fund and
@@ -170,7 +170,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 my-2 about-why-partner-section">
 			<div class="shadow-lg  ">
 				<div class="text-center">
-					<h5 class="fs-4 p-3 fw-bold">Why Partner with Insurancecareer.in ?</h5>
+					<h5 class="fs-4 p-3 fw-bold">Why Partner with <span class="custom-color custom-italic">Insurancecareer.in</span> ?</h5>
 				</div>
 				<div class="p-3 about-why-partner-section-paraDiv">
 					  <div><p class="fs-5 text-justify">A platform for professionals of other industries to understnd about the industry, career opportunities and help them pursue career in the Insurance Industry</p>

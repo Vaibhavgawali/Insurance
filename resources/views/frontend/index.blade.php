@@ -13,7 +13,7 @@
 			<span class="ins-slider-print position-absolute"><img src="{{asset('assets/img/slider/print.png')}}" alt=""></span>
 			<div class="ins-slider-area-six">
 				<div class="ins-slider-item-six position-relative">
-					<h1 style="margin-bottom: 50px;;" class="text-center text-dark pb-30 top-heading nunito-font "><span class="custom-italic">insurancecareer.in</span> - Empower Your Future</h1>
+					<h1 style="margin-bottom: 50px;;" class="text-center text-dark pb-30 top-heading nunito-font custom-color"><span class="custom-italic custom-color">insurancecareer.in</span> - Empower your future</h1>
 					<div class="container">
 						<div class="row top-images-section ">
 							<div class="col-12 col-md-4 col-lg-4">
@@ -44,7 +44,7 @@
 						<div class="row top-info-section">
 							<div class="col-12 col-md-4 col-lg-4 top-info-div p-10 ">
 								<div class="top-icon-div text-uppercase">
-									 <span class="text-dark fs-3 text-lowercase custom-italic">insurancecareer.in</span>
+									 <span class="fs-3 text-lowercase custom-italic custom-color">insurancecareer.in</span>
 								</div>
 								<div class="pt-3 ">
 								<h1 class="fs-5">Navigate the Insurance Career Landscape with us.</h1> 
@@ -52,11 +52,11 @@
 								</div>
 							</div>
 							<div class="col-12 col-md-64 col-lg-4 top-about-div ">
-								<img src="./assets/img/3D-images/Education.gif" alt="">
+								<img src="./assets/img/3D-images/Education.png" alt="">
 							</div>
 							<div class="col-12 col-md-64 col-lg-4 top-about-div">
                                <div class="top-about-content">
-								 <p class="navifate-font"><span class="text-success fw-bolder custom-italic">insurancecareer.in</span> is committed to add value to the Insurance Industry by providing this platform which shall cater to impart knowledge & facilitate rewarding & glorious career for its users.</p>
+								 <p class="navifate-font"><span class=" fw-bolder custom-italic prabhat-text-color">insurancecareer.in</span> is committed to add value to the Insurance Industry by providing this platform which shall cater to impart knowledge & facilitate rewarding & glorious career for its users.</p>
 							      <h2 style="margin-right: 30px;" class="fs-6 text-end "><span style="letter-spacing: 2px;" class="prabhat-text-color">Prabhat Bajaj</span>, Insurance Veteran</h2> 
 							   </div>
 							</div>
@@ -93,11 +93,11 @@
 					<a href="/login"><img  src="{{asset('assets/img/3D-images/Post Your CV Here.png')}}" alt=""></a>
 				</div>
 		  </div>
-		  <section>
+		  <section style='margin-top: 20px;'>
 			   <div class="container">
 				  <div class="">
 					<h3 style=" 
-				background: -webkit-linear-gradient(#eee, #FFB966);
+				background: -webkit-linear-gradient(#51CDDF, #0C5EB4);
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;">Multiple Channels to explore</h3>
 				  </div>
@@ -178,7 +178,7 @@
 										<li>Explore opportunity wrt your expertise & skill sets</li>
 										<li> Next steps to way forward</li>
 									</ul>
-									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to know more about the opportunity & Next Steps</p>
+									<p><a href="/industry" class="btn  btn-sm custom-btn">Click here</a> to know more about the opportunity & Next Steps</p>
 								</div>
 								
 							</div>
@@ -204,7 +204,7 @@
 										<li>Use the platform to be in touch with the Community</li>
 										<li>Explore your next level as you ready for future</li>
 									</ul>
-									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to express your interest for your next move</p>
+									<p><a href="/industry" class="btn custom-btn btn-sm ">Click here</a> to express your interest for your next move</p>
 								</div>
 								
 							</div>
@@ -232,7 +232,7 @@
 									</ul>
 									<br>
 									
-									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to Register & start your Certification Now</p>
+									<p><a href="/industry" class="btn custom-btn btn-sm ">Click here</a> to Register & start your Certification Now</p>
 									<br>
 								
 								</div>
@@ -260,7 +260,7 @@
 										<li>Certifications and placement references</li>
 									</ul>
 									<br>
-									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to Register & know more</p>
+									<p><a href="/industry" class="btn custom-btn btn-sm ">Click here</a> to Register & know more</p>
 								</div>
 								
 							</div>
