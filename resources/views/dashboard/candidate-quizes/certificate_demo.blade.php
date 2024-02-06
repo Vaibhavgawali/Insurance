@@ -80,7 +80,6 @@
     justify-content: center;">
 <div class="container">
   <button id="btnPrint">Print</button>
-
   <div class="certificate" 
       style="padding: 80px;
         border: 2px solid #000;
@@ -123,7 +122,7 @@
           </h2>
         </div>
     </div>
-    <div class="text-center pt-4 fw-bold paragraph" 
+    <div class="text-center pt-2 fw-bold paragraph" 
         style="font-size: 20px;
         font-weight: 350;
         color: rgb(141, 142, 144);">
