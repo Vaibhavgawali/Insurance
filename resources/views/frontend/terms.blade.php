@@ -6,7 +6,7 @@
 		<div class="container">
         <div class="ins-section-title-six text-center">
     <div class="ins-subtitle text-uppercase">
-        <i class="fas fa-heart"></i> At Insurancecareer, we believe in transparency and fairness in all interactions.
+        <i class="fas fa-heart"></i> At <span class="custom-italic custom-color">insurancecareer.in</span>, we believe in transparency and fairness in all interactions.
     </div>
 	<h2>Terms and
     <span class="ins-title-shape1"><img src="assets/img/shape/title-sh1.svg" alt=""></span>Conditions<span class="ins-title-shape2"><img src="assets/img/shape/title-sh2.svg" alt=""></span>
@@ -53,11 +53,12 @@
 									</h2>
 									<div id="collapseThree2" class="accordion-collapse collapse" aria-labelledby="headingThree2" data-bs-parent="#accordionExample2">
 										<div class="accordion-body">
-										All content on our website, including text, graphics, logos, and images, is the intellectual property of Insurancecareer.in. Users are not permitted to reproduce, distribute, or use any content without explicit permission.
+										All content on our website, including text, graphics, logos, and images, is the intellectual property of <span class="custom-italic custom-color">Insurancecareer.in</span>. Users are not permitted to reproduce, distribute, or use any content without explicit permission.
 
 										</div>
 									</div>
 								</div>
+								
 								<div class="accordion-item  pera-content wow fadeInUp" data-wow-delay="800ms" data-wow-duration="1500ms">
 									<h2 class="accordion-header" id="headingFour">
 										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false">
@@ -97,7 +98,7 @@
 									</h2>
 									<div id="collapseTwo3" class="accordion-collapse collapse" aria-labelledby="headingTwo3" data-bs-parent="#accordionExample3">
 										<div class="accordion-body">
-										Insurancecareer.in reserves the right to update or modify these terms and conditions at any time. Users are encouraged to review the terms periodically for changes.
+										<span class="custom-color custom-italic">Insurancecareer.in</span> reserves the right to update or modify these terms and conditions at any time. Users are encouraged to review the terms periodically for changes.
 										</div>
 									</div>
 								</div>
@@ -109,7 +110,7 @@
 									</h2>
 									<div id="collapseThree3" class="accordion-collapse collapse" aria-labelledby="headingThree3" data-bs-parent="#accordionExample3">
 										<div class="accordion-body">
-										Insurancecareer.in may terminate or suspend access to our services without prior notice for any violation of these terms or for any other reason.
+										<span class="custom-color custom-italic">Insurancecareer.in</span> may terminate or suspend access to our services without prior notice for any violation of these terms or for any other reason.
 										</div>
 									</div>
 								</div>
@@ -121,7 +122,7 @@
 									</h2>
 									<div id="collapseFour3" class="accordion-collapse collapse " aria-labelledby="headingFour3" data-bs-parent="#accordionExample3">
 										<div class="accordion-body">
-                                        Insurancecareer.in is not liable for any direct, indirect, incidental, consequential, or punitive damages arising from the use of our services.
+                                        <span class="custom-color custom-italic">Insurancecareer.in</span> is not liable for any direct, indirect, incidental, consequential, or punitive damages arising from the use of our services.
 										</div>
 									</div>
 								</div>

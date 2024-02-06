@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Insurance Next</title>
+	<title>Insurancecareer.in</title>
 	<meta name="description" content="Insurancecarrer - Insurance Company">
 	<meta name="keywords" content="	accounting, advising, advisory, business, company, consulting, corporate, finance, financial, investments, law, multi-purpose, services, tax help, visual composer">
 	<meta name="author" content="Zynovvatech">
@@ -56,7 +56,7 @@
 					<span></span>
 				</div>
 				<div class="ins-nav-cta d-flex align-items-center">
-					<span><img src="{{asset('assets/img/logo/fire.svg')}}" alt=""></span> Hot Line: +1 800 123 456
+					<span><img src="{{asset('assets/img/logo/fire.svg')}}" alt=""></span> Hot Line: + <a href="tel:011-44748705">011-44748705</a>
 				</div>
 			</div>
 			<div class="main-navigation-menu">
@@ -74,7 +74,7 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a class="btn btn-outline-success p-2" href="javascript:void(0)">Register</a>
+							<a class="btn  custom-btn p-2" href="javascript:void(0)">Register</a>
 							<ul class="dropdown-menu clearfix">
 								<li><a   href="/candidate-register">Candidate</a></li>
 								<li><a  href="/insurer-register">Insurer</a></li>
@@ -82,7 +82,7 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a class="btn btn-outline-secondary p-2" href="javascript:void(0)">Login</a>
+							<a class="btn custom-btn p-2" href="javascript:void(0)">Login</a>
 							<ul class="dropdown-menu clearfix">
 								<li><a   href="/login">Candidate</a></li>
 								<li><a  href="/login">Insurer</a></li>
@@ -121,7 +121,7 @@
 								</ul>
 							</li>
 							<li class="dropdown">
-							<a class="btn btn-outline-success p-2" href="javascript:void(0)">Register</a>
+							<a class="btn custom-btn p-2" href="javascript:void(0)">Register</a>
 							<ul class="dropdown-menu clearfix">
 								<li><a   href="/candidate-register">Candidate</a></li>
 								<li><a  href="/insurer-register">Insurer</a></li>
@@ -129,7 +129,7 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a class="btn btn-outline-secondary p-2" href="javascript:void(0)">Login</a>
+							<a class="btn custom-btn p-2" href="javascript:void(0)">Login</a>
 							<ul class="dropdown-menu clearfix">
 								<li><a   href="/login">Candidate</a></li>
 								<li><a  href="/login">Insurer</a></li>

@@ -51,7 +51,7 @@
 		<div class="container">
 			<div class="ins-footer-logo-newslatter d-flex align-items-center justify-content-between">
 				<div class="ins-footer-email">
-					Contact us at @insurancecareer.in
+					Contact us at  <a href="mailto:info@insurancecareer.in">info@insurancecareer.in</a>
 				</div>
 				<div class="ins-footer-logo position-relative">
 					<a href="/"><img src="{{asset('assets/img/logo/logo1.png')}}" alt=""><span class="logo-vector position-absolute"><img src="assets/img/logo/logo-v.png" alt=""></span></a>
@@ -84,7 +84,7 @@
 					</div>
 					<div class="ins-footer-cta-text">
 						<span class="hd-title text-uppercase">phone</span>
-						<span class="hd-value text-uppercase">88 1900 6789 56</span>
+						<span class="hd-value text-uppercase"><a href="tel:011-44748705">011-44748705</a></span>
 					</div>
 				</div>
 				
@@ -101,7 +101,7 @@
 			</div>
 			<div class="ins-footer-copyright d-flex justify-content-between">
 				<div class="ins-footer-copyright-text">
-					© Copyright ©2023 <a href="https://insurance-next.com">Insurance Next</a> All Rights Reserved Designed & Developed by <a href="https://zynovvatech.com/">ZynovvaTech</a>
+					© Copyright ©2023 <a href="https://insurancecareer.in">Insurancecareer.in</a> All Rights Reserved Designed & Developed by <a href="https://zynovvatech.com/">ZynovvaTech</a>
 				</div>
 				<div class="ins-copy-right-menu ul-li">
 					<ul>
@@ -133,7 +133,7 @@
 		});
 		function  getDirectionSlidePreview(){
 			var windowWidth = window.innerWidth;
-			var slide = windowWidth <= 500 ? 1 : windowWidth <= 800 ? 2 :(windowWidth <= 1250 ? 3 : 4);
+			var slide = windowWidth <= 650 ? 1 : windowWidth <= 800 ? 2 :(windowWidth <= 1250 ? 3 : 4);
 			return slide ;
 		}
 	

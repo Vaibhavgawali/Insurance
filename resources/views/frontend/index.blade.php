@@ -13,13 +13,13 @@
 			<span class="ins-slider-print position-absolute"><img src="{{asset('assets/img/slider/print.png')}}" alt=""></span>
 			<div class="ins-slider-area-six">
 				<div class="ins-slider-item-six position-relative">
-					<h1 style="margin-bottom: 50px;;" class="text-center text-dark pb-30 top-heading">insurancecareer.in - Empower Your Future</h1>
+					<h1 style="margin-bottom: 50px;;" class="text-center text-dark pb-30 top-heading nunito-font custom-color"><span class="custom-italic custom-color">insurancecareer.in</span> - Empower your future</h1>
 					<div class="container">
 						<div class="row top-images-section ">
 							<div class="col-12 col-md-4 col-lg-4">
 								 <div class="d-flex flex-column align-items-center justify-content-center mb-3 ">
 									<div >
-									<img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/1.png')}}" alt="">
+									<a href="/industry"><img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/1.png')}}" alt=""></a>
 									</div>
 									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/industry">Click Here</a>
 							   </div>
@@ -27,7 +27,7 @@
 							<div class="col-12 col-md-4 col-lg-4">
 								<div class="d-flex flex-column align-items-center justify-content-center mb-3 ">
 									<div >
-									<img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/2.png')}}" alt="">
+									<a href="/module"><img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/2.png')}}" alt=""></a>
 									</div>
 									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/module">Click Here</a>
 							   </div>
@@ -35,7 +35,7 @@
 							<div class="col-12 col-md-4 col-lg-4">
 								<div class="d-flex flex-column align-items-center justify-content-center mb-3 ">
 									<div >
-									<img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/3.png')}}" alt="">
+									<a href="/candidate"><img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/3.png')}}" alt=""></a>
 									</div>
 									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/candidate">Click Here</a>
 							   </div>
@@ -44,7 +44,7 @@
 						<div class="row top-info-section">
 							<div class="col-12 col-md-4 col-lg-4 top-info-div p-10 ">
 								<div class="top-icon-div text-uppercase">
-									 <span class="text-dark fs-3 text-lowercase">insurancecareer.in</span>
+									 <span class="fs-3 text-lowercase custom-italic custom-color">insurancecareer.in</span>
 								</div>
 								<div class="pt-3 ">
 								<h1 class="fs-5">Navigate the Insurance Career Landscape with us.</h1> 
@@ -52,12 +52,12 @@
 								</div>
 							</div>
 							<div class="col-12 col-md-64 col-lg-4 top-about-div ">
-								<img src="./assets/img/3D-images/Education.gif" alt="">
+								<img src="./assets/img/3D-images/Education.png" alt="">
 							</div>
 							<div class="col-12 col-md-64 col-lg-4 top-about-div">
                                <div class="top-about-content">
-								 <p class="fs-5"><span class="text-success fw-bolder">insurancecareer.in</span> is committed to add value to the Insurance Industry by providing this platform which shall cater to impart knowledge & facilitate rewarding & glorious career for its users.</p>
-							      <h2 style="margin-right: 30px;" class="fs-6 text-end ">Prabhat Bajaj, Insurance Veteran</h2> 
+								 <p class="navifate-font"><span class=" fw-bolder custom-italic prabhat-text-color">insurancecareer.in</span> is committed to add value to the Insurance Industry by providing this platform which shall cater to impart knowledge & facilitate rewarding & glorious career for its users.</p>
+							      <h2 style="margin-right: 30px;" class="fs-6 text-end "><span style="letter-spacing: 2px;" class="prabhat-text-color">Prabhat Bajaj</span>, Insurance Veteran</h2> 
 							   </div>
 							</div>
 						</div>
@@ -93,11 +93,11 @@
 					<a href="/login"><img  src="{{asset('assets/img/3D-images/Post Your CV Here.png')}}" alt=""></a>
 				</div>
 		  </div>
-		  <section>
+		  <section style='margin-top: 20px;'>
 			   <div class="container">
 				  <div class="">
 					<h3 style=" 
-				background: -webkit-linear-gradient(#eee, #FFB966);
+				background: -webkit-linear-gradient(#51CDDF, #0C5EB4);
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;">Multiple Channels to explore</h3>
 				  </div>
@@ -107,19 +107,19 @@
 							<h4>Agency</h4>
 						</div>
 						<div class="item swiper-slide ">
-						 <h4>Bank Assurance</h4>
+						 <h4>Bancassurance</h4>
 						</div>
 						<div class="item swiper-slide ">
 						  <h4>Institutional Sales</h4>
 						   </div>
 						<div class="item swiper-slide">
-						 <h4>Business Dev</h4>
+						 <h4>Business Development</h4>
 						</div>
 						<div class="item swiper-slide">
-						 <h4>DM</h4>
+						 <h4>Direct Marketing</h4>
 						</div>
 						<div class="item swiper-slide">
-						  <h4>Marketing </h4>
+						  <h4>Marketing</h4>
 						</div>
 						<div class="item swiper-slide">
 							<h4>Finance</h4>
@@ -159,7 +159,7 @@
 			<div class="ins-subtitle text-uppercase">
 				<!-- <i class="fas fa-heart"></i> -->
 			</div>
-			<h2>Insurancecareer.in serves as
+			<h2><span class="custom-italic">Insurancecareer.in</span> serves as
 				<span class="ins-title-shape1"><img src="{{asset('assets/img/shape/title-sh1.svg')}}" alt=""></span>
 				<!-- <span class="ins-title-shape2"><img src="assets/img/shape/title-sh2.svg" alt=""></span> -->
 			</h2>
@@ -170,15 +170,15 @@
 					<div class="col-lg-6 col-md-6 ">
 						<div  class="in-service-item-3 position-relative border border-3 border-warning">
 							<div class="inner-text headline pera-content">
-								<h3 class="text-success"><a href="#">InsureYourCareer</a></h3>
-								<p>online Platform for other industries professionals to know and explore opportunities with promosing insurance industry career</p>
+								<h3 class="text-success"><a href="#">Insure Your Career</a></h3>
+								<p>Online Platform for other industries professionals to know and explore opportunities with promosing insurance industry career</p>
 								<div class="ins-main-about-list-area ul-li-block">
 									<ul>
 										<li class="inner-text pera-content headline">Understand the industry</li>
 										<li>Explore opportunity wrt your expertise & skill sets</li>
 										<li> Next steps to way forward</li>
 									</ul>
-									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to know more about the opportunity & Next Steps</p>
+									<p><a href="/industry" class="btn  btn-sm custom-btn">Click here</a> to know more about the opportunity & Next Steps</p>
 								</div>
 								
 							</div>
@@ -196,15 +196,15 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="in-service-item-3 position-relative border border-3 border-success">
 							<div class="inner-text headline pera-content">
-								<h3 class="text-success"><a href="#">ProInsureNetwork</a></h3>
-								<p>online Platform for Existing Insurance Professionals at various levels to stay in touch with the community and explore better opportunities in the industry</p>
+								<h3 class="text-success"><a href="#">Pro Insure Network</a></h3>
+								<p>Online Platform for Existing Insurance Professionals at various levels to stay in touch with the community and explore better opportunities in the industry</p>
 								<div class="ins-main-about-list-area ul-li-block">
 									<ul>
 										<li>Get to know the latest in the industry</li>
 										<li>Use the platform to be in touch with the Community</li>
 										<li>Explore your next level as you ready for future</li>
 									</ul>
-									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to express your interest for your next move</p>
+									<p><a href="/industry" class="btn custom-btn btn-sm ">Click here</a> to express your interest for your next move</p>
 								</div>
 								
 							</div>
@@ -223,7 +223,7 @@
 						<div class="in-service-item-3 position-relative border border-3 border-primary">
 							<div class="inner-text headline pera-content">
 								<h3 class="text-success"><a href="#" >LaunchPad Learning</a></h3>
-								<p>online Platform for Candidates (Freshers or at initial levels) to learn, get practical knowledge and get certified</p>
+								<p>Online Platform for Candidates (Freshers or at initial levels) to learn, get practical knowledge and get certified</p>
 								<div class="ins-main-about-list-area ul-li-block">
 									<ul>
 										<li>Moduels for practical learning</li>
@@ -231,9 +231,11 @@
 										<li>Get referred for a great career in Insurance Industry</li>
 									</ul>
 									<br>
-									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to Register & start your Certification Now</p>
-								</div>
+									
+									<p><a href="/industry" class="btn custom-btn btn-sm ">Click here</a> to Register & start your Certification Now</p>
+									<br>
 								
+								</div>
 							</div>
 							
 							<div class="inner-icon-btn d-flex align-items-center justify-content-between">
@@ -249,7 +251,7 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="in-service-item-3 position-relative border border-3 border-danger">
 							<div class="inner-text headline pera-content">
-								<h3 class="text-success"> <a href="#">InsureReady</a></h3>
+								<h3 class="text-success"> <a href="#">Insure Ready</a></h3>
 								<p>Incubation of Insurance professionals to be absorbed at entry level by various Insurers</p>
 								<div class="ins-main-about-list-area ul-li-block">
 									<ul>
@@ -258,7 +260,7 @@
 										<li>Certifications and placement references</li>
 									</ul>
 									<br>
-									<p><a href="/industry" class="btn btn-outline-success btn-sm ">Click here</a> to Register & know more</p>
+									<p><a href="/industry" class="btn custom-btn btn-sm ">Click here</a> to Register & know more</p>
 								</div>
 								
 							</div>
@@ -294,7 +296,7 @@
 					<div class="ins-subtitle text-uppercase">
 						<!-- <i class="fas fa-heart"></i> Indian Insurance market is expected to reach US$ 200 billion by 2027 -->
 					</div>
-					<h2> Testimonial
+					<h2>Testimonials
 					</h2>
 				</div>
 				<div class="ins-testimonial-six-top-text">

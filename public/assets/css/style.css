@@ -29,6 +29,8 @@
 /*=========
 Font load
 ===========*/
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rubik+Burned&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&family=Nunito+Sans:opsz@6..12&family=Urbanist:wght@200&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Play:wght@400;700&family=Syne:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
@@ -56,6 +58,14 @@ Font load
   background-position: 120%;
 }
 
+.nunito-font {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: <weight>; */
+  /* font-weight: 800; */
+}
+
+
 
 /*global area*/
 /*----------------------------------------------------*/
@@ -63,11 +73,19 @@ Font load
   :root {
     scroll-behavior: inherit;
    --register-bg-color:#F8F9FA;
+   --custom-italic-font:italic;
+   --custom-color:#0163ea;
+
+    
   }
   *
   {
     font-family: 'Nunito';
   }
+}
+.custom-italic
+{
+  font-style: var(--custom-italic-font);
 }
 body {
   margin: 0;
@@ -480,12 +498,12 @@ select:visited {
 .in-header-section .in-sidebar-btn span:nth-child(2) {
   top: 0;
   right: 0;
-  background-color: #000000;
+  background-color: var(--theme-color);
 }
 .in-header-section .in-sidebar-btn span:nth-child(3) {
   left: 0;
   bottom: 0;
-  background-color: #000000;
+  background-color: var(--theme-color);
 }
 .in-header-section .in-sidebar-btn span:nth-child(4) {
   right: 0;
@@ -502,7 +520,7 @@ select:visited {
   top: 2px;
   right: -14px;
   font-size: 14px;
-  color: #fff;
+  color: #171717;
   font-weight: 300;
   content: "\f107";
   font-weight: 900;
@@ -1165,6 +1183,7 @@ select:visited {
 }
 .in-header-section.header-style-six .ins-header-main-navigation-area {
   padding: 25px 190px;
+  background-color: #f9f5f2;
 }
 .in-header-section.header-style-six .in-main-navigation-area li {
   margin: 0px 33px;
@@ -3898,7 +3917,7 @@ select:visited {
   content: "";
   border-radius: 10px;
   position: absolute;
-  background:#FFB966;
+  background:var(--base-color)
 }
 .in-service-item-3 .inner-text p {
   -webkit-transition: 500ms all ease;
@@ -3916,7 +3935,7 @@ select:visited {
 }
 .in-service-item-3 .inner-icon-btn .inner-icon i {
   font-size: 55px;
-  color:#056251;
+  color:var(--theme-color)
 }
 .in-service-item-3 .inner-icon-btn .inner-btn a {
   width: 40px;
@@ -5263,9 +5282,9 @@ select:visited {
 }
 .ins-text-scroll-section-2 .ins-text-scroll-2 h3 {
   color: var(--theme-color);
-  font-size: 60px;
+  font-size: 30px;
   margin: 0px 20px;
-  line-height: 70px;
+  line-height: 80px;
   display: inline-block;
 }
 .ins-text-scroll-section-2 .ins-text-scroll-2 h3 span {
@@ -6691,7 +6710,8 @@ select:visited {
 /*----------------------------------------------------*/
 .ins-slider-six-section {
   margin-left: 70px;
-  background-color: #f9f5f2;
+  /* background-color: #f9f5f2; */
+  background-color: #fff;
 }
 .ins-slider-six-section .banner-social {
   left: -50px;
@@ -7185,7 +7205,7 @@ select:visited {
 }
 .ins-main-about-list-area li:hover:before {
   color: #fff;
-  background-color: #056251;
+  background-color: var(--theme-color-2);
 }
 
 /*---------------------------------------------------- */
@@ -13645,7 +13665,7 @@ rs-module [class*=" fa-"]:before {
         font-weight: 500;
         line-height: 20px;
         letter-spacing: -0.06em;
-        color: var(--theme-color);
+        color: var(--theme-color) ;
        }
    /* top-about-div End */
    
@@ -13659,7 +13679,7 @@ rs-module [class*=" fa-"]:before {
      .top-register-section .top-register-div h2
      {
       font-size: 22px;
-      color: var(--theme-color-2);
+      color: #fff;
      }
      .top-register-section .top-register-div a
      {
@@ -13722,7 +13742,7 @@ rs-module [class*=" fa-"]:before {
      .top-register-section .top-intrest-div h2
      {
       font-size: 22px;
-      color: var(--theme-color);
+      color: #fff;
      }
      .top-register-section .top-intrest-div a
      {
@@ -13845,7 +13865,7 @@ rs-module [class*=" fa-"]:before {
   border-radius: 5px;;
   padding: 5px 10px;
   margin: auto;
-  width: 80%;
+  width: 88%;
 }
 .about-section-banner-paragraph
 {
@@ -13957,3 +13977,29 @@ background-color: #F0F4FD;
   background: url(../img/about/limit-bg.png);
 }
 
+/* Custom css  */
+ .navifate-font
+ {
+  font-family: 'Nunito';
+  font-size: 20px;
+ }
+ .custom-color
+ {
+  color: var(--custom-color);
+ }
+ .prabhat-text-color
+ {
+  color:var(--custom-color);
+  font-style: italic;
+ }
+ .custom-btn
+ {
+  background:  linear-gradient(to right,var(--gradiant-color-from),var(--gradiant-color-to));
+  color: #fff !important;
+ }
+ .custom-btn:hover
+ {
+  background: #fff;
+  color: var(--theme-color) !important;;
+  border: solid 1px;
+ }
