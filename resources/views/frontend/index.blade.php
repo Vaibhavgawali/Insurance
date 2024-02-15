@@ -48,7 +48,7 @@
 								</div>
 								<div class="pt-3 ">
 								<h1 class="fs-5">Navigate the Insurance Career Landscape with us.</h1> 
-								<p>One Platform to get 360° view of the industry, learn, get certified and explore career opportunities in Insurance Sector.</p>
+								<p class="navifate-font">One Platform to get 360° view of the industry, learn, get certified and explore career opportunities in Insurance Sector.</p>
 								</div>
 							</div>
 							<div class="col-12 col-md-64 col-lg-4 top-about-div ">
@@ -65,14 +65,14 @@
 							<div class="col-12 col-md-6 col-lg-6 top-register-div  rounded-start">
 								<h4 class="text-center text-dark  p-2">Get certified and explore career </h4>
                                <div>
-								  <h2>Register And Start Your Career</h2>
+								  <h2 class="text-dark" style="">Register And Start Your Career</h2>
 								  <a href="/login">Click Here</a>
 							   </div>
 							</div>
 							<div class="col-12 col-md-6 col-lg-6 top-intrest-div rounded-end">
 								<h4 class="text-center text-dark  p-2">Put your current insurance career on fast track</h4>
 								 <div>
-									<h2>Express your interest</h2>
+									<h2 class="text-dark">Express your interest</h2>
 								<a href="/industry">Click Here</a>
 								 </div>
 							</div>
@@ -90,7 +90,7 @@
 	   <div class="container shadow-sm p-10 mb-5  rounded .bg-secondary">
 		  <div class="row align-items-center ">
 				 <div class="col-md-12">
-					<a href="/login"><img  src="{{asset('assets/img/3D-images/Post Your CV Here.png')}}" alt=""></a>
+					<a href="/login"><img style="width: 100%;"  src="{{asset('assets/img/3D-images/Post Your CV Here.png')}}" alt=""></a>
 				</div>
 		  </div>
 		  <section style='margin-top: 20px;'>
