@@ -4,7 +4,7 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-home"></i>
-            </span>Candidate Dashboard
+            </span>Start Learning
         </h3>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
@@ -16,19 +16,54 @@
         </nav>
     
     </div>
-    <div class="card main-chapter-div">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 p-4">
+    <div class="container">
+    <div class="row">
+      <div class="col-md-4 stretch-card grid-margin">
+            <div class="card bg-gradient-danger card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h6 class="font-weight-normal mb-3 fs-5">Start Learning - <span >Learn About the industry,products, distribution models etc.</span>
+                    </h6>
+                   <button   type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" class="btn btn-gradient-primary btn-sm">Click Here</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 stretch-card grid-margin">
+            <div class="card bg-gradient-secondary card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h6 class="font-weight-normal mb-3 fs-5">Take Assessment and know your score
+                    </h6>
+                    <a href="/candidate-quizes" class="btn btn-gradient-primary btn-sm">Click Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 stretch-card grid-margin">
+            <div class="card bg-gradient-success card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h6 class="font-weight-normal mb-3 fs-5">Post Your CV for new/better opportunity in insurance industry
+                    </h6>
+                    <a href="" class="btn btn-gradient-primary btn-sm">Click Here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="card main-chapter-div  ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-12 ">
                     <div class="text-center">
-                        <h2 class="module-heading"> Chapter 1</h2>
+                        <h2 class="module-heading fs-3"> Chapter 1</h2>
                     </div>
+                    
                 </div>
                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xl-12">
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                     <h4 class="module-dropdown"> Basics of Insurance</h4>
                                 </button>
                             </h2>
@@ -163,9 +198,9 @@
     <div class="card main-chapter-div mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-12 p-4">
+                <div class="col-12 ">
                     <div class="text-center">
-                        <h2 class="module-heading"> Chapter 2</h2>
+                        <h2 class="module-heading fs-2"> Chapter 2</h2>
                     </div>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xl-12">
@@ -224,9 +259,9 @@
     <div class="card main-chapter-div mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-12 p-4">
+                <div class="col-12 ">
                     <div class="text-center">
-                        <h2 class="module-heading"> Chapter 3</h2>
+                        <h2 class="module-heading fs-2"> Chapter 3</h2>
                     </div>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xl-12">
@@ -308,9 +343,9 @@
     <div class="card main-chapter-div mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-12 p-4">
+                <div class="col-12 ">
                     <div class="text-center">
-                        <h2 class="module-heading"> Chapter 4</h2>
+                        <h2 class="module-heading fs-2"> Chapter 4</h2>
                     </div>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xl-12">
@@ -367,9 +402,9 @@
     <div class="card main-chapter-div mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-12 p-4">
+                <div class="col-12">
                     <div class="text-center">
-                        <h2 class="module-heading"> Chapter 5</h2>
+                        <h2 class="module-heading fs-2"> Chapter 5</h2>
                     </div>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xl-12">
@@ -474,4 +509,75 @@
             </div>
         </div>
     </div>
+    <section>
+        <div class="container mt-3">
+            <h2 class="text-center">Job Board</h2>
+            <div class="text-left">
+                        <h3>Present Positions:</h3>
+                    </div>
+            
+            <div class="row">
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-danger card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h3 class="font-weight-normal mb-3">Agency Channel <i class="mdi mdi-windows mdi-24px float-right"></i>
+                    </h3>
+                    <h4 >Agency Manager</h4>
+                    <h4 >Branch Manager</h4>
+                    <h4>Regional Manager</h4>
+                    <h4>Zonal Manager</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-info card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h3 class="font-weight-normal mb-3">Bancassurance Channel <i class="mdi mdi-bookmark-plus mdi-24px float-right"></i>
+                    </h3>
+                    <h4 >Unit Manager/Relationship Officer</h4>
+                    <h4 >Sales Manager, Cluster Manager</h4>
+                    <h4>Area Sales Manager</h4>
+                    <h4>Regional Sales Manager</h4>
+                    <h4>Zonal Sales Manager</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-success card-img-holder text-white">
+              <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h3 class="font-weight-normal mb-3">Direct Marketing <i class="mdi mdi-account mdi-24px float-right"></i>
+                    </h3>
+                    <h4 >Service Manager</h4>
+                    <h4 >Area Sales Manager</h4>
+                    <h4>Regional Sales Manager</h4>
+                    <h4>Zonal Sales Manager</h4>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-secondary card-img-holder text-white">
+              <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h3 class="font-weight-normal mb-3">Group Business <i class="mdi mdi-briefcase-check mdi-24px float-right"></i>
+                    </h3>
+                  <h4>Head-Credit Life</h4>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-4 stretch-card grid-margin">
+              <div class="card bg-gradient-dark card-img-holder text-white">
+              <div class="card-body">
+                    <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h3 class="font-weight-normal mb-3">Non-Sales Functions <i class="mdi mdi-tag mdi-24px float-right"></i>
+                    </h3>
+                <h4>Operations Head</h4>
+                <h4>Senior Underwriter</h4>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </section>
 </div>

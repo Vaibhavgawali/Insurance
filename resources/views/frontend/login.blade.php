@@ -13,9 +13,9 @@
                         <div>
                         <div class="ins-main-about-list-area ul-li-block">
                           <ul class="">
-                            <li class="fs-6 fst-italic">Build your profile and let recruiters find you.</li>
-                              <li class="fs-6 fst-italic">Get job postings delivered right to your email.</li>
-                            <li class="fs-6 fst-italic">Find a job and grow your career.</li>
+                            <li class="fs-6 fst-italic">Build your profile .</li>
+                              <li class="fs-6 fst-italic">Learn & stay updated.</li>
+                            <li class="fs-6 fst-italic">Find a job .</li>
                           </ul> 
                         </div>
                         </div>
@@ -23,22 +23,12 @@
                      <div class="col-12 col-md-12 col-lg-1 "></div>
                      <div style="margin: auto;" class="col-11 col-md-12 col-lg-7 shadow  rounded p-4 bg-white">
                        <div>
-                           <h4 class="text-start">Find a job & grow your career</h4>
+                           <h4 class="text-start">Enter your details</h4>
                        </div>
                        <div>
                         <div id="register_status"></div>
                         <form id="login_form">
                            @csrf
-                            <!-- <div class="mb-3">
-                                    <label for="number" class="form-label">Log In as</label>
-                                    <select  class="form-control" aria-label="">
-                                      <option selected disabled>-- Select --</option>
-                                        <option value="Candidate">Candidate</option>
-                                        <option value="Insurer">Insurer</option>
-                                        <option value="Institute">Institute</option>
-                                    </select>
-                            </div> -->
-
                             <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Email ID</label>
                               <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Tell us your Email ID">
