@@ -183,7 +183,7 @@
           <div class="card shadow-lg bg-white rounded offset-lg-1">
             <div class="card-body">
               <h6 class="text-center">
-                Growth in Real premium by region in World 2021
+                Growth in Real premium by region in World 2022
               </h6>
               <canvas id="myChart" width="100" height="100" style="display: block; box-sizing: border-box; height: 272px; width: 272px;"></canvas>
             </div>
@@ -194,7 +194,7 @@
           <div class="card shadow-lg bg-white rounded offset-lg-1">
             <div class="card-body">
               <h6 class="text-center">
-                Insurance Penetration by Region in the World 2021
+                Insurance Penetration by Region in the World 2022
               </h6>
               <canvas id="penetrationChart" width="100" height="100" style="display: block; box-sizing: border-box; height: 272px; width: 272px;"></canvas>
             </div>
@@ -205,7 +205,7 @@
           <div class="card shadow-lg bg-white rounded offset-lg-1">
             <div class="card-body">
               <h6 class="text-center">
-                Insurance Density by Region in the World 2021
+                Insurance Density by Region in the World 2022
               </h6>
               <canvas id="densityChart" width="100" height="100" style="display: block; box-sizing: border-box; height: 272px; width: 272px;"></canvas>
             </div>
@@ -445,9 +445,9 @@ var data = {
     "India",
     "World",
   ];
-  var life = [5.4, 1.5, 0.6, 8.5, 4.5];
-  var noneLife = [2.9, 1.5, 0.8, 5.8, 2.6];
-  var total = [3.9, 1.5, 0.7, 7.8, 3.4];
+  var life = [-4.4, 1.4, -2.0, 8.2,-3.1];
+  var noneLife = [0.0, 2.8, 2.9,6.0,0.5];
+  var total = [-1.8, 2.1, -0.1, 7.7, -1.1];
 
   // Get canvas element
   var canvas = document.getElementById("myChart");
