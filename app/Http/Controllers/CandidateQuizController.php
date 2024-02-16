@@ -296,7 +296,7 @@ class CandidateQuizController extends Controller
         $this->pdf->SetFont('Courierb', '', 16);
 
 
-        $successfullCompletion = "Successful completion of Module ".$user_quiz->quiz->level."";
+        $successfullCompletion = "Successful completion of Level ".$user_quiz->quiz->level."";
 
         // Get text width
         $textWidth = $this->pdf->GetStringWidth($successfullCompletion);
@@ -335,14 +335,7 @@ class CandidateQuizController extends Controller
         $this->pdf->SetY($y+30);
         $this->pdf->SetX($x+12);
         $this->pdf->Write(0,"Awarded by InsuranceCareer.in");
-      
-
-       
-
-       
-
-  
-
+        
         // adds current date
         $this->pdf->SetFont('Courier', '', 12);
         $this->pdf->SetTextColor(0, 0, 0);
