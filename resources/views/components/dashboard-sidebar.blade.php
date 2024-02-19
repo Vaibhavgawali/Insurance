@@ -18,7 +18,8 @@
                     <span class="font-weight-bold mb-2">
                         {{ Illuminate\Support\Str::limit(explode(' ', $user->name)[0], 9, '..') }}
                     </span>
-                    <span class="text-secondary text-small">{{$user->roles->first()->name}}</span>
+                    <!-- <span class="text-secondary text-small">{{$user->roles->first()->name}}</span> -->
+                    <span class="text-secondary text-small">{{$user->category}}</span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
@@ -39,7 +40,7 @@
         </li>
         @endif
 
-        @hasrole('Superadmin')
+        @if(Auth::user()->hasCategory('Superadmin'))
         <li class="nav-item">
             <a class="nav-link" href="/insurer">
                 <span class="menu-title">Insurer</span>
@@ -60,14 +61,46 @@
                 <i class="mdi mdi-comment-question-outline  menu-icon"></i>
             </a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/roles">
+                <span class="menu-title">Add Role</span>
+                <i class="mdi mdi-account-card-details menu-icon"></i>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/results">
+                <span class="menu-title">Results</span>
+                <i class="mdi mdi-airplay menu-icon"></i>
+            </a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link" href="/quizes">
                 <span class="menu-title">Add Quiz</span>
                 <i class="mdi mdi-airplay menu-icon"></i>
             </a>
         </li>
+        @endif
 
-        @endhasrole
+        @if(Auth::user()->hasCategory('Insurer'))
+        <li class="nav-item">
+            <a class="nav-link" href="/requirements">
+                <span class="menu-title">Requirements</span>
+                <i class="mdi mdi-comment-question-outline  menu-icon"></i>
+            </a>
+        </li>
+        @endif
+
+        @if(Auth::user()->hasCategory('Institute'))
+        <li class="nav-item">
+            <a class="nav-link" href="/requirements">
+                <span class="menu-title">Requirements</span>
+                <i class="mdi mdi-comment-question-outline  menu-icon"></i>
+            </a>
+        </li>
+        @endif
 
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('take_assessment'))
         <li class="nav-item">

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Auth;
-use Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Auth\Events\EmailVerified;
 use Illuminate\Auth\Events\Registered;
@@ -16,6 +16,7 @@ use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use PDF;
+use Yajra\DataTables\DataTables;
 
 use App\Models\User;
 use App\Models\UserProfile;
@@ -38,22 +39,22 @@ class CandidateController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            // $users = User::role('Candidate')->get();
-            $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->orderBy('user_id', 'desc')->get();
-            // dd($users);
+            // $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->orderBy('user_id', 'desc')->get();
+            $users = User::where('category', 'Candidate')
+                    ->with('address', 'profile', 'experience', 'documents')
+                    ->orderBy('user_id', 'desc')
+                    ->get();
+
             if ($users) {
                 // return Response(['data' => $users], 200);
-                return view('dashboard.admin.candidate-list', ['candidates' => $users]);
+                return view('dashboard.admin.candidate-list');
             }
-            return Response(['message' => "Users with role Candidate not found "], 404);
+            // return Response(['message' => "Users with role Candidate not found "], 404);
         }
         return Response(['data' => 'Unauthorized'], 401);
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    
+    
     public function create()
     {
         //
@@ -95,7 +96,8 @@ class CandidateController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password, //Hash::make($request->password),
-            'phone' => $request->phone
+            'phone' => $request->phone,
+            'category' => "Candidate"
         ]);
 
         if ($user) {
@@ -106,13 +108,11 @@ class CandidateController extends Controller
             ]);
             // dd($user_profile);
 
-            // if ($request->experience == "experienced") {
-                $user_address = UserAddress::create([
-                    'user_id' => $user_id,
-                    'city' => $request->city,
-                ]);
-            // }
-
+            $user_address = UserAddress::create([
+                'user_id' => $user_id,
+                'city' => $request->city,
+            ]);
+          
             if ($request->experience == "experienced") {
                 $user_experience = UserExperience::create([
                     'user_id' => $user_id,
@@ -135,6 +135,63 @@ class CandidateController extends Controller
             return Response(['status' => true, 'message' => "Candidate created successfully"], 200);
         }
         return Response(['status' => false, 'message' => "Something went wrong"], 500);
+    }
+
+    public function getCandidateTableData()
+    {
+        if (Auth::check()) {
+            $data = User::where('category', 'Candidate')
+                    ->with('address', 'profile', 'experience', 'documents')
+                    ->when(request()->has('filter_Line'), function ($query) {
+                        $filterLine = request('filter_Line');
+                        
+
+        if ($filterLine === 'other') {
+            // Exclude rows where preffered_line is 'life', 'general', or 'health'
+            $query->whereHas('profile', function ($profileQuery) {
+                $profileQuery->whereNotIn('preffered_line', ['life', 'general', 'health']);
+            });
+        } else {
+            // Include rows where preffered_line is like the specified filter
+            $query->whereHas('profile', function ($profileQuery) use ($filterLine) {
+                $profileQuery->where('preffered_line', 'like', '%' . $filterLine . '%');
+            });
+        }     
+    })
+    ->when(request()->has('documents'), function ($query) {
+        $documents = request('documents');
+        if ($documents === 'uploaded') { 
+            $query->whereHas('documents');
+        } else if ($documents === 'not_uploaded') {
+            $query->whereDoesntHave('documents');
+        }
+    })
+    ->when(request()->has('experience'), function ($query) {
+        $experience = request('experience');
+        if ($experience === 'experienced') { 
+            $query->whereHas('experience');
+        } else if ($experience === 'fresher') {
+            $query->whereDoesntHave('experience');
+        }
+    })
+    ->orderBy('user_id', 'desc')
+    ->get();
+
+            if ($data) {
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('actions', function ($row) {
+                        $actions = '<a href="/admin/user/' . $row->user_id . '" class="btn btn-sm btn-gradient-success btn-rounded">View</a>';
+                        $actions .= '<a class="btn btn-sm btn-gradient-warning btn-rounded editButton" data-user-id="' . $row->user_id . '" >Edit</a>';
+                        $actions .= '<form class="delete-user-form" data-user-id="' . $row->user_id . '">
+                            <button type="button" class="btn btn-sm btn-gradient-danger btn-rounded delete-user-button">Delete</button>
+                        </form>';
+                        return $actions;
+                    })
+                    ->rawColumns(['actions'])
+                    ->make(true);
+            }
+        }
     }
 
     /**
@@ -210,6 +267,8 @@ class CandidateController extends Controller
 public function destroy(string $id)
 {
     // Check if the authenticated user has the "Superadmin" role
+    // if (Auth::user()->hasCategory('Superadmin')) {
+
     if (Auth::user()->hasRole('Superadmin')) {
         $user = User::find($id);
 

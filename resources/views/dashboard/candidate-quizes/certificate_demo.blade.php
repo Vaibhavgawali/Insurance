@@ -20,109 +20,66 @@
 
   <!-- Custom CSS -->
  <style>
-    
-@import url('https://fonts.googleapis.com/css2?family=Arvo:ital@1&family=Dancing+Script&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Arvo:ital@1&family=Dancing+Script&display=swap');
 
-/* name text style */
-@import url('https://fonts.googleapis.com/css2?family=Arvo:ital@1&family=Dancing+Script&family=Sansita+Swashed:wght@300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Arvo:ital@1&family=Dancing+Script&family=Sansita+Swashed:wght@300&display=swap');
+ 
+    #btnPrint {
+      display: block;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
+    @media print {
+      @page {
+        size: auto;
+        margin: 5mm;
+        height: 100vh; /* Set the height of the printed page */
+      }
 
-/* body {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+      #btnPrint {
+        display: none;
+      }
 
-  .certificate {
-    padding: 80px;
-    border: 2px solid #000;
-    border-radius: 10px;
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.9);
-    background-image: url('{{ public_path('admin-assets/assets/images/certificate-bg-image3.jpg') }}');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: 100vh;
-  }*/
+      .certificate{
+        padding: 80px;
+        border: 2px solid #000;
+        border-radius: 10px;
+        position: relative;
+        background-color: rgba(255, 255, 255, 0.9);
+        background-image: url(http://localhost:8000/admin-assets/assets/images/dashboard/certificate-bg-image3.jpg);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 100vh;
+      }
 
-  /* .certificate .certificate-text {
-    text-align: center;
-    margin-bottom: 30px;
-    font-family:'Times New Roman', Times, serif;
-    letter-spacing: 1px;
-    word-spacing: 6px;
-    font-size: 45px;
-    font-weight: 700;
-    position: relative;
-    color: rgb(197, 172, 101);
-    
-}  */
-
-/* .certificate {
-    padding: 80px;
-    border: 2px solid #000;
-    border-radius: 10px;
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.9);
-    background-image: url(../images/certificate-bg-image3.jpg);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: 100vh;
-  } */
-
-/* .certificate .name-text{
-    font-family: 'Arvo', serif;
-    text-align: center !important;
-    font-size: 30px;
-    border-bottom: 2px solid rgb(226,202,151);
-} */
-
-/* .text-border{
-    width:40% !important;
-} */
-
-/* .name-text-div{
-    text-align: center !important;
-    display: flex;
-    justify-content: center;
-} */
-
-/* .paragraph{
-    font-size: 20px;
-    font-weight: 350;
-    color: rgb(141, 142, 144);
-} */
-/* .paragraph2{
-    font-size: 1.1rem;
-    color: rgb(113,120,129);
-    font-weight: 500;
-} */
-
-/* .signature-text{
-    margin-left: 40%;
-} */
-
-/* .logo{
-    margin-left: 36%;
-    margin-top: 7%;
-} */
-
-/* .font-style{
-    font-size: 15px;
-    font-weight: 500;
-} */
-  </style> 
+      .hidden-image {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      } 
+    }
+ </style> 
 </head>
 
 <body style="  margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;">
-
 <div class="container">
+  <button id="btnPrint">Print</button>
   <div class="certificate" 
       style="padding: 80px;
         border: 2px solid #000;
@@ -135,12 +92,7 @@
         background-repeat: no-repeat;
         height: 100vh;">
 
-    <!-- "http://localhost:8000/admin-assets/assets/images/dashboard/certificate-bg-image3.jpg" -->
-    <!-- src="http://localhost:8000/public/admin-assets/assets/images/dashboard/logo-1.avif"  -->
-
-
-
-    <img src="http://localhost:8000/admin-assets/assets/images/dashboard/logo-1.avif" width="18%" height="18%">
+    <img class="hidden-image" src="http://localhost:8000/admin-assets/assets/images/dashboard/logo-1.avif" width="18%" height="18%">
 
     <h1 class="certificate-text " 
         style=" text-align: center;
@@ -166,22 +118,30 @@
                 font-size: 30px;
                 border-bottom: 2px solid rgb(226,202,151);"
             >
-            Name Surname
+            {{ $data['name'] }}
           </h2>
         </div>
     </div>
-    <div class="text-center pt-4 fw-bold paragraph" 
+    <div class="text-center pt-2 fw-bold paragraph" 
         style="font-size: 20px;
         font-weight: 350;
         color: rgb(141, 142, 144);">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, porro.</p>
+        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, porro.</p> -->
+        <p>{{ $data['title'] }}</p>
     </div> 
     
     <div class="text-center fw-bold paragraph2" 
         style="font-size: 1.1rem;
         color: rgb(113,120,129);
         font-weight: 500;">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae consectetur quod eveniet Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quod evenietLorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quod eveniet cum tenetur consequuntur accusantium optio dolorem? Perferendis, ipsam nisi.Vitae quod eveniet cum tenetur consequuntur accusantium optio dolorem? Perferendis, ipsam nisi.</p>
+        <p>This certificate is proudly awarded to {{ $data['name'] }} in recognition of their outstanding accomplishment.
+
+        {{ $data['name'] }} has demonstrated exceptional knowledge and skill, scoring {{ $data['score'] }} on the assessment. Moreover, [he/she] has successfully passed Level {{ $data['level'] }}.
+
+With this achievement, {{ $data['name'] }} has exhibited dedication, hard work, and a commitment to excellence. We celebrate [his/her] success and acknowledge the determination shown in reaching this significant milestone.
+  </p>
+<p>Congratulations on this remarkable achievement</p>
+        <!-- <p>This certificate is awarded to {{ $data['name'] }} in recognition of their score {{ $data['score'] }} exceptional bravery and courage in the face of adversity on {{ $data['date'] }}. Your selflessness, courage, and unwavering commitment to Level {{ $data['level'] }} have set a high standard of excellence, and we are honored to recognize your achievement</p> -->
     </div> 
 
 
@@ -219,6 +179,7 @@
 </div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+      
 
 const quizStatusString = localStorage.getItem("quizstatus");
 if (quizStatusString) {
@@ -243,7 +204,11 @@ if (quizStatusString) {
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+<script>
+    $('#btnPrint').on('click', function(e){
+        window.print();
+    });
+</script>
 </body>
 </html>
 

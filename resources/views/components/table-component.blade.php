@@ -1,21 +1,11 @@
-<!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
-<!-- @foreach($data as $row)
-                          
-                          <tr>
-                          <th>{{$row->id}}</th>
-                          <th>{{$row->name}}</th>
-                          <th>{{$row->email}}</th>
-                          <th>{{$row->phone}}</th>
-                          <th class="text-center">Action</th>
-                        </tr>
-                        @endforeach -->
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Sr.No</th>
       <th>Name </th>
       <th>
-        @if ($data->isNotEmpty() && $data->first()->hasRole('Candidate'))
+        @if ($data->isNotEmpty() && $data->first()->hasCategory('Candidate'))
             CV Date
         @else
             Email
@@ -34,7 +24,7 @@
 
       </td>
       <td> {{$row->name}}</td>
-      <td>{{ $row->hasRole('Candidate')?  $row->documents ? \Carbon\Carbon::parse($row->documents->created_at)->format('Y-m-d') : 'Not uploaded' :$row->email}}</td>
+      <td>{{ $row->hasCategory('Candidate')?  $row->documents ? \Carbon\Carbon::parse($row->documents->created_at)->format('Y-m-d') : 'Not uploaded' :$row->email}}</td>
       <td>{{$row->phone}}</td>
 
       <td style="display: flex; gap:10px;justify-content:center" class="text-center">
@@ -43,7 +33,7 @@
         @endif
 
         @hasrole('Superadmin')
-        <a href="#" class="btn btn-sm btn-gradient-warning btn-rounded " data-bs-toggle="modal" data-bs-target="#exampleModal1">Edit</a>
+        <a  class="btn btn-sm btn-gradient-warning btn-rounded editButton"  data-user-id="{{$row->user_id}}">Edit</a>
 
         <form class="delete-user-form" data-user-id="{{$row->user_id}}">
             @csrf
@@ -57,3 +47,37 @@
     @endforeach
   </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUserModalLabel">Edit User Roles and Permissions</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <form id="editUserRoleForm">
+                  <input type="hidden" class="form-control" id="user_id">
+
+                    <div class="form-group">
+                        <label for="currentRole">Current Role:</label>
+                        <input type="text" class="form-control" id="currentRole" disabled>
+                    </div>
+
+                    <div class="form-group pb-2">
+                        <label for="newRole">Select New Role:</label>
+                        <select class="form-control" id="newRole" name="newRole">
+                            <!-- Dropdown options will be dynamically generated here -->
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

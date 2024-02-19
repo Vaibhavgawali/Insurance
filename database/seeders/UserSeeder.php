@@ -17,7 +17,8 @@ class UserSeeder extends Seeder
             'name' => 'Superadmin',
             'email' => 'admin@gmail.com',
             'phone'=> '1234567890',
-            'password' => bcrypt('Admin@1234'), 
+            'password' => bcrypt('Admin@1234'),
+            'category'=>'Superadmin'
         ]);
 
         $admin->assignRole('Superadmin');
@@ -26,7 +27,8 @@ class UserSeeder extends Seeder
             'name' => 'Institute',
             'email' => 'institute@gmail.com',
             'phone'=> '1234567890',
-            'password' => bcrypt('Institute@1234'), 
+            'password' => bcrypt('Institute@1234'),
+            'category'=>'Institute'
         ]);
 
         $institute->assignRole('Institute');
@@ -35,7 +37,9 @@ class UserSeeder extends Seeder
             'name' => 'Insurer',
             'email' => 'insurer@gmail.com',
             'phone'=> '1234567890',
-            'password' => bcrypt('Insurer@1234'), 
+            'password' => bcrypt('Insurer@1234'),
+            'category'=>'Insurer'
+
         ]);
 
         $insurer->assignRole('Insurer');
@@ -44,7 +48,8 @@ class UserSeeder extends Seeder
             'name' => 'Candidate',
             'email' => 'candidate@gmail.com',
             'phone'=> '1234567890',
-            'password' => bcrypt('Candidate@1234'), 
+            'password' => bcrypt('Candidate@1234'),
+            'category'=>'Candidate'
         ]);
 
         $candidate->assignRole('Candidate');

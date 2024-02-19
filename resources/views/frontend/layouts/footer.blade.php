@@ -4,7 +4,7 @@
 		<div class="ins-social-content d-flex align-items-center">
 			<div class="ins-social-item">
 				<a href="#">
-					<img src="{{asset('assets/img/logo/fb.png')}}" alt="">
+					<img src="#" alt="">
 					<span>Facebook</span>
 				</a>
 			</div>

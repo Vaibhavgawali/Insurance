@@ -11,15 +11,23 @@ use App\Models\Quiz;
 use App\Models\UserQuiz;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
+use setasign\Fpdi\Fpdi;
 
 class CandidateQuizController extends Controller
 {
+    private $pdf;
     public function __construct()
     {
         $this->middleware('auth:sanctum');
 
         //  Spatie middleware here
         $this->middleware(['role_or_permission:Superadmin|take_assessment']);
+        $this->pdf = new Fpdi();
+        $this->pdf->AddFont('Courierb', '', 'courierb.php');
+        $this->pdf->AddFont('Courier', '', 'courier.php');
+        $this->pdf->AddPage('L');
+        $this->pdf->setSourceFile("blankcertificate.pdf");
+        $this->pdf->SetTextColor(0,0,0);
     }
 
     /**
@@ -34,7 +42,7 @@ class CandidateQuizController extends Controller
         // If user has completed quizzes, get the next level quizzes
         if (!empty($completedQuizIds)) {
             $nextLevel = Quiz::whereNotIn('id', $completedQuizIds)->min('level');
-            
+
             if ($nextLevel) {
                 $quizzes = Quiz::where('level', $nextLevel)->get();
             } else {
@@ -138,15 +146,15 @@ class CandidateQuizController extends Controller
 
         $quiz = Quiz::findOrFail($quizId);
 
-        $startTime = $request->session()->get('quiz_start_time') ? Carbon::parse($request->session()->get('quiz_start_time')) :"";
+        $startTime = $request->session()->get('quiz_start_time') ? Carbon::parse($request->session()->get('quiz_start_time')) : "";
         $quizDurationInMinutes = $quiz->quiz_time + 1; // 1 hour
         $currentTime = Carbon::now();
 
         // Calculate quiz end time
-        if($startTime){
+        if ($startTime) {
             $quizEndTime = $startTime->copy()->addMinutes($quizDurationInMinutes);
         }
-        
+
         // Check if the current time is within the valid time span
         if ($startTime && $currentTime->between($startTime, $quizEndTime)) {
             // User has submitted within the valid time span
@@ -177,15 +185,15 @@ class CandidateQuizController extends Controller
             $request->session()->forget('quiz_start_time');
             if ($is_passed) {
                 // certificate logic
-                
-                $message="You have passed";
 
-                $data = [
-                    'title' => 'Welcome InsuranceNext',
-                    'date' => date('m/d/Y'),
-                    'score'=>$score,
-                    'level'=>$quiz->level
-                ]; 
+                $message = "You have passed";
+
+                // $data = [
+                //     'title' => 'Welcome InsuranceNext',
+                //     'date' => date('m/d/Y'),
+                //     'score'=>$score,
+                //     'level'=>$quiz->level
+                // ]; 
 
                 // $pdf=$this->generatePDF($data);
 
@@ -197,22 +205,22 @@ class CandidateQuizController extends Controller
                 // dd($passed_quiz);
                 // $is_updated= $passed_quiz->update(['certificate_path' => $pdf]);
 
-                return Response(['success'=>true,'message' => $message,'passed'=>true],200); //,'pdf'=>$pdf
+                return Response(['user_quiz_id' => $passed_quiz->id, 'success' => true, 'message' => $message, 'passed' => true], 200); //,'pdf'=>$pdf
 
-            }else{
-                $message="You have failed";
-                return Response(['success'=>true,'message' => $message,'passed'=>false], 200);
+            } else {
+                $message = "You have failed";
+                return Response(['success' => true, 'message' => $message, 'passed' => false], 200);
             }
 
             return Response(['success' => true, 'message' => $message], 200);
 
-    } else {
+        } else {
             // User has submitted outside the valid time span
-            $message= "Quiz submission is outside the valid time span.";
+            $message = "Quiz submission is outside the valid time span.";
             return Response(['success' => false, 'message' => $message], 200);
         }
     }
-      
+
     // Helper method to calculate score 
     private function calculateScore($userAnswers, $quizId)
     {
@@ -222,17 +230,17 @@ class CandidateQuizController extends Controller
 
 
         // Exclude the specified key
-        
+
         $keyToExclude = 'quiz_id';
         $filteredArray = array_diff_key($userAnswers, [$keyToExclude => '']);
 
         // Get the count of elements in the filtered array
         $count = count($filteredArray);
-        
+
         if ($count < 1) {
             return false;
         }
-         
+
         foreach ($quiz->questions as $question) {
             $correctAnswerText = $question->answers()->where('is_correct', true)->value('answer_text');
 
@@ -240,7 +248,7 @@ class CandidateQuizController extends Controller
 
             $score += ($userSelectedAnswerText == $correctAnswerText) ? $correctAnswersScore : 0;
         }
-        
+
         return $score;
     }
 
@@ -262,13 +270,85 @@ class CandidateQuizController extends Controller
         return response()->json(['success' => true, 'start_time' => $startTime]);
     }
 
-    public function generatePDF()//$data
+    public function generatePDF($userQuizId)//$data
     {
-        // return "ok";
-        return view('dashboard.candidate-quizes.certificate_demo');
+        $user_quiz = UserQuiz::findOrFail($userQuizId);
+        $user_quiz = UserQuiz::with('user', 'quiz')
+                ->where('id', $userQuizId)
+                ->where('pass_status', 1)
+                ->firstOrFail();
+
+        $score = $user_quiz->score;
+        $date = $user_quiz->updated_at ?? $user_quiz->created_at;
+
+        // $data = [
+        //     'title' => 'Welcome to InsuranceNext',
+        //     'date' => $date->format('m/d/Y'),
+        //     'name' => $user_quiz->user->name,
+        //     'score' => $score,
+        //     'level' => $user_quiz->quiz->level,
+        // ];
+
+
+        $tplId = $this->pdf->importPage(1);
+
+        $this->pdf->useTemplate($tplId, 0, 0, 298);
+        $this->pdf->SetFont('Courierb', '', 16);
+
+
+        $successfullCompletion = "Successful completion of Level ".$user_quiz->quiz->level."";
+
+        // Get text width
+        $textWidth = $this->pdf->GetStringWidth($successfullCompletion);
+
+        // Get page dimensions
+        $pageWidth = $this->pdf->getPageWidth();
+        $pageHeight = $this->pdf->getPageHeight();
+
+        // Calculate coordinates for centering text
+        $x = ($pageWidth - $textWidth) / 2;
+        $y = $pageHeight / 2;
+
+        // Place text at calculated coordinates
+        $this->pdf->Text($x, $y - 20, $successfullCompletion);
+        $this->pdf->SetY($y);
+      
+        $studentName=$user_quiz->user->name;
+        $bodyText="This is to certify that ".$studentName."has successfully completed the Insurance.";
+        $textWidth = $this->pdf->GetStringWidth($bodyText);
+        $x = ($pageWidth - $textWidth) / 2;
+        $this->pdf->SetX($x+12);
+        // Text with different styles
+        $this->pdf->SetFont('Courier', '', 14);
+        $this->pdf->Write(0,"This is to certify that ");
+        $this->pdf->SetFont('Courierb', '', 16);
+        $this->pdf->SetTextColor(255,0,0);
+        $this->pdf->Write(0,$studentName);
+        $this->pdf->SetFont('Courier', '', 14);
+        $this->pdf->SetTextColor(0,0,0);
+        $this->pdf->Write(0," has successfully completed the Insurance");
+        $this->pdf->SetY($y+10);
+        $this->pdf->SetX($x+12);
+        $date = $date->format('m/d/Y');
+        $marks=$score;
+        $this->pdf->Write(0,"Module Assessment on ".$date." and achieved a score of ".$marks.".");
+        $this->pdf->SetY($y+30);
+        $this->pdf->SetX($x+12);
+        $this->pdf->Write(0,"Awarded by InsuranceCareer.in");
+        
+        // adds current date
+        $this->pdf->SetFont('Courier', '', 12);
+        $this->pdf->SetTextColor(0, 0, 0);
+        $this->pdf->SetXY(17, 175);
+        $date = date('F dS, Y');
+        $this->pdf->Write(0, $date);
+
+        $this->pdf->Output();
+        exit;
+        //return view('dashboard.candidate-quizes.certificate_demo',compact('data'));
 
         // $users = Quiz::get();
-            
+
         // $pdf = PDF::loadView('dashboard.candidate-quizes.certificate', compact('data'))
         //             ->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true])
         //             ->setPaper('A4');

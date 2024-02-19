@@ -205,6 +205,7 @@ let quizDeleteAlert = (quiz_id) => {
         dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {
+            console.log(first)
             deleteQuizFunction(quiz_id);
             setTimeout(function () {
                 window.location.reload();

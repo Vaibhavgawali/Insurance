@@ -100,7 +100,6 @@ let quizAlert = (message) =>
 
             $('#time').text('Time remaining: ' + remainingHours + ':' + remainingMinutes + ":" + (remainingSeconds < 10 ? '0' : '') + remainingSeconds);
             if (timeDifferenceInSeconds <= 0) {
-                // Submit quiz when time is over
                 clearInterval(intervalId);
                 submitQuiz();
             }
@@ -113,7 +112,7 @@ let quizAlert = (message) =>
             var baseUrl = $('meta[name="base-url"]').attr("content");
             var quiz_id = <?php echo $quiz_id; ?>;
             $.ajax({
-                url: `${baseUrl}/submit-quiz/${quiz_id}`, // Adjust the URL as needed
+                url: `${baseUrl}/submit-quiz/${quiz_id}`, 
                 method: 'POST',
                 data: formData,
                 headers: {
@@ -125,10 +124,9 @@ let quizAlert = (message) =>
                         localStorage.removeItem("quizAnswers");
 
                         if(response.passed){
-                            $url=`${baseUrl}/generate-pdf`;
-                            // quizPassAlert($url);
+                            let user_quiz_id=response.user_quiz_id;
+                            $url=`${baseUrl}/generate-pdf/${user_quiz_id}`;
                             quizAlert(true);
-                            // debugger
                         }else{
                             $url=`${baseUrl}/candidate-quizes/`;
                             quizAlert(false);

@@ -32,10 +32,8 @@
           <input type="number" class="form-control p-4" id="age" name="age" rows="8" placeholder="Age" disabled value='{{ $data->profile->age ?? "N/A" }}'>
           <div id="age_error"></div>
         </div>
-
-
-
-        @if($data->hasAnyRole(['Candidate','Insurer','Superadmin']))
+    
+        @if($data->hasAnyCategory(['Candidate','Insurer','Superadmin']))
         <div class="form-group">
           <label for="preffered_line" class="form-label ">Preffered Line</label>
           <select class="form-control p-5" name="preffered_line" id="preffered_line" aria-label="work status" disabled>
@@ -46,12 +44,12 @@
             <option value="other" {{ isset($data->profile) && $data->profile->preffered_line === 'other' ? 'selected' : '' }}>Other</option>
           </select>
 
-
             <div id="preffered_line_error"></div>
           </div>
         @endif
-
-        @if($data->hasAnyRole(['Institute','Insurer','Superadmin']))
+        
+        
+        @if($data->hasAnyCategory(['Institute','Insurer','Superadmin']))
         <div class="form-group">
           <label for="spoc">SPOC</label>
           <textarea class="form-control p-4" id="spoc" name="spoc" rows="8" disabled>{{ $data->profile->spoc ?? "N/A" }}</textarea>
