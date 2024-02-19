@@ -12,7 +12,7 @@
 <!-- Start of Blog Details  section
 	============================================= -->
 <section id="in-blog-details" class="in-blog-details-section" style="">
-  <section id="ins-text-scroll-2" class="ins-text-scroll-section-2-custom">
+  <section id="ins-text-scroll-2" class="ins-text-scroll-section-2" style="padding-top: 40px;">
     <div class="ins-text-scroll-2 clearfix">
       <h3>Discover Your Potential</h3>
       <span class="scroll-icon"><img src="assets/img/shape/txt-4.png" alt=""></span>
@@ -168,7 +168,7 @@
               <p>Total size of the Industry, growth and other factors:
 </p>
       <div class="row d-flex align-items-center justify-content-center">
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-6 mt-3">
         <div class="card shadow-lg bg-white rounded offset-lg-1">
             <div class="card-body">
               <h6 class="text-center">
@@ -179,7 +179,7 @@
             <!-- <h6 class="text-center p-2">Source: Swiss Re,Sigma 4/2022</h6> -->
           </div>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-6 mt-3">
           <div class="card shadow-lg bg-white rounded offset-lg-1">
             <div class="card-body">
               <h6 class="text-center">
@@ -190,18 +190,18 @@
             <!-- <h6 class="text-center p-2">Source: Swiss Re,Sigma 4/2022</h6> -->
           </div>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-6 mt-3">
           <div class="card shadow-lg bg-white rounded offset-lg-1">
             <div class="card-body">
               <h6 class="text-center">
-                Insurance Penetration by Region in the World 2022
+                Insurance Penetration in select countries in 2022
               </h6>
               <canvas id="penetrationChart" width="100" height="100" style="display: block; box-sizing: border-box; height: 272px; width: 272px;"></canvas>
             </div>
             <!-- <h6 class="text-center p-2">Source: Swiss Re,Sigma 4/2022</h6> -->
           </div>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-6 mt-3">
           <div class="card shadow-lg bg-white rounded offset-lg-1">
             <div class="card-body">
               <h6 class="text-center">
@@ -514,68 +514,70 @@ var data = {
   });
 
   //2nd chart
-  // Data from the table
-  var regions = [
-    "USA and Canada",
-    "Advanced EMEA",
-    "Emerging EMEA",
-    "Advance Asia Pacific",
-    "Emerging Asia Pacific",
-    "India",
-    "World",
-  ];
-  var lifePenetration = [2.7, 4.8, 0.6, 6.0, 2.1, 3.2, 3.0];
-  var noneLifePenetration = [8.7, 3.2, 1.0, 3.0, 1.6, 1.0, 1.0];
-  var totalPenetration = [11.4, 8.0, 1.6, 9.0, 3.7, 4.2, 4.2];
-
-  // Get canvas element
-  var canvas = document.getElementById("penetrationChart");
-  var ctx = canvas.getContext("2d");
-
-  // Create data for the pie chart
   var data = {
-    labels: regions,
-    datasets: [{
-      label: "Life Penetration",
-      data: lifePenetration,
-      backgroundColor: [
-        "#66b3ff",
-        "#99ff99",
-        "#ffcc99",
-        "#ffb3e6",
-        "#c2c2f0",
-        "#ff6666",
-        "#c2f0c2",
-      ],
-    }, ],
-  };
+            labels: ["USA", "Canada", "Brazil", "Mexico","Argentina","South Africa","UK","Sweden","France","Netherlands","Italy",  "Switzerland","Germany","Spain","Turkey","Saudi Arabia","Russia","Taiwan","South Korea",  "Singapore","Japan","Thailand","Malaysia", "Australia","India","China", "New Zealand",   "Indonesia", "Pakistan","World"],
+            datasets: [
+                {
+                    label: "2021 Non-Life",
+                    backgroundColor: "rgba(255, 99, 132, 0.5)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1,
+                    data: [9.1,4.8,1.7,1.3,1.9,2.2,2.2,1.9,3.4,7.7,2.2,4.0,3.9,3.2,1.1,1.3,0.9,3.2,5.2,1.8,2.2,1.9,1.4,3.5,1.0,1.9,4.0,0.5,0.2,3.9]
+                },
+                {
+                    label: "2022 Non-Life",
+                    backgroundColor: "rgba(54, 162, 235, 0.5)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 1,
+                    data: [9.0,4.6,1.9,1.3,1.8,2.2,2.4,1.8,3.3,7.3,2.2,4.0,3.5,2.8,1.3,1.2,0.6,3.1,5.8,1.8,2.3,1.9,1.3,3.3,1.0,1.9,3.0,0.5,0.3,4.0]
+                },
+                {
+                    label: "2021 Life",
+                    backgroundColor: "rgba(255, 206, 86, 0.5)",
+                    borderColor: "rgba(255, 206, 86, 1)",
+                    borderWidth: 1,
+                    data: [2.6,3.3,2.1,1.2,0.3,10.0,8.9,5.8,6.1,1.4,6.9,3.1,2.6,2.0,0.2,0.1,0.4,11.6,5.8,7.5,6.1,3.4,3.9,1.0,3.2,2.1,0.8,1.1,0.5,3.0]
+                },
+                {
+                    label: "2022 Life",
+                    backgroundColor: "rgba(75, 192, 192, 0.5)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1,
+                    data: [2.6,3.3,2.1,1.1,0.2,9.1,8.1,7.5,5.5,1.2,5.8,3.0,2.4,2.0,0.2,0.0,0.3,8.2,5.4,7.4,5.9,3.4,3.7,0.9,3.0,2.0,0.8,0.9,0.6,2.8]
+                }
+            ]
+        };
 
-  // Create options for the pie chart
-  var options = {
-    title: {
-      display: true,
-      text: "Life Penetration by Region",
-    },
-  };
+        var options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Insurance Density (in USD)'
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Countries'
+                    }
+                }]
+            }
+        };
 
-  // Create the pie chart
-  var pieChart = new Chart(ctx, {
-    type: "pie",
-    data: data,
-    options: options,
-  });
+        var ctx = document.getElementById("penetrationChart").getContext("2d");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
 
   //3rd chart
   // Data from the table
-  var regions = [
-    "USA and Canada",
-    "Advanced EMEA",
-    "Emerging EMEA",
-    "Advance Asia Pacific",
-    "Emerging Asia Pacific",
-    "India",
-    "World",
-  ];
+
   var lifeDensity = [1823, 2226, 35, 2325, 132, 69, 382];
   var noneLifeDensity = [5960, 1468, 58, 1187, 100, 22, 492];
   var totalDensity = [7782, 3694, 92, 3512, 232, 91, 874];
@@ -586,33 +588,63 @@ var data = {
 
   // Create data for the pie chart
   var data = {
-    labels: regions,
-    datasets: [{
-      label: "Life Density",
-      data: lifeDensity,
-      backgroundColor: [
-        "#66b3ff",
-        "#99ff99",
-        "#ffcc99",
-        "#ffb3e6",
-        "#c2c2f0",
-        "#ff6666",
-        "#c2f0c2",
-      ],
-    }, ],
-  };
+            labels:  ["USA", "Canada", "Brazil","Argentina","Mexico","Switzerland","Sweden","UK","Netherlands","France","Germany","Italy","Spain","South Africa","Saudi Arabia", "Turkey","Russia","Singapore","Taiwan","South Korea","Australia", "Japan","New Zealand","Malaysia","China","Thailand", "India",    "Indonesia", "Pakistan","World"],
+            datasets: [
+                {
+                    label: "2021 Non-Life",
+                    backgroundColor: "rgba(255, 99, 132, 0.5)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1,
+                    data: [6356,2520,130,207,131,3744,1119,1039,4497,1992,785,960,154,299,102,111,1327,2032,1764,2195,855,1936,157,229,141,22,22,4,492]
+                },
+                {
+                    label: "2022 Non-Life",
+                    backgroundColor: "rgba(54, 162, 235, 0.5)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 1,
+                    data: [6868,2552,168,252,146,3634,976,1111,1074,1339,1699,750,832,149,393,133,87,1489,1006,1836,2149,748,1395,159,234,134,22,26,4,499]
+                },
+                {
+                    label: "2021 Life",
+                    backgroundColor: "rgba(255, 99, 132, 0.5)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1,
+                    data: [1837,1697,160,31,115,2866,3478,4234,805,2654,1321,2467,591,698,13,22,49,5414,3772,1971,623,2347,403,444,253,246,69,48,7,382]
+                },
+                {
+                    label: "2022 Life",
+                    backgroundColor: "rgba(54, 162, 235, 0.5)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 1,
+                    data: [2017,1840,184,29,118,2730,4203,3669,657,2239,1182,1966,601,614,14,21,47,6074,2656,1705,609,1942,373,432,255,70,43,8,354]
+                }
+            ]
+        };
 
-  // Create options for the pie chart
-  var options = {
-    title: {
-      display: true,
-      text: "Life Density by Region",
-    },
-  };
+        var options = {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Insurance Density (in USD)'
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Countries'
+                    }
+                }]
+            }
+        };
+
 
   // Create the pie chart
   var pieChart = new Chart(ctx, {
-    type: "pie",
+    type: "bar",
     data: data,
     options: options,
   });
