@@ -11,11 +11,13 @@ class CandidateLogin extends Component
     /**
      * Create a new component instance.
      */
-    public $data;
+    // public $data;
+    public $user;
 
     public function __construct($data)
     {
-        $this->data = $data;
+        // $this->data = $data;
+        $this->user = Auth::user();
     }
 
     /**

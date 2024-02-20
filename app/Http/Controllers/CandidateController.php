@@ -39,17 +39,14 @@ class CandidateController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            // $users = User::role('Candidate')->with('address', 'profile', 'experience', 'documents')->orderBy('user_id', 'desc')->get();
             $users = User::where('category', 'Candidate')
                     ->with('address', 'profile', 'experience', 'documents')
                     ->orderBy('user_id', 'desc')
                     ->get();
 
             if ($users) {
-                // return Response(['data' => $users], 200);
                 return view('dashboard.admin.candidate-list');
             }
-            // return Response(['message' => "Users with role Candidate not found "], 404);
         }
         return Response(['data' => 'Unauthorized'], 401);
     }
@@ -146,36 +143,36 @@ class CandidateController extends Controller
                         $filterLine = request('filter_Line');
                         
 
-        if ($filterLine === 'other') {
-            // Exclude rows where preffered_line is 'life', 'general', or 'health'
-            $query->whereHas('profile', function ($profileQuery) {
-                $profileQuery->whereNotIn('preffered_line', ['life', 'general', 'health']);
-            });
-        } else {
-            // Include rows where preffered_line is like the specified filter
-            $query->whereHas('profile', function ($profileQuery) use ($filterLine) {
-                $profileQuery->where('preffered_line', 'like', '%' . $filterLine . '%');
-            });
-        }     
-    })
-    ->when(request()->has('documents'), function ($query) {
-        $documents = request('documents');
-        if ($documents === 'uploaded') { 
-            $query->whereHas('documents');
-        } else if ($documents === 'not_uploaded') {
-            $query->whereDoesntHave('documents');
-        }
-    })
-    ->when(request()->has('experience'), function ($query) {
-        $experience = request('experience');
-        if ($experience === 'experienced') { 
-            $query->whereHas('experience');
-        } else if ($experience === 'fresher') {
-            $query->whereDoesntHave('experience');
-        }
-    })
-    ->orderBy('user_id', 'desc')
-    ->get();
+            if ($filterLine === 'other') {
+                // Exclude rows where preffered_line is 'life', 'general', or 'health'
+                $query->whereHas('profile', function ($profileQuery) {
+                    $profileQuery->whereNotIn('preffered_line', ['life', 'general', 'health']);
+                });
+            } else {
+                // Include rows where preffered_line is like the specified filter
+                $query->whereHas('profile', function ($profileQuery) use ($filterLine) {
+                    $profileQuery->where('preffered_line', 'like', '%' . $filterLine . '%');
+                });
+            }     
+        })
+        ->when(request()->has('documents'), function ($query) {
+            $documents = request('documents');
+            if ($documents === 'uploaded') { 
+                $query->whereHas('documents');
+            } else if ($documents === 'not_uploaded') {
+                $query->whereDoesntHave('documents');
+            }
+        })
+        ->when(request()->has('experience'), function ($query) {
+            $experience = request('experience');
+            if ($experience === 'experienced') { 
+                $query->whereHas('experience');
+            } else if ($experience === 'fresher') {
+                $query->whereDoesntHave('experience');
+            }
+        })
+        ->orderBy('user_id', 'desc')
+        ->get();
 
             if ($data) {
                 return DataTables::of($data)
@@ -288,21 +285,19 @@ public function destroy(string $id)
     return Response(['status' => false, 'message' => 'Unauthorized'], 401);
 }
 
+/**
+ * Download candidate profile
+ */
+public function downloadCandidateProfilePDF($userId)
+{
+    $user = User::findOrFail($userId);
+    $userData = User::with('address', 'profile', 'experience')->find($user->user_id);
 
+    $pdf = PDF::loadView('dashboard.admin.profile-pdf', compact('userData'))
+            ->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true])
+            ->setPaper('A4');
 
-    /**
-     * Download candidate profile
-     */
-    public function downloadCandidateProfilePDF($userId)
-    {
-        $user = User::findOrFail($userId);
-        $userData = User::with('address', 'profile', 'experience')->find($user->user_id);
-
-        $pdf = PDF::loadView('dashboard.admin.profile-pdf', compact('userData'))
-                ->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true])
-                ->setPaper('A4');
-
-        return $pdf->download('certificate_'.$user->id.'.pdf');
-    }
+    return $pdf->download('certificate_'.$user->id.'.pdf');
+}
 
 }

@@ -26,8 +26,6 @@ class CandidateQuizController extends Controller
         $this->pdf->AddFont('Courierb', '', 'courierb.php');
         $this->pdf->AddFont('Courier', '', 'courier.php');
         $this->pdf->AddPage('L');
-        $this->pdf->setSourceFile("blankcertificate.pdf");
-        $this->pdf->SetTextColor(0,0,0);
     }
 
     /**
@@ -161,9 +159,15 @@ class CandidateQuizController extends Controller
 
             $userAnswers = $request->except('_token');
 
-            $score = $this->calculateScore($userAnswers, $quizId);
+            $correctAnswersScore = 2;
+            $score = $this->calculateScore($userAnswers, $quizId, $correctAnswersScore);
 
-            $passingScore = 2;
+            $questionCount = $quiz->questions()->count();
+            $maximumScore = $questionCount * $correctAnswersScore ; 
+
+            $passingPercentage = 50; 
+            $passingScore = round(($passingPercentage / 100) * $maximumScore, 2);
+            
             $is_passed = $score > $passingScore;
 
             $user_quiz = UserQuiz::where([
@@ -222,10 +226,10 @@ class CandidateQuizController extends Controller
     }
 
     // Helper method to calculate score 
-    private function calculateScore($userAnswers, $quizId)
+    private function calculateScore($userAnswers, $quizId, $correctAnswersScore)
     {
         $score = 0;
-        $correctAnswersScore = 2;
+ 
         $quiz = Quiz::findOrFail($quizId);
 
 
@@ -270,7 +274,7 @@ class CandidateQuizController extends Controller
         return response()->json(['success' => true, 'start_time' => $startTime]);
     }
 
-    public function generatePDF($userQuizId)//$data
+    public function generatePDF($userQuizId)
     {
         $user_quiz = UserQuiz::findOrFail($userQuizId);
         $user_quiz = UserQuiz::with('user', 'quiz')
@@ -281,22 +285,19 @@ class CandidateQuizController extends Controller
         $score = $user_quiz->score;
         $date = $user_quiz->updated_at ?? $user_quiz->created_at;
 
-        // $data = [
-        //     'title' => 'Welcome to InsuranceNext',
-        //     'date' => $date->format('m/d/Y'),
-        //     'name' => $user_quiz->user->name,
-        //     'score' => $score,
-        //     'level' => $user_quiz->quiz->level,
-        // ];
+        // $this->pdf->setSourceFile("blankcertificate.pdf");
 
+        $pdfPath = public_path('blankcertificate.pdf');
+        $this->pdf->setSourceFile($pdfPath);
+
+        $this->pdf->SetTextColor(0,0,0);
 
         $tplId = $this->pdf->importPage(1);
 
         $this->pdf->useTemplate($tplId, 0, 0, 298);
         $this->pdf->SetFont('Courierb', '', 16);
 
-
-        $successfullCompletion = "Successful completion of Level ".$user_quiz->quiz->level."";
+        $successfullCompletion = "Successful completion of Module ".$user_quiz->quiz->level."";
 
         // Get text width
         $textWidth = $this->pdf->GetStringWidth($successfullCompletion);
@@ -345,27 +346,6 @@ class CandidateQuizController extends Controller
 
         $this->pdf->Output();
         exit;
-        //return view('dashboard.candidate-quizes.certificate_demo',compact('data'));
 
-        // $users = Quiz::get();
-
-        // $pdf = PDF::loadView('dashboard.candidate-quizes.certificate', compact('data'))
-        //             ->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true])
-        //             ->setPaper('A4');
-
-        //     $pdfContents = $pdf->download()->getOriginalContent();
-
-        //     $directoryPath = public_path('storage/certificate/'.Auth::id().'/'.$data['level'].'/');
-        //     File::makeDirectory($directoryPath, 0755, true, true);
-
-        //     $pdfPath = $directoryPath.'certificate.pdf';
-
-        //     $bytesWritten = File::put($pdfPath, $pdfContents);
-
-        //     if ($bytesWritten !== false) {
-        //         return Auth::id().'/'.$data['level'].'/certificate.pdf';
-        //     } else {
-        //         return false;
-        //     }
     }
 }

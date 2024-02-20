@@ -44,7 +44,7 @@
                     <img src="/admin-assets/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h6 class="font-weight-normal mb-3 fs-5">Post Your CV for new/better opportunity in insurance industry
                     </h6>
-                    <a href="" class="btn btn-gradient-primary btn-sm">Click Here</a>
+                    <a href="/candidate/{{auth()->user()->user_id}}" class="btn btn-gradient-primary btn-sm">Click Here</a>
                 </div>
             </div>
         </div>
