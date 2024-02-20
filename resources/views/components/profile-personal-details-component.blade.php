@@ -1,6 +1,9 @@
+
+
 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 my-3">
   <div class="profile-birth-section card">
     <div class="d-flex justify-content-between p-3">
+      
       <h4>User Profile Details</h4>
       @if(auth()->user()->user_id == $data->user_id)
       <button class="btn btn-gradient-primary btn-sm " id="profile_details_edit_button"><i class="mdi mdi-table-edit"></i></button>
@@ -43,7 +46,28 @@
             <option value="health" {{ isset($data->profile) && $data->profile->preffered_line === 'health' ? 'selected' : '' }}>Health</option>
             <option value="other" {{ isset($data->profile) && $data->profile->preffered_line === 'other' ? 'selected' : '' }}>Other</option>
           </select>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Other Preffered Line</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="form-group">
+          <label for="other_preffered_line">Other Preffered Line</label>
+          <input type="text" class="form-control p-4" id="other_preffered_line" name="other_preffered_line">
+          <div id="other_preffered_line_error"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
             <div id="preffered_line_error"></div>
           </div>
         @endif
@@ -67,6 +91,8 @@
         @endif
       </form>
       <script>
+
+
         let Profile_Details_toggle = () => {
           let editProfileButton = document.getElementById(
             "profile_details_edit_button"
@@ -83,6 +109,7 @@
           let ageInput = document.getElementById("age");
           let prefferedLineInput = document.getElementById("preffered_line");
           let spocInput = document.getElementById("spoc");
+       
 
           let toggle = false;
 
@@ -115,9 +142,41 @@
             prefferedLineInput.setAttribute("disabled", true);
             spocInput.setAttribute("disabled", true);
           });
+          
         };
-
+    
         Profile_Details_toggle();
+        let prefferedLineInput = document.getElementById("preffered_line");
+        prefferedLineInput.addEventListener('change', function() {
+          
+    let modal = new bootstrap.Modal(document.getElementById('exampleModal')); // Instantiate the modal
+
+    if (this.value == 'other') {
+       // Show the modal if the selected value is 'other'
+       modal.show(); 
+    }
+    let saveChanges = $("#saveChanges"); 
+    saveChanges.on('click', function() {
+      // let other_preffered_line = $("#other_preffered_line").val();
+      // if(other_preffered_line  == '' || other_preffered_line == null || other_preffered_line == undefined || other_preffered_line=='undefined' )
+      //       {
+      //           $("#other_preffered_line_error").html(
+      //               '<div class=" invalid-feedback d-block">Please enter your preferred line.</div>'
+      //           )
+      //           $("#other_preffered_line").focus();
+      //           return false
+      //       }
+            // else
+            // {
+            //   // $('#exampleModal').modal('hide')
+            // }
+            // $("#other_preffered_line_error").html("");
+              $('#exampleModal').modal('hide')
+            
+    })
+})
+
+
       </script>
     </div>
   </div>

@@ -151,7 +151,9 @@ With this achievement, {{ $data['name'] }} has exhibited dedication, hard work, 
           <!-- First Image -->
           <div class="col">
             <img class="signature-text"  src="{{ asset('admin-assets/assets/images/dashboard/signature-image1.png') }}" alt="Image 1" class="img-fluid" width="60%" style="margin-left: 40%;"><br>
-            <span class="text-white px-4 signature-text fw-bold font-style" 
+            <span class="text-white px-
+            .
+            4 signature-text fw-bold font-style" 
                   style="margin-left: 40%; font-size: 15px;
                          500;">
                     Mr. Prabhat Bajaj

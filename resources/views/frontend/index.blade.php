@@ -27,9 +27,9 @@
 							<div class="col-12 col-md-4 col-lg-4">
 								<div class="d-flex flex-column align-items-center justify-content-center mb-3 ">
 									<div >
-									<a href="/module"><img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/2.png')}}" alt=""></a>
+									<a href="/candidate-register"><img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/2.png')}}" alt=""></a>
 									</div>
-									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/module">Click Here</a>
+									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/candidate-register">Click Here</a>
 							   </div>
 							</div>
 							<div class="col-12 col-md-4 col-lg-4">
@@ -170,7 +170,7 @@
 					<div class="col-lg-6 col-md-6 ">
 						<div  class="in-service-item-3 position-relative border border-3 border-warning">
 							<div class="inner-text headline pera-content">
-								<h3 class="text-success"><a href="#">Insure Your Career</a></h3>
+								<h3 class="text-success"><a href="#">Industry Guide</a></h3>
 								<p>Online Platform for other industries professionals to know and explore opportunities with promosing insurance industry career</p>
 								<div class="ins-main-about-list-area ul-li-block">
 									<ul>
@@ -196,7 +196,7 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="in-service-item-3 position-relative border border-3 border-success">
 							<div class="inner-text headline pera-content">
-								<h3 class="text-success"><a href="#">Pro Insure Network</a></h3>
+								<h3 class="text-success"><a href="#">Career Launcher</a></h3>
 								<p>Online Platform for Existing Insurance Professionals at various levels to stay in touch with the community and explore better opportunities in the industry</p>
 								<div class="ins-main-about-list-area ul-li-block">
 									<ul>
@@ -232,7 +232,7 @@
 									</ul>
 									<br>
 									
-									<p><a href="/industry" class="btn custom-btn btn-sm ">Click here</a> to Register & start your Certification Now</p>
+									<p><a href="/candidate-register" class="btn custom-btn btn-sm ">Click here</a> to Register & start your Certification Now</p>
 									<br>
 								
 								</div>
@@ -260,7 +260,7 @@
 										<li>Certifications and placement references</li>
 									</ul>
 									<br>
-									<p><a href="/industry" class="btn custom-btn btn-sm ">Click here</a> to Register & know more</p>
+									<p><a href="/candidate-register" class="btn custom-btn btn-sm ">Click here</a> to Register & know more</p>
 								</div>
 								
 							</div>
@@ -405,12 +405,9 @@
 	============================================= -->
 	<section id="ins-text-scroll-2" class="ins-text-scroll-section-2">
 		<div class="ins-text-scroll-2 clearfix">
-			<h3>Learning</h3>
-			<span class="scroll-icon"><img src="{{asset('assets/img/shape/txt-4.png')}}" alt=""></span>
-			<h3>Assessment <span>+</span> Certifications</h3>
-			<span class="scroll-icon"><img src="{{asset('assets/img/shape/txt-5.png')}}" alt=""></span>
-			<h3>Career moves for existing insurance professionals</h3>
-			<span class="scroll-icon"><img src="{{asset('assets/img/shape/txt-3.png')}}" alt=""></span>
+			<h3>Learning<span>.</span></h3>
+			<h3>Assessment <span>+</span> Certifications<span>.</span></h3>
+			<h3>Career moves for existing insurance professionals<span>.</span></h3>
 		</div>
 	</section>
     @endsection

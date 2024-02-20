@@ -70,7 +70,6 @@
 						<a href="javascript:void(0)">Insights</a>
 							<ul class="dropdown-menu clearfix">
 								<li><a  href="/industry">About Industry</a></li>
-								<li><a  href="/module">Module</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">

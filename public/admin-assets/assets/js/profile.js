@@ -503,15 +503,17 @@ $(document).ready(function () {
         var gender = $("#gender").val();
         var age = $("#age").val();
         var preffered_line = $("#preffered_line").val();
+        var other_preffered_line = $("#other_preffered_line").val();
         var spoc = $("#spoc").val();
         var user_id = $("#user_id").val();
+
 
         $("#date_of_birth_error").html("");
         $("#gender_error").html("");
         $("#age_error").html("");
         $("#preffered_line_error").html("");
         $("#spoc_error").html("");
-
+        // console.log(other_preffered_line)
         $("#profile_details_status").html("");
 
         if (
@@ -526,6 +528,10 @@ $(document).ready(function () {
             $("#date_of_birth").focus();
             return false;
         }
+        if(preffered_line =="other")
+        {
+            preffered_line = other_preffered_line
+        }
 
         if (
             gender == "" ||
@@ -539,6 +545,7 @@ $(document).ready(function () {
             $("#gender").focus();
             return false;
         }
+
 
         if (
             age == "" ||

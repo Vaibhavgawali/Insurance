@@ -11,27 +11,14 @@
 
 <!-- Start of Blog Details  section
 	============================================= -->
-<section id="in-blog-details" class="in-blog-details-section" style="">
-  <section id="ins-text-scroll-2" class="ins-text-scroll-section-2" style="padding-top: 40px;">
-    <div class="ins-text-scroll-2 clearfix">
-      <h3>Discover Your Potential</h3>
-      <span class="scroll-icon"><img src="assets/img/shape/txt-4.png" alt=""></span>
-      <h3>Unleash Your Career Journey <span>+</span> Achieve Success</h3>
-      <span class="scroll-icon"><img src="assets/img/shape/txt-5.png" alt=""></span>
-      <h3>Innovation that Inspires</h3>
-      <span class="scroll-icon"><img src="assets/img/shape/txt-3.png" alt=""></span>
-    </div>
-  </section>
+<section style="padding-top: 180px;"></section>
 
-
-  <div class="container">
+<section >
+  <div class="container" >
     <div class="in-blog-details-content">
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-9 ">
           <div class="in-blog-details-content-area">
-            <!-- <div class="in-blog-details-main-img">
-              <img src="assets/img/blog/blgd.jpg" alt="" />
-            </div> -->
             <div class="in-blog-details-text-area headline ul-li-block pera-content">
               <div class="in-blog-details-text-wrap">
                 <div class="in-meta"></div>
@@ -48,48 +35,15 @@
                 </blockquote>
                 <p>
                   The primary objectives of the insurance industry in India revolve around risk mitigation, financial protection, and wealth creation. Insurance serves as a crucial instrument for individuals and businesses to shield themselves against unforeseen events, such as accidents, illnesses, and natural disasters. Additionally, insurance products also play a pivotal role in promoting long-term savings and investment. The industry contributes significantly to the country's economic growth by mobilizing funds for infrastructure development and facilitating capital formation.
-
                 </p>
-                <!-- <div class="in-blog-details-img">
-										<img style="width: 100%;" src="assets/img/blog/blgd2.jpg" alt="">
-									</div> -->
-                <!-- <div class="row">
-                  <div class="col-md-6">
-                    <div class="in-blog-details-img">
-                      <img src="assets/img/blog/blgd4.jpg" alt="" />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="in-blog-details-img">
-                      <img src="assets/img/blog/blgd3.jpg" alt="" />
-                    </div>
-                  </div>
-                </div> -->
-                <!-- <h3>Elevating Protection to Unprecedented Heights</h3> -->
                 <p>
                   The types of insurance offered in India span a wide range, including life insurance, health insurance, general insurance, and specialized policies for various sectors. Life insurance, in particular, has traditionally been a dominant segment, with policies tailored to provide financial security to individuals and their families. Health insurance has gained prominence in recent years, given the increasing awareness of healthcare costs and the need for comprehensive coverage. General insurance covers diverse areas such as motor insurance, property insurance, and liability insurance, addressing the varied risk landscape.
-
                 </p>
-                <!-- <ul>
-                  <li>Innovation Redefines Security at <span class="custom-color custom-italic">Insurancecareer.in</span>.</li>
-                  <li>Next-Level Assurance: Your Shield, Our Promise.</li>
-                  <li>
-                    Inspire Confidence with <span class="custom-color custom-italic">Insurancecareer.in</span> Expertise
-                  </li>
-                </ul>
-                <p>
-                  Health insurance has gained prominence in recent years,
-                  given the increasing awareness of healthcare costs and the
-                  need for comprehensive coverage. General insurance covers
-                  diverse areas such as motor insurance, property insurance,
-                  and liability insurance, addressing the varied risk
-                  landscape.
-                </p> -->
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="in-blog-side-bar left-side-bar">
             <div class="in-sidebar-widget">
               <div class="category-widget ul-li-block">
@@ -115,28 +69,6 @@
                 </ul>
               </div>
             </div>
-            <!-- <div class="in-sidebar-widget">
-              <div class="category-widget ul-li-block">
-                <h3 class="widget-title position-relative">
-                  What we provide
-                </h3>
-                <ul>
-                  <li><a href="javascript:void(0)">Technology</a></li>
-                  <li><a href="javascript:void(0)">Innovation</a></li>
-                  <li><a href="javascript:void(0)">Finance</a></li>
-                  <li><a href="javascript:void(0)">Insurance Trends</a></li>
-                  <li><a href="javascript:void(0)">Customer Success</a></li>
-                  <li><a href="javascript:void(0)">Risk Management</a></li>
-                  <li>
-                    <a href="javascript:void(0)">Digital Transformation</a>
-                  </li>
-                  <li><a href="javascript:void(0)">Data Security</a></li>
-                  <li><a href="javascript:void(0)">Leadership</a></li>
-                  <li><a href="javascript:void(0)">Emerging Markets</a></li>
-              
-                </ul>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
@@ -263,7 +195,7 @@
               <img src="assets/img/blog/blgd.jpg" alt="" />
             </div> -->
           <div class="in-blog-details-text-area headline ul-li-block pera-content">
-            <div class="in-blog-details-text-wrap card p-3">
+            <div class="in-blog-details-text-wrap  p-3">
               <div class="in-meta"></div>
               <h3>What skill sets you need </h3>
               <h5 class="my-3">For Sales/Distribution Function</h5>
@@ -296,11 +228,13 @@
 
 <section id="ins-key-feature" class="ins-key-feature-section">
   <div class="container">
-    <div class="ins-key-feature-content">
+    
+    <div class="ins-key-feature-content ">
+    <h3 class="text-dark my-5">What are steps you should take to pursue a career in the Insurance Industry
+</h3>
       <div class="row justify-content-center">
         <div class="in-sv-section-title headline-sv">
-          <div class="in-sv-subtitle">What are steps you should take to pursue a career in the Insurance Industry
-          </div>
+    
         </div>
         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1000ms" style="
                 visibility: visible;

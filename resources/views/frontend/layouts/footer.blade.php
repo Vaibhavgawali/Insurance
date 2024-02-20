@@ -11,7 +11,7 @@
 			<div class="ins-social-item">
 				<a href="#">
 					<img src="{{asset('assets/img/logo/ln.png')}}" alt="">
-					<span>Linkdin</span>
+					<span>Linkedin</span>
 				</a>
 			</div>
 			<div class="ins-social-item">
