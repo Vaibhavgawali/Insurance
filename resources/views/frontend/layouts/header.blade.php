@@ -37,11 +37,10 @@
 	============================================= -->
 	<header id="in-header" class="in-header-section header-style-six">
 		
-		<div class="in-header-top-content d-flex justify-content-between align-items-center">
+		<div class="in-header-top-content ">
 			<div class="brand-logo d-flex p-2 align-items-center">
 				<a href="/"><img src="{{asset('assets/img/logo/logo1.png')}}" alt=""></a>
-				<marquee class="top-text-scroll" style="margin-left:40px;" direction="right" scrollamount="3">Empower Your Future: Navigate the Insurance Career Landscape with us  </marquee>
-                 
+				<marquee class="top-text-scroll" style="margin-left:40px;" direction="right" scrollamount="3">Empower Your Future: Navigate the Insurance Career Landscape with us  </marquee> 
 			</div>
 			
 
@@ -83,9 +82,9 @@
 						<li class="dropdown">
 							<a class="btn custom-btn p-2" href="javascript:void(0)">Login</a>
 							<ul class="dropdown-menu clearfix">
-								<li><a   href="/login">Candidate</a></li>
-								<li><a  href="/login">Insurer</a></li>
-								<li><a  href="/login">Institute</a></li>
+								<li><a   href="/login?role=candidate">Candidate</a></li>
+								<li><a  href="/login?role=insurer">Insurer</a></li>
+								<li><a  href="/login?role=institute">Institute</a></li>
 							</ul>
 						</li>
 					</ul>

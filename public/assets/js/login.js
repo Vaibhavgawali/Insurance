@@ -5,6 +5,37 @@ let loginAlert =()=>
 
 
 $(document).ready(function () {
+    var url = window.location.href;
+    var params = new URLSearchParams(url.split('?')[1]);
+    var role = params.get('role');
+    $('#title_1').text('Build your .');
+    $('#title_2').text('Learn & stay.');
+    $('#title_3').text('Find a .');
+   if(role == 'candidate')
+   {
+    $('#title_1').text('Build your profile.');
+    $('#title_2').text('Learn & stay updated.');
+    $('#title_3').text('Find a job.');
+   }
+   else if(role == 'insurer')
+   {
+    $('#title_1').text('Build your profile.');
+    $('#title_2').text('Learn & stay updated.');
+    $('#title_3').text('Find a dsfgdsgh.');
+   }
+   else if(role == 'institute')
+   {
+    $('#title_1').text('Build your profile.');
+    $('#title_2').text('Learn & stay updated.');
+    $('#title_3').text('Find a Ins.');
+   }
+   else
+   {
+    $('#title_1').text('Build your profile.');
+    $('#title_2').text('Learn & stay updated.');
+    $('#title_3').text('Start your journey .');
+   }
+
     $("#login_btn").click(function (event) {
         var email = $("#email").val();
         var password = $("#password").val();

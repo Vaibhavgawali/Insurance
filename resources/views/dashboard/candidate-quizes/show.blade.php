@@ -2,32 +2,31 @@
 @section('main-section')
 
 <!-- quiz dynamic -->
-        <div class="content-wrapper">
-            <div class="page-header">
-                <h3 class="page-title">
-                    <span class="page-title-icon bg-gradient-primary text-white me-2">
-                        <i class="mdi mdi-account-card-details"></i>
-                    </span>Quiz Title :{{$quiz_title}}<br>
-                    <!-- <h5>Quiz Lavel</h5> -->
-                    <!-- <h5></h5> -->
-                    <span class="text-secondary Quiz-options">Quiz Level:{{$quiz_level}}</span>
-                    <h4 class="text-secondary reamining-time-text" id="time"></h4>
-                </h3>
-            </div>
-            <x-quiz-component :questions="$questions" :quizId="$quiz_id" />
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">
+            <span class="page-title-icon bg-gradient-primary text-white me-2">
+                <i class="mdi mdi-account-card-details"></i>
+            </span>Quiz Title :{{$quiz_title}}<br>
+            <!-- <h5>Quiz Lavel</h5> -->
+            <!-- <h5></h5> -->
+            <span class="text-secondary Quiz-options">Quiz Level:{{$quiz_level}}</span>
+            <h4 class="text-secondary reamining-time-text" id="time"></h4>
+        </h3>
+    </div>
+    <x-quiz-component :questions="$questions" :quizId="$quiz_id" />
 
 
-        </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+    let quizAlert = (message) => {
 
-
-let quizAlert = (message) =>
- {
-
-  const quizStatusObject = { isPass: message };
-  localStorage.setItem("quizstatus", JSON.stringify(quizStatusObject));
-};
+        const quizStatusObject = {
+            isPass: message
+        };
+        localStorage.setItem("quizstatus", JSON.stringify(quizStatusObject));
+    };
 
 
 
@@ -112,7 +111,7 @@ let quizAlert = (message) =>
             var baseUrl = $('meta[name="base-url"]').attr("content");
             var quiz_id = <?php echo $quiz_id; ?>;
             $.ajax({
-                url: `${baseUrl}/submit-quiz/${quiz_id}`, 
+                url: `${baseUrl}/submit-quiz/${quiz_id}`,
                 method: 'POST',
                 data: formData,
                 headers: {
@@ -122,20 +121,28 @@ let quizAlert = (message) =>
                     if (response.success) {
                         clearInterval(intervalId);
                         localStorage.removeItem("quizAnswers");
-
-                        if(response.passed){
-                            let user_quiz_id=response.user_quiz_id;
-                            $url=`${baseUrl}/generate-pdf/${user_quiz_id}`;
+                        if (response.passed) {
+                            let user_quiz_id = response.user_quiz_id;
+                            swal({
+                                title: "",
+                                text: "You have successfully passed the quiz and your score is: " + response.score + "",
+                                icon: "success",
+                                button: "View & Download Certificate",
+                            }).then(() => {
+                                $url = `${baseUrl}/generate-pdf/${user_quiz_id}`;
+                                window.location.href = $url; // Move the redirection here
+                            });
                             quizAlert(true);
-                        }else{
-                            $url=`${baseUrl}/candidate-quizes/`;
+                        } else {
+                            $url = `${baseUrl}/candidate-quizes/`;
+                            window.location.href = $url; // Move the redirection here
                             quizAlert(false);
-                           
+
                         }
                         window.location.href = $url;
                         // window.location.href = `${baseUrl}/candidate-quizes/`;
 
-                    }else{
+                    } else {
                         // outside the valid time span
                         console.log(response);
                         window.location.href = `${baseUrl}/candidate-quizes/`;

@@ -32,9 +32,15 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label for="name" class="form-label">Full Name</label>
-                                <input type="text"   name="name" class="form-control"  id="name" aria-describedby="nameHelp" placeholder="What is your Name?">
+                                <label for="name" class="form-label">Institute Name</label>
+                                <input type="text"   name="name" class="form-control"  id="name" aria-describedby="nameHelp" placeholder="What is your institute name">
                                 <div id="name_error"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">SPOC</label>
+                                <input type="text"  name="spoc"  class="form-control" id="spoc" aria-describedby="spocHelp" placeholder="Enter SPOC">
+                                <div id="spoc_error"></div>
                             </div>
 
                             <div class="mb-3">
@@ -67,11 +73,7 @@
                                 <div id="city_error"></div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">SPOC</label>
-                                <input type="text"  name="spoc"  class="form-control" id="spoc" aria-describedby="spocHelp" placeholder="Enter SPOC">
-                                <div id="spoc_error"></div>
-                            </div>
+                            
        
                             
                            

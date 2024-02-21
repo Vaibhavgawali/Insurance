@@ -2,7 +2,13 @@
   <div class="card">
 
     <div class="d-flex justify-content-between p-3">
+      <div class="d-flex justify-content-between  w-100">
       <h6>Registered on {{ $data->created_at->format('Y-m-d') }}</h6>
+      @if(Auth::user()->can('download_candidate_details') || Auth::user()->hasRole('Superadmin'))
+      
+      <a href="/generate-profile-pdf/{{$data->user_id}}" class="btn btn-gradient-primary btn-sm">Download</a>
+      @endif
+      </div>
     </div>
 
     <div class="profile-img-div text-center">

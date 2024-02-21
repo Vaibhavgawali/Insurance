@@ -34,10 +34,18 @@
 							</div>
 							<div class="col-12 col-md-4 col-lg-4">
 								<div class="d-flex flex-column align-items-center justify-content-center mb-3 ">
+									@auth
 									<div >
-									<a href="/candidate"><img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/3.png')}}" alt=""></a>
+									<a href="/candidate/{{auth()->user()->user_id}}/#cv-section"><img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/3.png')}}" alt=""></a>
 									</div>
-									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/candidate">Click Here</a>
+									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/candidate/{{auth()->user()->user_id}}/#cv-section">Click Here</a>
+									@endauth
+									@guest
+									<div >
+									<a href="/login?role=candidate"><img style="width:100%;padding-bottom: 10px;" src="{{asset('assets/img/top/3.png')}}" alt=""></a>
+									</div>
+									<a class="btn btn-outline-secondary btn" role="button" aria-disabled="true" href="/login?role=candidate">Click Here</a>
+									@endguest
 							   </div>
 							</div>
 						</div>
@@ -90,7 +98,12 @@
 	   <div class="container shadow-sm p-10 mb-5  rounded .bg-secondary">
 		  <div class="row align-items-center ">
 				 <div class="col-md-12">
-					<a href="/login"><img style="width: 100%;"  src="{{asset('assets/img/3D-images/Post Your CV Here.png')}}" alt=""></a>
+					@auth
+					<a href="/candidate/{{auth()->user()->user_id}}/#cv-section"><img style="width: 100%;"  src="{{asset('assets/img/3D-images/Post Your CV Here.png')}}" alt=""></a>
+					@endauth
+					@guest
+					<a href="/login?role=candidate"><img style="width: 100%;"  src="{{asset('assets/img/3D-images/Post Your CV Here.png')}}" alt=""></a>
+                    @endguest
 				</div>
 		  </div>
 		  <section style='margin-top: 20px;'>
@@ -204,7 +217,12 @@
 										<li>Use the platform to be in touch with the Community</li>
 										<li>Explore your next level as you ready for future</li>
 									</ul>
-									<p><a href="/industry" class="btn custom-btn btn-sm ">Click here</a> to express your interest for your next move</p>
+									@auth
+									<p><a href="/candidate/{{auth()->user()->user_id}}/#cv-section" class="btn custom-btn btn-sm ">Click here</a> to express your interest for your next move</p>
+									@endauth
+									@guest
+									<p><a href="/login?role=candidate" class="btn custom-btn btn-sm ">Click here</a> to express your interest for your next move</p>
+									@endguest
 								</div>
 								
 							</div>

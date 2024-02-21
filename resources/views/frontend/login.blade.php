@@ -13,9 +13,9 @@
                         <div>
                         <div class="ins-main-about-list-area ul-li-block">
                           <ul class="">
-                            <li class="fs-6 fst-italic">Build your profile .</li>
-                              <li class="fs-6 fst-italic">Learn & stay updated.</li>
-                            <li class="fs-6 fst-italic">Find a job .</li>
+                            <li class="fs-6 fst-italic" id="title_1">Build your profile .</li>
+                              <li class="fs-6 fst-italic" id="title_2">Learn & stay updated.</li>
+                            <li class="fs-6 fst-italic" id="title_3">Find a job .</li>
                           </ul> 
                         </div>
                         </div>
@@ -54,5 +54,8 @@
               </div>
           </div>
        </div>
+       <script>
+
+       </script>
        <!-- Info Section End -->
 @endsection

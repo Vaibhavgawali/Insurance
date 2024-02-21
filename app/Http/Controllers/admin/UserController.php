@@ -15,9 +15,11 @@ use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\UserAddress;
 use App\Models\UserExperience;
+use setasign\Fpdi\Fpdi;
 
 class UserController extends Controller
 {
+    private $pdf;
     public function __construct()
     {
         $this->middleware('auth:sanctum')->except('store');
@@ -25,7 +27,12 @@ class UserController extends Controller
         // Spatie middleware here
         $this->middleware(['role:Superadmin'])->only('index','update','destroy','trashed_users','restore_user','force_delete','assignRole');
         $this->middleware(['role_or_permission:Superadmin|view_user_details|view_candidate_details'])->only('show');
+        $this->middleware(['role_or_permission:Superadmin|download_candidate_details'])->only('downloadProfilePDF');
         
+        $this->pdf = new Fpdi();
+        $this->pdf->AddFont('Courierb', '', 'courierb.php');
+        $this->pdf->AddFont('Courier', '', 'courier.php');
+        $this->pdf->AddPage('L');
     }
 
     /**
@@ -132,6 +139,186 @@ class UserController extends Controller
         }
         return Response(['message'=>'Unauthorized'],401);
     }
+
+    public function downloadProfilePDF($userId){
+        $user = User::findOrFail($userId);
+        $userData = User::with('address', 'profile', 'experience')->find($user->user_id);
+        // dd($userData);
+
+        $pdfPath = public_path('profile.pdf');
+        $this->pdf->setSourceFile($pdfPath);
+        $this->pdf->SetTextColor(0,0,0);
+
+        $tplId = $this->pdf->importPage(1);
+
+        // $text = "signature-image1.png";
+        // $this->pdf->Image($text,30,30,0,40);
+        $profileImageFilename = isset($userData->profile->profile_image) ? $userData->profile->profile_image : null;
+        if ($profileImageFilename) {
+            $imagePath = public_path('storage/images/' . $profileImageFilename);
+            if (file_exists($imagePath)) {
+                $this->pdf->Image($imagePath, 110, 20, 0, 40);
+            } else {
+                $imagePath = public_path('admin-assets/assets/images/profile.jpg');
+                $this->pdf->Image($imagePath,110,20,0,40);
+            }
+        } else {
+            $imagePath = public_path('admin-assets/assets/images/profile.jpg');
+            $this->pdf->Image($imagePath,110,20,0,40);
+        }
+
+        $this->pdf->useTemplate($tplId, 0, 0, 298);
+        $this->pdf->SetFont('Courierb', '', 16);
+
+        $text = "Personal Details";
+        $this->pdf->Text(30, 70, $text);
+
+        $this->pdf->SetFont('Courier', '', 14); 
+        $this->pdf->SetTextColor(0, 0, 0); 
+
+        $text = "Name:";
+        $this->pdf->Text(30, 80, $text);
+
+        $text = $userData->name;  
+        $this->pdf->Text(60, 80, $text);
+
+        $text = "Email:";
+        $this->pdf->Text(160, 80, $text);
+
+        $text = isset($userData->email) ? $userData->email :"NA" ;
+        $this->pdf->Text(180, 80, $text);
+
+        $text = "Mobile:";
+        $this->pdf->Text(30, 90, $text);
+
+        $text = isset($userData->phone) ? $userData->phone :"NA" ;
+        $this->pdf->Text(60, 90, $text);
+
+        $this->pdf->useTemplate($tplId, 0, 0, 298);
+        $this->pdf->SetFont('Courierb', '', 16);
+
+        $text = "Profile Details";
+        $this->pdf->Text(30, 105, $text);
+
+        $this->pdf->SetFont('Courier', '', 14); 
+        $this->pdf->SetTextColor(0, 0, 0); 
+
+        $text = "DOB:";
+        $this->pdf->Text(30, 115, $text);
+
+        $text = isset($userData->profile->date_of_birth) ? $userData->profile->date_of_birth : "NA";
+        $this->pdf->Text(50, 115, $text);
+
+        $text = "Gender:";
+        $this->pdf->Text(160, 115, $text);
+
+        $gender = isset($userData->profile->gender) ? $userData->profile->gender : "";
+        if (!empty($gender)) {
+            switch ($gender) {
+                case "M":
+                    $text = "Male";
+                    break;
+                case "F":
+                    $text = "Female";
+                    break;
+                default:
+                    $text = "Other";
+                    break;
+            }
+        } else {
+            $text = "NA";
+        }
+        $this->pdf->Text(190, 115, $text);
+
+        $text = "Age:";
+        $this->pdf->Text(30, 125, $text);
+
+        $text = isset($userData->profile->age) ? $userData->profile->age : "NA";
+        $this->pdf->Text(50, 125, $text);
+
+        $text = "Preffered Line:";
+        $this->pdf->Text(160, 125, $text);
+
+        $text = isset($userData->profile->preffered_line) ? $userData->profile->preffered_line : "NA";
+        $this->pdf->Text(210, 125, $text);
+
+        $this->pdf->useTemplate($tplId, 0, 0, 298);
+        $this->pdf->SetFont('Courierb', '', 16);
+
+        $text = "Address Details";
+        $this->pdf->Text(30, 140, $text);
+
+        $this->pdf->SetFont('Courier', '', 14); 
+        $this->pdf->SetTextColor(0, 0, 0); 
+
+        $text = "City:";
+        $this->pdf->Text(30, 150, $text);
+
+        $text = isset($userData->address->city) ? $userData->address->city : "NA";
+        $this->pdf->Text(50, 150, $text);
+
+        $text = "Pincode:";
+        $this->pdf->Text(160, 150, $text);
+
+        $text = isset($userData->address->pincode) ? $userData->address->pincode : "NA";
+        $this->pdf->Text(190, 150, $text);
+
+        $text = "State:";
+        $this->pdf->Text(30, 160, $text);
+
+        $text = isset($userData->address->state) ? $userData->address->state : "NA";
+        $this->pdf->Text(50, 160, $text);
+
+        $text = "Country:";
+        $this->pdf->Text(160, 160, $text);
+
+        $text = isset($userData->address->country) ? $userData->address->country : "NA";
+        $this->pdf->Text(190, 160, $text);
+
+        if(isset($userData->experience)){
+
+            $this->pdf->useTemplate($tplId, 0, 0, 298);
+            $this->pdf->SetFont('Courierb', '', 16);
+
+            $text = "Experience Details";
+            $this->pdf->Text(30, 175, $text);
+
+            $this->pdf->SetFont('Courier', '', 14); 
+            $this->pdf->SetTextColor(0, 0, 0); 
+
+            $text = "Organization:";
+            $this->pdf->Text(30, 185, $text);
+
+            $text = isset($userData->experience->organization) ? $userData->experience->organization : "NA";
+            $this->pdf->Text(70, 185, $text);
+
+            $text = "Designation:";
+            $this->pdf->Text(160, 185, $text);
+
+            $text = isset($userData->experience->designation) ? $userData->experience->designation : "NA";
+            $this->pdf->Text(200, 185, $text);
+
+            $text = "CTC:";
+            $this->pdf->Text(30, 195, $text);
+
+            $text = isset($userData->experience->ctc) ? $userData->experience->ctc : "NA";
+            $this->pdf->Text(50, 195, $text);
+
+            $text = "State:";
+            $this->pdf->Text(160, 195, $text);
+
+            $text = isset($userData->experience->state) ? $userData->experience->state : "NA";
+            $this->pdf->Text(190, 195, $text);
+
+            $text = "Experience (in year):";
+            $this->pdf->Text(30, 205, $text);
+
+            $text = isset($userData->experience->experience_year) ? $userData->experience->experience_year : "NA";
+            $this->pdf->Text(100, 205, $text);
+        }
+        $this->pdf->Output();
+        exit;
+    }    
 
     /**
      * Soft delete user

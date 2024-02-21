@@ -23,20 +23,20 @@
               <div class="in-blog-details-text-wrap">
                 <div class="in-meta"></div>
                 <h3>About the Industry</h3>
-                <p>
+                <p style="font-size: 18px;">
                   The insurance industry in India has undergone a significant evolution over the years, transforming from a relatively small and localized sector to a dynamic and expansive market. The roots of the Indian insurance industry can be traced back to the establishment of the Oriental Life Insurance Company in Kolkata in 1818. However, it was not until the nationalization of the insurance sector in 1956 that the industry gained a more structured and organized form. The passage of the Insurance Regulatory and Development Authority (IRDA) Act in 1999 marked a crucial milestone, leading to the opening up of the sector to private players and fostering competition.
 
                 </p>
-                <blockquote>
+                <blockquote >
                   Empowering futures, securing lives
                   <strong class="custom-color custom-italic">Insurancecareer.in</strong> is the beacon of trust in
                   India's dynamic insurance landscape. Discover protection
                   redefined.
                 </blockquote>
-                <p>
+                <p style="font-size: 18px;">
                   The primary objectives of the insurance industry in India revolve around risk mitigation, financial protection, and wealth creation. Insurance serves as a crucial instrument for individuals and businesses to shield themselves against unforeseen events, such as accidents, illnesses, and natural disasters. Additionally, insurance products also play a pivotal role in promoting long-term savings and investment. The industry contributes significantly to the country's economic growth by mobilizing funds for infrastructure development and facilitating capital formation.
                 </p>
-                <p>
+                <p style="font-size: 18px;">
                   The types of insurance offered in India span a wide range, including life insurance, health insurance, general insurance, and specialized policies for various sectors. Life insurance, in particular, has traditionally been a dominant segment, with policies tailored to provide financial security to individuals and their families. Health insurance has gained prominence in recent years, given the increasing awareness of healthcare costs and the need for comprehensive coverage. General insurance covers diverse areas such as motor insurance, property insurance, and liability insurance, addressing the varied risk landscape.
                 </p>
               </div>
@@ -92,7 +92,7 @@
             <div class="in-blog-details-text-wrap">
               <div class="in-meta"></div>
               <h3>Why chose career in Insurance Industry</h3>
-              <p>
+              <p style="font-size: 18px;">
                 The potential for the insurance industry in India remains immense, driven by factors such as a growing middle class, increased awareness of the importance of insurance, and favorable regulatory reforms. The industry is witnessing innovation in products and distribution channels, with a focus on technology-driven solutions. As the country continues on its path of economic development, the insurance sector is poised to play a crucial role in supporting the financial well-being of individuals and the overall stability of the economy.
               </p>
               <div class="container pb-3">
@@ -145,13 +145,13 @@
           </div>
         </div>
       </div>
-      <p class="mt-3">Above clearly shows that India is on fast track as far as growh is concerend. This also means an opportunity to participate in the growth as an insurance professional and pursue a rewarding carrer													
+      <p class="mt-3" style="font-size: 18px;">Above clearly shows that India is on fast track as far as growh is concerend. This also means an opportunity to participate in the growth as an insurance professional and pursue a rewarding carrer													
 </p>
     </div>
 
               <div>
                 <h5 class="custom-color">Professionalism</h5>
-                <p>Professionals from various industries have chosen to be Insurance Sector and have done very well. As the industry has evolved, professionalism in all the insurance departments has also seen its fresh peak. Adoption of digital is very high and processes have been strengthened.
+                <p style="font-size: 18px;">Professionals from various industries have chosen to be Insurance Sector and have done very well. As the industry has evolved, professionalism in all the insurance departments has also seen its fresh peak. Adoption of digital is very high and processes have been strengthened.
                   <br>There is continuous guidance and encoragement from the Regulator which shall ensure healthy environment to grow.
 
                 </p>
@@ -160,7 +160,7 @@
               </div>
               <div>
                 <h5 class="custom-color">Progression</h5>
-                <p>As the industry forecast is to achieve healthy growth, well settled processes, digital adoption and evolution of multiple distribution channels, one can reasonably expect a good career progression during the course of time spent in the Industry.
+                <p style="font-size: 17px;">As the industry forecast is to achieve healthy growth, well settled processes, digital adoption and evolution of multiple distribution channels, one can reasonably expect a good career progression during the course of time spent in the Industry.
                   <br>
                   Further, as most of the Insurance Companies promoters are into financial services e.g. Life Insurance, Health Insurance, General Insurance, Mutual Fund, NBFC, Securities etc, one can find enough opportunities to grow within the Group as well.
                 </p>
@@ -169,14 +169,14 @@
               <div>
                 <h5 class="custom-color">Value Add
                 </h5>
-                <p>While there is immense potential in the Industry, there is still lot to be done. There are enough white spaces to explore and hence provides opportunity to showcase your imagination & asessment. Converting your imagination into reality gives that contentment which one always wants to achieve.
+                <p style="font-size: 17px;">While there is immense potential in the Industry, there is still lot to be done. There are enough white spaces to explore and hence provides opportunity to showcase your imagination & asessment. Converting your imagination into reality gives that contentment which one always wants to achieve.
                 </p>
               </div>
               <div>
                 <h5 class="custom-color">Rewards
 
                 </h5>
-                <p>Rewards can be really high. It all depends on your ability to spread awareness and business. Some Channels like Agency Channel provides opportunity to appoint Advisors and supervise their sales conduct and manage business from them. Your incentives are based on your perforamance.
+                <p style="font-size: 17px;">Rewards can be really high. It all depends on your ability to spread awareness and business. Some Channels like Agency Channel provides opportunity to appoint Advisors and supervise their sales conduct and manage business from them. Your incentives are based on your perforamance.
                 </p>
               </div>
             </div>
@@ -205,7 +205,7 @@
                 <li>Self Starter and Ability to lead and motivate a Team</li>
                 <li>Relvant Experience in case of some channels</li>
               </ul>
-              <p>If you are into hardcore sales in other industry, you may look at Agency Channel of Insurance Companies who will be happy to leverage your Sales experience by providing necessary support and training.</p>
+              <p >If you are into hardcore sales in other industry, you may look at Agency Channel of Insurance Companies who will be happy to leverage your Sales experience by providing necessary support and training.</p>
               <p>Channels like Bancassurance provide opportunity to work with Banks on their customer base and hence good learning. <br>
                 Channels like Agency provide opportunity to appoint advisors and manage business through them. <br>
                 Channels like Direct Marketing provide opportunity to work on a model where customers are directly approached by employees instead of an intermediary. <br>

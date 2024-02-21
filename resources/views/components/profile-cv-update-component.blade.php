@@ -1,4 +1,5 @@
-<div class="profie-cv-update-section" id="profie-cv-update-section">
+<div class="profie-cv-update-section cv-upload" id="profie-cv-update-section">
+<div id="cv-section"></div>
     <div class="card">
         <div class="d-flex justify-content-center align-items-center gap-5 gap-sm-2 p-3">
             <div><a class="btn btn-md btn-warning btn-rounded" href="{{asset('storage/documents/'.$data->documents->document_url)}}" target="_blank">View CV</a></div>
@@ -16,12 +17,6 @@
       <form class="forms-sample" id="profile_update_cv_form" >
         <div id="profile_cv_status"></div>
         @csrf
-        <div class="form-group">
-          <label for="name">Documents Title</label>
-          <input type="text" class="form-control" id="document_title" name="document_title" placeholder="Provide documents title" disabled value="">
-          <div id="document_title_error"></div>
-        </div>
-
         <div class="form-group">
           <label for="name">Upload your Documents</label>
           <input type="file" class="form-control" id="document_url" name="document_url" placeholder="Upload your cv"  value="" disabled>
@@ -45,7 +40,6 @@
           let editProfileButton = document.getElementById("profile_cv_edit_button");
           let profileUpdateButtonDiv = document.getElementById("profile_cv_update_button_div");
           let profileCancelButton = document.getElementById("profile_cv_cancel_button");
-          let documentTitleInput = document.getElementById("document_title");
           let documentUrlInput = document.getElementById("document_url");
 
           let toggle = false;
@@ -54,12 +48,10 @@
             toggle = !toggle;
             if (toggle) {
               profileUpdateButtonDiv.style.display = "block";
-              documentTitleInput.removeAttribute("disabled");
               documentUrlInput.removeAttribute("disabled");
 
             } else {
               profileUpdateButtonDiv.style.display = "none";
-              documentTitleInput.setAttribute("disabled", true);
               documentUrlInput.setAttribute("disabled", true);
             }
           });
@@ -67,7 +59,6 @@
             toggle = false;
 
             profileUpdateButtonDiv.style.display = "none";
-            documentTitleInput.setAttribute("disabled", true);
             documentUrlInput.setAttribute("disabled", true);
           });
         };

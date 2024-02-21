@@ -34,11 +34,11 @@
             <div class="col-4">
               <div class="form-group">
                 <label for="exampleFormControlSelect3">Cv Upload</label>
-                <select class="form-control form-control-sm"  name="filterbycv" id="filterbycv">
-                <option value="" selected disabled>--Select options--</option>
-                <option value="">All</option>
-                <option value="uploaded">Uploaded</option>
-                <option value="not_uploaded">Not Uploaded</option>
+                <select class="form-control form-control-sm" name="filterbycv" id="filterbycv">
+                  <option value="" selected disabled>--Select options--</option>
+                  <option value="">All</option>
+                  <option value="uploaded">Uploaded</option>
+                  <option value="not_uploaded">Not Uploaded</option>
                 </select>
               </div>
 
@@ -46,11 +46,11 @@
             <div class="col-4">
               <div class="form-group">
                 <label for="exampleFormControlSelect3">Experience</label>
-                <select class="form-control form-control-sm"  name="filterbyexperience" id="filterbyexperience">
-                <option value="" selected disabled>--Select options--</option>
-                <option value="">All</option>
-                <option value="fresher">Fresher</option>
-                <option value="experienced">Experienced</option>
+                <select class="form-control form-control-sm" name="filterbyexperience" id="filterbyexperience">
+                  <option value="" selected disabled>--Select options--</option>
+                  <option value="">All</option>
+                  <option value="fresher">Fresher</option>
+                  <option value="experienced">Experienced</option>
                 </select>
               </div>
 
@@ -67,6 +67,7 @@
                 <th class="">CV Upload</th>
                 <th class="">Phone</th>
                 <th class="">Buisness Line</th>
+                <th class="">Designation</th>
                 <th class="text-center">Actions</th>
               </tr>
             </thead>
@@ -74,36 +75,36 @@
 
           <!-- Modal -->
           <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="editUserModalLabel">Edit User Roles and Permissions</h5>
-                          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                      </div>
-                      <div class="modal-body">
-                          
-                          <form id="editUserRoleForm">
-                            <input type="hidden" class="form-control" id="user_id">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editUserModalLabel">Edit User Roles and Permissions</h5>
+                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
 
-                              <div class="form-group">
-                                  <label for="currentRole">Current Role:</label>
-                                  <input type="text" class="form-control" id="currentRole" disabled>
-                              </div>
+                  <form id="editUserRoleForm">
+                    <input type="hidden" class="form-control" id="user_id">
 
-                              <div class="form-group pb-2">
-                                  <label for="newRole">Select New Role:</label>
-                                  <select class="form-control" id="newRole" name="newRole">
-                                      <!-- Dropdown options will be dynamically generated here -->
-                                  </select>
-                              </div>
-                              
-                              <button type="submit" class="btn btn-primary">Save Changes</button>
-                          </form>
-                      </div>
-                  </div>
+                    <div class="form-group">
+                      <label for="currentRole">Current Role:</label>
+                      <input type="text" class="form-control" id="currentRole" disabled>
+                    </div>
+
+                    <div class="form-group pb-2">
+                      <label for="newRole">Select New Role:</label>
+                      <select class="form-control" id="newRole" name="newRole">
+                        <!-- Dropdown options will be dynamically generated here -->
+                      </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                  </form>
+                </div>
               </div>
+            </div>
           </div>
 
           <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -164,6 +165,18 @@
                     }
                   },
                   {
+                    data: 'experience',
+                    render: function(data, type, row) {
+                      let res = '';
+                      if (data && data.designation) {
+                        res = data.designation;
+                      } else {
+                        res = "N/A";
+                      }
+                      return res;
+                    }
+                  },
+                  {
                     data: 'actions',
                     orderable: false,
                     searchable: false
@@ -171,7 +184,7 @@
                 ],
                 createdRow: function(row, data, dataIndex) {
                   // Apply custom styles to the 'actions' column
-                  var actionsColumn = $(row).find('td:eq(5)');
+                  var actionsColumn = $(row).find('td:eq(6)');
                   actionsColumn.addClass('custom-actions');
                 }
               });
@@ -191,79 +204,79 @@
 
               // Change users role
               $(document).on('click', '.editButton', function() {
-                  // alert("ok");
-                  var userId = $(this).data("user-id");
-                  showModal(userId);
+                // alert("ok");
+                var userId = $(this).data("user-id");
+                showModal(userId);
               });
 
               // Function to show modal and fetch user details
               function showModal(userId) {
-                  $.ajax({
-                      url: "get-role/" + userId,
-                      type: "GET",
-                      success: function (response) {
-                          $("#user_id").val(response.user_id);
-                          $("#currentRole").val(response.current_role);
+                $.ajax({
+                  url: "get-role/" + userId,
+                  type: "GET",
+                  success: function(response) {
+                    $("#user_id").val(response.user_id);
+                    $("#currentRole").val(response.current_role);
 
-                          // Populate roles dropdown
-                          var newRoleDropdown = $("#newRole");
+                    // Populate roles dropdown
+                    var newRoleDropdown = $("#newRole");
 
-                          // newRoleDropdown.unbind("change");
-                          newRoleDropdown.empty();
-                          $.each(response.all_roles, function (index, role) {
-                              var option = $("<option>").val(role).text(role);
+                    // newRoleDropdown.unbind("change");
+                    newRoleDropdown.empty();
+                    $.each(response.all_roles, function(index, role) {
+                      var option = $("<option>").val(role).text(role);
 
-                              // Set the selected attribute for the current role
-                              if (role === response.current_role) {
-                                  option.prop("selected", true);
-                              }
-                              newRoleDropdown.append(option);
-                          });
+                      // Set the selected attribute for the current role
+                      if (role === response.current_role) {
+                        option.prop("selected", true);
+                      }
+                      newRoleDropdown.append(option);
+                    });
 
-                          $("#editUserModal").modal("show");
-                      },
-                      error: function (error) {
-                          console.error(error);
-                      },
-                  });
+                    $("#editUserModal").modal("show");
+                  },
+                  error: function(error) {
+                    console.error(error);
+                  },
+                });
               }
 
               // Function to hide modal
               function hideModal() {
-                  $("#editUserModal").hide();
+                $("#editUserModal").hide();
               }
 
               // Event listener for Close button click
-              $("#closeModal").on("click", function () {
-                  hideModal();
+              $("#closeModal").on("click", function() {
+                hideModal();
               });
 
               // Event listener for Submit button click
-              $("#editUserRoleForm").submit(function (e) {
-                  e.preventDefault();
+              $("#editUserRoleForm").submit(function(e) {
+                e.preventDefault();
 
-                  var userId = $("#user_id").val();
-                  var formData = $("#editUserRoleForm").serialize();
+                var userId = $("#user_id").val();
+                var formData = $("#editUserRoleForm").serialize();
 
-                  $.ajax({
-                      url: "assign-role/" + userId,
-                      type: "POST",
-                      data: formData,
-                      headers: {
-                          "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                      },
-                      success: function (response) {
-                          hideModal();
-                          userUpdateAlert();
-                          var currentURL = window.location.href;
-                          setTimeout(function () {
-                              window.location.href = currentURL;
-                          }, 2000);
-                      },
-                      error: function (error) {
-                          console.error(error);
-                      },
-                  });
+                $.ajax({
+                  url: "assign-role/" + userId,
+                  type: "POST",
+                  data: formData,
+                  headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                  },
+                  success: function(response) {
+                    hideModal();
+                    userUpdateAlert();
+                    var currentURL = window.location.href;
+                    setTimeout(function() {
+                      window.location.href = currentURL;
+                    }, 2000);
+                  },
+                  error: function(error) {
+                    console.error(error);
+                  },
+                });
               });
             });
           </script>

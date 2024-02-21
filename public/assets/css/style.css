@@ -13608,7 +13608,7 @@ rs-module [class*=" fa-"]:before {
   
 }
 /* top-header staart */
-  @media screen and (max-width:500px) {
+  /* @media screen and (max-width:500px) {
     .top-text-scroll
     {
      width: 100%;
@@ -13625,12 +13625,17 @@ rs-module [class*=" fa-"]:before {
     {
      width: 100%;
     }
-  }
-  @media screen and (min-width:1500px) {
+  } */
+  /* @media screen and (min-width:1500px) {
     .top-text-scroll
     {
-     width: 1500px;;
+     width: 100%;
     }
+   
+  } */
+  .top-text-scroll
+  {
+   width: 100%
   }
   
    .top-heading
