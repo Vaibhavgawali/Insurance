@@ -8,9 +8,7 @@ $(document).ready(function () {
     var url = window.location.href;
     var params = new URLSearchParams(url.split('?')[1]);
     var role = params.get('role');
-    $('#title_1').text('Build your .');
-    $('#title_2').text('Learn & stay.');
-    $('#title_3').text('Find a .');
+
    if(role == 'candidate')
    {
     $('#title_1').text('Build your profile.');
@@ -20,14 +18,14 @@ $(document).ready(function () {
    else if(role == 'insurer')
    {
     $('#title_1').text('Build your profile.');
-    $('#title_2').text('Learn & stay updated.');
-    $('#title_3').text('Find a dsfgdsgh.');
+    $('#title_2').text(' Partner with us to get access to right candidates.');
+    $('#title_3').text('Leave your details in Requirements Section and we will reach out  to you.');
    }
    else if(role == 'institute')
    {
-    $('#title_1').text('Build your profile.');
-    $('#title_2').text('Learn & stay updated.');
-    $('#title_3').text('Find a Ins.');
+    $('#title_1').text('Partner with us to offer Insurance Career Modules for your students.');
+    $('#title_2').text('We will manage Content, Delivery, Certification and Placement.');
+    $('#title_3').text('Register and post your requirement.');
    }
    else
    {

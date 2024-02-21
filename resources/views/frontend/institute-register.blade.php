@@ -13,9 +13,9 @@
                         <div>
                             <div class="ins-main-about-list-area ul-li-block">
 								<ul class="">
-									<li class="fs-6 fst-italic">Build your profile and let recruiters find you.</li>
-								    <li class="fs-6 fst-italic">Get job postings delivered right to your email.</li>
-									<li class="fs-6 fst-italic">Find a job and grow your career.</li>
+									<li class="fs-6 fst-italic">Partner with us to offer Insurance Career Modules for your students.</li>
+								    <li class="fs-6 fst-italic">⁠We will manage Content, Delivery, Certification and Placement.</li>
+									<li class="fs-6 fst-italic"> ⁠Register and post your requirement</li>
 								</ul> 
 							</div>
                         </div>
@@ -23,7 +23,7 @@
                      <div class="col-12 col-md-12 col-lg-1 "></div>
                      <div style="margin: auto;" class="col-11 col-md-12 col-lg-7 shadow  rounded p-4 bg-white">
                        <div>
-                           <h4 class="text-start">Find a job & grow your career</h4>
+                           <h4 class="text-start">Enter your details</h4>
                        </div>
                        <div>
                    
