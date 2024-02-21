@@ -23,7 +23,7 @@
         <div id="profile_cv_update_button_div">
 
           <button type="button" class="btn btn-gradient-primary me-2" id="profile_cv_update_button">Upload</button>
-          <button class="btn btn-light" id="profile_cv_cancel_button">Cancel</button>
+          <a href="/candidate/{{auth()->user()->user_id}}" class="btn btn-light" id="profile_cv_cancel_button">Cancel</a>
         </div>
 
       </form>

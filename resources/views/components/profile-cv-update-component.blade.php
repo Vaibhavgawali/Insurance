@@ -29,7 +29,7 @@
         </div>
         <div id="profile_cv_update_button_div">
           <button type="button" class="btn btn-gradient-primary me-2" id="profile_cv_update-1_button">Upload</button>
-          <a href="{{$data->user_id}}" class="btn btn-light" id="profile_cv_cancel-1_button">Cancel</a>
+          <a href="/candidate/{{auth()->user()->user_id}}/#cv-section" class="btn btn-light" id="profile_cv_cancel-1_button">Cancel</a>
         </div>
       </form>
     

@@ -4,6 +4,19 @@
 let loginAlert = () => {
     swal("Good job!", "You clicked the button!", "success");
 };
+let profileUpdateAlert = () => {
+    swal("Good job!", "Profile Updated SuccessFully!", "success");
+}
+let addressUpdateAlert = () => {
+    swal("Good job!", "Address Updated SuccessFully!", "success");
+}
+let experienceAddAlert = () => {
+    swal("Good job!", "Experience Added SuccessFully!", "success");
+}
+let experienceUpdateAlert = () => {
+    swal("Good job!", "Experience Updated SuccessFully!", "success");
+}
+
 let imageUploadAlert = () => {
     swal("Good job!", "Image Uploaded SuccessFully!", "success");
 };
@@ -18,10 +31,10 @@ let requirementsAlert = () => {
 $(document).ready(function () {
     // Reuirements  Update function
     $("#requirement_text_submit_button").click(function (event) {
-        console.log("clicked");
+        // console.log("clicked");
         var requirement_text = $("#requirement_text").val();
         var user_id = $("#user_id").val();
-        console.log(requirement_text);
+        // console.log(requirement_text);
 
         $("#requirement_text_error").html("");
 
@@ -35,19 +48,19 @@ $(document).ready(function () {
                 '<div class=" invalid-feedback d-block">Query is required.</div>'
             );
             $("#requirement_text").focus();
-            console.log("Error");
+            // console.log("Error");
             return false;
         }
         var data = {
             requirement_text: requirement_text,
             user_id: user_id,
         };
-        console.log(data);
+        // console.log(data);
 
         event.preventDefault();
 
         var url = window.location.origin + `/requirements`;
-        console.log(url);
+        // console.log(url);
 
         $.ajax({
             type: "POST",
@@ -57,7 +70,7 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#requirement_text_submit_button").attr("disabled", true);
@@ -73,7 +86,7 @@ $(document).ready(function () {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-                    console.log(errors);
+                    // console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -145,7 +158,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         var url = window.location.origin + `/image-upload`;
-        console.log(url);
+        // console.log(url);
 
         $.ajax({
             type: "POST",
@@ -154,7 +167,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#image-upload-button").attr("disabled", true);
@@ -171,7 +184,7 @@ $(document).ready(function () {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-                    console.log(errors);
+                    // console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -209,7 +222,7 @@ $(document).ready(function (e) {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_cv_update-1_button").attr("disabled", true);
@@ -227,7 +240,7 @@ $(document).ready(function (e) {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.message;
-                    console.log(errors);
+                    // console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -260,7 +273,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_cv_update_button").attr("disabled", true);
@@ -278,7 +291,7 @@ $(document).ready(function () {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-                    console.log(errors);
+                    // console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -311,7 +324,7 @@ $(document).ready(function (e) {
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_cv_update_button").attr("disabled", true);
@@ -329,7 +342,7 @@ $(document).ready(function (e) {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-                    console.log(errors);
+                    // console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -441,12 +454,12 @@ $(document).ready(function () {
 
         // Update the user_id value in the data object
         data.user_id = extractAndConvertToInteger(data.user_id);
-        console.log(data);
+        // console.log(data);
 
         event.preventDefault();
 
         var url = window.location.origin + `/candidate/${user_id.trim()}`;
-        console.log(url);
+        // console.log(url);
 
         $.ajax({
             type: "PATCH",
@@ -456,15 +469,11 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_info_update_button").attr("disabled", true);
-                    $("#profile_info_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                     profileUpdateAlert();
 
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
@@ -478,7 +487,7 @@ $(document).ready(function () {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-                    console.log(errors);
+                    // console.log(errors);
                     $(".error-message").remove();
 
                     // Display new errors
@@ -576,12 +585,12 @@ $(document).ready(function () {
 
         // Update the user_id value in the data object
         data.user_id = extractAndConvertToInteger(data.user_id);
-        console.log(data);
+        // console.log(data);
 
         event.preventDefault();
 
         var url = window.location.origin + `/user-profile/${user_id.trim()}`;
-        console.log(url);
+        // console.log(url);
 
         $.ajax({
             type: "PATCH",
@@ -591,15 +600,11 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_details_update_button").attr("disabled", true);
-                    $("#profile_details_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    profileUpdateAlert();
 
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
@@ -757,12 +762,12 @@ $(document).ready(function () {
         }
 
         // Update the user_id value in the data object
-        console.log(data);
+        // console.log(data);
 
         event.preventDefault();
 
         var url = window.location.origin + `/user-address/${user_id.trim()}`;
-        console.log(url);
+        // console.log(url);
 
         $.ajax({
             type: "PATCH",
@@ -772,15 +777,11 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_address_update_button").attr("disabled", true);
-                    $("#profile_address_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    addressUpdateAlert();
 
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
@@ -791,7 +792,7 @@ $(document).ready(function () {
                 }
             },
             error: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
                     console.log(errors);
@@ -800,7 +801,7 @@ $(document).ready(function () {
 
                     // Display new errors
                     $.each(errors, function (field, messages) {
-                        console.log(messages); // messages is an array
+                        // console.log(messages); // messages is an array
 
                         var input = $('[name="' + field + '"]');
                         input.after(
@@ -956,7 +957,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         var url = window.location.origin + `/user-experience/${user_id.trim()}`;
-        console.log(url);
+        // console.log(url);
 
         $.ajax({
             type: "PATCH",
@@ -966,18 +967,14 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_experience_update_button").attr(
                         "disabled",
                         true
                     );
-                    $("#profile_experience_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    experienceUpdateAlert();
 
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
@@ -1141,7 +1138,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         var url = window.location.origin + `/user-experience`;
-        console.log(url);
+        // console.log(url);
 
         $.ajax({
             type: "POST",
@@ -1151,15 +1148,11 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_experience_add_button").attr("disabled", true);
-                    $("#profile_experience_status").html(
-                        "<div class='alert alert-success text-center p-2 my-3 mx-1'><i class='fa fa-check'></i> " +
-                            response.message +
-                            "</div>"
-                    );
+                    experienceAddAlert();
 
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
