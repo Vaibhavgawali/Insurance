@@ -69,8 +69,6 @@ Route::resource('admin/user', UserController::class)->middleware('auth:sanctum')
 Route::resource('candidate', CandidateController::class);
 
 Route::get('/getCandidateTableData', [CandidateController::class, 'getCandidateTableData'])->name('getCandidateTableData');
-Route::get('/exportCandidate', [CandidateController::class, 'exportCandidate'])->name('exportCandidate');
-
 
 Route::resource('insurer', InsurerController::class);
 Route::get('/getInsurerTableData', [InsurerController::class, 'getInsurerTableData'])->name('getInsurerTableData');
