@@ -68,10 +68,21 @@
           
           <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
           <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+          <script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js"></script>
+          <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
           <script type="text/javascript">
             $(document).ready(function() {
               // Declare table variable in a wider scope
               var table = $('#example').DataTable({
+                dom: "lBfrtip",
+                buttons: [
+            {
+                extend: 'excelHtml5',
+                className: 'btn btn-sm mx-3 btn-primary',
+                id:"download_to_excel" // Add your CSS class here
+            }
+        ],
                 processing: true,
                 serverSide: true,
                 ajax: {
@@ -89,10 +100,6 @@
                   },
                   {
                     data: 'name',
-                    render: function(data, type, row) {
-                      // Truncate names longer than 9 characters
-                      return data.length > 9 ? data.substring(0, 9) + '...' : data;
-                    }
                   },
                   {
                     data: 'email',

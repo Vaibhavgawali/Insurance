@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insurancecareer.in</title>
-	<meta name="description" content="Insurancecarrer - Insurance Company">
+	<meta name="description" content="Insurancecareer.in - Insurance Company">
 	<meta name="keywords" content="	accounting, advising, advisory, business, company, consulting, corporate, finance, financial, investments, law, multi-purpose, services, tax help, visual composer">
 	<meta name="author" content="Zynovvatech">
-	<link rel="shortcut icon" href="{{ asset('assets/img/logo/logo-1.png')}}" type="image/x-icon">
+	<link rel="shortcut icon" href="/admin-assets/assets/images/logomini.png" type="image/x-icon">
 	<meta name="base-url" content="{{ url('/') }}">
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">

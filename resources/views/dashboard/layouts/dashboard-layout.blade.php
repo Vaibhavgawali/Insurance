@@ -5,8 +5,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Insurance next</title>
+    <title>Insurancecareer.in</title>
+	<meta name="description" content="Insurancecareer.in - Insurance Company">
+	<meta name="keywords" content="	accounting, advising, advisory, business, company, consulting, corporate, finance, financial, investments, law, multi-purpose, services, tax help, visual composer">
     <!-- plugins:css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+    <link href="/admin-assets/assets/css/jquery.dataTables.css" rel="stylesheet">
     <link rel="stylesheet" href="/admin-assets/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/admin-assets/assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
@@ -18,13 +22,19 @@
     <link rel="stylesheet" href="/admin-assets/assets/css/style.css">
     <link rel="stylesheet" href="/admin-assets/assets/css/module-1.css">
     <link rel="stylesheet" href="/admin-assets/assets/css/candidate-quiz.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+   
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.jpg" />
+    <link rel="shortcut icon" href="/admin-assets/assets/images/logomini.png" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ url('') }}">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+          <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+          <script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js"></script>
+          <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link href="/admin-assets/assets/css/jquery.dataTables.css" rel="stylesheet">
+
     <script src="/admin-assets/assets/vendors/js/vendor.bundle.base.js"></script>
 
 
@@ -63,6 +73,7 @@
     <!-- Plugin js for this page -->
     <script src="/admin-assets/assets/vendors/chart.js/Chart.min.js"></script>
     <script src="/admin-assets/assets/js/jquery.cookie.js" type="text/javascript"></script>
+    
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="/admin-assets/assets/js/off-canvas.js"></script>
