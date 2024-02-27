@@ -5,15 +5,15 @@
     <div class="page-header">
         <h3 class="page-title"> <span class="page-title-icon bg-gradient-primary text-white me-2">
             <i class="mdi mdi-account-plus"></i>
-        </span>Add Quiz</h3>
+        </span>Add Assessment</h3>
         <x-breadcrumb :breadcrumbs="$breadcrumbs??[]"></x-breadcrumb>
     </div>
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Quiz</h4>
-                    <p class="card-description"> Add Quiz Details</p>
+                    <h4 class="card-title">Add Assessment</h4>
+                    <p class="card-description"> Add Assessment Details</p>
                     <x-form-component :action="route('questions.update',$question->id)" :layout="'horizontal'" :method="'PATCH'" :fields="$fields" :submitLabel="'Update Quiz'" :formClass="'form-sample'" :modelData="$question"></x-form-component>
                 </div>
             </div>

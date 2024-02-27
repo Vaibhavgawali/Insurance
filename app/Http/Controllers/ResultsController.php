@@ -74,7 +74,7 @@ class ResultsController extends Controller
                 return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('actions', function ($row) {
-                        $actions = '<a class="btn btn-sm btn-gradient-success btn-rounded">View</a>';
+                        $actions = '<a href="/admin/user/' . $row->user_id . '" class="btn btn-sm btn-gradient-success btn-rounded">View</a>';
                         return $actions;
                     })
                     ->addColumn('pass_status', function ($row) {

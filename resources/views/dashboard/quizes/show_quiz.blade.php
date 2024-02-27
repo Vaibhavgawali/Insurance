@@ -5,7 +5,7 @@
     <div class="page-header">
         <h3 class="page-title"> <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-eye"></i>
-            </span>Quiz</h3>
+            </span>Assessment</h3>
         <x-breadcrumb :breadcrumbs="$breadcrumbs??[]"></x-breadcrumb>
     </div>
     <div class="row">
@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
                 <h6 class="text-end">Createdat:{{$quiz->created_at}}</h6>
-                    <h4 class="card-title">Quiz Details</h4>
+                    <h4 class="card-title">Assessment Details</h4>
                   
                     <!-- <p class="card-description"> Add Quiz Details</p> -->
                  

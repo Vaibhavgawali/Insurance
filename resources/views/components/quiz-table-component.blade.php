@@ -28,7 +28,7 @@
                     @if($action['icon']?? '')
                     <i class="{{ $action['icon'] ?? '' }}"></i>
                     @else
-                    {{ $action['label'] }}
+                    Take Assessment
                     @endif
                 </a>
                 @endif

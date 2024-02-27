@@ -795,7 +795,7 @@ $(document).ready(function () {
                 // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
-                    console.log(errors);
+                    // console.log(errors);
 
                     $(".error-message").remove();
 

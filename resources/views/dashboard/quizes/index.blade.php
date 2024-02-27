@@ -5,7 +5,7 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-comment-plus-outline"></i>
-            </span>Quizes List
+            </span>Assessments List
         </h3>
         <x-breadcrumb :breadcrumbs="$breadcrumbs??[]"></x-breadcrumb>
     </div>
@@ -13,11 +13,11 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body table-responsive">
-                    <h4 class="card-title">Quizes List</h4>
-                    <p class="card-description">Quizes List Details</p>
+                    <h4 class="card-title">Assessments List</h4>
+                    <p class="card-description">Assessment List Details</p>
                     <table id='quizes' class="table table-striped">
                         <div class="d-flex align-items-center gap-4  m-3">
-                            <a href="/quizes/create" class="btn btn-primary btn-sm">Add Quiz</a>
+                            <a href="/quizes/create" class="btn btn-primary btn-sm">Add Assessment</a>
                             <div class="d-flex align-items-center gap-2">
                                 <label class="w-100"><i class="mdi mdi-filter btn btn-warning btn-sm p-2" data-toggle="tooltip" data-placement="top" title="Filter by Level"></i></label>
                                 <select class="p-1  border border-dark rounded" name="filterbylevel" id="filterbylevel">
@@ -37,7 +37,7 @@
                                 <th class="text-uppercase">title</th>
                                 <th class="text-uppercase">description</th>
                                 <th class="text-uppercase ">level</th>
-                                <th class="text-uppercase">quiz_time <span style="font-size: 12px;" class="text-lowercase">(in min)</span>
+                                <th class="text-uppercase">Time <span style="font-size: 12px;" class="text-lowercase">(in min)</span>
                                 </th>
                                 <th class="text-center text-uppercase">Actions</th>
                             </tr>

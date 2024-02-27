@@ -225,6 +225,7 @@ class CandidateQuizController extends Controller
         }
     }
 
+
     // Helper method to calculate score 
     private function calculateScore($userAnswers, $quizId, $correctAnswersScore)
     {

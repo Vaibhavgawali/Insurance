@@ -20,10 +20,10 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    let quizAlert = (message) => {
+    let quizAlert = (message,score) => {
 
         const quizStatusObject = {
-            isPass: message
+            isPass: message,
         };
         localStorage.setItem("quizstatus", JSON.stringify(quizStatusObject));
     };
@@ -106,7 +106,7 @@
         }
 
         function submitQuiz() {
-            console.log("first");
+            // console.log("first");
             var formData = $("#quizForm").serialize();
             var baseUrl = $('meta[name="base-url"]').attr("content");
             var quiz_id = <?php echo $quiz_id; ?>;
@@ -125,14 +125,14 @@
                             let user_quiz_id = response.user_quiz_id;
                             swal({
                                 title: "",
-                                text: "You have successfully passed the quiz and your score is: " + response.score + "",
+                                text: "You have  passed the Assessment and score is: " + response.score + " /100",
                                 icon: "success",
                                 button: "View & Download Certificate",
                             }).then(() => {
                                 $url = `${baseUrl}/generate-pdf/${user_quiz_id}`;
                                 window.location.href = $url; // Move the redirection here
                             });
-                            quizAlert(true);
+                            // quizAlert(true);
                         } else {
                             $url = `${baseUrl}/candidate-quizes/`;
                             window.location.href = $url; // Move the redirection here
@@ -144,7 +144,7 @@
 
                     } else {
                         // outside the valid time span
-                        console.log(response);
+                        // console.log(response);
                         window.location.href = `${baseUrl}/candidate-quizes/`;
                     }
                 }

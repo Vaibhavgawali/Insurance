@@ -34,7 +34,7 @@ $(document).ready(function () {
         $.each(answerTextArray, function (index, answerText) {
             $("#answerText_" + index + "_error").html("");
             if (!answerText || answerText.trim() === "") {
-                console.log(index);
+                // console.log(index);
                 $("#answerText_" + index + "_error").html(
                     '<div class="invalid-feedback d-block">Answer is required.</div>'
                 );
@@ -64,7 +64,7 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $("#add_question_button").attr("disabled", true);
                     createQuestionAlert();
@@ -121,7 +121,7 @@ $(document).ready(function () {
             $("#question_text_error").html(
                 '<div class="invalid-feedback d-block">Question is required.</div>'
             );
-            console.log("question_text:" + question_text);
+            // console.log("question_text:" + question_text);
             return false;
         }
 
@@ -130,7 +130,7 @@ $(document).ready(function () {
         $.each(answerTextArray, function (index, answerText) {
             $("#answerText_" + index + "_error").html("");
             if (!answerText || answerText.trim() === "") {
-                console.log(index);
+                // console.log(index);
                 $("#answerText_" + index + "_error").html(
                     '<div class="invalid-feedback d-block">Answer is required.</div>'
                 );
@@ -148,10 +148,10 @@ $(document).ready(function () {
             answers: answerTextArray,
             correct_answer: correct,
         };
-        console.log(data);
+        // console.log(data);
 
         var url = window.location.origin + `/questions/${question_id}`;
-        console.log(url);
+        // console.log(url);
 
         $.ajax({
             type: "PATCH",
@@ -161,7 +161,7 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $("#edit_question_button").attr("disabled", true);
                     editQuestionAlert();
@@ -196,7 +196,7 @@ $(document).on("click", ".delete-question-button", function (e) {
     let question_id = $(this)
         .closest(".delete-question-form")
         .data("question-id");
-    console.log("Clicked delete button with ID:", question_id);
+    // console.log("Clicked delete button with ID:", question_id);
     questionDeleteAlert(question_id);
     debugger;
 });
@@ -228,9 +228,9 @@ const deleteQuestionFunction = (question_id) => {
     var data = {
         question_id: question_id,
     };
-    console.log(data);
+    // console.log(data);
     let question_url = window.location.origin + `/questions/${question_id}`;
-    console.log("question_url:" + question_url);
+    // console.log("question_url:" + question_url);
     debugger;
     $.ajax({
         url: question_url,
@@ -240,7 +240,7 @@ const deleteQuestionFunction = (question_id) => {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
         success: function (response) {
-            console.log(response);
+            // console.log(response);
             if (response.status == true) {
                 $(
                     ".delete-question-button[data-question-id='" +

@@ -74,7 +74,7 @@ $(document).ready(function () {
                 }
             },
             error: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status === 422) {
                     var errors = response.responseJSON.errors;
 

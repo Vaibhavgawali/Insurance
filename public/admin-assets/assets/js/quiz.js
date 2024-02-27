@@ -1,9 +1,9 @@
 //Quiz create
 let quizCreatedAlert = () => {
-    swal("Good job!", "Quiz created successfully !", "success");
+    swal("Good job!", "Assessment created successfully !", "success");
 };
 let quizUpdateAlert = () => {
-    swal("Good job!", "Quiz Updated successfully !", "success");
+    swal("Good job!", "Assessment Updated successfully !", "success");
 };
 
 $(document).ready(function () {
@@ -25,28 +25,28 @@ $(document).ready(function () {
             $("#title_error").html(
                 '<div class="invalid-feedback d-block">Title is ruequired.</div>'
             );
-            console.log("question_text:" + question_text);
+            // console.log("question_text:" + question_text);
             return false;
         }
         if (!title || title.trim() === "") {
             $("#description_error").html(
                 '<div class="invalid-feedback d-block">Description is ruequired.</div>'
             );
-            console.log("question_text:" + question_text);
+            // console.log("question_text:" + question_text);
             return false;
         }
         if (!title || title.trim() === "") {
             $("#level_error").html(
                 '<div class="invalid-feedback d-block">Level is ruequired.</div>'
             );
-            console.log("question_text:" + question_text);
+            // console.log("question_text:" + question_text);
             return false;
         }
         if (!title || title.trim() === "") {
             $("#quiz_time_error").html(
                 '<div class="invalid-feedback d-block">Time is ruequired.</div>'
             );
-            console.log("question_text:" + question_text);
+            // console.log("question_text:" + question_text);
             return false;
         }
         var data = {
@@ -65,7 +65,7 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $("#quiz_create_button").attr("disabled", true);
                     quizCreatedAlert();
@@ -115,28 +115,28 @@ $(document).ready(function () {
             $("#title_error").html(
                 '<div class="invalid-feedback d-block">Title is ruequired.</div>'
             );
-            console.log("question_text:" + question_text);
+            // console.log("question_text:" + question_text);
             return false;
         }
         if (!title || title.trim() === "") {
             $("#description_error").html(
                 '<div class="invalid-feedback d-block">Description is ruequired.</div>'
             );
-            console.log("question_text:" + question_text);
+            // console.log("question_text:" + question_text);
             return false;
         }
         if (!title || title.trim() === "") {
             $("#level_error").html(
                 '<div class="invalid-feedback d-block">Level is ruequired.</div>'
             );
-            console.log("question_text:" + question_text);
+            // console.log("question_text:" + question_text);
             return false;
         }
         if (!title || title.trim() === "") {
             $("#quiz_time_error").html(
                 '<div class="invalid-feedback d-block">Time is ruequired.</div>'
             );
-            console.log("question_text:" + question_text);
+            // console.log("question_text:" + question_text);
             return false;
         }
         var data = {
@@ -156,7 +156,7 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status == true) {
                     $("#quiz_create_button").attr("disabled", true);
                     quizUpdateAlert();
@@ -199,22 +199,22 @@ $(document).on("click", ".delete-button", function (e) {
 let quizDeleteAlert = (quiz_id) => {
     swal({
         title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this quiz!",
+        text: "Once deleted, you will not be able to recover this Assessment!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {
-            console.log(first)
+            // console.log(first)
             deleteQuizFunction(quiz_id);
             setTimeout(function () {
                 window.location.reload();
             }, 1000);
-            swal(" Your quiz file has been deleted !", {
+            swal(" Your Assessment has been deleted !", {
                 icon: "success",
             });
         } else {
-            swal("Your quiz is safe !");
+            swal("Your Assessment is safe !");
         }
     });
 };
@@ -225,7 +225,7 @@ const deleteQuizFunction = (quiz_id) => {
         quiz_id: quiz_id,
     };
     var url = window.location.origin + `/quizes/${quiz_id}`;
-    console.log(url);
+    // console.log(url);
     debugger;
 
     $.ajax({
@@ -271,11 +271,11 @@ if (quizStatusString) {
   
 
   if (isPassValue===false) {
-    console.log("False value:"+isPassValue);
+    // console.log("False value:"+isPassValue);
     // Show success alert
     swal({
       title: "Better Luck!",
-      text: "You are Failed!",
+      text: "You are Failed! ",
       icon: "warning",
       button: "Ok",
     }).then(() => {

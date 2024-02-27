@@ -74,14 +74,14 @@
 								<h4 class="text-center text-dark  p-2">Get certified and explore career </h4>
                                <div>
 								  <h2 class="text-dark" style="">Register And Start Your Career</h2>
-								  <a href="/login">Click Here</a>
+								  <a href="/candidate-register">Click Here</a>
 							   </div>
 							</div>
 							<div class="col-12 col-md-6 col-lg-6 top-intrest-div rounded-end">
 								<h4 class="text-center text-dark  p-2">Put your current insurance career on fast track</h4>
 								 <div>
 									<h2 class="text-dark">Express your interest</h2>
-								<a href="/industry">Click Here</a>
+								<a href="/login?role=candidate">Click Here</a>
 								 </div>
 							</div>
 
@@ -188,7 +188,7 @@
 								<div class="ins-main-about-list-area ul-li-block">
 									<ul>
 										<li class="inner-text pera-content headline">Understand the industry</li>
-										<li>Explore opportunity wrt your expertise & skill sets</li>
+										<li>Explore opportunity with your expertise & skill sets</li>
 										<li> Next steps to way forward</li>
 									</ul>
 									<p><a href="/industry" class="btn  btn-sm custom-btn">Click here</a> to know more about the opportunity & Next Steps</p>

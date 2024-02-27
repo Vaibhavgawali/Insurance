@@ -65,21 +65,21 @@
         <li class="nav-item">
             <a class="nav-link" href="/roles">
                 <span class="menu-title">Add Role</span>
-                <i class="mdi mdi-account-card-details menu-icon"></i>
+                <i class="mdi mdi-account-plus menu-icon"></i>
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="/results">
                 <span class="menu-title">Results</span>
-                <i class="mdi mdi-airplay menu-icon"></i>
+                <i class="mdi  mdi-star-outline menu-icon"></i>
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="/quizes">
-                <span class="menu-title">Add Quiz</span>
-                <i class="mdi mdi-airplay menu-icon"></i>
+                <span class="menu-title">Add Assessment</span>
+                <i class="mdi mdi-folder-plus menu-icon"></i>
             </a>
         </li>
         @endif
@@ -105,8 +105,8 @@
         @if(Auth::user()->hasRole('Superadmin') || Auth::user()->can('take_assessment'))
         <li class="nav-item">
             <a class="nav-link" href="/candidate-quizes">
-                <span class="menu-title">Take Quiz</span>
-                <i class="mdi mdi-account-card-details menu-icon"></i>
+                <span class="menu-title">Take Assessment</span>
+                <i class="mdi mdi-folder-account menu-icon"></i>
             </a>
         </li>
         @endif

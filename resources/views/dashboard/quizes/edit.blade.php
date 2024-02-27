@@ -5,7 +5,7 @@
     <div class="page-header">
         <h3 class="page-title"> <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-tooltip-edit"></i>
-            </span>Edit Quiz</h3>
+            </span>Edit Assessment</h3>
         <x-breadcrumb :breadcrumbs="$breadcrumbs??[]"></x-breadcrumb>
     </div>
     <div class="row">
@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
                 <h6 class="text-end">Createdat:{{$quiz->created_at}}</h6>
-                    <h4 class="card-title">Edit Quiz Details</h4>
+                    <h4 class="card-title">Edit Assessment Details</h4>
                   
                     <!-- <p class="card-description"> Add Quiz Details</p> -->
                  
@@ -47,13 +47,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="quiz_time" class="col-sm-3 col-form-label">Quiz Time</label>
+                            <label for="quiz_time" class="col-sm-3 col-form-label">Assessment Time</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="quiz_time" id="quiz_time" placeholder="Write quiz time in minute" value="{{$quiz->quiz_time}}">
                             </div>
                         </div>
 
-                        <button type="submit" id="quiz_edit_button" class="btn btn-sm btn-gradient-primary me-2">Update Quiz</button>
+                        <button type="submit" id="quiz_edit_button" class="btn btn-sm btn-gradient-primary me-2">Update Assessment</button>
                         <a href="/quizes" class="btn btn-sm btn-light">Cancel</a>
                     </form>
                 </div>
