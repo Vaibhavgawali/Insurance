@@ -99,12 +99,14 @@
                 className: 'btn btn-sm mx-3 btn-primary',
                 id:"download_to_excel" // Add your CSS class here
             }
-        ],
+     ],
                 processing: true,
                 serverSide: true,
                 ajax: {
                   url: "{{ route('getInsurerTableData') }}",
                   data: function(d) {
+                    d.search = $('input[type="search"]').val();
+
                     var preffered_lineFilter = document.getElementById('filterbypreffered_line');
                     d.filter_Line = preffered_lineFilter.value;
                     return d;
@@ -136,6 +138,8 @@
                   },
                   {
                     data: 'profile', // Corrected the property name
+                    name: 'profile',
+                    searchable: false,
                     render: function(data, type, row) {
                       var capitalizedLine = data.preffered_line?.charAt(0).toUpperCase() + data.preffered_line.slice(1);
                       return capitalizedLine.length > 9 ? capitalizedLine.substring(0, 9) + '...' : capitalizedLine;
@@ -156,6 +160,10 @@
               $('#filterbypreffered_line').on('change', function() {
                 // Reload the DataTable when the filter value changes
                 table.ajax.reload();
+              });
+
+              $('input[type="search"]').on('keyup', function () {
+                  dataTable.ajax.reload(); 
               });
 
                    // Change users role

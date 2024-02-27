@@ -155,6 +155,7 @@ class CandidateController extends Controller
                 });
             }     
         })
+        
         ->when(request()->has('documents'), function ($query) {
             $documents = request('documents');
             if ($documents === 'uploaded') { 
@@ -170,6 +171,15 @@ class CandidateController extends Controller
             } else if ($experience === 'fresher') {
                 $query->whereDoesntHave('experience');
             }
+        })
+        ->when(request()->has('search'), function ($query) {
+            $search = request('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                  ->orWhereHas('experience', function ($q) use ($search) {
+                      $q->where('designation', 'like', '%' . $search . '%');
+                  });
+            });
         })
         ->orderBy('user_id', 'desc')
         ->get();

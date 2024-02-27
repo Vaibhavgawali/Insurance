@@ -130,6 +130,8 @@
                 ajax: {
                   url: "{{ route('getCandidateTableData') }}",
                   data: function(d) {
+                    d.search = $('input[type="search"]').val();
+
                     // d.filter_name = $('#filterbypreffered_line').val();
                     var preffered_lineFilter = document.getElementById('filterbypreffered_line');
                     d.filter_Line = preffered_lineFilter.value;
@@ -178,7 +180,8 @@
                   },
                   {
                     data: 'experience',
-                    searchable: true,
+                    name: 'experience',
+                    searchable: false,
                     render: function(data, type, row) {
                       let res = '';
                       if (data && data.designation) {
@@ -215,6 +218,9 @@
                 table.ajax.reload();
               });
               
+              $('input[type="search"]').on('keyup', function () {
+                  dataTable.ajax.reload(); 
+              });
 
               // Change users role
               $(document).on('click', '.editButton', function() {

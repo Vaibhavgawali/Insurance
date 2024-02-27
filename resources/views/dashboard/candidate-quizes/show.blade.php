@@ -127,7 +127,7 @@
                         if(response.passed === 'required'){
                             swal({
                                 title: "",
-                                text: "Please select all questions !",
+                                text: "Please answer all questions !",
                                 icon: "warning",
                             })
                             return;
