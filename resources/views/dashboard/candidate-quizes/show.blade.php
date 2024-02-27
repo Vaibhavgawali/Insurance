@@ -20,10 +20,12 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    let quizAlert = (message,score) => {
+    let quizAlert = (message,score,user_quiz_id) => {
 
         const quizStatusObject = {
             isPass: message,
+            score:score,
+            user_quiz_id:user_quiz_id
         };
         localStorage.setItem("quizstatus", JSON.stringify(quizStatusObject));
     };
@@ -118,28 +120,39 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
+                    console.log(response);
                     if (response.success) {
                         clearInterval(intervalId);
                         localStorage.removeItem("quizAnswers");
-                        if (response.passed) {
-                            let user_quiz_id = response.user_quiz_id;
+                        if(response.passed === 'required'){
                             swal({
                                 title: "",
-                                text: "You have  passed the Assessment and score is: " + response.score + " /100",
-                                icon: "success",
-                                button: "View & Download Certificate",
-                            }).then(() => {
-                                $url = `${baseUrl}/generate-pdf/${user_quiz_id}`;
-                                window.location.href = $url; // Move the redirection here
-                            });
-                            // quizAlert(true);
-                        } else {
+                                text: "Please select all questions !",
+                                icon: "warning",
+                            })
+                            return;
+                        } else  if (response.passed) {
+                            let user_quiz_id = response.user_quiz_id;
+                            window.location.href = `${baseUrl}/candidate-quizes/`;
+                            quizAlert(true,response.score,user_quiz_id);
+
+                            // swal({
+                            //     title: "",
+                            //     text: "You have  passed the Assessment and score is: " + response.score + " /100",
+                            //     icon: "success",
+                            //     button: "View & Download Certificate",
+                            // }).then(() => {
+                            //     $url = `${baseUrl}/generate-pdf/${user_quiz_id}`;
+                            //     window.location.href = $url; 
+                            // });
+                            // return;
+                        } 
+                        else {
                             $url = `${baseUrl}/candidate-quizes/`;
                             window.location.href = $url; // Move the redirection here
-                            quizAlert(false);
-
+                            quizAlert(false,response.score);
                         }
-                        window.location.href = $url;
+                        // window.location.href = $url;
                         // window.location.href = `${baseUrl}/candidate-quizes/`;
 
                     } else {

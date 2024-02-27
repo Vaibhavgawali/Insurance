@@ -266,21 +266,37 @@ const deleteQuizFunction = (quiz_id) => {
 };
 const quizStatusString = localStorage.getItem("quizstatus");
 if (quizStatusString) {
-  const quizStatusObject = JSON.parse(quizStatusString);
-  const isPassValue = quizStatusObject.isPass;
-  
+    const quizStatusObject = JSON.parse(quizStatusString);
+    const isPassValue = quizStatusObject.isPass;
+    const score = quizStatusObject.score;
+    const user_quiz_id = quizStatusObject.user_quiz_id;
 
-  if (isPassValue===false) {
-    // console.log("False value:"+isPassValue);
-    // Show success alert
-    swal({
-      title: "Better Luck!",
-      text: "You are Failed! ",
-      icon: "warning",
-      button: "Ok",
-    }).then(() => {
-      // Delete the 'quizstatus' key from localStorage after showing the alert
-      localStorage.removeItem("quizstatus");
-    });
-  }
-} 
+    if (isPassValue === false) {
+        // console.log("False value:"+isPassValue);
+        // Show success alert
+        swal({
+            title: "Better Luck!",
+            text: `You are Failed! ${score}/100`,
+            icon: "warning",
+            button: "Ok",
+        }).then(() => {
+            // Delete the 'quizstatus' key from localStorage after showing the alert
+            localStorage.removeItem("quizstatus");
+        });
+    } else if (isPassValue === true) {
+        swal({
+            title: "",
+            text:
+                "You have  passed the Assessment and score is: " +
+                score +
+                " /100",
+            icon: "success",
+            button: "View & Download Certificate",
+        }).then(() => {
+            var baseUrl = $('meta[name="base-url"]').attr("content");
+            $url = `${baseUrl}/generate-pdf/${user_quiz_id}`;
+            window.location.href = $url;
+            localStorage.removeItem("quizstatus");
+        });
+    }
+}

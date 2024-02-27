@@ -156,11 +156,16 @@ class CandidateQuizController extends Controller
         // Check if the current time is within the valid time span
         if ($startTime && $currentTime->between($startTime, $quizEndTime)) {
             // User has submitted within the valid time span
-
             $userAnswers = $request->except('_token');
 
             $correctAnswersScore = 2;
             $score = $this->calculateScore($userAnswers, $quizId, $correctAnswersScore);
+
+            if(!$score){
+                // dd($score);
+                $message = "Please select all questions !";
+                return Response(['success' => true, 'message' => $message,'passed'=>'required'], 200);
+            }
 
             $questionCount = $quiz->questions()->count();
             $maximumScore = $questionCount * $correctAnswersScore ; 
@@ -188,32 +193,18 @@ class CandidateQuizController extends Controller
 
             $request->session()->forget('quiz_start_time');
             if ($is_passed) {
-                // certificate logic
-
                 $message = "You have passed";
-
-                // $data = [
-                //     'title' => 'Welcome InsuranceNext',
-                //     'date' => date('m/d/Y'),
-                //     'score'=>$score,
-                //     'level'=>$quiz->level
-                // ]; 
-
-                // $pdf=$this->generatePDF($data);
 
                 $passed_quiz = UserQuiz::where([
                     'user_id' => Auth::id(),
                     'quiz_id' => $quiz->id,
                 ])->first();
 
-                // dd($passed_quiz);
-                // $is_updated= $passed_quiz->update(['certificate_path' => $pdf]);
-
                 return Response(['user_quiz_id' => $passed_quiz->id, 'success' => true, 'message' => $message, 'passed' => true, 'score' => $score], 200); //,'pdf'=>$pdf
 
             } else {
                 $message = "You have failed";
-                return Response(['success' => true, 'message' => $message, 'passed' => false], 200);
+                return Response(['success' => true, 'message' => $message,'score' => $score, 'passed' => false], 200);
             }
 
             return Response(['success' => true, 'message' => $message], 200);
@@ -232,17 +223,18 @@ class CandidateQuizController extends Controller
         $score = 0;
  
         $quiz = Quiz::findOrFail($quizId);
-
+        $total_questions=count($quiz->questions);
+        // dd($total_questions);
 
         // Exclude the specified key
-
         $keyToExclude = 'quiz_id';
         $filteredArray = array_diff_key($userAnswers, [$keyToExclude => '']);
 
         // Get the count of elements in the filtered array
         $count = count($filteredArray);
+        // dd($count);
 
-        if ($count < 1) {
+        if ($count < 1 || $count < $total_questions) {
             return false;
         }
 
