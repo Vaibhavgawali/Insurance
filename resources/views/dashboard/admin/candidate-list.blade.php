@@ -56,7 +56,6 @@
 
             </div>
           </div>
-
           <table id='example' class="table table-striped  ">
             <div class="form-sample">
             </div>
@@ -178,6 +177,8 @@
                   },
                   {
                     data: 'experience',
+                    name:'designation',
+                    orderable: true,
                     searchable: true,
                     render: function(data, type, row) {
                       let res = '';
