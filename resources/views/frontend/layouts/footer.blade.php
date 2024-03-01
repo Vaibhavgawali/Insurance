@@ -105,7 +105,7 @@
 				</div>
 				<div class="ins-copy-right-menu ul-li">
 					<ul>
-						<li><a href="/terms">Terms and conditions</a></li>
+						<li><a href="/terms">Terms & conditions</a></li>
 						<li><a href="/privacy"> Privacy policy</a></li>
 					</ul>
 				</div>

@@ -275,8 +275,8 @@ if (quizStatusString) {
         // console.log("False value:"+isPassValue);
         // Show success alert
         swal({
-            title: "Better Luck!",
-            text: `You are Failed! ${score}/100`,
+            title: "Status: Failed",
+            text: `Score: ${score}/100`,
             icon: "warning",
             button: "Ok",
         }).then(() => {
@@ -285,17 +285,14 @@ if (quizStatusString) {
         });
     } else if (isPassValue === true) {
         swal({
-            title: "",
-            text:
-                "You have  passed the Assessment and score is: " +
-                score +
-                " /100",
+            title: "Status: Passed",
+            text: `Score: ${score}/100`,
             icon: "success",
-            button: "View & Download Certificate",
+            button: "ok",
         }).then(() => {
-            var baseUrl = $('meta[name="base-url"]').attr("content");
-            $url = `${baseUrl}/generate-pdf/${user_quiz_id}`;
-            window.location.href = $url;
+            // var baseUrl = $('meta[name="base-url"]').attr("content");
+            // $url = `${baseUrl}/generate-pdf/${user_quiz_id}`;
+            // window.location.href = $url;
             localStorage.removeItem("quizstatus");
         });
     }

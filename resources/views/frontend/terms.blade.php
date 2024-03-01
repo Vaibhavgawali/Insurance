@@ -20,7 +20,10 @@
 			</div>
 		</div>
 		</div>
-	</section>		
+		
+	</section>	
+	<div class="text-center"><a href="/candidate-register" class="btn btn-primary text-white text-center m-5">Go back</a></div>
+
 <!-- End of Faq main section
 	============================================= -->
     @endsection
