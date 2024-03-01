@@ -51,24 +51,8 @@ class ResultsController extends Controller
                             $query->where('pass_status', $filterPassStatus == 'pass' ? 1 : 0);
                         }
                     })
-                    // ->when(request()->has('Level'), function ($query) {
-                    //     $filterLevel = request('Level');
-                    //     dd($filterLevel);
-                    //     $query->whereHas('quiz', function ($quizQuery) use ($filterLevel) {
-                    //         $quizQuery->where('level', $filterLevel);
-                    //     });
-                    // })
-                    // ->when(request()->has('passstatus'), function ($query) {
-                    //     $filterPassStatus = request('passstatus');
-                    //     if ($filterPassStatus === 'pass') { 
-                    //         $query->where('pass_status', 1);
-                    //     } else if ($filterPassStatus === 'fail') {
-                    //         $query->where('pass_status', 0);
-                    //     }
-                    // })
                     ->orderBy('id', 'desc')
                     ->get();
-// dd($data);
 
             if ($data) {
                 return DataTables::of($data)

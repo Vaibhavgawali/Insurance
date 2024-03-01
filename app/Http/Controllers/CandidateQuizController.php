@@ -36,27 +36,37 @@ class CandidateQuizController extends Controller
         // $quizzes = Quiz::all();
         $user = auth()->user();
         $completedQuizIds = $user->quizzes->where('pass_status', true)->pluck('quiz_id')->toArray();
+        $completedQuizzes = Quiz::whereIn('id', $completedQuizIds)->get();
+        $quizzes = collect();
 
         // If user has completed quizzes, get the next level quizzes
         if (!empty($completedQuizIds)) {
             $nextLevel = Quiz::whereNotIn('id', $completedQuizIds)->min('level');
 
             if ($nextLevel) {
-                $quizzes = Quiz::where('level', $nextLevel)->get();
+                $nextLevelQuizzes  = Quiz::where('level', $nextLevel)->get();
+                $quizzes = $nextLevelQuizzes ->merge($completedQuizzes);  
             } else {
                 // User has completed all available levels
-                $quizzes = collect();
+                $quizzes = $completedQuizzes;
             }
+
         } else {
             // User hasn't completed any quizzes, show level 1 quizzes
             $quizzes = Quiz::where('level', 1)->get();
         }
 
-        $headers = ['id', 'title', 'description', 'level'];
+        $quizzes->transform(function ($quiz) use ($user) {
+            $quizStatus = $user->quizzes->where('quiz_id', $quiz->id)->first();
+            $pass_status = $quizStatus ? ($quizStatus->pass_status ? 'Pass' : 'Fail') : 'Pending';
+            $quiz->status = $pass_status;
+            return $quiz;
+        });
+
+        $headers = ['id', 'title', 'description', 'level','status'];
 
         $actions = [
             [
-                // 'icon' => 'mdi mdi-bullseye',
                 'label' => 'Take Quiz',
                 'action' => 'view',
                 'url' => function ($item) {
@@ -66,7 +76,6 @@ class CandidateQuizController extends Controller
             ],
         ];
 
-        // dd($headers);
         return view('dashboard.candidate-quizes.index', ['data' => $quizzes, 'headers' => $headers, 'actions' => $actions]);
     }
 
@@ -113,7 +122,6 @@ class CandidateQuizController extends Controller
 
         return view('dashboard.candidate-quizes.show', ['questions' => $questions, 'quiz_id' => $id, 'quiz_title' => $quiz_title, 'quiz_level' => $quiz_level, 'quiz_time' => $quiz_time]);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -224,7 +232,6 @@ class CandidateQuizController extends Controller
  
         $quiz = Quiz::findOrFail($quizId);
         $total_questions=count($quiz->questions);
-        // dd($total_questions);
 
         // Exclude the specified key
         $keyToExclude = 'quiz_id';
@@ -240,9 +247,7 @@ class CandidateQuizController extends Controller
 
         foreach ($quiz->questions as $question) {
             $correctAnswerText = $question->answers()->where('is_correct', true)->value('answer_text');
-
             $userSelectedAnswerText = $userAnswers[$question->id];
-
             $score += ($userSelectedAnswerText == $correctAnswerText) ? $correctAnswersScore : 0;
         }
 
