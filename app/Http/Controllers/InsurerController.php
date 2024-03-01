@@ -64,6 +64,15 @@ class InsurerController extends Controller
             });
         }     
     })
+    ->when(request()->has('search'), function ($query) {
+        $search = request('search');
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%')
+              ->orWhereHas('profile', function ($q) use ($search) {
+                  $q->where('preffered_line', 'like', '%' . $search . '%');
+              });
+        });
+    })
     ->orderBy('user_id', 'desc')->get();
             // dd($data);
             if ($data) {

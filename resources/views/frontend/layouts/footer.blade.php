@@ -35,7 +35,7 @@
 			<div class="ins-social-item">
 				<a href="#">
 					<img src="{{asset('assets/img/logo/wa.png')}}" alt="">
-					<span>Whats App</span>
+					<span>Whatsapp</span>
 				</a>
 			</div>
 		</div>
