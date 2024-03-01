@@ -28,10 +28,7 @@
 
                 </p>
                 <blockquote >
-                  Empowering futures, securing lives
-                  <strong class="custom-color custom-italic">Insurancecareer.in</strong> is the beacon of trust in
-                  India's dynamic insurance landscape. Discover protection
-                  redefined.
+                Empowering careers in insurance through tailored learning and seamless job placements for a brighter professional future.
                 </blockquote>
                 <p style="font-size: 18px;">
                   The primary objectives of the insurance industry in India revolve around risk mitigation, financial protection, and wealth creation. Insurance serves as a crucial instrument for individuals and businesses to shield themselves against unforeseen events, such as accidents, illnesses, and natural disasters. Additionally, insurance products also play a pivotal role in promoting long-term savings and investment. The industry contributes significantly to the country's economic growth by mobilizing funds for infrastructure development and facilitating capital formation.
@@ -108,7 +105,7 @@
               </h6>
               <canvas id="barChart" width="100" height="100" style="display: block; box-sizing: border-box; height: 272px; width: 272px;"></canvas>
             </div>
-            <h6 class="text-center p-2">Source: Swiss Re,Sigma 4/2022</h6>
+            <h6 class="text-center p-2">Source: IRDA Annual Report 2022-23</h6>
           </div>
         </div>
         <div class="col-lg-6 mt-3">
@@ -119,7 +116,7 @@
               </h6>
               <canvas id="myChart" width="100" height="100" style="display: block; box-sizing: border-box; height: 272px; width: 272px;"></canvas>
             </div>
-            <h6 class="text-center p-2">Source: Swiss Re,Sigma 4/2022</h6>
+            <h6 class="text-center p-2">Source: IRDA Annual Report 2022-23</h6>
           </div>
         </div>
         <div class="col-lg-6 mt-3">
@@ -130,7 +127,7 @@
               </h6>
               <canvas id="penetrationChart" width="100" height="100" style="display: block; box-sizing: border-box; height: 272px; width: 272px;"></canvas>
             </div>
-            <h6 class="text-center p-2">Source: Swiss Re,Sigma 4/2022</h6>
+            <h6 class="text-center p-2">Source: IRDA Annual Report 2022-23</h6>
           </div>
         </div>
         <div class="col-lg-6 mt-3">
@@ -141,7 +138,7 @@
               </h6>
               <canvas id="densityChart" width="100" height="100" style="display: block; box-sizing: border-box; height: 272px; width: 272px;"></canvas>
             </div>
-            <h6 class="text-center p-2">Source: Swiss Re,Sigma 4/2022</h6>
+            <h6 class="text-center p-2">Source: IRDA Annual Report 2022-23</h6>
           </div>
         </div>
       </div>

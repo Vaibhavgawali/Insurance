@@ -278,7 +278,7 @@
 										<li>Certifications and placement references</li>
 									</ul>
 									<br>
-									<p><a href="/candidate-register" class="btn custom-btn btn-sm ">Click here</a> to Register & know more</p>
+									<p><a href="/institute-register" class="btn custom-btn btn-sm ">Click here</a> to Register & know more</p>
 								</div>
 								
 							</div>

@@ -8,8 +8,7 @@
     <div class="ins-subtitle text-uppercase">
         <i class="fas fa-heart"></i> At <span class="custom-italic custom-color">insurancecareer.in</span>, we believe in transparency and fairness in all interactions.
     </div>
-	<h2>Terms and
-    <span class="ins-title-shape1"><img src="assets/img/shape/title-sh1.svg" alt=""></span>Conditions<span class="ins-title-shape2"><img src="assets/img/shape/title-sh2.svg" alt=""></span>
+	<h2>Terms & Conditions
 </h2>
 </div>
 <div class="ins-faq-content" data-background="assets/img/bg/faq-bg.png">
