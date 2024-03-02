@@ -47,14 +47,10 @@ Route::get('/contact', [WelcomeController::class, 'contact']);
 Route::get('/privacy', [WelcomeController::class, 'privacy']);
 Route::get('/terms', [WelcomeController::class, 'terms']);
 
-
-
-
 Route::get('/candidate-register', [WelcomeController::class, 'candidate_register']);
 Route::get('/insurer-register', [WelcomeController::class, 'insurer_register']);
 Route::get('/institute-register', [WelcomeController::class, 'institute_register']);
 Route::get('/images/{filename}', [ImageController::class, 'show'])->name('image.show');
-
 
 Route::middleware(['web'])->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');

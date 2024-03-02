@@ -17,6 +17,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use PDF;
 use Yajra\DataTables\DataTables;
+use App\Notifications\RegistrationNotification;
 
 use App\Models\User;
 use App\Models\UserProfile;
@@ -62,7 +63,7 @@ class CandidateController extends Controller
      */
     public function store(Request $request): Response
     {
-        // dd($request->all());
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
@@ -79,7 +80,6 @@ class CandidateController extends Controller
             'ctc' => 'required_if:experience,experienced',
             'organization' => 'required_if:experience,experienced',
             'designation' => 'required_if:experience,experienced',
-            // "joining_date" => 'required_if:experience,experienced',
             'experience_year'=>'required_if:experience,experienced|numeric',
             'preffered_line' => 'required|string|max:60',
             'city' => 'required|string|max:60'
@@ -92,7 +92,7 @@ class CandidateController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password, //Hash::make($request->password),
+            'password' => $request->password, 
             'phone' => $request->phone,
             'category' => "Candidate"
         ]);
@@ -103,7 +103,6 @@ class CandidateController extends Controller
                 'user_id' => $user_id,
                 'preffered_line' => $request->preffered_line,
             ]);
-            // dd($user_profile);
 
             $user_address = UserAddress::create([
                 'user_id' => $user_id,
@@ -122,13 +121,14 @@ class CandidateController extends Controller
                 ]);
             }
 
-            // event(new Registered($user));
-            // if($user->sendEmailVerificationNotification()){
-            //     return Response(['message' => "Email is sent to email"],200);
-            // }
-
             /** assign role to user **/
             $user->assignRole('Candidate');
+
+
+            /** Registration notification */
+            $password=$request->password;
+            $user->notify(new RegistrationNotification($user,$password,'candidate'));
+
             return Response(['status' => true, 'message' => "Candidate created successfully"], 200);
         }
         return Response(['status' => false, 'message' => "Something went wrong"], 500);

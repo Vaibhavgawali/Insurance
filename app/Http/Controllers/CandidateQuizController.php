@@ -63,7 +63,14 @@ class CandidateQuizController extends Controller
             return $quiz;
         });
 
-        $headers = ['id', 'title', 'description', 'level','status'];
+        $quizzes->transform(function ($quiz) use ($user) {
+            $quizStatus = $user->quizzes->where('quiz_id', $quiz->id)->first();
+            $quiz_score = $quizStatus ? $quizStatus->score  :  'NA';
+            $quiz->score = $quiz_score;
+            return $quiz;
+        });
+
+        $headers = ['id', 'title', 'description', 'level','score','status'];
 
         $actions = [
             [
@@ -224,7 +231,6 @@ class CandidateQuizController extends Controller
         }
     }
 
-
     // Helper method to calculate score 
     private function calculateScore($userAnswers, $quizId, $correctAnswersScore)
     {
@@ -285,7 +291,8 @@ class CandidateQuizController extends Controller
 
         // $this->pdf->setSourceFile("blankcertificate.pdf");
 
-        $pdfPath = public_path('blankcertificate.pdf');
+        // $pdfPath = public_path('blankcertificate.pdf');
+        $pdfPath = public_path('certificateWithSign.pdf');
         $this->pdf->setSourceFile($pdfPath);
 
         $this->pdf->SetTextColor(0,0,0);
