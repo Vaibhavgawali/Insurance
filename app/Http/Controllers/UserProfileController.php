@@ -121,23 +121,33 @@ class UserProfileController extends Controller
     public function profileImageUpload(Request $request)
     {
         if(Auth::check()){
-            $validator=Validator::make($request->all(),[
-                'profile_image'=>'required|image|mimes:jpeg,png,jpg|max:150'
-                // 'profile_image'=>'required|image|mimes:jpeg,png,jpg'
-            ]);
 
-            if($validator->fails()){
-                return Response(['status'=>false,'errors' => $validator->errors()],422);
-            } 
-            
-            // Save the image to the storage
-            $image=$request->file("profile_image");
-            $imageName=$image->hashName();
+            $image_parts = explode(";base64,", $request->profile_image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $imageName = uniqid().".".$image_type;
 
-            // $imagepath= Storage::disk('local')->put('public/images', $image);
-            // $imagepath = $image->storeAs('public/images', $imageName);
-            $image->move(public_path('storage/images'), $imageName);
-            $imagepath = public_path($imageName);
+            // Check if the image type is one of the allowed types
+            $allowed_image_types = ['jpeg', 'png', 'jpg'];
+            if (!in_array($image_type, $allowed_image_types)) {
+                return response()->json(['status' => false, 'errors' => ['profile_image' => ['Image must be jpg ,jpeg ,png only']]], 422);
+            }
+
+            // Decode the base64 data
+            $image_base64 = base64_decode($image_parts[1]);
+
+            // Calculate the image size in KB
+            $image_size = strlen($image_base64) / 1024; 
+
+            // Check if the image size exceeds the limit in KB
+            $max_image_size = 0; 
+            if ($image_size > $max_image_size) {
+                return response()->json(['status' => false, 'errors' => ['profile_image' => ['Image size exceeds the maximum allowed size 150 kB.']]], 422);
+            }
+
+            $folderPath = public_path('storage/images/');
+            $imagepath = $folderPath.$imageName;
+            file_put_contents($imagepath, $image_base64);
 
             if ($imagepath) {
                 $userId = Auth::user()->user_id; 
@@ -155,15 +165,11 @@ class UserProfileController extends Controller
                             
                         File::delete($oldImagePath);
                     }
-
-                    // $oldimage=$user->profile_image;
-                    // Storage::delete($oldimage);
                 }
                 $user->profile_image = $imageName;
                 $user->save();
                 return Response(['status'=>true,'message' => 'Image stored successfully', 'path' => $imagepath]);
             } else {
-                // Image storage failed
                 return Response(['status'=>false,'message' => 'Failed to store image'], 500);
             }            
         }

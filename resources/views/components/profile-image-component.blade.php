@@ -46,7 +46,7 @@
             <a href="" class="btn btn-secondary btn-sm">Cancel</a>
           </div>
         </form>
-        <div id="profile_image_error"></div>
+        <!-- <div id="profile_image_error"></div> -->
       </div>
       <script>
         function toggleProfileImageDiv() {
@@ -61,7 +61,7 @@
       @else
 
 
-      <form action="" id="Profile-image-upload-form">
+      <form action="" id="Profile-image-upload-form" >
         <div id="profile_image_status"></div>
         @csrf
         <label for="profile_image" id="drop-area">
@@ -144,6 +144,29 @@
       </div>
     </div>
   </div>
+
+  <!-- crop image model -->
+  <div id="imageModel" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <div id="image_demo" style="width:350px; margin-top:30px"></div>
+        <div id="validation-messages"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary crop_image">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
   <script>
     let Profile_Info_Toggle = () => {
       let editProfileButton = document.getElementById("profile_info_edit_button");
