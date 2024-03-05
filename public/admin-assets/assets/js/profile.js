@@ -1,21 +1,20 @@
 // Alert Box
 
-
 let loginAlert = () => {
     swal("Good job!", "You clicked the button!", "success");
 };
 let profileUpdateAlert = () => {
     swal("Good job!", "Profile Updated SuccessFully!", "success");
-}
+};
 let addressUpdateAlert = () => {
     swal("Good job!", "Address Updated SuccessFully!", "success");
-}
+};
 let experienceAddAlert = () => {
     swal("Good job!", "Experience Added SuccessFully!", "success");
-}
+};
 let experienceUpdateAlert = () => {
     swal("Good job!", "Experience Updated SuccessFully!", "success");
-}
+};
 
 let imageUploadAlert = () => {
     swal("Good job!", "Image Uploaded SuccessFully!", "success");
@@ -26,7 +25,6 @@ let resumeUploadAlert = () => {
 let requirementsAlert = () => {
     swal("Nice!", "We will get back to you soon!", "success");
 };
-
 
 $(document).ready(function () {
     // Reuirements  Update function
@@ -149,57 +147,158 @@ dropArea.addEventListener("drop", function (e) {
 });
 
 $(document).ready(function () {
-    // Profile Image Upload function
-    $("#image-upload-button").click(function (event) {
-        var formData = new FormData($("#Profile-image-upload-form")[0]);
-
-        $("#profile_image_error").html("");
-
-        event.preventDefault();
-
-        var url = window.location.origin + `/image-upload`;
-        // console.log(url);
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                // console.log(response);
-                if (response.status == true) {
-                    $(".error-message").remove();
-                    $("#image-upload-button").attr("disabled", true);
-                    imageUploadAlert();
-
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 1500); // 2000 milliseconds (2 seconds) delay, adjust as needed
-
-                    return false;
-                }
-            },
-            error: function (response) {
-                // console.log(response);
-                if (response.status === 422) {
-                    var errors = response.responseJSON.errors;
-                    // console.log(errors);
-                    $(".error-message").remove();
-
-                    // Display new errors
-                    $.each(errors, function (field, messages) {
-                        var input = $('[name="' + field + '"]');
-                        input.after(
-                            '<div class="error-message invalid-feedback d-block">' +
-                                messages.join(", ") +
-                                "</div>"
-                        );
-                    });
-                }
-            },
-        });
+    //crop image
+    $image_crop = $("#image_demo").croppie({
+        enableExif: true,
+        viewport: {
+            width: 200,
+            height: 200,
+            type: "square",
+        },
+        boundary: {
+            width: 300,
+            height: 300,
+        },
     });
+
+    $("#profile_image").on("change", function () {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            $image_crop
+                .croppie("bind", {
+                    url: event.target.result,
+                })
+                .then(function () {
+                    // console.log("jQuery bind complete");
+                });
+        };
+        reader.readAsDataURL(this.files[0]);
+        $("#imageModel").modal("show");
+    });
+
+    $(".crop_image").click(function (e) {
+        var csrfToken = $('meta[name="csrf-token"]').attr("content");
+
+        $image_crop
+            .croppie("result", {
+                type: "canvas",
+                size: "viewport",
+            })
+            .then(function (response) {
+                e.preventDefault();
+
+                var formData = new FormData();
+                formData.append("profile_image", response);
+                formData.append("_token", csrfToken);
+
+                var url = window.location.origin + `/image-upload`;
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.status == true) {
+                            $(".error-message").remove();
+                            $("#image-upload-button").attr("disabled", true);
+
+                            $("#imageModel").modal("hide");
+
+                            imageUploadAlert();
+
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 1500);
+
+                            return false;
+                        }
+                    },
+                    error: function (response) {
+                        if (response.status === 422) {
+                            var errors = response.responseJSON.errors;
+                            console.log(errors);
+                            // $(".error-message").remove();
+
+                            // // Display new errors
+                            // $.each(errors, function (field, messages) {
+                            //     var input = $('[name="' + field + '"]');
+                            //     input.after(
+                            //         '<div class="error-message invalid-feedback d-block">' +
+                            //             messages.join(", ") +
+                            //             "</div>"
+                            //     );
+                            // });
+                            var validationMessages = "";
+
+                            // Iterate through errors and concatenate them into validationMessages
+                            $.each(errors, function (field, messages) {
+                                validationMessages +=
+                                    '<div class="error-message invalid-feedback d-block">' +
+                                    messages.join(", ") +
+                                    "</div>";
+                            });
+
+                            // Update the validation messages area within the modal
+                            $("#validation-messages").html(validationMessages);
+                        }
+                    },
+                });
+            });
+    });
+
+    // Profile Image Upload function
+    // $("#image-upload-button").click(function (event) {
+    //     var formData = new FormData($("#Profile-image-upload-form")[0]);
+
+    //     $("#profile_image_error").html("");
+
+    //     event.preventDefault();
+
+    //     var url = window.location.origin + `/image-upload`;
+    //     // console.log(url);
+
+    //     $.ajax({
+    //         type: "POST",
+    //         url: url,
+    //         data: formData,
+    //         contentType: false,
+    //         processData: false,
+    //         success: function (response) {
+    //             // console.log(response);
+    //             if (response.status == true) {
+    //                 $(".error-message").remove();
+    //                 $("#image-upload-button").attr("disabled", true);
+    //                 imageUploadAlert();
+
+    //                 setTimeout(function () {
+    //                     window.location.reload();
+    //                 }, 1500); // 2000 milliseconds (2 seconds) delay, adjust as needed
+
+    //                 return false;
+    //             }
+    //         },
+    //         error: function (response) {
+    //             // console.log(response);
+    //             if (response.status === 422) {
+    //                 var errors = response.responseJSON.errors;
+    //                 // console.log(errors);
+    //                 $(".error-message").remove();
+
+    //                 // Display new errors
+    //                 $.each(errors, function (field, messages) {
+    //                     var input = $('[name="' + field + '"]');
+    //                     input.after(
+    //                         '<div class="error-message invalid-feedback d-block">' +
+    //                             messages.join(", ") +
+    //                             "</div>"
+    //                     );
+    //                 });
+    //             }
+    //         },
+    //     });
+    // });
 });
 
 $(document).ready(function (e) {
@@ -473,7 +572,7 @@ $(document).ready(function () {
                 if (response.status == true) {
                     $(".error-message").remove();
                     $("#profile_info_update_button").attr("disabled", true);
-                     profileUpdateAlert();
+                    profileUpdateAlert();
 
                     // Optional: You can add a delay before reloading the page
                     setTimeout(function () {
@@ -516,7 +615,6 @@ $(document).ready(function () {
         var spoc = $("#spoc").val();
         var user_id = $("#user_id").val();
 
-
         $("#date_of_birth_error").html("");
         $("#gender_error").html("");
         $("#age_error").html("");
@@ -537,9 +635,8 @@ $(document).ready(function () {
             $("#date_of_birth").focus();
             return false;
         }
-        if(preffered_line =="other")
-        {
-            preffered_line = other_preffered_line
+        if (preffered_line == "other") {
+            preffered_line = other_preffered_line;
         }
 
         if (
@@ -554,7 +651,6 @@ $(document).ready(function () {
             $("#gender").focus();
             return false;
         }
-
 
         if (
             age == "" ||
@@ -1182,6 +1278,3 @@ $(document).ready(function () {
         });
     });
 });
-
-
-
