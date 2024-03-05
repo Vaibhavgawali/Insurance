@@ -142,10 +142,23 @@ dropArea.addEventListener("dragover", function (e) {
 
 dropArea.addEventListener("drop", function (e) {
     e.preventDefault();
-    inputFile.files = e.dataTransfer.files;
-    uploadImage();
-    // $("#imageModel").modal("show");
+    var file = e.dataTransfer.files[0]; // Get the first file from the dropped files
+    var reader = new FileReader();
+    
+    reader.onload = function (event) {
+        $image_crop
+            .croppie("bind", {
+                url: event.target.result,
+            })
+            .then(function () {
+                // console.log("jQuery bind complete");
+            });
+    };
+
+    reader.readAsDataURL(file);
+    $("#imageModel").modal("show");
 });
+
 
 $(document).ready(function () {
     //crop image
