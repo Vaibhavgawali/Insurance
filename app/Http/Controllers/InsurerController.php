@@ -16,6 +16,8 @@ use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\DataTables;
+use App\Notifications\RegistrationNotification;
+
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\UserAddress;
@@ -148,10 +150,9 @@ class InsurerController extends Controller
                 'city'=>$request->city,
             ]);
             
-            event(new Registered($user));
-            // if($user->sendEmailVerificationNotification()){
-            //     return Response(['message' => "Email is sent to email"],200);
-            // }
+            /** Registration notification */
+            $password=$request->password;
+            $user->notify(new RegistrationNotification($user,$password,'insurer'));
 
             $user->assignRole('Insurer'); /** assign role to user */
             return Response(['status'=>true,'message' => "Insurer created successfully"],200);
