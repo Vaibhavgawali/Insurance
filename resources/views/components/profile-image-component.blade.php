@@ -42,7 +42,7 @@
           </div>
           <br>
           <div class="d-flex w-100 justify-content-center align-items-center ">
-            <button style="display:none" ; type="submit" class="btn btn-sm btn-gradient-primary me-2  my-3" id="image-upload-button">Upload</button>
+            <button style="display:none" ; type="submit" class="btn btn-sm btn-gradient-primary me-2  my-3" id="">Upload</button>
             <a href="" class="btn btn-secondary btn-sm">Cancel</a>
           </div>
         </form>

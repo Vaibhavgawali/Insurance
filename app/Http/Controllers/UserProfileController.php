@@ -140,7 +140,7 @@ class UserProfileController extends Controller
             $image_size = strlen($image_base64) / 1024; 
 
             // Check if the image size exceeds the limit in KB
-            $max_image_size = 0; 
+            $max_image_size = 150; 
             if ($image_size > $max_image_size) {
                 return response()->json(['status' => false, 'errors' => ['profile_image' => ['Image size exceeds the maximum allowed size 150 kB.']]], 422);
             }
