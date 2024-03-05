@@ -105,7 +105,7 @@ $(document).ready(function () {
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("profile_image");
 const imageView = document.getElementById("image-view");
-// const imageUploadButton = document.getElementById("image-upload-button");
+const imageUploadButton = document.getElementById("image-upload-button");
 
 inputFile.addEventListener("change", uploadImage);
 
@@ -129,7 +129,7 @@ function uploadImage() {
         imgElement.src = imgLink;
         imageView.style.border = 0;
         imgElement.alt = "Uploaded Image";
-        // imageUploadButton.style.display = "block";
+        imageUploadButton.style.display = "block";
         //   imageUploadButton.style.textAlign="center";
 
         // Append the img element to the image view
@@ -140,41 +140,11 @@ dropArea.addEventListener("dragover", function (e) {
     e.preventDefault();
 });
 
-// dropArea.addEventListener("drop", function (e) {
-//     e.preventDefault();
-//     inputFile.files = e.dataTransfer.files;
-//     console.log(inputFile.files);
-//     // uploadImage();
-//     var reader = new FileReader();
-//     reader.onload = function (event) {
-//         $image_crop
-//             .croppie("bind", {
-//                 url: event.target.result,
-//             })
-//             .then(function () {
-//                 // console.log("jQuery bind complete");
-//             });
-//     };
-//     reader.readAsDataURL(inputFile.files);
-//     $("#imageModel").modal("show");
-// });
 dropArea.addEventListener("drop", function (e) {
     e.preventDefault();
-    var file = e.dataTransfer.files[0]; // Get the first file from the dropped files
-    var reader = new FileReader();
-    
-    reader.onload = function (event) {
-        $image_crop
-            .croppie("bind", {
-                url: event.target.result,
-            })
-            .then(function () {
-                // console.log("jQuery bind complete");
-            });
-    };
-
-    reader.readAsDataURL(file);
-    $("#imageModel").modal("show");
+    inputFile.files = e.dataTransfer.files;
+    uploadImage();
+    // $("#imageModel").modal("show");
 });
 
 $(document).ready(function () {
