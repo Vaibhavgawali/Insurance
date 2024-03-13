@@ -61,14 +61,14 @@
 
                     </div>
                     <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xl-12">
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion accordion-flush" id="accordionFlushExample1">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
                                     <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                         <h4 class="module-dropdown"> Basics of Insurance</h4>
                                     </button>
                                 </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample1">
                                     <div class="accordion-body">
                                         <section>
                                             <div class="row">
@@ -205,14 +205,14 @@
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xl-12">
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion accordion-flush" id="accordionFlushExample2">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingTwo">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                                         <h4 class="module-dropdown">Common Regulations / Practices / Rules around Insurance</h4>
                                     </button>
                                 </h2>
-                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample2">
                                     <div class="accordion-body">
                                         <section>
                                             <div class="row">
@@ -266,14 +266,14 @@
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xl-12">
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion accordion-flush" id="accordionFlushExample3">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingThree">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                                         <h4 class="module-dropdown">Distribution Channels of Insurance Companies</h4>
                                     </button>
                                 </h2>
-                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample3">
                                     <div class="accordion-body">
                                         <section>
                                             <div class="row">
@@ -350,14 +350,14 @@
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xl-12">
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion accordion-flush" id="accordionFlushExample4">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingFour">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
                                         <h4 class="module-dropdown">Miscellaneous</h4>
                                     </button>
                                 </h2>
-                                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample4">
                                     <div class="accordion-body">
                                         <section>
                                             <div class="row">
@@ -409,14 +409,14 @@
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xl-12">
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion accordion-flush" id="accordionFlushExample5">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingFive">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
                                         <h4 class="module-dropdown">PRODUCTS OF INSURANCE COMPANIES</h4>
                                     </button>
                                 </h2>
-                                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample5">
                                     <div class="accordion-body">
                                         <section>
                                             <div class="row">

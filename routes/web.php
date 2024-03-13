@@ -45,7 +45,11 @@ Route::get('/industry', [WelcomeController::class, 'industry']);
 Route::get('/module', [WelcomeController::class, 'module']);
 Route::get('/contact', [WelcomeController::class, 'contact']);
 Route::get('/privacy', [WelcomeController::class, 'privacy']);
-Route::get('/terms', [WelcomeController::class, 'terms']);
+Route::get('/terms-candidate', [WelcomeController::class, 'terms_candidate']);
+Route::get('/terms-insurer', [WelcomeController::class, 'terms_insurer']);
+Route::get('/terms-institute', [WelcomeController::class, 'terms_institute']);
+
+
 
 Route::get('/candidate-register', [WelcomeController::class, 'candidate_register']);
 Route::get('/insurer-register', [WelcomeController::class, 'insurer_register']);

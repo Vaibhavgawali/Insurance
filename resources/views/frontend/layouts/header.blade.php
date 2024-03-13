@@ -6,7 +6,7 @@
 	<meta name="description" content="Insurancecareer.in - Insurance Company">
 	<meta name="keywords" content="	accounting, advising, advisory, business, company, consulting, corporate, finance, financial, investments, law, multi-purpose, services, tax help, visual composer">
 	<meta name="author" content="Zynovvatech">
-	<link rel="shortcut icon" href="/admin-assets/assets/images/logomini.png" type="image/x-icon">
+	<link rel="shortcut icon" href="/assets/img/logo/iconp-80X80.png" type="image/x-icon">
 	<meta name="base-url" content="{{ url('/') }}">
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,7 +39,7 @@
 		
 		<div class="in-header-top-content ">
 			<div class="brand-logo d-flex p-2 align-items-center">
-				<a href="/"><img src="{{asset('assets/img/logo/logo1.png')}}" alt=""></a>
+				<a href="/"><img src="{{asset('assets/img/logo/logop-280X80.png')}}" alt=""></a>
 				<marquee class="top-text-scroll" style="margin-left:40px;" direction="right" scrollamount="3">Empower Your Future: Navigate the Insurance Career Landscape with us  </marquee> 
 			</div>
 			
@@ -102,7 +102,7 @@
 						<i class="fal fa-times"></i>
 					</div>
 					<div class="m-brand-logo">
-						<a  href="/"><img src="assets/img/logo/logo-1.png" alt=""></a>
+						<a  href="/"><img src="assets/img/logo/logop-280X80.png" alt=""></a>
 					</div>
 					<nav class="mobile-main-navigation  clearfix ul-li">
 						<ul id="m-main-nav" class="nav navbar-nav clearfix">

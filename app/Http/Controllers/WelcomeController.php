@@ -31,14 +31,23 @@ class WelcomeController extends Controller
     {
         return view('frontend.privacy');
     } 
-    function terms()
+    function terms_candidate()
     {
-        return view('frontend.terms');
+        return view('frontend.terms-candidate');
+    }
+    function terms_insurer()
+    {
+        return view('frontend.terms-insurer');
+    }
+    function terms_institute()
+    {
+        return view('frontend.terms-institute');
     }
     function candidate_register()
     {
         return view('frontend.candidate-register');
     }
+
     function insurer_register()
     {
         return view('frontend.insurer-register');

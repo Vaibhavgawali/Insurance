@@ -196,7 +196,7 @@
 
                         <div class="d-flex align-items-center ">
                             <input class="form-check-input m-2" type="checkbox" value="" id="flexCheckDefault">
-                            I agree to the <a href="/terms" class="text-primary m-1"> terms & conditions</a>
+                            I agree to the <a href="/terms-candidate" class="text-primary m-1"> terms & conditions</a>
                         </div>
                         <div id="flexCheckDefault_error"></div>
 

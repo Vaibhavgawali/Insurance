@@ -94,7 +94,7 @@
 						<li><a href="/about">About</a></li>
 						<li><a href="/industry">Know about industry</a></li>
 						<li><a href="/privacy">Privacy</a></li>
-						<li><a href="/terms">Terms & conditions</a></li>
+						<li><a href="/terms-candidate">Terms & conditions</a></li>
 						<li><a href="/contact">contact</a></li>
 					</ul>
 				</div>
