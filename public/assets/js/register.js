@@ -235,10 +235,7 @@ $(document).ready(function () {
             );
             $("#preffered_line").focus();
             return false;
-        }
-        else if (
-            preffered_line.length>60
-        ) {
+        } else if (preffered_line.length > 60) {
             $("#preffered_line_error").html(
                 '<div class=" invalid-feedback d-block">Preffered line must not be greater than 60 characters</div>'
             );
@@ -421,20 +418,18 @@ $(document).ready(function () {
             return false;
         }
 
-        if (password_confirmation !== password) {
-            $("#password_confirmation_error").html(
-                '<div class=" invalid-feedback d-block">Confirm password do not match with password.</div>'
+        if (password.length < 8) {
+            $("#password_error").html(
+                '<div class="invalid-feedback d-block">Password must be at least 8 characters long.</div>'
             );
-            $("#password_confirmation").focus();
+            $("#password").focus();
             return false;
         }
 
         function validatePassword(password) {
-            // Minimum 8 characters, at least one uppercase letter,
-            // one lowercase letter, one number, and one special character
+            // At least one uppercase letter, one lowercase letter, one number, and one special character
             var passwordRegex =
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
             return passwordRegex.test(password);
         }
 
@@ -443,6 +438,14 @@ $(document).ready(function () {
                 '<div class=" invalid-feedback d-block">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</div>'
             );
             $("#password").focus();
+            return false;
+        }
+
+        if (password_confirmation !== password) {
+            $("#password_confirmation_error").html(
+                '<div class=" invalid-feedback d-block">Confirm password do not match with password.</div>'
+            );
+            $("#password_confirmation").focus();
             return false;
         }
 
@@ -483,10 +486,7 @@ $(document).ready(function () {
             );
             $("#preffered_line").focus();
             return false;
-        }
-       else if (
-            preffered_line.length>60
-        ) {
+        } else if (preffered_line.length > 60) {
             $("#preffered_line_error").html(
                 '<div class=" invalid-feedback d-block">Preffered line must not be greater than 60 characters</div>'
             );
@@ -765,6 +765,6 @@ $(document).ready(function () {
                     });
                 }
             },
-        });
-    });
+        });
+    });
 });
