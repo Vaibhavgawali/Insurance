@@ -109,6 +109,26 @@ const imageUploadButton = document.getElementById("image-upload-button");
 
 inputFile.addEventListener("change", uploadImage);
 
+window.onload = getExif;
+
+function getExif() {
+    var img1 = document.getElementById("img1");
+    EXIF.getData(img1, function () {
+        var make = EXIF.getTag(this, "Make");
+        var model = EXIF.getTag(this, "Model");
+        var makeAndModel = document.getElementById("makeAndModel");
+        // Corrected the line below
+        makeAndModel.innerHTML = `${make} ${model}`;
+    });
+
+    var img2 = document.getElementById("img2");
+    EXIF.getData(img2, function () {
+        var allMetaData = EXIF.getAllTags(this);
+        var allMetaDataSpan = document.getElementById("allMetaDataSpan");
+        allMetaDataSpan.innerHTML = JSON.stringify(allMetaData, null, "\t");
+    });
+}
+
 function uploadImage() {
     // Get the file from the input
     const file = inputFile.files[0];
@@ -142,9 +162,9 @@ dropArea.addEventListener("dragover", function (e) {
 
 dropArea.addEventListener("drop", function (e) {
     e.preventDefault();
-    var file = e.dataTransfer.files[0]; // Get the first file from the dropped files
+    var file = e.dataTransfer.files[0];
     var reader = new FileReader();
-    
+
     reader.onload = function (event) {
         $image_crop
             .croppie("bind", {
@@ -159,11 +179,10 @@ dropArea.addEventListener("drop", function (e) {
     $("#imageModel").modal("show");
 });
 
-
 $(document).ready(function () {
     //crop image
     $image_crop = $("#image_demo").croppie({
-        enableExif: true,
+        // enableExif: true,
         viewport: {
             width: 250,
             height: 250,

@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\HtmlString;
 use App\Models\User;
 
 class RegistrationNotification extends Notification
@@ -38,12 +39,16 @@ class RegistrationNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return(new MailMessage)
-            ->greeting('Hello, ' . $this->user->name)
-            ->line('Email: ' . $this->user->email)
+            ->greeting('Dear, ' . $this->user->name)
+            ->line('Thanks for registering with insurancecareer.in')
+            ->line('Please see below the login credentials:')
+            ->line('Email id: ' . $this->user->email)
             ->line('Password: ' . $this->password)
-            ->line('Welcome to Insurancecareer.in')
+            ->line('Do not reply to this mail. If you have any query, please write to info@insurancecareer.in.')
             ->action('Click here to Login', url('/login?role='. $this->role))
-            ->line('Thank you for using our application!');
+            ->line('Wish you all the best.')
+            // ->salutation('Regards,<br/>Team insurancecareer.in');
+            ->salutation("Regards, \r\n Team insurancecareer.in");
     }
 
     /**

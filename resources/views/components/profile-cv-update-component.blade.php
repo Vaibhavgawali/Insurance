@@ -13,7 +13,7 @@
       <div class="text-end">
         <button class="btn btn-gradient-primary btn-sm " id="profile_cv_edit_button"><i class="mdi mdi-cloud-upload"> Upload CV</i></button>
       </div>
-
+      
       <form class="forms-sample" id="profile_update_cv_form" >
         <div id="profile_cv_status"></div>
         @csrf
